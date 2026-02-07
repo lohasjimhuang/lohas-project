@@ -117,6 +117,7 @@ body {
         gap: 35px;
         transition: 0.4s ease-in-out;
         overflow-y: auto;      /* 內容超過時顯示垂直捲軸 */
+        max-height: 80vh;      /* 限制最大高度為螢幕的 80% */
     }
 
     .nav-links.active {
