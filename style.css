@@ -142,7 +142,105 @@ body {
         transform: translateY(-8px) rotate(-45deg);
     }
 }
+/* Hero Banner 容器 */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* 滿版高度，如需縮小可改為 80vh */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 (若要靠左可改為 flex-start 並加 padding) */
+    overflow: hidden;
+    color: #fff; /* 文字顏色通常為白色 */
+}
 
+/* 背景圖處理 (仿 Gogoro 的沉浸式感) */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 確保在文字下方 */
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 關鍵：圖片會填滿容器且不變形 */
+    object-position: center;
+}
+
+/* 為了讓文字清楚，可加上暗色遮罩 */
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* 30% 透明黑色遮罩 */
+}
+
+/* 文字內容 */
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 3.5rem; /* 大標題 */
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* 按鈕設計 (仿 Gogoro 圓角簡約風) */
+.hero-btns .btn {
+    display: inline-block;
+    padding: 12px 35px;
+    border-radius: 50px; /* 圓角按鈕 */
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+.btn-primary {
+    background-color: #00d1b2; /* 類似 Gogoro 的綠色或你的品牌色 */
+    color: white;
+}
+
+.btn-outline {
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.btn-outline:hover {
+    background: #fff;
+    color: #333;
+}
+
+/* 手機版適應 (RWD) */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .hero-btns .btn {
+        display: block;
+        margin: 15px auto;
+    }
+}
 /* 內容區填充 */
 .content {
     padding-top: 150px;
