@@ -242,3 +242,83 @@ body {
     padding-top: 150px;
     text-align: center;
 }
+/* --- Footer 樣式 --- */
+.main-footer {
+    background-color: #50422D; /* 你指定的品牌褐色 */
+    color: #ffffff;
+    padding: 80px 0 40px;      /* 上方留白較多，增加高級感 */
+    font-size: 14px;           /* 參考 Gogoro 的細緻字體大小 */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: flex-start; /* 靠左排列 */
+    gap: 100px;                  /* 欄位間距 */
+    margin-bottom: 60px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 25px;         /* 標題與項目的間距 */
+    color: #ffffff;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 15px;         /* 項目之間的間距 */
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #CDBEA2;             /* 子項目使用較淡的褐色，層次分明 */
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ffffff;             /* 滑鼠移入變白 */
+}
+
+/* 底部版權與 Logo */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* 極淡的分隔線 */
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo img {
+    height: 25px;
+    filter: brightness(0) invert(1); /* 若 Logo 是黑色的，這行可強制變白 */
+    opacity: 0.8;
+}
+
+.footer-bottom p {
+    color: #CDBEA2;
+    font-size: 12px;
+}
+
+/* 手機版 RWD 適應 */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;  /* 手機版改為垂直排列 */
+        gap: 40px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
