@@ -1,15 +1,11 @@
 /* 基礎設定 */
-body {
-    margin: 0;
-    font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
-    color: #333;
-}
+body { margin: 0; font-family: sans-serif; }
 
-/* Header 導覽列樣式 */
 .main-header {
-    background-color: #ffffff;
-    border-bottom: 1px solid #f0f0f0;
-    position: sticky;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 1000;
 }
@@ -20,79 +16,53 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px 20px;
-}
-
-.logo a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
-    color: #000;
-}
-
-.logo img {
-    height: 30px;
-    margin-right: 10px;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #666;
-    font-size: 16px;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #20E2D7; /* Gogoro 經典綠色系 */
-}
-
-/* 按鈕樣式 */
-.btn-primary {
-    background-color: #000;
-    color: #fff;
     padding: 10px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 14px;
+    height: 60px;
 }
 
-/* Hero 區塊內容 (網頁大標題) */
-.hero-section {
-    padding: 80px 20px;
-    text-align: center;
-    background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%);
+.logo a { display: flex; align-items: center; text-decoration: none; color: #000; font-weight: bold; }
+.logo img { height: 24px; margin-right: 8px; }
+
+/* 導覽連結基本樣式 (電腦版) */
+.nav-links { display: flex; list-style: none; gap: 20px; margin: 0; }
+.nav-links a { text-decoration: none; color: #333; font-size: 15px; }
+.mobile-only { display: none; }
+
+/* 漢堡選單按鈕樣式 (預設隱藏) */
+.menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.menu-toggle .bar { width: 25px; height: 3px; background-color: #333; transition: 0.3s; }
+
+/* --- 手機版佈局 (RWD) --- */
+@media screen and (max-width: 768px) {
+    .desktop-only { display: none; }
+    .mobile-only { display: block; margin-top: 20px; }
+    
+    .menu-toggle { display: flex; }
+
+    /* 隱藏選單，點擊後展開 */
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: -100%; /* 預設在左側外 */
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.4s;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        gap: 0;
+    }
+
+    .nav-links.active { left: 0; } /* 展開選單 */
+
+    .nav-links li { padding: 15px 0; border-bottom: 1px solid #f9f9f9; }
+    
+    /* 漢堡按鈕變叉叉 */
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }
 
-.hero-content h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
-    font-weight: 800;
-}
-
-.hero-content h2 {
-    font-size: 24px;
-    color: #555;
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-.btn-large {
-    background-color: #20E2D7;
-    color: #fff;
-    padding: 15px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    display: inline-block;
-}
+.hero-section { padding: 120px 20px; text-align: center; }
+.btn-primary { background: #000; color: #fff; padding: 10px 25px; border-radius: 50px; text-decoration: none; }
