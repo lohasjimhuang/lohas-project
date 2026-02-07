@@ -248,7 +248,7 @@ body {
     color: #ffffff;
     padding: 80px 0 40px;      /* 上方留白較多，增加高級感 */
     font-family: "PingFang TC", "Helvetica Neue", "Light", sans-serif; 
-    font-weight: 200; /* 設定極細 */
+    font-weight: 400; /* 設定極細 */
     letter-spacing: 0.5px; /* 增加一點字距，看起來更清爽 */
 }
 
@@ -267,7 +267,7 @@ body {
 
 .footer-column h3 {
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 400;
     margin-bottom: 25px;         /* 標題與項目的間距 */
     color: #ffffff;
 }
@@ -285,7 +285,7 @@ body {
     text-decoration: none;
     color: #CDBEA2;             /* 子項目使用較淡的褐色，層次分明 */
     transition: color 0.3s;
-    font-weight: 200; /* 極細 */
+    font-weight: 400; /* 極細 */
     font-size: 13px;  /* 稍微縮小字級 */
 }
 
@@ -311,7 +311,7 @@ body {
 .footer-bottom p {
     color: #CDBEA2;
     font-size: 12px;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 /* 手機版 RWD 適應 */
