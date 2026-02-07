@@ -116,8 +116,6 @@ body {
         padding-top: 60px;
         gap: 35px;
         transition: 0.4s ease-in-out;
-        max-height: calc(100vh - 70px); /* 螢幕總高減去導覽列高度 */
-        overflow-y: auto;               /* 垂直方向內容超過則允許捲動 */
         -webkit-overflow-scrolling: touch;
     }
 
