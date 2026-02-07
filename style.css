@@ -302,12 +302,6 @@ body {
     align-items: center;
 }
 
-.footer-logo img {
-    height: 25px;
-    filter: brightness(0) invert(1); /* 若 Logo 是黑色的，這行可強制變白 */
-    opacity: 0.8;
-}
-
 .footer-bottom p {
     color: #CDBEA2;
     font-size: 12px;
