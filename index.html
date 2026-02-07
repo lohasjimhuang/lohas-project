@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gogoro 2026 促銷活動 Header 範例</title>
+    <title>Gogoro 手機版導覽列範例</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,29 +11,43 @@
 <header class="main-header">
     <nav class="nav-container">
         <div class="logo">
-            <a href="#"><img src="https://www.gogoro.com/favicon.ico" alt="Gogoro Logo"> <span>Gogoro</span></a>
+            <a href="#"><img src="https://www.gogoro.com/favicon.ico" alt="Logo"> <span>Gogoro</span></a>
         </div>
 
-        <ul class="nav-links">
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="nav-links" id="nav-list">
             <li><a href="#">最新優惠</a></li>
             <li><a href="#">最新活動</a></li>
             <li><a href="#">補助/付款方案</a></li>
             <li><a href="#">資費方案</a></li>
+            <li class="mobile-only"><a href="#" class="btn-primary">預約賞車</a></li>
         </ul>
 
-        <div class="nav-cta">
+        <div class="nav-cta desktop-only">
             <a href="#" class="btn-primary">預約賞車</a>
         </div>
     </nav>
 </header>
 
 <section class="hero-section">
-    <div class="hero-content">
-        <h1>馬年馬上省！</h1>
-        <h2>入手 EZZY 最高現折 $4,000*<br>指定車款送破萬智慧擴充功能*</h2>
-        <a href="#" class="btn-large">即刻登記 專人服務</a>
-    </div>
+    <h1>馬年馬上省！</h1>
+    <p>入手 EZZY 最高現折 $4,000*</p>
 </section>
+
+<script>
+    const menu = document.querySelector('#mobile-menu');
+    const navList = document.querySelector('#nav-list');
+
+    menu.addEventListener('click', function() {
+        menu.classList.toggle('active');
+        navList.classList.toggle('active');
+    });
+</script>
 
 </body>
 </html>
