@@ -1,0 +1,98 @@
+/* 基礎設定 */
+body {
+    margin: 0;
+    font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+    color: #333;
+}
+
+/* Header 導覽列樣式 */
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #666;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #20E2D7; /* Gogoro 經典綠色系 */
+}
+
+/* 按鈕樣式 */
+.btn-primary {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Hero 區塊內容 (網頁大標題) */
+.hero-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%);
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.hero-content h2 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.btn-large {
+    background-color: #20E2D7;
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+}
