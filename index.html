@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gogoro 手機版導覽列範例</title>
+    <title>Gogoro 活動頁面 - 導覽列</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
 <header class="main-header">
     <nav class="nav-container">
         <div class="logo">
-            <a href="#"><img src="https://www.gogoro.com/favicon.ico" alt="Logo"> <span>Gogoro</span></a>
+            <a href="#">GOGORO</a>
         </div>
 
         <div class="menu-toggle" id="mobile-menu">
@@ -25,27 +25,34 @@
             <li><a href="#">最新活動</a></li>
             <li><a href="#">補助/付款方案</a></li>
             <li><a href="#">資費方案</a></li>
-            <li class="mobile-only"><a href="#" class="btn-primary">預約賞車</a></li>
+            <li class="mobile-cta"><a href="#" class="btn-primary">預約賞車</a></li>
         </ul>
 
-        <div class="nav-cta desktop-only">
+        <div class="nav-cta">
             <a href="#" class="btn-primary">預約賞車</a>
         </div>
     </nav>
 </header>
 
-<section class="hero-section">
-    <h1>馬年馬上省！</h1>
-    <p>入手 EZZY 最高現折 $4,000*</p>
-</section>
+<main class="content">
+    <section class="hero">
+        <h1>馬年馬上省！</h1>
+        <p>入手 EZZY 最高現折 $4,000</p>
+    </section>
+</main>
 
 <script>
-    const menu = document.querySelector('#mobile-menu');
-    const navList = document.querySelector('#nav-list');
+    // 手機版選單切換邏輯
+    document.addEventListener('DOMContentLoaded', () => {
+        const menu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
 
-    menu.addEventListener('click', function() {
-        menu.classList.toggle('active');
-        navList.classList.toggle('active');
+        menu.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            navList.classList.toggle('active');
+            // 防止捲動
+            document.body.style.overflow = navList.classList.contains('active') ? 'hidden' : 'auto';
+        });
     });
 </script>
 
