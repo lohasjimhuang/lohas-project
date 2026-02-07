@@ -116,9 +116,8 @@ body {
         padding-top: 60px;
         gap: 35px;
         transition: 0.4s ease-in-out;
-        max-height: 80vh;      /* 限制最大高度為螢幕的 80% */
-    overflow-y: auto;      /* 內容超過時顯示垂直捲軸 */
-    -webkit-overflow-scrolling: touch; /* 讓 iPhone 滑起來更順暢 */
+        overflow-y: auto;      /* 內容超過時顯示垂直捲軸 */
+        -webkit-overflow-scrolling: touch; /* 讓 iPhone 滑起來更順暢 */
     }
 
     .nav-links.active {
