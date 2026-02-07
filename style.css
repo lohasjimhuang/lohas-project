@@ -36,12 +36,12 @@ body {
 }
 
 /* Logo */
-.logo a {
-    font-size: 24px;
-    font-weight: 800;
-    text-decoration: none;
-    color: #000;
-    letter-spacing: 1px;
+.logo img {
+    /* 這是控制 Logo 大小的關鍵 */
+    height: 35px; /* 電腦版建議高度 */
+    width: auto;  /* 寬度自動依比例縮放 */
+    display: block;
+    object-fit: contain;
 }
 
 /* 導覽連結 (電腦版) */
@@ -97,7 +97,9 @@ body {
     .nav-cta {
         display: none; /* 隱藏原本右側按鈕 */
     }
-
+    .logo img {
+        height: 28px; /* 手機版略縮小，更精緻 */
+    }
     .menu-toggle {
         display: flex; /* 顯示漢堡按鈕 */
     }
