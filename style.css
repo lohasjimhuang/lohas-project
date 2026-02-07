@@ -213,11 +213,6 @@ body {
     margin: 0 10px;
 }
 
-.btn-primary {
-    background-color: #00d1b2; /* 類似 Gogoro 的綠色或你的品牌色 */
-    color: white;
-}
-
 .btn-outline {
     border: 2px solid #fff;
     color: #fff;
