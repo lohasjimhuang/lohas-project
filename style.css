@@ -124,7 +124,7 @@ body.no-scroll {
         gap: 35px;
         transition: 0.4s ease-in-out;
         overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        
     }
 
     .nav-links.active {
