@@ -251,7 +251,7 @@ body.no-scroll {
     }
 
     .hero-title {
-        font-size: 1.8rem;     /* 縮小標題字體 (原為 2.5rem) */
+        font-size: 2.0rem;     /* 縮小標題字體 (原為 2.5rem) */
         margin-bottom: 5px;
     }
 
@@ -261,10 +261,11 @@ body.no-scroll {
     }
 
     .hero-btns .btn {
-        display: inline-block; /* 改回行內區塊，防止按鈕撐滿全寬 */
-        padding: 8px 25px;     /* 縮小按鈕內距 (原為 12px 35px) */
-        font-size: 0.85rem;    /* 縮小按鈕文字 */
-        margin: 0;             /* 移除原本的 margin auto，回歸左對齊 */
+        display: inline-block; /* 確保按鈕是併排或隨文字流動 */
+        padding: 8px 25px;     /* 縮小按鈕 */
+        font-size: 0.85rem;    
+        margin-right: 10px;    /* 關鍵：增加按鈕右邊的間距 */
+        margin-top: 10px;      /* 關鍵：若按鈕被迫換行時，上方不會黏在一起 */
     }
 }
 /* 內容區填充 */
