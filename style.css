@@ -163,7 +163,7 @@ body.no-scroll {
     justify-content: flex-start; /* 水平對齊：左側 */
     overflow: hidden;
     color: #fff; /* 文字顏色通常為白色 */
-    padding-left: 3%;        /* 距離左邊一段距離，更有設計感 */
+    padding-left: 5%;        /* 距離左邊一段距離，更有設計感 */
     padding-bottom: 40px;     /* 距離底部一段距離 */
 }
 
@@ -200,14 +200,12 @@ body.no-scroll {
     text-align: left;
     max-width: 800px;
     padding: 0x;
-    margin-left: 10%;
 }
 
 .hero-title {
     font-size: 2.5rem; /* 大標題 */
     font-weight: 700;
-    margin-top: 30px; /* 增加這行，數值越大往下移越多 */
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     letter-spacing: 1px;
 }
 
