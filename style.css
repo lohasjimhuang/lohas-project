@@ -193,71 +193,65 @@ body.no-scroll {
     background: rgba(0, 0, 0, 0.1); /* 10% 透明黑色遮罩 */
 }
 
-/* 文字內容區塊 */
+/* 文字內容 */
 .hero-content {
-    text-align: left;        /* 關鍵：改為靠左對齊 */
+    text-align: center;
     max-width: 800px;
-    padding: 0;               /* 移除原本的 padding-top: 200px */
+    padding: 0 20px;
+    padding-top: 100px;
 }
 
 .hero-title {
-    font-size: 3rem;          /* JINS 標題通常很大氣 */
-    font-weight: 300;         /* 建議調細，更有日系感 */
-    margin-bottom: 15px;
+    font-size: 2.5rem; /* 大標題 */
+    font-weight: 700;
+    margin-bottom: 20px;
     letter-spacing: 2px;
-    line-height: 1.2;
 }
 
 .hero-subtitle {
-    font-size: 1.1rem;
-    margin-bottom: 35px;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
     font-weight: 300;
-    letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.9); /* 稍微透明，增加質感 */
 }
 
-/* 按鈕容器也改為靠左 */
-.hero-btns {
-    display: flex;
-    justify-content: flex-start;
-    gap: 0; /* 透過按鈕本身的 margin 控制間距 */
-}
-
+/* 按鈕設計 (仿 Gogoro 圓角簡約風) */
 .hero-btns .btn {
     display: inline-block;
-    padding: 12px 40px;
-    border-radius: 2px;       /* JINS 經典：微方圓角 */
+    padding: 12px 35px;
+    border-radius: 50px; /* 圓角按鈕 */
     text-decoration: none;
     font-weight: 400;
     transition: all 0.3s ease;
-    margin-right: 15px;       /* 改為右間距 */
-    margin-left: 0;           /* 清除左間距 */
-    letter-spacing: 1px;
-    font-size: 13px;
+    margin: 0 10px;
 }
 
+.btn-outline {
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.btn-outline:hover {
+    background: #fff;
+    color: #333;
+}
+
+/* 手機版適應 (RWD) */
 @media (max-width: 768px) {
-    .hero-banner {
-        align-items: center;     /* 手機版可考慮改回居中 */
-        justify-content: center;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 40px;
+    .hero-title {
+        font-size: 2.5rem;
     }
-
-    .hero-content {
-        text-align: center;      /* 手機版文字居中較好讀 */
+    .hero-subtitle {
+        font-size: 1rem;
     }
-
-    .hero-btns {
-        justify-content: center;
-        flex-direction: column;  /* 按鈕上下堆疊 */
-        gap: 10px;
-    }
-    
     .hero-btns .btn {
-        margin-right: 0;
+        display: block;
+        margin: 15px auto;
     }
+}
+/* 內容區填充 */
+.content {
+    padding-top: 150px;
+    text-align: center;
 }
 /* --- Footer 樣式 --- */
 .main-footer {
