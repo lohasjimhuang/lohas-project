@@ -239,15 +239,32 @@ body.no-scroll {
 
 /* 手機版適應 (RWD) */
 @media (max-width: 768px) {
+    .hero-banner {
+        padding-left: 20px;    /* 縮小左側間距，適合手機螢幕 */
+        padding-bottom: 30px;  /* 縮小底部間距 */
+        align-items: flex-end; /* 確保垂直靠底 */
+        justify-content: flex-start; /* 確保水平靠左 */
+    }
+
+    .hero-content {
+        max-width: 90%;        /* 讓內容在手機上稍微寬一點點 */
+    }
+
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 1.8rem;     /* 縮小標題字體 (原為 2.5rem) */
+        margin-bottom: 5px;
     }
+
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;     /* 縮小副標題字體 (原為 1.0rem) */
+        margin-bottom: 20px;
     }
+
     .hero-btns .btn {
-        display: block;
-        margin: 15px auto;
+        display: inline-block; /* 改回行內區塊，防止按鈕撐滿全寬 */
+        padding: 8px 25px;     /* 縮小按鈕內距 (原為 12px 35px) */
+        font-size: 0.85rem;    /* 縮小按鈕文字 */
+        margin: 0;             /* 移除原本的 margin auto，回歸左對齊 */
     }
 }
 /* 內容區填充 */
