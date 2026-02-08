@@ -297,7 +297,7 @@ body.no-scroll {
     text-decoration: none;
     /* 將子項目顏色稍微調暗，視覺上字會顯得更纖細 */
     color: rgba(255, 255, 255, 0.6); 
-    font-weight: 200; /* 極細 */
+    font-weight: 400; /* 極細 */
     font-size: 13px;  /* 稍微縮小字級 */
     transition: color 0.3s;
 }
