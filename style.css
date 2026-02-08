@@ -246,7 +246,7 @@ body.no-scroll {
         padding-bottom: 40px;  /* 縮小底部間距 */
         align-items: flex-end; /* 確保垂直靠底 */
         justify-content: flex-start; /* 確保水平靠左 */
-        height: 100dvh;
+        height: 100svh;
     }
 
     .hero-content {
