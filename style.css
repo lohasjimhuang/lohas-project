@@ -206,13 +206,14 @@ body.no-scroll {
     font-size: 2.5rem; /* 大標題 */
     font-weight: 700;
     margin-bottom: 10px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: 15px;
-    font-weight: 300;
+    font-weight: 400;
+    letter-spacing: 2px;
 }
 
 /* 按鈕設計 (仿 Gogoro 圓角簡約風) */
