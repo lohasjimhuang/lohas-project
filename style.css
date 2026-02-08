@@ -163,7 +163,7 @@ body.no-scroll {
     justify-content: flex-start; /* 水平對齊：左側 */
     overflow: hidden;
     color: #fff; /* 文字顏色通常為白色 */
-    padding-left: 5%;        /* 距離左邊一段距離，更有設計感 */
+    padding-left: 1%;        /* 距離左邊一段距離，更有設計感 */
     padding-bottom: 40px;     /* 距離底部一段距離 */
 }
 
@@ -197,38 +197,34 @@ body.no-scroll {
 
 /* 文字內容 */
 .hero-content {
-    text-align: left;
+    text-align: center;
     max-width: 800px;
     padding: 0 20px;
+    padding-top: 100px;
 }
 
 .hero-title {
     font-size: 2.5rem; /* 大標題 */
     font-weight: 700;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    ine-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
-    margin-bottom: 35px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.9); /* 稍微透明，增加質感 */
+    margin-bottom: 40px;
+    font-weight: 300;
 }
 
 /* 按鈕設計 (仿 Gogoro 圓角簡約風) */
 .hero-btns .btn {
     display: inline-block;
-    padding: 12px 40px;
-    border-radius: 2px;       /* JINS 經典：微方圓角 */
+    padding: 12px 35px;
+    border-radius: 50px; /* 圓角按鈕 */
     text-decoration: none;
     font-weight: 400;
     transition: all 0.3s ease;
-    margin-right: 15px;       /* 改為右間距 */
-    margin-left: 0;           /* 清除左間距 */
-    letter-spacing: 1px;
+    margin: 0 10px;
 }
 
 .btn-outline {
