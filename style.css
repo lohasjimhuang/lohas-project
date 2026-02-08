@@ -159,10 +159,12 @@ body.no-scroll {
     width: 100%;
     height: 100vh; /* 滿版高度，如需縮小可改為 80vh */
     display: flex;
-    align-items: center; /* 垂直居中 */
-    justify-content: center; /* 水平居中 (若要靠左可改為 flex-start 並加 padding) */
+    align-items: flex-end;    /* 垂直對齊：底部 */
+    justify-content: flex-start; /* 水平對齊：左側 */
     overflow: hidden;
     color: #fff; /* 文字顏色通常為白色 */
+    padding-left: 10%;        /* 距離左邊一段距離，更有設計感 */
+    padding-bottom: 80px;     /* 距離底部一段距離 */
 }
 
 /* 背景圖處理 (仿 Gogoro 的沉浸式感) */
