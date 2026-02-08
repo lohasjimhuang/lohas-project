@@ -163,7 +163,7 @@ body.no-scroll {
     justify-content: flex-start; /* 水平對齊：左側 */
     overflow: hidden;
     color: #fff; /* 文字顏色通常為白色 */
-    padding-left: 1%;        /* 距離左邊一段距離，更有設計感 */
+    padding-left: 5%;        /* 距離左邊一段距離，更有設計感 */
     padding-bottom: 40px;     /* 距離底部一段距離 */
 }
 
@@ -206,13 +206,13 @@ body.no-scroll {
 .hero-title {
     font-size: 2.5rem; /* 大標題 */
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     letter-spacing: 2px;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     font-weight: 300;
 }
 
