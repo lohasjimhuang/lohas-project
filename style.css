@@ -190,7 +190,7 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* 30% 透明黑色遮罩 */
+    background: rgba(0, 0, 0, 0.1); /* 10% 透明黑色遮罩 */
 }
 
 /* 文字內容 */
