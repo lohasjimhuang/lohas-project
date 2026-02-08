@@ -72,6 +72,35 @@
         });
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptBtn = document.getElementById('accept-cookies');
+
+        // 1. 檢查是否已經接受過 Cookie
+        if (!localStorage.getItem('lohas_cookies_accepted')) {
+            // 延遲 1.5 秒彈出，模仿高品質網頁的細節
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 1500);
+        }
+
+        // 2. 點擊接受按鈕
+        acceptBtn.addEventListener('click', () => {
+            cookieBanner.style.transform = 'translateY(100%)'; // 向下滑動消失
+            
+            // 存入 localStorage，下次進站就不會再看到
+            localStorage.setItem('lohas_cookies_accepted', 'true');
+            
+            // 延遲移除 class
+            setTimeout(() => {
+                cookieBanner.classList.remove('show');
+            }, 600);
+        });
+    });
+</script>
+    
 <footer class="main-footer">
     <div class="footer-container">
         <div class="footer-links">
