@@ -124,6 +124,7 @@ body.no-scroll {
         gap: 35px;
         transition: 0.4s ease-in-out;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         
     }
 
@@ -146,6 +147,7 @@ body.no-scroll {
     }
     .menu-toggle.active .bar:nth-child(2) {
         opacity: 0;
+        transform: translateX(-10px); /* 讓它往旁邊滑出，確保不會留在原地變成點 */
     }
     .menu-toggle.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
