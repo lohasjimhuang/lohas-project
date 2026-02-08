@@ -241,7 +241,7 @@ body.no-scroll {
 @media (max-width: 768px) {
     .hero-banner {
         padding-left: 20px;    /* 縮小左側間距，適合手機螢幕 */
-        padding-bottom: 70px;  /* 縮小底部間距 */
+        padding-bottom: 50px;  /* 縮小底部間距 */
         align-items: flex-end; /* 確保垂直靠底 */
         justify-content: flex-start; /* 確保水平靠左 */
         height: 100dvh;
@@ -252,13 +252,13 @@ body.no-scroll {
     }
 
     .hero-title {
-        font-size: 2.0rem;     /* 縮小標題字體 (原為 2.5rem) */
+        font-size: 2.2rem;     /* 縮小標題字體 (原為 2.5rem) */
         margin-bottom: 5px;
     }
 
     .hero-subtitle {
         font-size: 0.9rem;     /* 縮小副標題字體 (原為 1.0rem) */
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .hero-btns .btn {
