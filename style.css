@@ -224,7 +224,7 @@ body.no-scroll {
     text-decoration: none;
     font-weight: 400;
     transition: all 0.3s ease;
-    margin: 0 10px;
+    margin: 0;
 }
 
 .btn-outline {
