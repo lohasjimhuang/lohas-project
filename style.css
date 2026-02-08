@@ -253,12 +253,12 @@ body.no-scroll {
 
     .hero-title {
         font-size: 2.2rem;     /* 縮小標題字體 (原為 2.5rem) */
-        margin-bottom: 5px;
+        margin-bottom: 3px;
     }
 
     .hero-subtitle {
         font-size: 0.9rem;     /* 縮小副標題字體 (原為 1.0rem) */
-        margin-bottom: 5px;
+        margin-bottom: 3px;
     }
 
     .hero-btns .btn {
