@@ -63,6 +63,12 @@ body {
     color: #CDBEA2; /* Lohas 品牌褐 */
 }
 
+/* 當選單開啟時，禁止 body 捲動 */
+body.no-scroll {
+    overflow: hidden;
+    height: 100%;
+}
+
 /* 按鈕 */
 .btn-primary {
     background-color: #50422D;
