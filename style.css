@@ -198,20 +198,21 @@ body.no-scroll {
     text-align: center;
     max-width: 800px;
     padding: 0 20px;
-    padding-top: 100px;
+    padding-top: 200px;
 }
 
 .hero-title {
     font-size: 2.5rem; /* 大標題 */
     font-weight: 700;
     margin-bottom: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: 40px;
-    font-weight: 300;
+    font-weight: 400;
+    letter-spacing: 2px;
 }
 
 /* 按鈕設計 (仿 Gogoro 圓角簡約風) */
@@ -223,6 +224,7 @@ body.no-scroll {
     font-weight: 400;
     transition: all 0.3s ease;
     margin: 0 10px;
+    letter-spacing: 2px;
 }
 
 .btn-outline {
