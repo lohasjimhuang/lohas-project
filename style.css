@@ -295,17 +295,15 @@ body.no-scroll {
     .footer-column.active h3::after {
         transform: rotate(45deg);
     }
-/* 預設隱藏子選單 */
-    .footer-column ul {
+.footer-column ul {
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease-out; /* 平滑展開動畫 */
-        padding-left: 10px;
+        transition: max-height 0.4s ease; /* 增加動畫感 */
     }
-/* 選單開啟時的高度 */
+/* 當父層有 .active 時展開 */
     .footer-column.active ul {
-        max-height: 500px; /* 給一個足夠大的高度 */
-        padding-bottom: 20px;
+        max-height: 1000px; /* 這裡要給一個足夠大的值 */
+        margin-top: 15px;   /* 展開後加點間距 */
     }
 .footer-column ul li {
     margin-bottom: 15px;         /* 項目之間的間距 */
