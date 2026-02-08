@@ -258,7 +258,7 @@ body.no-scroll {
 
     .hero-subtitle {
         font-size: 0.9rem;     /* 縮小副標題字體 (原為 1.0rem) */
-        margin-bottom: 15px;
+        margin-bottom: 5px;
     }
 
     .hero-btns .btn {
