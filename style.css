@@ -241,7 +241,7 @@ body.no-scroll {
 @media (max-width: 768px) {
     .hero-banner {
         padding-left: 20px;    /* 縮小左側間距，適合手機螢幕 */
-        padding-bottom: 100px;  /* 縮小底部間距 */
+        padding-bottom: 70px;  /* 縮小底部間距 */
         align-items: flex-end; /* 確保垂直靠底 */
         justify-content: flex-start; /* 確保水平靠左 */
         height: 100dvh;
