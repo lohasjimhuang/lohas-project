@@ -114,8 +114,10 @@ body {
         flex-direction: column;
         align-items: center;
         padding-top: 60px;
+        padding-bottom: 60px;
         gap: 35px;
         transition: 0.4s ease-in-out;
+        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
 
