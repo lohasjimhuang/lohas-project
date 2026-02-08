@@ -270,46 +270,40 @@ body.no-scroll {
 
 .footer-links {
     display: flex;
-    justify-content: flex-start;
-    gap: 100px;
+    justify-content: flex-start; /* 靠左排列 */
+    gap: 100px;                  /* 欄位間距 */
+    margin-bottom: 60px;
 }
-.footer-column {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 項目間的分隔線 */
-    }
+
 .footer-column h3 {
-        padding: 20px 0;
-        margin-bottom: 0;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 14px;
-    }
+    font-size: 15px;
+    /* 標題也不要太粗，使用 400 (正常) 或 300 (細) */
+    font-weight: 400; 
+    margin-bottom: 25px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
 
 .footer-column ul {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease; /* 增加動畫感 */
-    }
-/* 當父層有 .active 時展開 */
-    .footer-column.active ul {
-        max-height: 1000px; /* 這裡要給一個足夠大的值 */
-        margin-top: 15px;   /* 展開後加點間距 */
-    }
+    list-style: none;
+    padding: 0;
+}
+
 .footer-column ul li {
     margin-bottom: 15px;         /* 項目之間的間距 */
 }
 
 .footer-column ul li a {
     text-decoration: none;
-    color: #CDBEA2;             /* 子項目使用較淡的褐色，層次分明 */
-    transition: color 0.3s;
-    font-weight: 400; /* 極細 */
+    /* 將子項目顏色稍微調暗，視覺上字會顯得更纖細 */
+    color: rgba(255, 255, 255, 0.6); 
+    font-weight: 200; /* 極細 */
     font-size: 13px;  /* 稍微縮小字級 */
+    transition: color 0.3s;
 }
 
 .footer-column ul li a:hover {
-    color: #ffffff;             /* 滑鼠移入變白 */
+    color: #ffffff; /* 滑鼠移入才變亮白 */
 }
 
 /* 底部版權與 Logo */
