@@ -102,23 +102,29 @@
 </script>
 
 <script>
-// Footer 下拉選單邏輯 (手機版)
-document.querySelectorAll('.footer-column h3').forEach(header => {
-    header.addEventListener('click', () => {
-        // 僅在手機版寬度時觸發
-        if (window.innerWidth <= 768) {
-            const column = header.parentElement;
-            
-            // 如果你希望一次只能開一個，可以先把其他的關閉 (像 JINS 那樣)
-            document.querySelectorAll('.footer-column').forEach(item => {
-                if (item !== column) item.classList.remove('active');
-            });
+document.addEventListener('DOMContentLoaded', () => {
+    // 選取所有 Footer 的標題
+    const footerHeaders = document.querySelectorAll('.footer-column h3');
 
-            // 切換目前的開合狀態
-            column.classList.toggle('active');
-        }
+    footerHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            // 偵測螢幕寬度，小於等於 768px 才執行
+            if (window.innerWidth <= 768) {
+                const column = header.parentElement;
+                
+                // (選填) 像 JINS 一樣：點擊一個時，關閉其他已經打開的
+                document.querySelectorAll('.footer-column').forEach(item => {
+                    if (item !== column) {
+                        item.classList.remove('active');
+                    }
+                });
+
+                // 切換目前的 active 狀態
+                column.classList.toggle('active');
+            }
+        });
     });
-});   
+});
 </script>
 
 <footer class="main-footer">
