@@ -103,24 +103,20 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // 選取所有 Footer 的標題
+    // 取得所有 Footer 的標題 (<h3>)
     const footerHeaders = document.querySelectorAll('.footer-column h3');
 
     footerHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            // 偵測螢幕寬度，小於等於 768px 才執行
+        header.addEventListener('click', function() {
+            // 只有在手機版 (螢幕寬度 <= 768px) 才執行
             if (window.innerWidth <= 768) {
-                const column = header.parentElement;
+                const column = this.parentElement;
                 
-                // (選填) 像 JINS 一樣：點擊一個時，關閉其他已經打開的
-                document.querySelectorAll('.footer-column').forEach(item => {
-                    if (item !== column) {
-                        item.classList.remove('active');
-                    }
-                });
-
-                // 切換目前的 active 狀態
+                // 切換 active 狀態
                 column.classList.toggle('active');
+                
+                // 偵錯用：如果有在主控台看到這行，代表 JS 沒問題
+                console.log('Footer 點擊成功，目前狀態：', column.classList.contains('active'));
             }
         });
     });
