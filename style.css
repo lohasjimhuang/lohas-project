@@ -321,3 +321,90 @@ body {
         gap: 20px;
     }
 }
+/* --- Cookie Banner 基礎樣式 --- */
+.cookie-banner {
+    position: fixed;
+    bottom: -150px; /* 初始隱藏 */
+    left: 0;
+    width: 100%;
+    background-color: rgba(25, 25, 25, 0.96); /* 質感深色半透明 */
+    color: #fff;
+    z-index: 10001;
+    padding: 20px 0;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 顯示狀態 */
+.cookie-banner.show {
+    transform: translateY(-150px); /* 向上滑出 */
+}
+
+.cookie-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cookie-content p {
+    font-size: 13px;
+    font-weight: 200; /* 極細字體 */
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.cookie-content a {
+    color: #fff;
+    text-decoration: underline;
+    transition: opacity 0.3s;
+}
+
+/* 按鈕樣式 - 延續你的品牌褐色 #50422D */
+.btn-cookie-accept {
+    background-color: #50422D;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.btn-cookie-accept:hover {
+    background-color: #765F4A;
+    transform: scale(1.05);
+}
+
+/* --- 手機版 RWD 調整 --- */
+@media screen and (max-width: 768px) {
+    .cookie-banner {
+        padding: 25px 0;
+    }
+    
+    .cookie-banner.show {
+        transform: translateY(-100%); /* 在手機版確保完全蓋過底部 */
+    }
+
+    .cookie-container {
+        flex-direction: column; /* 垂直排列 */
+        text-align: center;
+        gap: 20px;
+    }
+
+    .cookie-content p {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+
+    .btn-cookie-accept {
+        width: 100%; /* 按鈕滿版，方便點擊 */
+        max-width: 280px;
+    }
+}
