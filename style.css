@@ -269,9 +269,10 @@ body.no-scroll {
 }
 
 .footer-links {
-        flex-direction: column;
-        gap: 0; /* 移除間距，改用邊框分隔 */
-    }
+    display: flex;
+    justify-content: flex-start;
+    gap: 100px;
+}
 .footer-column {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 項目間的分隔線 */
     }
@@ -284,17 +285,7 @@ body.no-scroll {
         align-items: center;
         font-size: 14px;
     }
-/* 加入 JINS 風格的 + 號圖示 */
-    .footer-column h3::after {
-        content: '+';
-        font-size: 18px;
-        transition: transform 0.3s;
-    }
 
-    /* 當選單開啟時，+ 號轉動變 x 或 - */
-    .footer-column.active h3::after {
-        transform: rotate(45deg);
-    }
 .footer-column ul {
         max-height: 0;
         overflow: hidden;
@@ -336,17 +327,52 @@ body.no-scroll {
     font-weight: 400;
 }
 
-/* 手機版 RWD 適應 */
-@media (max-width: 768px) {
+/* --- 手機版 RWD 修正 --- */
+@media screen and (max-width: 768px) {
     .footer-links {
-        flex-direction: column;  /* 手機版改為垂直排列 */
-        gap: 40px;
+        flex-direction: column; /* 垂直排列 */
+        gap: 0; /* 移除原本電腦版的間距 */
     }
-    
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
+
+    .footer-column {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-column h3 {
+        padding: 15px 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0; /* 修正：收起時不要有底邊距 */
+    }
+
+    /* 加入 + 號圖示 */
+    .footer-column h3::after {
+        content: '+';
+        font-size: 20px;
+        transition: transform 0.3s;
+    }
+
+    /* 關鍵：預設隱藏清單 */
+    .footer-column ul {
+        display: block !important; /* 覆蓋掉可能影響的隱藏設定 */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out; 
+        opacity: 0;
+    }
+
+    /* 當 .active 被 JS 加入時展開 */
+    .footer-column.active ul {
+        max-height: 500px; /* 給一個夠大的值 */
+        opacity: 1;
+        padding-bottom: 20px;
+    }
+
+    /* 旋轉 + 號變成 x */
+    .footer-column.active h3::after {
+        transform: rotate(45deg);
     }
 }
 /* --- Cookie Banner 基礎樣式 --- */
