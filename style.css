@@ -200,6 +200,7 @@ body.no-scroll {
     text-align: left;
     max-width: 800px;
     padding: 0x;
+    margin-left: 10%;
 }
 
 .hero-title {
