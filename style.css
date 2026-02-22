@@ -344,36 +344,7 @@ body.no-scroll {
     font-size: 12px;
     font-weight: 400;
 }
-/* Footer Logo 容器 */
-.footer-logo-wrapper {
-    width: 100%;        /* 讓它佔滿一行 */
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1); /* 仿 JINS/Gogoro 的細線感 */
-}
 
-/* Logo 圖片本身 */
-.footer-logo-img {
-    height: 35px;       /* 強制設定高度，確保電腦版看得到 */
-    width: auto;
-    display: block;
-    opacity: 0.9;
-    transition: 0.3s;
-    
-    /* 💡 如果你的 Footer 背景是深色的，請務必加上這一行： */
-    /* filter: brightness(0) invert(1); */ 
-}
-
-.footer-logo-img:hover {
-    opacity: 1;
-}
-
-/* 電腦版對齊建議 */
-@media (min-width: 769px) {
-    .footer-logo-wrapper {
-        text-align: left; /* 或是 center，看你喜歡哪種 */
-    }
-}
 /* --- 手機版 RWD 修正 --- */
 @media screen and (max-width: 768px) {
     .footer-links {
