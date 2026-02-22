@@ -344,7 +344,17 @@ body.no-scroll {
     font-size: 12px;
     font-weight: 400;
 }
+.footer-brand {
+    margin-bottom: 2rem; /* 增加與下方文字的距離 */
+    display: flex;
+    justify-content: flex-start; /* Logo 靠左，若要置中改 center */
+}
 
+.footer-brand img {
+    max-width: 150px; /* 限制最大寬度防止跑版 */
+    height: auto;
+    filter: brightness(0) invert(1); /* 💡 重要：如果 Footer 背景是深色的，這行會把黑色 Logo 變成白色 */
+}
 /* --- 手機版 RWD 修正 --- */
 @media screen and (max-width: 768px) {
     .footer-links {
