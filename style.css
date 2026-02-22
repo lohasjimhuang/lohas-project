@@ -344,16 +344,35 @@ body.no-scroll {
     font-size: 12px;
     font-weight: 400;
 }
-.footer-brand {
-    margin-bottom: 2rem; /* 增加與下方文字的距離 */
-    display: flex;
-    justify-content: flex-start; /* Logo 靠左，若要置中改 center */
+/* Footer Logo 容器 */
+.footer-logo-wrapper {
+    width: 100%;        /* 讓它佔滿一行 */
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* 仿 JINS/Gogoro 的細線感 */
 }
 
-.footer-brand img {
-    max-width: 150px; /* 限制最大寬度防止跑版 */
-    height: auto;
-    filter: brightness(0) invert(1); /* 💡 重要：如果 Footer 背景是深色的，這行會把黑色 Logo 變成白色 */
+/* Logo 圖片本身 */
+.footer-logo-img {
+    height: 35px;       /* 強制設定高度，確保電腦版看得到 */
+    width: auto;
+    display: block;
+    opacity: 0.9;
+    transition: 0.3s;
+    
+    /* 💡 如果你的 Footer 背景是深色的，請務必加上這一行： */
+    /* filter: brightness(0) invert(1); */ 
+}
+
+.footer-logo-img:hover {
+    opacity: 1;
+}
+
+/* 電腦版對齊建議 */
+@media (min-width: 769px) {
+    .footer-logo-wrapper {
+        text-align: left; /* 或是 center，看你喜歡哪種 */
+    }
 }
 /* --- 手機版 RWD 修正 --- */
 @media screen and (max-width: 768px) {
