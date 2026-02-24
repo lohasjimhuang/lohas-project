@@ -329,7 +329,61 @@ body.no-scroll {
 .footer-column ul li a:hover {
     color: #ffffff; /* 滑鼠移入才變亮白 */
 }
+/* --- Gogoro 風格 Footer 新增樣式 --- */
 
+/* 品牌與社群容器 */
+.footer-brand-social {
+    display: flex;
+    justify-content: space-between; /* 讓 Logo 在左，Icon 在右 */
+    align-items: center;
+    padding: 40px 0;
+    margin-top: 20px;
+    border-top: 1px solid #eeeeee; /* 增加一條簡約的分隔線 */
+}
+
+/* Logo 大小控制 */
+.footer-brand-logo img {
+    height: 28px; /* 稍微縮小一點顯得精緻 */
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.footer-brand-logo img:hover {
+    opacity: 0.7;
+}
+
+/* 社群圖示排版 */
+.footer-social-icons {
+    display: flex;
+    gap: 20px; /* 圖示間距 */
+}
+
+.social-icon {
+    color: #333; /* Gogoro 灰色調 */
+    font-size: 20px;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* 滑鼠懸停動畫：向上輕微位移 */
+.social-icon:hover {
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* --- 手機版適應 (RWD) --- */
+@media (max-width: 768px) {
+    .footer-brand-social {
+        flex-direction: column; /* 手機版變成垂直堆疊 */
+        gap: 30px;
+        text-align: center;
+        padding: 30px 0;
+    }
+
+    .footer-social-icons {
+        gap: 30px; /* 手機版間距加大好點擊 */
+    }
+}
 /* 底部版權與 Logo */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1); /* 極淡的分隔線 */
