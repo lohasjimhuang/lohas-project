@@ -329,78 +329,7 @@ body.no-scroll {
 .footer-column ul li a:hover {
     color: #ffffff; /* 滑鼠移入才變亮白 */
 }
-/* --- Gogoro 風格 Footer 新增樣式 --- */
 
-/* 品牌與社群容器 */
-.footer-brand-social {
-    display: flex;
-    justify-content: space-between; /* 讓 Logo 在左，Icon 在右 */
-    align-items: center;
-    padding: 40px 0;
-    margin-top: 20px;
-    border-top: 1px solid #eeeeee; /* 增加一條簡約的分隔線 */
-}
-
-/* 1. 桌機版 (1024px 以上)：Logo 最大，呈現品牌氣勢 */
-.footer-brand-logo img {
-    height: 32px; /* 基準高度 */
-    width: auto;  /* 寬度自動縮放，不變形 */
-    display: block;
-    transition: opacity 0.3s ease;
-}
-
-.footer-brand-logo img:hover {
-    opacity: 0.7;
-}
-
-/* 社群圖示排版 */
-.footer-social-icons {
-    display: flex;
-    gap: 20px; /* 圖示間距 */
-}
-
-.social-icon {
-    color: #333; /* Gogoro 灰色調 */
-    font-size: 20px;
-    text-decoration: none;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-/* 滑鼠懸停動畫：向上輕微位移 */
-.social-icon:hover {
-    color: #000;
-    transform: translateY(-3px);
-}
-/* 2. 平板版 (769px ~ 1024px)：稍微縮小，騰出空間給社群圖示 */
-@media (max-width: 1024px) {
-    .footer-brand-logo img {
-        height: 28px;
-    }
-}
-/* 3. 手機版 (768px 以下)：Logo 置中並適度縮小 */
-@media (max-width: 768px) {
-    .footer-brand-logo img {
-        height: 24px;
-        margin: 0 auto; /* 確保在垂直排版時置中 */
-    }
-    
-    /* 配合手機版將容器改為垂直排版 */
-    .footer-brand-social {
-        flex-direction: column;
-        gap: 24px; /* Logo 與 Social Icons 之間的間距 */
-        text-align: center;
-    }
-}
-
-/* 滑鼠懸停效果 (只在電腦版生效) */
-.footer-brand-logo img:hover {
-    opacity: 0.7;
-}
-
-    .footer-social-icons {
-        gap: 30px; /* 手機版間距加大好點擊 */
-    }
-}
 /* 底部版權與 Logo */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1); /* 極淡的分隔線 */
