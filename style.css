@@ -276,6 +276,90 @@ body.no-scroll {
     padding-top: 150px;
     text-align: center;
 }
+
+/* 服務區塊整體容器 */
+.service-scroll-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+/* 橫向滑動的核心設定 */
+.service-wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 0 20px;
+    overflow-x: auto; /* 開啟橫向滑動 */
+    scroll-snap-type: x mandatory; /* 滑動吸附感 */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 隱藏捲軸 */
+.service-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* 單個卡片樣式 */
+.service-card {
+    flex: 0 0 calc(33.333% - 14px); /* 電腦端一排三個 */
+    min-width: 300px;
+    text-decoration: none;
+    color: #333;
+    background: #fff;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-img {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 保持圖片比例一致 */
+    overflow: hidden;
+    background-color: #eee; /* 圖片載入前的底色 */
+}
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.service-info {
+    padding: 20px 0;
+}
+
+.service-info h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.service-info p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.more-text {
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+}
+
+/* 手機版優化：一次露出一部分下一張卡片 */
+@media (max-width: 992px) {
+    .service-card {
+        flex: 0 0 75%; /* 手機端卡片寬度佔 75%，讓右邊露出下一張 */
+    }
+}
+
 /* --- Footer 樣式 --- */
 .main-footer {
     background-color: #50422D; /* 你指定的品牌褐色 */
