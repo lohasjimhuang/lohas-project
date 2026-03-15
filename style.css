@@ -287,9 +287,10 @@ body.no-scroll {
     max-width: 1400px;
     margin: 0 auto;
     gap: 15px;
-    padding: 0 15px;
+    padding: 0 20px;
     overflow-x: auto; /* 手機端滑動關鍵 */
     scroll-snap-type: x mandatory;
+    scrollbar-width: none;
 }
 
 /* 隱藏捲軸 */
@@ -305,6 +306,7 @@ body.no-scroll {
     overflow: hidden;
     scroll-snap-align: start;
     text-decoration: none;
+    border-radius: 8px; /* 增加一點點日系溫潤感 */
 }
 
 .owndays-item img {
@@ -370,12 +372,14 @@ body.no-scroll {
 /* --- 手機版 RWD --- */
 @media (max-width: 768px) {
     .owndays-item {
-        flex: 0 0 90%; /* 手機上一張圖佔 90%，旁邊露出下一張圖的邊緣 */
+        flex: 0 0 85%; /* 手機上一張圖佔 90%，旁邊露出下一張圖的邊緣 */
         aspect-ratio: 4 / 3; /* 手機版通常比例會縮一點 */
+        scroll-snap-align: center; /* 關鍵：滑動停止時，卡片會精準對齊我們在容器設定的 padding 位置 */
     }
     
     .owndays-container {
         padding-right: 30px; /* 增加右側留白感 */
+        padding-bottom: 20px;
     }
 
     .item-overlay h2 {
