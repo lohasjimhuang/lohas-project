@@ -440,33 +440,37 @@ body.no-scroll {
 .footer-column ul li a:hover {
     color: #ffffff; /* 滑鼠移入才變亮白 */
 }
-.footer-social {
+/* 社群圖示容器 */
+.footer-social-gogoro {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
+    justify-content: flex-start; /* 或者使用 center，視你的排版而定 */
+    gap: 24px;                  /* 圖示間的間距 */
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-/* 設定白色圓形背景 */
-.social-icon {
-    width: 36px;
-    height: 36px;
-    background-color: #ffffff; /* 白色背景 */
-    color: #1a1a1a;           /* 黑色圖示 */
-    border-radius: 50%;       /* 圓形 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+/* 圖示基本樣式 */
+.social-link {
+    color: #666;                /* 預設深灰色，仿 Gogoro 文字感 */
+    font-size: 20px;            /* 調整大小 */
     text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid #ddd;   /* 淡淡的邊框，防止白色背景在白色頁面上看不見 */
+    transition: color 0.2s ease-in-out; /* 平滑轉換 */
+    display: inline-flex;
+    align-items: center;
 }
 
-/* 懸停 (Hover) 時的效果：黑白反轉 */
-.social-icon:hover {
-    background-color: #1a1a1a; /* 變黑色背景 */
-    color: #ffffff;           /* 變白色圖示 */
+/* 懸停效果 (Hover) */
+.social-link:hover {
+    color: #000;                /* 移上去變純黑，或改為 LOHAS 品牌色 */
+    opacity: 0.8;               /* 輕微透明度變化，增加互動感 */
+}
+
+/* 針對行動裝置的調整 */
+@media (max-width: 768px) {
+    .footer-social-gogoro {
+        justify-content: center; /* 手機版通常會置中 */
+        margin-top: 30px;
+    }
 }
 /* 底部版權與 Logo */
 .footer-bottom {
