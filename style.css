@@ -440,7 +440,35 @@ body.no-scroll {
 .footer-column ul li a:hover {
     color: #ffffff; /* 滑鼠移入才變亮白 */
 }
+.footer-social {
+    display: flex;
+    justify-content: center; /* 置中排列 */
+    gap: 20px;               /* 圖示間距 */
+    margin-top: 30px;        /* 與上方選單的距離 */
+    margin-bottom: 20px;     /* 與下方版權宣告的距離 */
+}
 
+.social-icon {
+    font-size: 20px;         /* 圖示大小 */
+    color: #333;             /* 初始顏色（深灰） */
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #000;             /* 懸停時變黑或品牌色 */
+}
+
+/* 如果要圓形外框感 (JINS 有時會使用) */
+/*.social-icon {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
 /* 底部版權與 Logo */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1); /* 極淡的分隔線 */
