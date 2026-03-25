@@ -389,45 +389,32 @@ body.no-scroll {
 
 /* --- Footer 樣式 --- */
 .main-footer {
-    background-color: #50422D; /* 你指定的品牌褐色 */
+    background-color: #50422D; /* Lohas 品牌褐 */
     color: #ffffff;
-    padding: 80px 0 40px;      /* 上方留白較多，增加高級感 */
+    padding: 80px 0 0px; /* 底部間距交給 footer-bottom 處理 */
     font-family: "PingFang TC", "Helvetica Neue", "Light", sans-serif; 
-    font-weight: 400; /* 設定極細 */
-    letter-spacing: 0.5px; /* 增加一點字距，看起來更清爽 */
+    font-weight: 400; 
+    letter-spacing: 0.5px;
 }
 
 .footer-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px 40px; /* 底部保留一點空間 */
+    gap: 40px; /* 所有欄位之間的間距 */
 }
+
 /* --- 欄位通用樣式 --- */
 .footer-column, .social-column {
     flex: 1;
-    min-width: 180px;
-    margin-bottom: 40px;
-}
-
-.footer-title {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 25px;
-    color: #fff; /* 標題設為白色 */
-}
-
-.footer-links {
-    display: flex;
-    justify-content: flex-start; /* 靠左排列 */
-    gap: 100px;                  /* 欄位間距 */
-    margin-bottom: 60px;
+    min-width: 160px;
 }
 
 .footer-column h3 {
     font-size: 15px;
-    /* 標題也不要太粗，使用 400 (正常) 或 300 (細) */
     font-weight: 400; 
     margin-bottom: 25px;
     color: #ffffff;
@@ -440,22 +427,22 @@ body.no-scroll {
 }
 
 .footer-column ul li {
-    margin-bottom: 15px;         /* 項目之間的間距 */
+    margin-bottom: 15px;
 }
 
 .footer-column ul li a {
     text-decoration: none;
-    /* 將子項目顏色稍微調暗，視覺上字會顯得更纖細 */
     color: rgba(255, 255, 255, 0.6); 
-    font-weight: 400; /* 極細 */
-    font-size: 14px;  /* 稍微縮小字級 */
+    font-weight: 400; 
+    font-size: 14px; 
     transition: color 0.3s;
 }
 
 .footer-column ul li a:hover {
-    color: #ffffff; /* 滑鼠移入才變亮白 */
+    color: #ffffff;
 }
-/* --- 社群專用樣式 (全白 + 無標題) --- */
+
+/* --- 社群專用樣式 (強制反白) --- */
 .social-list {
     list-style: none;
     padding: 0;
@@ -467,75 +454,114 @@ body.no-scroll {
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: #fff; /* 重要：文字設為白色 */
     font-size: 14px;
     padding: 10px 0;
     transition: opacity 0.3s;
+    /* 強制文字變白 */
+    color: #ffffff !important; 
 }
 
+/* 強制 Icon 變白 */
 .social-item i {
     font-size: 20px;
     width: 24px;
     text-align: center;
-    color: #fff; /* 重要：圖示設為白色 */
+    color: #ffffff !important; 
 }
 
-/* 脆 (Threads) SVG 樣式控制 */
+/* 強制 Threads SVG 變白 */
 .threads-icon {
     width: 24px;
     height: 24px;
-    fill: #fff; /* 重要：SVG 設為白色 */
+    fill: #ffffff !important; 
 }
 
 .social-item:hover {
-    opacity: 0.7; /* 懸停時輕微透明感 */
+    opacity: 0.7; 
 }
 
 /* ==========================================
-   響應式與排序 (Gogoro 邏輯)
+   響應式與排序 (電腦最左，手機最上)
    ========================================== */
 
-/* 電腦版 (螢幕大於 768px) */
+/* 電腦版 (大於 768px) */
 @media (min-width: 769px) {
-    .social-column {
-        order: 1; /* 電腦版排列在最左邊 */
-    }
-    .footer-column {
-        order: 2; /* 其他欄位往後排 */
-    }
+    .social-column { order: 1; }
+    .footer-column:nth-of-type(2) { order: 2; }
+    .footer-column:nth-of-type(3) { order: 3; }
+    .footer-column:nth-of-type(4) { order: 4; }
 }
 
-/* 手機版 (螢幕小於 768px) */
+/* 手機版 (小於 768px) */
 @media (max-width: 768px) {
     .footer-container {
-        flex-direction: column; /* 強制垂直排列 */
+        flex-direction: column; 
+        gap: 0;
     }
 
     .social-column {
-        order: -1; /* 強制置頂 (最上面) */
+        order: -1; /* 強制置頂 */
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 20px;
-        margin-bottom: 30px;
+        padding-bottom: 25px;
+        margin-bottom: 15px;
         width: 100%;
     }
 
     .social-list {
-        display: grid; /* 手機版兩兩一排 */
+        display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 5px;
+        gap: 10px;
+    }
+
+    .footer-column {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-column h3 {
+        padding: 15px 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    /* 手機版選單展開收合特效 */
+    .footer-column h3::after {
+        content: '+';
+        font-size: 20px;
+        transition: transform 0.3s;
+    }
+
+    .footer-column ul {
+        display: block !important; 
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, opacity 0.4s ease-out; 
+        opacity: 0;
+    }
+
+    .footer-column.active ul {
+        max-height: 500px;
+        opacity: 1;
+        padding-bottom: 20px;
+    }
+
+    .footer-column.active h3::after {
+        transform: rotate(45deg);
     }
 }
-/* 底部版權與 Logo */
+
+/* 底部版權區塊獨立 */
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* 極淡的分隔線 */
-    padding-top: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #50422D; /* 背景一致 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    padding: 20px 20px;
+    text-align: center;
 }
 
 .footer-bottom p {
-    color: #CDBEA2;
+    color: rgba(255, 255, 255, 0.6); /* 稍微調暗更有質感 */
     font-size: 12px;
     font-weight: 400;
 }
