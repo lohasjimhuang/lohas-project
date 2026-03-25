@@ -455,74 +455,64 @@ body.no-scroll {
     letter-spacing: 1px;
 }
 
-/* 3. 社群列表與項目 */
+/* --- 社群專用樣式 (無標題版) --- */
 .social-list {
     list-style: none;
     padding: 0;
-    margin: 0;
-}
-
-.social-list li {
-    margin-bottom: 12px;
+    margin-top: -8px; /* 抵銷第一個項目的 padding，與右側標題視覺對齊 */
 }
 
 .social-item {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 12px;           /* 圖示與文字的間距 */
+    gap: 12px;
     text-decoration: none;
-    color: #666;         /* 仿 Gogoro 預設深灰 */
+    color: #666;
     font-size: 14px;
-    transition: all 0.3s ease;
-    font-family: "Noto Sans TC", sans-serif;
+    padding: 10px 0; /* 增加一點間距讓感官更高級 */
+    transition: all 0.2s ease-in-out;
 }
 
-/* 圖示寬度固定，確保文字對齊 */
 .social-item i {
     font-size: 18px;
-    width: 24px;
+    width: 24px; 
     text-align: center;
 }
 
-/* 4. 懸停效果 (Hover) */
 .social-item:hover {
-    color: #000;         /* 變為純黑 */
-    transform: translateX(3px); /* 輕微向右移動感 */
+    color: #000;
 }
+/* ==========================================
+   響應式邏輯 (電腦最左 / 手機最上)
+   ========================================== */
 
-/* 5. 響應式佈局：重點在電腦與手機的順序切換 */
-
-/* --- 電腦版 (螢幕大於 768px) --- */
+/* 電腦版 (螢幕大於 768px) */
 @media (min-width: 769px) {
     .social-column {
-        order: 4;        /* 強制排在最後一欄 (最右邊) */
-        padding-left: 40px;
+        order: 1; /* 電腦版最左邊 */
     }
 }
 
-/* --- 手機版 (螢幕小於 768px) --- */
+/* 手機版 (螢幕小於 768px) */
 @media (max-width: 768px) {
-    footer .container,
     .footer-container {
-        flex-direction: column; /* 垂直堆疊 */
+        flex-direction: column;
     }
 
     .social-column {
-        order: -1;       /* 強制置頂：排在最上面 */
-        margin-bottom: 40px;
+        order: -1; /* 手機版最上面 */
+        border-bottom: 1px solid #f5f5f5;
         padding-bottom: 20px;
-        border-bottom: 1px solid #eee; /* 增加一條細線分隔 */
+        margin-bottom: 30px;
+        width: 100%;
     }
 
+    /* 手機版兩兩一排，節省空間 */
     .social-list {
-        display: grid;   /* 手機版改用網格，兩兩一排更省空間 */
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-
-    .social-column h3 {
-        font-size: 18px;
-        margin-bottom: 15px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        margin-top: 0;
     }
 }
 /* 底部版權與 Logo */
