@@ -440,67 +440,89 @@ body.no-scroll {
 .footer-column ul li a:hover {
     color: #ffffff; /* 滑鼠移入才變亮白 */
 }
-/* 基礎樣式：圖示與文字並排 */
+/* 2. 社群欄位基礎樣式 */
+.social-column {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+}
+
+.social-column h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+/* 3. 社群列表與項目 */
 .social-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.social-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;           /* 圖示與文字的距離 */
-    color: #666;         /* 仿 Gogoro 深灰文字 */
-    text-decoration: none;
-    font-size: 14px;
-    padding: 8px 0;      /* 增加點擊區域 */
-    transition: color 0.2s ease;
+.social-list li {
+    margin-bottom: 12px;
 }
 
+.social-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;           /* 圖示與文字的間距 */
+    text-decoration: none;
+    color: #666;         /* 仿 Gogoro 預設深灰 */
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+/* 圖示寬度固定，確保文字對齊 */
 .social-item i {
-    font-size: 18px;     /* 圖示稍大一點 */
-    width: 20px;         /* 固定寬度讓文字對齊 */
+    font-size: 18px;
+    width: 24px;
     text-align: center;
 }
 
+/* 4. 懸停效果 (Hover) */
 .social-item:hover {
-    color: #000;         /* 懸停變黑 */
+    color: #000;         /* 變為純黑 */
+    transform: translateX(3px); /* 輕微向右移動感 */
 }
 
-/* --- 響應式佈局控制 --- */
+/* 5. 響應式佈局：重點在電腦與手機的順序切換 */
 
-/* 電腦版 (螢幕大於 768px) */
+/* --- 電腦版 (螢幕大於 768px) --- */
 @media (min-width: 769px) {
-    .footer-container { /* 假設你的 Footer 外層容器 */
-        display: flex;
-        justify-content: space-between;
-    }
     .social-column {
-        order: 4;        /* 強制排在最右邊 (假設有4欄) */
-        min-width: 150px;
+        order: 4;        /* 強制排在最後一欄 (最右邊) */
+        padding-left: 40px;
     }
 }
 
-/* 手機版 (螢幕小於 768px) */
+/* --- 手機版 (螢幕小於 768px) --- */
 @media (max-width: 768px) {
+    footer .container,
     .footer-container {
-        display: flex;
-        flex-direction: column;
+        flex-direction: column; /* 垂直堆疊 */
     }
+
     .social-column {
-        order: -1;       /* 強制排在最上面 */
-        margin-bottom: 30px;
-        border-bottom: 1px solid #eee; /* 增加分隔線感 */
+        order: -1;       /* 強制置頂：排在最上面 */
+        margin-bottom: 40px;
         padding-bottom: 20px;
+        border-bottom: 1px solid #eee; /* 增加一條細線分隔 */
     }
+
     .social-list {
-        display: flex;   /* 手機版可以考慮橫向排列或維持縱向 */
-        flex-wrap: wrap;
-        gap: 20px;
+        display: grid;   /* 手機版改用網格，兩兩一排更省空間 */
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
-    .social-item span {
-        display: block;  /* 確保文字顯示 */
+
+    .social-column h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
     }
 }
 /* 底部版權與 Logo */
