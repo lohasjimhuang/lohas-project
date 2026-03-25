@@ -391,7 +391,7 @@ body.no-scroll {
 .main-footer {
     background-color: #50422D; /* 你指定的品牌褐色 */
     color: #ffffff;
-    padding: 80px 0 40px;      /* 上方留白較多，增加高級感 */
+    padding: 40px 0 40px;      /* 上方留白較多，增加高級感 */
     font-family: "PingFang TC", "Helvetica Neue", "Light", sans-serif; 
     font-weight: 400; /* 設定極細 */
     letter-spacing: 0.5px; /* 增加一點字距，看起來更清爽 */
@@ -477,7 +477,7 @@ body.no-scroll {
 }
 
 .footer-logo img {
-    height: 26px; /* 控制 Logo 大小，稍微精巧一點更有質感 */
+    height: 45px; /* 控制 Logo 大小，稍微精巧一點更有質感 */
     width: auto;
     
     /* 神奇小技巧：這行能強制將你原本深色的 Logo 轉成純白色！ */
