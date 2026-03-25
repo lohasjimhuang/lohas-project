@@ -477,7 +477,7 @@ body.no-scroll {
 }
 
 .footer-logo img {
-    height: 45px; /* 控制 Logo 大小，稍微精巧一點更有質感 */
+    height: 34px; /* 控制 Logo 大小，稍微精巧一點更有質感 */
     width: auto;
     
     /* 神奇小技巧：這行能強制將你原本深色的 Logo 轉成純白色！ */
