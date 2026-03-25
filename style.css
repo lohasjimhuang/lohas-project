@@ -442,33 +442,32 @@ body.no-scroll {
 }
 .footer-social {
     display: flex;
-    justify-content: center; /* 置中排列 */
-    gap: 20px;               /* 圖示間距 */
-    margin-top: 30px;        /* 與上方選單的距離 */
-    margin-bottom: 20px;     /* 與下方版權宣告的距離 */
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
 }
 
+/* 設定白色圓形背景 */
 .social-icon {
-    font-size: 20px;         /* 圖示大小 */
-    color: #333;             /* 初始顏色（深灰） */
-    transition: color 0.3s ease;
-    text-decoration: none;
-}
-
-.social-icon:hover {
-    color: #000;             /* 懸停時變黑或品牌色 */
-}
-
-/* 如果要圓形外框感 (JINS 有時會使用) */
-/*.social-icon {
-    width: 35px;
-    height: 35px;
-    border: 1px solid #ccc;
-    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff; /* 白色背景 */
+    color: #1a1a1a;           /* 黑色圖示 */
+    border-radius: 50%;       /* 圓形 */
     display: flex;
     align-items: center;
     justify-content: center;
-}*/
+    font-size: 18px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;   /* 淡淡的邊框，防止白色背景在白色頁面上看不見 */
+}
+
+/* 懸停 (Hover) 時的效果：黑白反轉 */
+.social-icon:hover {
+    background-color: #1a1a1a; /* 變黑色背景 */
+    color: #ffffff;           /* 變白色圖示 */
+}
 /* 底部版權與 Logo */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1); /* 極淡的分隔線 */
