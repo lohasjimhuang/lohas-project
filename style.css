@@ -440,7 +440,49 @@ body.no-scroll {
 .footer-column ul li a:hover {
     color: #ffffff; /* 滑鼠移入才變亮白 */
 }
+/* --- 新增：社群連結樣式 (極簡反白風) --- */
+.footer-social-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;             /* 電腦版直排的間距 */
+    min-width: 150px;
+    margin-right: 40px;    /* 讓社群區塊與右側的選單保持一點呼吸空間 */
+}
 
+.social-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;      /* 採用較細的字重，呼應 Gogoro 的現代科技感 */
+    display: flex;
+    align-items: center;
+    gap: 12px;             /* icon 與文字的間距 */
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover {
+    opacity: 0.6;          /* 輕微淡化的 Hover 效果 */
+}
+
+.social-link i {
+    font-size: 18px;
+    width: 20px;           /* 固定 icon 寬度，確保下方文字垂直對齊 */
+    text-align: center;
+}
+
+/* --- 手機版 RWD 調整 --- */
+@media screen and (max-width: 768px) {
+    .footer-social-wrap {
+        flex-direction: row;     /* 手機版改為橫向彈性排列 */
+        flex-wrap: wrap;         /* 空間不夠時自動換行 */
+        gap: 15px 30px;          /* 上下間距 15px，左右間距 30px */
+        padding: 10px 0 30px 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 加上微弱的底線與下方選單區隔 */
+    }
+}
 /* 底部版權與 Logo */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1); /* 極淡的分隔線 */
