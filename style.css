@@ -440,36 +440,67 @@ body.no-scroll {
 .footer-column ul li a:hover {
     color: #ffffff; /* 滑鼠移入才變亮白 */
 }
-/* 社群圖示容器 */
-.footer-social-gogoro {
+/* 基礎樣式：圖示與文字並排 */
+.social-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-item {
     display: flex;
-    justify-content: flex-start; /* 或者使用 center，視你的排版而定 */
-    gap: 24px;                  /* 圖示間的間距 */
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-/* 圖示基本樣式 */
-.social-link {
-    color: #666;                /* 預設深灰色，仿 Gogoro 文字感 */
-    font-size: 20px;            /* 調整大小 */
-    text-decoration: none;
-    transition: color 0.2s ease-in-out; /* 平滑轉換 */
-    display: inline-flex;
     align-items: center;
+    gap: 12px;           /* 圖示與文字的距離 */
+    color: #666;         /* 仿 Gogoro 深灰文字 */
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 0;      /* 增加點擊區域 */
+    transition: color 0.2s ease;
 }
 
-/* 懸停效果 (Hover) */
-.social-link:hover {
-    color: #000;                /* 移上去變純黑，或改為 LOHAS 品牌色 */
-    opacity: 0.8;               /* 輕微透明度變化，增加互動感 */
+.social-item i {
+    font-size: 18px;     /* 圖示稍大一點 */
+    width: 20px;         /* 固定寬度讓文字對齊 */
+    text-align: center;
 }
 
-/* 針對行動裝置的調整 */
+.social-item:hover {
+    color: #000;         /* 懸停變黑 */
+}
+
+/* --- 響應式佈局控制 --- */
+
+/* 電腦版 (螢幕大於 768px) */
+@media (min-width: 769px) {
+    .footer-container { /* 假設你的 Footer 外層容器 */
+        display: flex;
+        justify-content: space-between;
+    }
+    .social-column {
+        order: 4;        /* 強制排在最右邊 (假設有4欄) */
+        min-width: 150px;
+    }
+}
+
+/* 手機版 (螢幕小於 768px) */
 @media (max-width: 768px) {
-    .footer-social-gogoro {
-        justify-content: center; /* 手機版通常會置中 */
-        margin-top: 30px;
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .social-column {
+        order: -1;       /* 強制排在最上面 */
+        margin-bottom: 30px;
+        border-bottom: 1px solid #eee; /* 增加分隔線感 */
+        padding-bottom: 20px;
+    }
+    .social-list {
+        display: flex;   /* 手機版可以考慮橫向排列或維持縱向 */
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .social-item span {
+        display: block;  /* 確保文字顯示 */
     }
 }
 /* 底部版權與 Logo */
