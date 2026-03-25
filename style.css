@@ -473,7 +473,7 @@ body.no-scroll {
 /* --- Footer Logo 樣式 --- */
 .footer-logo {
     display: block;
-    margin-bottom: 15px; /* 與下方社群按鈕保持距離 */
+    margin-bottom: 25px; /* 與下方社群按鈕保持距離 */
 }
 
 .footer-logo img {
