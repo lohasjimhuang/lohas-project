@@ -398,9 +398,24 @@ body.no-scroll {
 }
 
 .footer-container {
+    display: flex;
+    flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+/* --- 欄位通用樣式 --- */
+.footer-column, .social-column {
+    flex: 1;
+    min-width: 180px;
+    margin-bottom: 40px;
+}
+
+.footer-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fff; /* 標題設為白色 */
 }
 
 .footer-links {
@@ -440,26 +455,11 @@ body.no-scroll {
 .footer-column ul li a:hover {
     color: #ffffff; /* 滑鼠移入才變亮白 */
 }
-/* 2. 社群欄位基礎樣式 */
-.social-column {
-    flex: 1;
-    min-width: 200px;
-    margin-bottom: 30px;
-}
-
-.social-column h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #333;
-    letter-spacing: 1px;
-}
-
-/* --- 社群專用樣式 (無標題版) --- */
+/* --- 社群專用樣式 (全白 + 無標題) --- */
 .social-list {
     list-style: none;
     padding: 0;
-    margin-top: -8px; /* 抵銷第一個項目的 padding，與右側標題視覺對齊 */
+    margin: 0;
 }
 
 .social-item {
@@ -467,52 +467,62 @@ body.no-scroll {
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: #666;
+    color: #fff; /* 重要：文字設為白色 */
     font-size: 14px;
-    padding: 10px 0; /* 增加一點間距讓感官更高級 */
-    transition: all 0.2s ease-in-out;
+    padding: 10px 0;
+    transition: opacity 0.3s;
 }
 
 .social-item i {
-    font-size: 18px;
-    width: 24px; 
+    font-size: 20px;
+    width: 24px;
     text-align: center;
+    color: #fff; /* 重要：圖示設為白色 */
+}
+
+/* 脆 (Threads) SVG 樣式控制 */
+.threads-icon {
+    width: 24px;
+    height: 24px;
+    fill: #fff; /* 重要：SVG 設為白色 */
 }
 
 .social-item:hover {
-    color: #000;
+    opacity: 0.7; /* 懸停時輕微透明感 */
 }
+
 /* ==========================================
-   響應式邏輯 (電腦最左 / 手機最上)
+   響應式與排序 (Gogoro 邏輯)
    ========================================== */
 
 /* 電腦版 (螢幕大於 768px) */
 @media (min-width: 769px) {
     .social-column {
-        order: 1; /* 電腦版最左邊 */
+        order: 1; /* 電腦版排列在最左邊 */
+    }
+    .footer-column {
+        order: 2; /* 其他欄位往後排 */
     }
 }
 
 /* 手機版 (螢幕小於 768px) */
 @media (max-width: 768px) {
     .footer-container {
-        flex-direction: column;
+        flex-direction: column; /* 強制垂直排列 */
     }
 
     .social-column {
-        order: -1; /* 手機版最上面 */
-        border-bottom: 1px solid #f5f5f5;
+        order: -1; /* 強制置頂 (最上面) */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         padding-bottom: 20px;
         margin-bottom: 30px;
         width: 100%;
     }
 
-    /* 手機版兩兩一排，節省空間 */
     .social-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        display: grid; /* 手機版兩兩一排 */
+        grid-template-columns: 1fr 1fr;
         gap: 5px;
-        margin-top: 0;
     }
 }
 /* 底部版權與 Logo */
