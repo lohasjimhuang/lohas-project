@@ -474,13 +474,19 @@ body.no-scroll {
 /* --- 手機版 RWD 調整 --- */
 @media screen and (max-width: 768px) {
     .footer-social-wrap {
-        flex-direction: row;     /* 手機版改為橫向彈性排列 */
-        flex-wrap: wrap;         /* 空間不夠時自動換行 */
-        gap: 15px 30px;          /* 上下間距 15px，左右間距 30px */
+        /* 將原本的 Flex 橫排改為 Grid 網格系統 */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 強制均分成兩欄 */
+        gap: 15px 10px;          /* 上下間距 15px，左右間距 10px */
         padding: 10px 0 30px 0;
         margin-right: 0;
         margin-bottom: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 加上微弱的底線與下方選單區隔 */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* 確保每個連結在網格內都穩穩靠左對齊 */
+    .social-link {
+        justify-content: flex-start; 
     }
 }
 /* 底部版權與 Logo */
