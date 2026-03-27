@@ -452,6 +452,7 @@ body.no-scroll {
     gap: 20px;             /* 電腦版直排的間距 */
     min-width: 150px;
     margin-right: 40px;    /* 讓社群區塊與右側的選單保持一點呼吸空間 */
+    margin-top: 45px;  
 }
 
 .social-link {
@@ -475,26 +476,7 @@ body.no-scroll {
     width: 20px;           /* 固定 icon 寬度，確保下方文字垂直對齊 */
     text-align: center;
 }
-/* --- Footer Logo 樣式 --- */
-.footer-logo {
-    display: block;
-    margin-bottom: 45px; /* 與下方社群按鈕保持距離 */
-}
 
-.footer-logo img {
-    height: 34px; /* 控制 Logo 大小，稍微精巧一點更有質感 */
-    width: auto;
-    
-    /* 神奇小技巧：這行能強制將你原本深色的 Logo 轉成純白色！ */
-    filter: brightness(0) invert(1); 
-    
-    opacity: 0.8; /* 稍微帶點透明度，不搶走文字焦點 */
-    transition: opacity 0.3s ease;
-}
-
-.footer-logo:hover img {
-    opacity: 1; /* 滑鼠移過去時變全白 */
-}
 /* --- 手機版 RWD 調整 --- */
 @media screen and (max-width: 768px) {
     .footer-social-wrap {
@@ -505,17 +487,13 @@ body.no-scroll {
         margin-right: 0;
         margin-bottom: 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 0; 
     }
     
     .social-link {
         justify-content: flex-start; 
     }
 
-    /* 新增：讓 Logo 在手機網格中「強制佔滿兩欄 (一整列)」 */
-    .footer-logo {
-        grid-column: 1 / -1; 
-        margin-bottom: 5px;  /* 稍微縮小手機版的下邊距 */
-    }
 }
 /* 底部版權與 Logo */
 .footer-bottom {
