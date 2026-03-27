@@ -397,6 +397,11 @@ body.no-scroll {
     letter-spacing: 0.5px; /* 增加一點字距，看起來更清爽 */
 }
 
+/* 新增：將右側選單區塊往下推 */
+.footer-column {
+    margin-top: 45px; /* 數字可以微調，越大離頂部越遠 */
+}
+
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -473,7 +478,7 @@ body.no-scroll {
 /* --- Footer Logo 樣式 --- */
 .footer-logo {
     display: block;
-    margin-bottom: 25px; /* 與下方社群按鈕保持距離 */
+    margin-bottom: 45px; /* 與下方社群按鈕保持距離 */
 }
 
 .footer-logo img {
@@ -535,6 +540,7 @@ body.no-scroll {
     }
 
     .footer-column {
+        margin-top: 0; /* 【新增這行】手機版歸零，維持原本緊湊整齊的選單 */
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
