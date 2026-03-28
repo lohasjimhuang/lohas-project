@@ -91,9 +91,10 @@ body {
 .mega-menu-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: 40px 20px;
     display: flex;
     gap: 60px; /* 圖片與文字的間距 */
+    min-height: 450px; /* 加入這行，強制讓白色區塊至少有 450px 的高度 */
 }
 
 /* 左側圖片區 */
