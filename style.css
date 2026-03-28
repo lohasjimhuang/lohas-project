@@ -112,16 +112,37 @@ body {
     gap: 30px;
 }
 
-.nav-links a {
+/* 針對第一層導覽列連結設定 */
+.nav-links > li > a {
     text-decoration: none;
     color: #50422D;
     font-size: 16px;
     font-weight: 500;
-    transition: color 0.3s;
+    position: relative; /* 為了讓底線可以絕對定位 */
+    padding-bottom: 4px; /* 預留底線與文字間的呼吸空間 */
 }
 
-.nav-links a:hover {
-    color: #CDBEA2; /* Lohas 品牌褐 */
+/* 滑過時文字維持原色，不變色 */
+.nav-links > li > a:hover {
+    color: #50422D; 
+}
+
+/* 僅在電腦版顯示滑動底線效果，並排除右側按鈕 */
+@media (min-width: 769px) {
+    .nav-links > li:not(.mobile-cta) > a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px; /* 細緻的線條，呈現清新簡約感 */
+        background-color: #000; /* 黑色底線 */
+        transition: width 0.3s ease-in-out; /* 平滑的展開動畫 */
+    }
+
+    .nav-links > li:not(.mobile-cta) > a:hover::after {
+        width: 100%; /* 滑鼠移入時底線展開至 100% 寬度 */
+    }
 }
 
 /* 當選單開啟時，禁止 body 捲動 */
