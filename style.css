@@ -104,7 +104,81 @@ body {
     background-color: #F9F8F6; /* 極淡的溫潤背景色 */
     color: #CDBEA2;
 }
+/* --- 電腦版 Mega Menu 樣式 --- */
+.nav-links li.mega-parent .dropdown-menu {
+    width: 420px; /* 加寬面板以容納圖片 */
+    padding: 20px;
+}
 
+.mega-menu-inner {
+    display: flex;
+    gap: 25px; /* 文字與圖片的間距 */
+}
+
+/* 左側：文字連結區 */
+.mega-links {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 讓連結垂直均分 */
+}
+
+.mega-links a {
+    padding: 8px 15px !important; /* 覆寫原本的 padding */
+    text-align: left !important;  /* 靠左對齊比較有日系目錄感 */
+    border-radius: 6px;
+}
+
+/* 右側：圖片區 */
+.mega-image {
+    flex: 1.2; /* 圖片區塊稍微寬一點 */
+}
+
+.mega-image a {
+    padding: 0 !important;
+    background-color: transparent !important; /* 移除 hover 背景色 */
+    display: block;
+}
+
+.mega-image img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.4s ease;
+}
+
+/* 圖片外框，用來遮罩放大效果 */
+.mega-image .img-wrapper {
+    overflow: hidden;
+    border-radius: 8px;
+    display: block;
+}
+
+.mega-image-title {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #50422D;
+    font-weight: 500;
+    text-align: left;
+    transition: color 0.3s;
+}
+
+.mega-image-title i {
+    margin-left: 4px;
+    font-size: 11px;
+}
+
+/* 滑過圖片的放大效果 */
+.mega-image a:hover img {
+    transform: scale(1.05);
+}
+.mega-image a:hover .mega-image-title {
+    color: #CDBEA2;
+}
 /* 導覽連結 (電腦版) */
 .nav-links {
     display: flex;
@@ -282,6 +356,39 @@ body.no-scroll {
     .nav-links li.dropdown-parent.active > a .dropdown-icon {
         transform: rotate(180deg) !important;
     }
+
+    /* --- 手機版 Mega Menu 調整 --- */
+    .nav-links li.mega-parent .dropdown-menu {
+        width: 100%;
+        padding: 0;
+    }
+
+    .mega-menu-inner {
+        flex-direction: column; /* 改為垂直排版 */
+        gap: 15px;
+        padding: 10px 20px 25px 20px; /* 增加內部留白 */
+    }
+
+    .mega-links a {
+        text-align: center !important; /* 手機版文字維持置中 */
+        padding: 12px 0 !important;
+    }
+
+    .mega-image {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .mega-image img {
+        height: auto;
+        aspect-ratio: 16 / 9; /* 維持漂亮的寬高比 */
+    }
+
+    .mega-image-title {
+        text-align: center; /* 手機版標題置中 */
+        font-size: 14px;
+    }
+    
 }
 /* Hero Banner 容器 */
 .hero-banner {
