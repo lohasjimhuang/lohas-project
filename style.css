@@ -170,7 +170,187 @@ body {
         width: 0 !important;
     }
 }
+/* ==========================================================================
+   Mega Menu 巨型選單樣式 (取代原本的小 dropdown)
+   ========================================================================== */
 
+/* 讓帶有 Mega Menu 的父層取消 relative，以便 Mega Menu 能夠對齊 Header 的全寬 */
+@media (min-width: 769px) {
+    .nav-links li.mega-menu-parent {
+        position: static; 
+    }
+}
+
+/* 巨型選單外框設定 */
+.mega-menu {
+    position: absolute;
+    top: 100%;       /* 從 Header 底部開始 */
+    left: 0;
+    width: 100%;     /* 滿版寬度 */
+    background-color: #ffffff;
+    box-shadow: 0 12px 30px rgba(80, 66, 45, 0.08); /* 溫柔的陰影 */
+    border-top: 1px solid #f0f0f0;
+    
+    /* 預設隱藏與動畫 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1; 
+}
+
+/* 電腦版滑過展開 */
+@media (min-width: 769px) {
+    .nav-links li.mega-menu-parent:hover .mega-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        z-index: 999;
+    }
+}
+
+/* 巨型選單內部容器 */
+.mega-menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* 個別欄位 */
+.mega-menu-column {
+    flex: 1;
+    text-align: left; /* 覆寫原本置中 */
+}
+
+/* 欄位標題 */
+.mega-menu-column h4 {
+    font-size: 16px;
+    color: #50422D;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #F9F8F6;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+/* 欄位清單 */
+.mega-menu-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mega-menu-column ul li {
+    margin-bottom: 12px;
+}
+
+.mega-menu-column ul li a {
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+    display: inline-block;
+}
+
+/* 滑過文字微微向右推，增加互動感 */
+@media (min-width: 769px) {
+    .mega-menu-column ul li a:hover {
+        color: #CDBEA2;
+        padding-left: 5px; 
+    }
+}
+
+/* 右側推廣圖片區塊 */
+.mega-menu-banner {
+    flex: 1.5; /* 圖片區塊稍微寬一點 */
+}
+
+.mega-menu-banner a {
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.mega-menu-banner img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+}
+
+.mega-menu-banner a:hover img {
+    transform: scale(1.05); /* 圖片滑過放大特效 */
+}
+
+.mega-menu-banner p {
+    margin-top: 15px;
+    font-size: 15px;
+    color: #50422D;
+    font-weight: bold;
+    text-align: right;
+    transition: color 0.3s;
+}
+
+.mega-menu-banner a:hover p {
+    color: #CDBEA2;
+}
+
+/* ==========================================================================
+   手機版 Mega Menu RWD 適應 (手風琴折疊風格)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .mega-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none !important;
+        box-shadow: none;
+        background-color: #F9F8F6; /* 稍微深一點的大地背景色做區隔 */
+        width: 100%;
+        border-top: none;
+        
+        /* 預設收合 */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: max-height 0.5s ease, opacity 0.4s ease;
+    }
+
+    /* 手機版點擊展開後的狀態 */
+    .nav-links li.dropdown-parent.active .mega-menu {
+        max-height: 1500px; /* 給予足夠高度展開所有欄位 */
+        opacity: 1;
+        visibility: visible;
+        margin-top: 15px;
+    }
+
+    .mega-menu-container {
+        flex-direction: column; /* 改為垂直排列 */
+        padding: 20px 30px;
+        gap: 30px;
+    }
+
+    .mega-menu-column h4 {
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(80, 66, 45, 0.2);
+    }
+
+    .mega-menu-column ul li a {
+        padding: 8px 0;
+        color: rgba(80, 66, 45, 0.8);
+        font-size: 15px;
+    }
+
+    /* 手機版隱藏 Banner 圖片以節省版面，若想保留可將此段刪除 */
+    .mega-menu-banner {
+        display: none; 
+    }
+}
 /* 當選單開啟時，禁止 body 捲動 */
 body.no-scroll {
     overflow: hidden;
