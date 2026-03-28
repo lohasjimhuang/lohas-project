@@ -224,6 +224,7 @@ body.no-scroll {
         left: -100%; /* 預設藏在左邊 */
         width: 100%;
         height: calc(100vh - 70px);
+        height: calc(100dvh - 70px);
         background-color: #fff;
         flex-direction: column;
         align-items: center;
