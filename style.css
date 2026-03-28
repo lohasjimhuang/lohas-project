@@ -46,64 +46,6 @@ body {
     object-fit: contain;
 }
 
-/* --- 導覽列 Dropdown (電腦版) --- */
-.nav-links li {
-    position: relative; /* 讓次選單以此為定位基準 */
-}
-
-.dropdown-icon {
-    font-size: 12px;
-    margin-left: 6px;
-    transition: transform 0.3s ease;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(15px); /* 預設往下微調，準備做浮現動畫 */
-    background-color: #ffffff;
-    min-width: 160px;
-    box-shadow: 0 8px 24px rgba(80, 66, 45, 0.08); /* 輕柔的大地色系陰影 */
-    border-radius: 8px;
-    padding: 10px 0;
-    list-style: none;
-    
-    /* 預設隱藏 */
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* 滑過時顯示選單與旋轉箭頭 */
-.nav-links li.dropdown-parent:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-.nav-links li.dropdown-parent:hover .dropdown-icon {
-    transform: rotate(180deg);
-}
-
-/* Dropdown 內的連結樣式 */
-.dropdown-menu li {
-    width: 100%;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 10px 24px;
-    font-size: 15px;
-    color: #50422D;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.dropdown-menu a:hover {
-    background-color: #F9F8F6; /* 極淡的溫潤背景色 */
-    color: #CDBEA2;
-}
 /* --- 電腦版 Mega Menu 樣式 --- */
 .nav-links li.mega-parent .dropdown-menu {
     width: 420px; /* 加寬面板以容納圖片 */
