@@ -119,12 +119,28 @@ body {
     font-size: 16px;
     font-weight: 500;
     position: relative; /* 為了定位底線 */
-    padding: 10px 0;
+    padding: 8px 0;
+    display: inline-block; /* 關鍵：確保連結有寬度，底線才能顯示 */
     transition: color 0.3s;
+}
+/* 建立虛擬底線 */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* 貼齊連結底部 */
+    left: 0;
+    width: 0; /* 預設寬度為 0 */
+    height: 2px;
+    background-color: #CDBEA2; /* 您指定的大地色系 */
+    transition: width 0.3s ease-in-out; /* 底線伸長的動畫效果 */
 }
 /* 滑鼠移入時底線伸長 */
 .nav-links a:hover::after {
     width: 100%;
+}
+/* 為了避免巨型選單內的連結也出現底線，請加入此段排除 */
+.mega-column ul li a::after {
+    display: none !important;
 }
 .nav-links a:hover {
     color: #CDBEA2; /* Lohas 品牌褐 */
