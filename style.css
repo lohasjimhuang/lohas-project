@@ -46,63 +46,97 @@ body {
     object-fit: contain;
 }
 
-/* --- 導覽列 Dropdown (電腦版) --- */
-.nav-links li {
-    position: relative; /* 讓次選單以此為定位基準 */
+/* --- JINS JP 風格巨型選單 (Mega Menu) --- */
+
+/* 確保父層可以作為定位基準 */
+.nav-links li.dropdown-parent {
+    position: relative;
 }
 
-.dropdown-icon {
-    font-size: 12px;
-    margin-left: 6px;
-    transition: transform 0.3s ease;
-}
-
-.dropdown-menu {
+/* 巨型選單外框 (預設隱藏) */
+.mega-menu {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(15px); /* 預設往下微調，準備做浮現動畫 */
+    transform: translateX(-50%) translateY(15px);
     background-color: #ffffff;
-    min-width: 160px;
-    box-shadow: 0 8px 24px rgba(80, 66, 45, 0.08); /* 輕柔的大地色系陰影 */
-    border-radius: 8px;
-    padding: 10px 0;
-    list-style: none;
-    
-    /* 預設隱藏 */
+    width: 680px; /* JINS 常見的精緻寬度 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 非常輕柔的陰影 */
+    border: 1px solid #f0f0f0; /* 極細的邊框增加質感 */
+    border-radius: 4px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
 }
 
-/* 滑過時顯示選單與旋轉箭頭 */
-.nav-links li.dropdown-parent:hover .dropdown-menu {
+/* 滑過時顯示巨型選單 */
+.nav-links li.dropdown-parent:hover .mega-menu {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
 }
 
-.nav-links li.dropdown-parent:hover .dropdown-icon {
-    transform: rotate(180deg);
+/* 內部排版：左右分欄 */
+.mega-menu-inner {
+    display: flex;
+    padding: 32px; /* 寬裕的留白 */
+    gap: 40px;
 }
 
-/* Dropdown 內的連結樣式 */
-.dropdown-menu li {
+/* 左側圖片區塊 */
+.mega-image {
+    width: 320px; /* 嚴格控制圖片寬度 */
+    height: 200px; /* 固定高度，維持日系常見的 16:10 比例 */
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.mega-image img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.dropdown-menu a {
+/* 圖片滑過時的微放大效果 (JINS 常見微互動) */
+.mega-image:hover img {
+    transform: scale(1.03);
+}
+
+/* 右側連結區塊 */
+.mega-links {
+    flex: 1;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 垂直置中對齊圖片 */
+    gap: 16px; /* 連結之間的呼吸空間 */
+    padding: 0;
+}
+
+/* --- 完美移植 JINS JP 字型與字級設定 --- */
+.mega-links a {
+    /* 使用 JINS 官方宣告的無襯線字體集 */
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Arial, "Yu Gothic", Meiryo, sans-serif !important;
+    font-size: 14px !important; /* 精緻的 14px */
+    font-weight: 500 !important; /* 中等粗細，不會太過沈重 */
+    color: #333333 !important; /* 接近純黑的深灰 */
+    text-decoration: none;
     display: block;
-    padding: 10px 24px;
-    font-size: 15px;
-    color: #50422D;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s;
+    transition: opacity 0.3s ease !important;
 }
 
-.dropdown-menu a:hover {
-    background-color: #F9F8F6; /* 極淡的溫潤背景色 */
-    color: #CDBEA2;
+/* Hover 狀態：文字不變色，而是透明度降低 (非常經典的日本電商做法) */
+.mega-links a:hover {
+    opacity: 0.6 !important;
+    color: #333333 !important;
+}
+
+/* 絕對確保巨型選單內的連結不會出現底線 */
+.mega-links a::after {
+    display: none !important;
+    content: none !important;
 }
 
 /* 導覽連結 (電腦版) */
@@ -261,72 +295,51 @@ body.no-scroll {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* 手機版 Dropdown 修正覆寫 */
-    /* 這裡加入 :hover 是為了抵銷手機點擊時產生的殘留 hover 狀態 */
-    .dropdown-menu,
-    .nav-links li.dropdown-parent:hover .dropdown-menu {
+    /* 手機版巨型選單覆寫 */
+    .mega-menu,
+    .nav-links li.dropdown-parent:hover .mega-menu {
         position: relative;
         top: 0;
         left: 0;
-        transform: none !important; /* 加上 !important，絕對禁止它往旁邊亂跑 */
+        transform: none !important;
         box-shadow: none;
+        border: none;
+        width: 100%;
         background-color: transparent;
-        min-width: 100%;
-        padding: 0;
-        
-        /* 預設收合 */
         max-height: 0;
         overflow: hidden;
         opacity: 0;
         visibility: hidden;
         transition: max-height 0.4s ease, opacity 0.4s ease;
-        
-        /* 讓次選單的文字也跟著主選單置中 */
-        text-align: center; 
     }
 
-    .dropdown-menu a {
-        font-size: 16px;
+    /* 手機版隱藏形象圖片，保持選單簡潔 */
+    .mega-image {
+        display: none;
+    }
+
+    .mega-menu-inner {
+        padding: 0;
+        flex-direction: column;
+    }
+
+    .mega-links {
+        gap: 0;
+    }
+
+    .mega-links a {
         padding: 12px 0;
-        color: rgba(80, 66, 45, 0.7); /* 稍微淡一點，區分層級 */
+        text-align: center;
+        font-size: 16px !important;
+        color: rgba(80, 66, 45, 0.7) !important;
     }
 
-    /* 點擊展開後的狀態 */
-    .nav-links li.dropdown-parent.active .dropdown-menu {
-        max-height: 300px; /* 給予足夠的展開空間 */
+    /* 手機版點擊展開後的狀態 */
+    .nav-links li.dropdown-parent.active .mega-menu {
+        max-height: 400px; 
         opacity: 1;
         visibility: visible;
-        margin-top: 15px;  /* 展開時，與上方的字保持一點呼吸空間 */
-    }
-
-    /* 確保箭頭在手機版只有在 active (點擊展開) 時才反轉 */
-    .dropdown-parent.active .dropdown-icon {
-        transform: rotate(180deg) !important;
-    }
-    .nav-links li.dropdown-parent:hover .dropdown-icon {
-        transform: none; /* 抵銷電腦版 hover 箭頭反轉 */
-    }
-    .nav-links li.dropdown-parent.active:hover .dropdown-icon {
-        transform: rotate(180deg); /* 確保展開狀態下點擊不會轉回來 */
-    }
-
-    /* --- 修正：手機版主選單與箭頭的對齊 --- */
-    .nav-links li.dropdown-parent > a {
-        display: flex;
-        align-items: center;
-        justify-content: center; /* 確保在手機版置中 */
-        gap: 8px; /* 文字與箭頭的間距 */
-    }
-
-    /* 確保箭頭大小在手機版適中，並有順暢的動畫 */
-    .dropdown-parent .dropdown-icon {
-        font-size: 14px; /* 箭頭稍微小一點比較精緻 */
-        transition: transform 0.3s ease;
-    }
-
-    /* 確保展開時箭頭確實反轉 (提高權重) */
-    .nav-links li.dropdown-parent.active > a .dropdown-icon {
-        transform: rotate(180deg) !important;
+        margin-top: 15px;
     }
 }
 /* Hero Banner 容器 */
