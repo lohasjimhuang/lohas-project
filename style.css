@@ -46,7 +46,138 @@ body {
     object-fit: contain;
 }
 
+/* --- 電腦版巨型選單 (Mega Menu) --- */
+@media (min-width: 769px) {
+    /* 讓巨型選單相對於整個導覽列定位，以達到滿版感 */
+    .mega-menu-parent {
+        position: static !important; 
+    }
 
+    .mega-menu {
+        position: absolute;
+        top: 70px; /* Header 的高度 */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid #eee;
+        
+        /* 隱藏邏輯 */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        z-index: -1;
+    }
+
+    /* 滑過顯示 */
+    .mega-menu-parent:hover .mega-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .mega-menu-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        height: 350px; /* 固定高度，參考 JINS 風格 */
+    }
+
+    /* 左側圖片：上下左無留白 */
+    .mega-image {
+        flex: 0 0 40%; /* 圖片佔比 40% */
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .mega-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 右側文字內容區 */
+    .mega-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 40px 60px;
+        gap: 20px;
+    }
+
+    .mega-column h4 {
+        font-size: 14px;
+        color: #50422D;
+        margin-bottom: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 10px;
+    }
+
+    .mega-column ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .mega-column ul li {
+        margin-bottom: 12px;
+    }
+
+    .mega-column ul li a {
+        font-size: 15px;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .mega-column ul li a:hover {
+        color: #CDBEA2;
+    }
+}
+
+/* --- 手機版相容性修正 --- */
+@media (max-width: 768px) {
+    /* 隱藏巨型選單的圖片與橫向排版，維持原本的列表形式 */
+    .mega-image {
+        display: none;
+    }
+    
+    .mega-menu {
+        /* 覆寫電腦版定位，讓它在手機版變回正常的展開列表 */
+        position: relative;
+        top: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+
+    /* 當手機版點擊 active 時展開 */
+    .mega-menu-parent.active .mega-menu {
+        max-height: 1000px;
+    }
+
+    .mega-content {
+        padding: 10px 0;
+    }
+
+    .mega-column h4 {
+        display: none; /* 手機版通常不顯示次級標題以精簡空間 */
+    }
+
+    .mega-column ul li a {
+        font-size: 16px;
+        padding: 12px 0;
+        display: block;
+        color: rgba(80, 66, 45, 0.7);
+        text-align: center;
+    }
+}
 /* --- 導覽列 Dropdown (電腦版) --- */
 .nav-links li {
     position: relative; /* 讓次選單以此為定位基準 */
