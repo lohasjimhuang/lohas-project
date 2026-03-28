@@ -46,82 +46,120 @@ body {
     object-fit: contain;
 }
 /* ==================================================
-   巨型選單 (Mega Menu) - JINS 風格
+   1. 桌機版專屬 (JINS 巨型選單)
 ================================================== */
-
-/* 1. 將包含 Mega Menu 的 li 設為 static，讓絕對定位能對齊整個視窗 (Desktop) */
 @media (min-width: 769px) {
     .nav-links li.dropdown-parent {
-        position: static; 
+        position: static; /* 讓選單可以滿版 */
     }
-}
 
-/* 2. Mega Menu 基礎設定 (滿版、字型、動畫) */
-.mega-menu {
-    position: absolute;
-    top: 70px; /* 對齊 Header 的高度 */
-    left: 0;
-    width: 100vw;
-    max-width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); /* 輕柔陰影 */
-    border-top: 1px solid #EFEFEF;
-    
-    /* 滑動與透明度動畫 */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 1000;
-    
-    /* 參考 JINS 日系精緻字型設定 */
-    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Arial, "Yu Gothic", Meiryo, sans-serif;
-}
+    .mega-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100vw; /* 滿版寬度 */
+        background-color: #fff;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        border-top: 1px solid #eee;
+        
+        /* 隱藏與動畫 */
+        display: block; /* 確保不是 none */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
 
-/* 3. 滑過時顯示 Mega Menu */
-@media (min-width: 769px) {
+    /* 滑過顯示 */
     .nav-links li.dropdown-parent:hover .mega-menu {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
+
+    .mega-menu-container {
+        display: flex;
+        width: 100%;
+        max-width: 100%; /* 確保不留白 */
+        height: 400px; /* 固定高度 */
+        padding: 0;
+    }
+
+    /* 左側圖片：上左下不留白 */
+    .mega-menu-image {
+        flex: 0 0 40%; 
+        position: relative;
+    }
+
+    .mega-menu-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 右側連結排版 */
+    .mega-menu-links {
+        flex: 1;
+        display: flex;
+        padding: 60px 80px;
+        gap: 50px;
+    }
+
+    .link-column h4 {
+        font-size: 14px;
+        color: #50422D;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
 }
 
-/* 4. 內部排版 (左圖右文) */
-.mega-menu-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    display: flex;
-    gap: 60px; /* 圖片與文字的間距 */
-}
+/* ==================================================
+   2. 手機版專屬 (維持原本摺疊樣式)
+================================================== */
+@media screen and (max-width: 768px) {
+    /* 強制隱藏手機版不需要的圖片 */
+    .mega-menu-image {
+        display: none !important;
+    }
 
-/* 左側圖片區 */
-.mega-menu-image {
-    flex: 0 0 32%; /* 圖片約佔據寬度 1/3 */
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-}
+    .mega-menu {
+        position: relative;
+        width: 100%;
+        background-color: #F9F9F9;
+        
+        /* 預設收合 */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.4s ease, opacity 0.4s ease;
+    }
 
-.mega-menu-image a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: #fff;
-}
+    /* 點擊展開 (配合 JS 的 active class) */
+    .nav-links li.dropdown-parent.active .mega-menu {
+        max-height: 800px;
+        opacity: 1;
+        padding: 15px 0;
+    }
 
-.mega-menu-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    aspect-ratio: 16 / 9;
-    transition: transform 0.6s ease;
-}
+    .mega-menu-container {
+        display: block; /* 手機版改回垂直排列 */
+        padding: 0 30px;
+    }
 
-.mega-menu-image:hover img {
-    transform: scale(1.04); /* 滑過緩慢放大 */
+    .link-column h4 {
+        font-size: 13px;
+        color: #888;
+        padding: 15px 0 5px;
+    }
+
+    .link-column ul li a {
+        display: block;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 16px;
+    }
 }
 
 /* 圖片上的文字遮罩 */
