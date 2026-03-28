@@ -90,7 +90,8 @@ body {
     .mega-image {
         flex: 0 0 35%;     /* 調整圖片佔比，可依需求縮放 */
         height: 100%;
-        
+        margin: 0;
+        overflow: hidden; /* 確保圖片不溢出 */
     }
 
     .mega-image img {
