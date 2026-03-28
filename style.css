@@ -213,7 +213,7 @@ body {
 .nav-links .mega-menu .link-column ul li a {
     font-size: 20px !important; /* 原本是 13px，強制放大到 15px */
     display: inline-block !important; /* 確保是區塊性質，padding 才會生效 */
-    padding: 12px 0 !important;       /* 👈 調整這裡！原本可能是 7px，強制放大到 12px */
+    padding: 10px 0 !important;       /* 👈 調整這裡！原本可能是 7px，強制放大到 12px */
     line-height: 1.8 !important;      /* 👈 調整行高，數字越大字與字之間越鬆 */
 }
 
