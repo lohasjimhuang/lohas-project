@@ -112,14 +112,20 @@ body {
     gap: 30px;
 }
 
+/* --- 導覽列連結：底線效果 --- */
 .nav-links a {
     text-decoration: none;
     color: #50422D;
     font-size: 16px;
     font-weight: 500;
+    position: relative; /* 為了定位底線 */
+    padding: 10px 0;
     transition: color 0.3s;
 }
-
+/* 滑鼠移入時底線伸長 */
+.nav-links a:hover::after {
+    width: 100%;
+}
 .nav-links a:hover {
     color: #CDBEA2; /* Lohas 品牌褐 */
 }
@@ -158,7 +164,109 @@ body.no-scroll {
     background-color: #333;
     transition: 0.3s;
 }
+/* --- 巨型選單 (Mega Menu) --- */
+.nav-links li.dropdown-parent {
+    position: static; /* 關鍵：設為 static 讓巨型選單能依據 header 寬度定位 */
+}
 
+.mega-menu {
+    position: absolute;
+    top: 70px; /* Header 的高度 */
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    border-bottom: 1px solid #eee;
+    
+    /* 預設隱藏 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    z-index: 1000;
+}
+
+/* 觸發展開 */
+.nav-links li.dropdown-parent:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mega-menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 1.5fr; /* 三個清單欄位加上一個宣傳區 */
+    gap: 40px;
+    padding: 50px 20px;
+}
+
+.mega-column h4 {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.mega-column ul {
+    list-style: none;
+}
+
+.mega-column ul li {
+    margin-bottom: 12px;
+}
+
+.mega-column ul li a {
+    font-size: 15px;
+    color: #50422D;
+    font-weight: 400;
+}
+
+/* 巨型選單內的連結取消底線效果，保持簡潔 */
+.mega-column ul li a::after {
+    display: none;
+}
+
+/* 宣傳圖區域 */
+.mega-promo {
+    border-left: 1px solid #f0f0f0;
+    padding-left: 40px;
+    text-align: center;
+}
+
+.mega-promo img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.mega-promo p {
+    font-size: 13px;
+    color: #50422D;
+}
+
+/* 手機版修正：確保巨型選單在手機上不會亂跑 */
+@media screen and (max-width: 768px) {
+    .mega-menu {
+        position: relative;
+        top: 0;
+        box-shadow: none;
+        display: none; /* 手機版建議維持簡單列表或另行設計 */
+    }
+    .nav-links li.dropdown-parent.active .mega-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+    .mega-menu-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    .mega-promo {
+        display: none; /* 手機版隱藏廣告圖節省空間 */
+    }
+}
 /* --- 手機版 RWD (螢幕小於 768px) --- */
 @media screen and (max-width: 768px) {
     .nav-cta {
