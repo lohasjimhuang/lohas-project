@@ -164,12 +164,11 @@ body {
 }
 
 .link-column h4 {
-    font-size: 14px; /* 小而精緻的標題 */
-    font-weight: 300;
+    font-size: 18px; /* 小而精緻的標題 */
+    font-weight: 200;
     color: #111;
     margin-bottom: 12px;
     padding-bottom: 10px;
-   
     letter-spacing: 1px;
     display: flex;
     flex-direction: column;
