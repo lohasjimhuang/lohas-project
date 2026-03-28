@@ -199,7 +199,7 @@ body {
 
 .link-column ul li a {
     display: inline-block;
-    padding: 7px 0;
+    padding: 14px 0;
     font-size: 13px; /* 細緻的內文字級 */
     color: #444;
     text-decoration: none !important;
