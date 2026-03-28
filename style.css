@@ -110,40 +110,56 @@ body {
     display: flex;
     list-style: none;
     gap: 30px;
+    align-items: center; /* 確保導覽列與右側按鈕完美垂直置中 */
 }
 
-/* 針對第一層導覽列連結設定 */
-.nav-links > li > a {
+/* 恢復所有連結的基礎設定，確保不破壞按鈕與下拉選單的原始樣式 */
+.nav-links a {
     text-decoration: none;
     color: #50422D;
     font-size: 16px;
     font-weight: 500;
-    position: relative; /* 為了讓底線可以絕對定位 */
-    padding-bottom: 4px; /* 預留底線與文字間的呼吸空間 */
+    transition: color 0.3s;
 }
 
-/* 滑過時文字維持原色，不變色 */
-.nav-links > li > a:hover {
-    color: #50422D; 
+/* 下拉選單內的文字滑過顏色 (維持原本的品牌褐) */
+.dropdown-menu a:hover {
+    color: #CDBEA2; 
 }
 
-/* 僅在電腦版顯示滑動底線效果，並排除右側按鈕 */
+/* --- 電腦版第一層主選單專屬：黑色滑動底線 --- */
 @media (min-width: 769px) {
+    /* 只針對第一層主選單 (嚴格排除 mobile-cta 按鈕與下拉選單) */
+    .nav-links > li:not(.mobile-cta) > a {
+        position: relative;
+        /* 這裡不使用 padding-bottom，避免影響高度導致按鈕偏離 */
+    }
+
+    /* 確保主選單滑過時文字維持原色不變 */
+    .nav-links > li:not(.mobile-cta) > a:hover,
+    .nav-links > li.dropdown-parent:hover > a {
+        color: #50422D;
+    }
+
+    /* 繪製 1px 細緻黑色底線 */
     .nav-links > li:not(.mobile-cta) > a::after {
         content: '';
         position: absolute;
-        bottom: 0;
+        bottom: -6px; /* 關鍵修改：用負值往下偏移，不干擾元素原本高度 */
         left: 0;
         width: 0;
-        height: 1px; /* 細緻的線條，呈現清新簡約感 */
-        background-color: #000; /* 黑色底線 */
-        transition: width 0.3s ease-in-out; /* 平滑的展開動畫 */
+        height: 1px;
+        background-color: #000;
+        transition: width 0.3s ease-in-out;
     }
 
-    .nav-links > li:not(.mobile-cta) > a:hover::after {
-        width: 100%; /* 滑鼠移入時底線展開至 100% 寬度 */
+    /* 滑鼠移入主選單時，底線展開至 100% */
+    .nav-links > li:not(.mobile-cta) > a:hover::after,
+    .nav-links > li.dropdown-parent:hover > a::after {
+        width: 100%;
     }
-    /* 確保下拉選單內的文字 (如：光學眼鏡) 絕對不會出現底線 */
+
+    /* 強制清除下拉選單內所有的底線效果，確保絕對乾淨 */
     .dropdown-menu a::after {
         display: none !important;
     }
