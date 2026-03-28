@@ -164,8 +164,8 @@ body {
 }
 
 .link-column h4 {
-    font-size: 13px; /* 小而精緻的標題 */
-    font-weight: bold;
+    font-size: 14px; /* 小而精緻的標題 */
+    font-weight: 300;
     color: #111;
     margin-bottom: 12px;
     padding-bottom: 10px;
