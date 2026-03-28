@@ -135,13 +135,17 @@ body {
         bottom: 0;
         left: 0;
         width: 0;
-        height: 1.5px; /* 細緻的線條，呈現清新簡約感 */
+        height: 1px; /* 細緻的線條，呈現清新簡約感 */
         background-color: #000; /* 黑色底線 */
         transition: width 0.3s ease-in-out; /* 平滑的展開動畫 */
     }
 
     .nav-links > li:not(.mobile-cta) > a:hover::after {
         width: 100%; /* 滑鼠移入時底線展開至 100% 寬度 */
+    }
+    /* 確保下拉選單內的文字 (如：光學眼鏡) 絕對不會出現底線 */
+    .dropdown-menu a::after {
+        display: none !important;
     }
 }
 
