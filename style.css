@@ -214,12 +214,14 @@ body.no-scroll {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* 手機版 Dropdown 覆寫 */
-    .dropdown-menu {
+    /* 手機版 Dropdown 修正覆寫 */
+    /* 這裡加入 :hover 是為了抵銷手機點擊時產生的殘留 hover 狀態 */
+    .dropdown-menu,
+    .nav-links li.dropdown-parent:hover .dropdown-menu {
         position: relative;
         top: 0;
         left: 0;
-        transform: none;
+        transform: none !important; /* 加上 !important，絕對禁止它往旁邊亂跑 */
         box-shadow: none;
         background-color: transparent;
         min-width: 100%;
@@ -231,24 +233,53 @@ body.no-scroll {
         opacity: 0;
         visibility: hidden;
         transition: max-height 0.4s ease, opacity 0.4s ease;
+        
+        /* 讓次選單的文字也跟著主選單置中 */
+        text-align: center; 
     }
 
     .dropdown-menu a {
-        font-size: 16px;     /* 手機版次選單字體稍微縮小 */
+        font-size: 16px;
         padding: 12px 0;
-        color: rgba(80, 66, 45, 0.7); 
+        color: rgba(80, 66, 45, 0.7); /* 稍微淡一點，區分層級 */
     }
 
-    /* 點擊展開後的狀態 (.active 由 JS 控制) */
-    .dropdown-parent.active .dropdown-menu {
-        max-height: 250px;   /* 足夠容納項目的高度 */
+    /* 點擊展開後的狀態 */
+    .nav-links li.dropdown-parent.active .dropdown-menu {
+        max-height: 300px; /* 給予足夠的展開空間 */
         opacity: 1;
         visibility: visible;
-        margin-top: 10px;
+        margin-top: 15px;  /* 展開時，與上方的字保持一點呼吸空間 */
     }
 
+    /* 確保箭頭在手機版只有在 active (點擊展開) 時才反轉 */
     .dropdown-parent.active .dropdown-icon {
-        transform: rotate(180deg);
+        transform: rotate(180deg) !important;
+    }
+    .nav-links li.dropdown-parent:hover .dropdown-icon {
+        transform: none; /* 抵銷電腦版 hover 箭頭反轉 */
+    }
+    .nav-links li.dropdown-parent.active:hover .dropdown-icon {
+        transform: rotate(180deg); /* 確保展開狀態下點擊不會轉回來 */
+    }
+
+    /* --- 修正：手機版主選單與箭頭的對齊 --- */
+    .nav-links li.dropdown-parent > a {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* 確保在手機版置中 */
+        gap: 8px; /* 文字與箭頭的間距 */
+    }
+
+    /* 確保箭頭大小在手機版適中，並有順暢的動畫 */
+    .dropdown-parent .dropdown-icon {
+        font-size: 14px; /* 箭頭稍微小一點比較精緻 */
+        transition: transform 0.3s ease;
+    }
+
+    /* 確保展開時箭頭確實反轉 (提高權重) */
+    .nav-links li.dropdown-parent.active > a .dropdown-icon {
+        transform: rotate(180deg) !important;
     }
 }
 /* Hero Banner 容器 */
