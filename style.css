@@ -191,7 +191,19 @@ body {
 .link-column ul li {
     margin-bottom: 0;
 }
+/* =========================================
+   強制刪除巨型選單的所有分隔線 (終極版)
+========================================= */
 
+/* 1. 刪除「分類標題」下方的那條線 (針對電腦版) */
+.nav-links .mega-menu .mega-menu-container .link-column h4 {
+    border-bottom: none !important;
+}
+
+/* 2. 刪除「每一個選項」下方的那條線 (針對手機版，預防你是在縮小視窗看) */
+.nav-links .mega-menu .link-column ul li a {
+    border-bottom: none !important;
+}
 /* 清除導覽列全域的影響 */
 .nav-links .mega-menu a {
     padding: 0;
