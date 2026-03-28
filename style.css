@@ -143,6 +143,7 @@ body {
     display: none !important;
 }
 .nav-links a:hover {
+    background-color: transparent !important;
     color: #CDBEA2; /* Lohas 品牌褐 */
 }
 
@@ -239,9 +240,15 @@ body.no-scroll {
     font-weight: 400;
 }
 
-/* 巨型選單內的連結取消底線效果，保持簡潔 */
+/* --- 巨型選單 (Mega Menu) 內部連結排除底線 --- */
+/* 避免巨型選單裡面的小連結也出現底線，保持畫面乾淨 */
 .mega-column ul li a::after {
-    display: none;
+    display: none !important;
+}
+
+.mega-column ul li a:hover {
+    color: #CDBEA2;
+    background: none;
 }
 
 /* 宣傳圖區域 */
