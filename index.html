@@ -200,6 +200,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 </script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const megaMenuParent = document.querySelector('.mega-menu-parent');
+    
+    if (megaMenuParent) {
+        // 當滑鼠移入「購物商城」（電腦版巨型選單觸發點）
+        megaMenuParent.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 768) {
+                document.body.classList.add('no-scroll');
+            }
+        });
+
+        // 當滑鼠移出巨型選單區域
+        megaMenuParent.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 768) {
+                document.body.classList.remove('no-scroll');
+            }
+        });
+    }
+});
     
 <footer class="main-footer">
     <div class="footer-container">
