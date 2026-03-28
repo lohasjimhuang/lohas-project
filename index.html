@@ -157,6 +157,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // ... 原本的手機選單與 Cookie 邏輯 ...
+
+        // 新增：手機版 Dropdown 點擊展開邏輯
+        const dropdownParents = document.querySelectorAll('.dropdown-parent > a');
+        
+        dropdownParents.forEach(parent => {
+            parent.addEventListener('click', function(e) {
+                // 只有在手機版尺寸才觸發點擊展開
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); // 阻止原本的連結跳轉
+                    const parentLi = this.parentElement;
+                    parentLi.classList.toggle('active');
+                }
+            });
+        });
+    });
+</script>
+    
 <footer class="main-footer">
     <div class="footer-container">
        
