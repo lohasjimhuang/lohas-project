@@ -169,7 +169,7 @@ body {
     color: #111;
     margin-bottom: 12px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #EFEFEF;
+    border-bottom: none;
     letter-spacing: 1px;
     display: flex;
     flex-direction: column;
