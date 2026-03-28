@@ -110,42 +110,42 @@ body {
     display: flex;
     list-style: none;
     gap: 30px;
-    align-items: center; /* 確保導覽列與右側按鈕完美垂直置中 */
+    align-items: center; /* 確保主選單項目完美垂直置中 */
 }
 
-/* 恢復所有連結的基礎設定，確保不破壞按鈕與下拉選單的原始樣式 */
+/* 基礎設定：應用於所有選單連結 */
 .nav-links a {
-    text-decoration: none;
+    text-decoration: none !important; /* 強制移除預設底線 */
     color: #50422D;
     font-size: 16px;
     font-weight: 500;
     transition: color 0.3s;
 }
 
-/* 下拉選單內的文字滑過顏色 (維持原本的品牌褐) */
+/* 確保下拉選單 (光學眼鏡等) 滑過時維持變色，且絕對沒有底線 */
 .dropdown-menu a:hover {
-    color: #CDBEA2; 
+    color: #CDBEA2 !important; 
 }
 
-/* --- 電腦版第一層主選單專屬：黑色滑動底線 --- */
+/* --- 電腦版主選單設定 --- */
 @media (min-width: 769px) {
-    /* 只針對第一層主選單 (嚴格排除 mobile-cta 按鈕與下拉選單) */
-    .nav-links > li:not(.mobile-cta) > a {
+    /* 第一層主選單的 a 標籤設定 */
+    .nav-links > li > a {
+        display: inline-block;
         position: relative;
-        /* 這裡不使用 padding-bottom，避免影響高度導致按鈕偏離 */
+        padding-bottom: 6px; /* 在區塊內預留底線空間，不干擾外層排版高度 */
     }
 
-    /* 確保主選單滑過時文字維持原色不變 */
-    .nav-links > li:not(.mobile-cta) > a:hover,
-    .nav-links > li.dropdown-parent:hover > a {
-        color: #50422D;
+    /* 主選單滑過時，文字維持原色 */
+    .nav-links > li:hover > a {
+        color: #50422D !important;
     }
 
-    /* 繪製 1px 細緻黑色底線 */
-    .nav-links > li:not(.mobile-cta) > a::after {
+    /* 繪製 1px 極細黑色底線 */
+    .nav-links > li > a::after {
         content: '';
         position: absolute;
-        bottom: -6px; /* 關鍵修改：用負值往下偏移，不干擾元素原本高度 */
+        bottom: 0;
         left: 0;
         width: 0;
         height: 1px;
@@ -153,15 +153,21 @@ body {
         transition: width 0.3s ease-in-out;
     }
 
-    /* 滑鼠移入主選單時，底線展開至 100% */
-    .nav-links > li:not(.mobile-cta) > a:hover::after,
-    .nav-links > li.dropdown-parent:hover > a::after {
+    /* 排除手機版按鈕 (.mobile-cta) 不要產生底線 */
+    .nav-links > li.mobile-cta > a::after {
+        display: none !important;
+    }
+
+    /* 滑過主選單時，底線展開至 100% */
+    .nav-links > li:not(.mobile-cta):hover > a::after {
         width: 100%;
     }
 
-    /* 強制清除下拉選單內所有的底線效果，確保絕對乾淨 */
+    /* 終極保險：徹底清除下拉選單內任何可能的底線與虛影 */
     .dropdown-menu a::after {
+        content: none !important;
         display: none !important;
+        width: 0 !important;
     }
 }
 
