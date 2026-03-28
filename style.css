@@ -199,7 +199,7 @@ body {
 
 .link-column ul li a {
     display: inline-block;
-    padding: 14px 0;
+    padding: 7px 0;
     font-size: 13px; /* 細緻的內文字級 */
     color: #444;
     text-decoration: none !important;
@@ -212,6 +212,9 @@ body {
 }
 .nav-links .mega-menu .link-column ul li a {
     font-size: 20px !important; /* 原本是 13px，強制放大到 15px */
+    display: inline-block !important; /* 確保是區塊性質，padding 才會生效 */
+    padding: 12px 0 !important;       /* 👈 調整這裡！原本可能是 7px，強制放大到 12px */
+    line-height: 1.8 !important;      /* 👈 調整行高，數字越大字與字之間越鬆 */
 }
 
 /* ==================================================
