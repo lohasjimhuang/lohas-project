@@ -79,22 +79,24 @@ body {
 
     .mega-menu-container {
         display: flex;
-        max-width: 1200px;
-        margin: 0 auto;
-        height: 350px; /* 固定高度，參考 JINS 風格 */
+        width: 100%;       /* 佔滿整個螢幕寬度 */
+        height: 350px;     /* 固定高度 */
+        margin: 0;         /* 移除置中，確保靠左 */
+        padding: 0;        /* 移除內距 */
     }
 
-    /* 左側圖片：上下左無留白 */
+    /* 3. 左側圖片區塊：確保寬度固定且圖片填滿 */
     .mega-image {
-        flex: 0 0 40%; /* 圖片佔比 40% */
+        flex: 0 0 35%;     /* 調整圖片佔比，可依需求縮放 */
         height: 100%;
-        overflow: hidden;
+        margin: 0;         /* 確保無外距 */
     }
 
     .mega-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;    /* 移除圖片下方微小間隙 */
     }
 
     /* 右側文字內容區 */
