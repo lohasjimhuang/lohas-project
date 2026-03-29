@@ -107,7 +107,7 @@ body {
         grid-template-columns: repeat(3, 1fr);
         max-height: 450px;
         overflow-y: auto;
-        padding: 60px 40px 60px 60px;
+        padding: 60px 40px 60px 80px;
         background-color: #fff;
         gap: 30px;
         align-content: start;
