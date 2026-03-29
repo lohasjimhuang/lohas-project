@@ -80,7 +80,7 @@ body {
     .mega-menu-container {
         display: flex;
         width: 100%;       /* 佔滿整個螢幕寬度 */
-        height: 400px;     /* 固定高度 */
+        height: 450px;     /* 固定高度 */
         margin: 0;         /* 移除置中，確保靠左 */
         padding: 0;        /* 移除內距 */
         background-color: #fff; /* 確保背景為純白 */
