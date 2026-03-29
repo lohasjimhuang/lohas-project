@@ -692,6 +692,10 @@ body.no-scroll {
         aspect-ratio: 4 / 3; /* 手機版通常比例會縮一點 */
         scroll-snap-align: center; /* 關鍵：滑動停止時，卡片會精準對齊我們在容器設定的 padding 位置 */
     }
+    .owndays-item .item-overlay {
+        padding: 20px;
+        justify-content: flex-end; 
+    }
     
     .owndays-container {
         padding-right: 30px; /* 增加右側留白感 */
@@ -700,6 +704,11 @@ body.no-scroll {
 
     .item-overlay h2 {
         font-size: 18px;
+        margin-bottom: 2px;
+    }
+    .item-overlay p {
+        /* 縮小描述文字下方的 margin，讓按鈕更靠近底部 */
+        margin-bottom: 10px; 
     }
 }
 
