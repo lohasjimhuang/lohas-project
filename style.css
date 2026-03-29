@@ -516,6 +516,7 @@ body.no-scroll {
     text-align: left;
     max-width: 800px;
     padding: 0x;
+    margin-bottom: 20px;
 }
 
 .hero-title {
