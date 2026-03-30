@@ -712,6 +712,16 @@ body.no-scroll {
     }
 }
 
+/* 針對母親節卡片修改文字與按鈕為樂活標準色 */
+.mother-day .item-overlay {
+    color: #50422D; /* 更改整體文字為深褐色 */
+}
+
+/* 將 VIEW MORE 按鈕的邊框與文字也改為深褐色 */
+.mother-day .btn-more {
+    border: 1px solid #50422D;
+    color: #50422D;
+}
 /* --- Footer 樣式 --- */
 .main-footer {
     background-color: #50422D; /* 你指定的品牌褐色 */
