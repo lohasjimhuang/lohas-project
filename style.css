@@ -729,6 +729,39 @@ body.no-scroll {
     color: #ffffff;
 }
 
+/* --- 底部滿版橫幅 (Secondary Banner) --- */
+.secondary-banner {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* 高度為螢幕的 60%，可依需求修改數字 */
+    min-height: 400px; /* 確保螢幕太小時不會縮得太扁 */
+    display: flex;
+    align-items: center;     /* 垂直置中 */
+    justify-content: center; /* 水平置中 */
+    overflow: hidden;
+    color: #fff;
+}
+
+/* 讓裡面的內容置中排版 */
+.secondary-banner .hero-content {
+    text-align: center; 
+    z-index: 2; /* 確保文字在背景遮罩之上 */
+    padding: 0 20px;
+}
+
+/* 讓按鈕在置中排版時更美觀 */
+.secondary-banner .hero-btns .btn {
+    margin: 15px 5px 0 5px;
+}
+
+/* 手機版 RWD 高度微調 */
+@media (max-width: 768px) {
+    .secondary-banner {
+        height: 50vh; 
+        min-height: 350px;
+    }
+}
+
 /* --- Footer 樣式 --- */
 .main-footer {
     background-color: #50422D; /* 你指定的品牌褐色 */
