@@ -640,7 +640,7 @@ body.no-scroll {
     width: 100%;
     height: 100%;
     padding: 30px;
-    background: rgba(0, 0, 0, 0.1); /* 輕微暗化讓文字更清楚 */
+    background: rgba(0, 0, 0, 0.05); /* 輕微暗化讓文字更清楚 */
     color: #fff;
     display: flex;
     flex-direction: column;
