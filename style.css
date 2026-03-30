@@ -712,17 +712,21 @@ body.no-scroll {
     }
 }
 
-/* 針對母親節卡片的文字改為深褐色 */
-.mother-day .item-overlay .tag,
-.mother-day .item-overlay h2,
-.mother-day .item-overlay p {
+/* 針對母親節卡片修改文字與按鈕為樂活標準色 */
+.mother-day .item-overlay {
+    color: #50422D; /* 更改整體文字為深褐色 */
+}
+
+/* 將 VIEW MORE 按鈕的邊框與文字也改為深褐色 */
+.mother-day .btn-more {
+    border: 1px solid #50422D;
     color: #50422D;
 }
 
-/* 針對母親節卡片的按鈕外框與文字改為深褐色，且不影響原本的 hover 效果 */
-.mother-day .item-overlay .btn-more {
-    color: #50422D; /* 文字顏色 */
-    border-color: #50422D; /* 外框顏色 */
+/* 讓滑鼠移過去 (Hover) 時，按鈕變成深褐底白字，維持整體質感 */
+.mother-day:hover .btn-more {
+    background: #50422D;
+    color: #ffffff;
 }
 
 /* --- Footer 樣式 --- */
