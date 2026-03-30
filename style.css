@@ -723,11 +723,6 @@ body.no-scroll {
     color: #50422D;
 }
 
-/* (選用) 移除或調亮背景遮罩，讓深色字體與插畫更融合 */
-.mother-day .item-overlay {
-    background: rgba(255, 255, 255, 0.2); /* 改為非常淡的白色遮罩，或直接設為 transparent */
-}
-
 /* --- Footer 樣式 --- */
 .main-footer {
     background-color: #50422D; /* 你指定的品牌褐色 */
