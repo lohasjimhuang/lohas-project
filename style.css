@@ -570,7 +570,7 @@ body.no-scroll {
     }
 
     .hero-title {
-        font-size: 2.2rem;     /* 縮小標題字體 (原為 2.5rem) */
+        font-size: 1.8rem;     /* 縮小標題字體 (原為 2.5rem) */
         margin-bottom: 3px;
     }
 
