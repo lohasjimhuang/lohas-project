@@ -856,7 +856,7 @@ body.no-scroll {
     }
 
     .store-text-block {
-        padding: 40px 25px;
+        padding: 20px 25px 40px 25px;
         align-items: center; /* 手機版文字與按鈕置中 */
         text-align: center;
     }
