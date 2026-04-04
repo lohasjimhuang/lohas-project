@@ -298,19 +298,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.next-btn');
 
     if (cardContainer && prevBtn && nextBtn) {
-        // 設定每次點擊要滑動的距離 (可依據實際卡片寬度微調)
-        const scrollAmount = 600; 
-
         prevBtn.addEventListener('click', () => {
-            cardContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            // 動態取得第一張卡片的寬度，加上 15px 的 gap 間距
+            const cardWidth = cardContainer.children[0].offsetWidth + 15;
+            cardContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
         });
 
         nextBtn.addEventListener('click', () => {
-            cardContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            const cardWidth = cardContainer.children[0].offsetWidth + 15;
+            cardContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
         });
     }
 });
-</script>    
+</script> 
 
     
 <footer class="main-footer">
