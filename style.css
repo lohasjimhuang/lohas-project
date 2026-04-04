@@ -883,7 +883,8 @@ body.no-scroll {
         display: block;
         width: 100%;
         height: auto;
-        aspect-ratio: 16 / 9; /* 您可以依據圖片比例調整 */
+        aspect-ratio: 1 / 1 !important; 
+        object-fit: cover; /* 確保圖片填滿正方形且不變形 */
     }
 }
 
