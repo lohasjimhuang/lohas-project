@@ -792,7 +792,7 @@ body.no-scroll {
 
 .store-text-block {
     flex: 4;
-    padding: 60px 10%; /* 使用百分比 padding，確保在大螢幕上文字不會太靠邊 */
+    padding: 40px 10%; /* 使用百分比 padding，確保在大螢幕上文字不會太靠邊 */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -831,7 +831,7 @@ body.no-scroll {
 .store-image-block {
     flex: 6;
     position: relative;
-    min-height: 500px; /* 確保圖片區塊在電腦版有足夠高度 */
+    min-height: 400px; /* 確保圖片區塊在電腦版有足夠高度 */
 }
 
 .store-image-block img {
