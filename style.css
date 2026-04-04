@@ -793,14 +793,6 @@ body.no-scroll {
     align-items: flex-start;
 }
 
-.store-tag {
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: #CDBEA2; /* 樂活輔助色 */
-    margin-bottom: 12px;
-    font-weight: bold;
-}
-
 .store-title {
     font-size: 32px;
     color: #50422D; /* 樂活標準色 */
@@ -848,12 +840,13 @@ body.no-scroll {
 /* --- 手機版 RWD --- */
 @media (max-width: 768px) {
     .store-location-section {
-        padding: 40px 20px; /* 手機版外側留一點邊距 */
+        padding: 40px 0;
     }
 
     .store-location-container {
         flex-direction: column-reverse; /* 關鍵：讓圖片在上，文字區塊在下 */
-        border-radius: 8px;
+        border-radius: 0px;
+        box-shadow: none;
     }
 
     .store-text-block {
@@ -872,7 +865,17 @@ body.no-scroll {
     }
 
     .store-image-block {
+        width: 100%;
         min-height: 280px; /* 手機版圖片高度稍微縮減 */
+    }
+
+    .store-image-block img {
+        /* 6. 確保圖片填滿 */
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9; /* 您可以依據圖片比例調整 */
     }
 }
 
