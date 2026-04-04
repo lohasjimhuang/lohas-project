@@ -603,15 +603,64 @@ body.no-scroll {
     background-color: #fff;
 }
 
-.owndays-container {
-    display: flex;
+.owndays-wrapper {
+    position: relative;
     max-width: 1400px;
     margin: 0 auto;
+}
+
+.owndays-container {
+    display: flex;
     gap: 15px;
-    padding: 0 20px;
-    overflow-x: auto; /* 手機端滑動關鍵 */
+    padding: 0 20px; /* 保留原本的內距 */
+    overflow-x: auto; 
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+}
+
+/* --- 新增：電腦版圓圈箭頭按鈕樣式 --- */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 50%; /* 圓形 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 日系輕柔陰影 */
+    color: #50422D; /* 樂活標準色 */
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+/* 滑過時變成樂活褐底白字 */
+.scroll-btn:hover {
+    background-color: #50422D;
+    color: #ffffff;
+    border-color: #50422D;
+    box-shadow: 0 6px 16px rgba(80, 66, 45, 0.2);
+}
+
+/* 將按鈕往內縮一點，讓它有一半疊在圖片上的精緻感 */
+.prev-btn {
+    left: 10px; 
+}
+
+.next-btn {
+    right: 10px; 
+}
+
+/* --- 手機版隱藏按鈕 --- */
+@media (max-width: 768px) {
+    .scroll-btn {
+        display: none !important; /* 手機版只需靠手動滑動，不需要箭頭 */
+    }
 }
 
 /* 隱藏捲軸 */
