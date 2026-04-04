@@ -785,7 +785,7 @@ body.no-scroll {
 }
 
 .store-text-block {
-    flex: 1;
+    flex: 4;
     padding: 60px 80px;
     display: flex;
     flex-direction: column;
@@ -831,7 +831,7 @@ body.no-scroll {
 }
 
 .store-image-block {
-    flex: 1;
+    flex: 6;
     position: relative;
     min-height: 400px; /* 確保圖片區塊在電腦版有足夠高度 */
 }
