@@ -774,7 +774,7 @@ body.no-scroll {
         margin-bottom: 10px; 
     }
     .owndays-grid-section {
-        padding-top: 40px;
+        padding-top: 20px !important;
         padding-bottom: 20px; /* 原本是 40px，減去內層的 20px，讓上下視覺總和都是 40px */
     }
 }
