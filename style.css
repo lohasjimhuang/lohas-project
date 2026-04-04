@@ -618,24 +618,33 @@ body.no-scroll {
     scrollbar-width: none;
 }
 
+/* --- 新增：卡片區塊頂部的排版 --- */
+.owndays-header {
+    display: flex;
+    justify-content: flex-end; /* 讓內容（按鈕）靠右對齊 */
+    padding: 0 20px;
+    margin-bottom: 15px;       /* 與下方的卡片保持一點距離 */
+}
+
+.owndays-controls {
+    display: flex;
+    gap: 12px; /* 兩個圈圈箭頭並排時的距離 */
+}
+
 /* --- 新增：電腦版圓圈箭頭按鈕樣式 --- */
 .scroll-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
+    /* 移除原本的 position, top, left, right 等絕對定位語法 */
+    width: 42px;  /* 放在右上方可以稍微縮小一點點，更精緻 */
+    height: 42px;
     background-color: #ffffff;
-    border: 1px solid #f0f0f0;
-    border-radius: 50%; /* 圓形 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 日系輕柔陰影 */
-    color: #50422D; /* 樂活標準色 */
-    font-size: 18px;
+    border: 1px solid #e0e0e0; /* 改為極淡的灰色邊框 */
+    border-radius: 50%;
+    color: #50422D; 
+    font-size: 14px; /* 箭頭稍微縮小 */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
     transition: all 0.3s ease;
 }
 
@@ -644,7 +653,7 @@ body.no-scroll {
     background-color: #50422D;
     color: #ffffff;
     border-color: #50422D;
-    box-shadow: 0 6px 16px rgba(80, 66, 45, 0.2);
+    
 }
 
 /* 將按鈕往內縮一點，讓它有一半疊在圖片上的精緻感 */
