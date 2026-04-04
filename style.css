@@ -679,7 +679,7 @@ body.no-scroll {
 
 .owndays-item {
     position: relative;
-    flex: 1; /* 桌機端自動平分空間 */
+    flex: 0 0 calc(50% - 7.5px);
     min-width: 0;
     aspect-ratio: 16 / 9; /* 根據 OWNDAYS 比例調整 */
     overflow: hidden;
