@@ -710,6 +710,10 @@ body.no-scroll {
         /* 縮小描述文字下方的 margin，讓按鈕更靠近底部 */
         margin-bottom: 10px; 
     }
+    .owndays-grid-section {
+        padding-top: 40px;
+        padding-bottom: 20px; /* 原本是 40px，減去內層的 20px，讓上下視覺總和都是 40px */
+    }
 }
 
 /* 針對母親節卡片修改文字與按鈕為樂活標準色 */
