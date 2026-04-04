@@ -737,7 +737,7 @@ body.no-scroll {
 .secondary-banner {
     position: relative;
     width: 100%;
-    height: 60vh; /* 高度為螢幕的 60%，可依需求修改數字 */
+    height: 70vh; /* 高度為螢幕的 60%，可依需求修改數字 */
     min-height: 400px; /* 確保螢幕太小時不會縮得太扁 */
     display: flex;
     align-items: center;     /* 垂直置中 */
