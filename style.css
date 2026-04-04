@@ -859,9 +859,11 @@ body.no-scroll {
         padding: 5px 25px 40px 25px !important;
         align-items: center; /* 手機版文字與按鈕置中 */
         text-align: center;
+        margin-top: 0 !important;
     }
 
     .store-title {
+        margin-top: 0 !important;
         font-size: 26px;
     }
 
