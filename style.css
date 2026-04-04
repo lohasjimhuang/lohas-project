@@ -831,7 +831,7 @@ body.no-scroll {
 .store-image-block {
     flex: 6;
     position: relative;
-    min-height: 400px; /* 確保圖片區塊在電腦版有足夠高度 */
+    min-height: 450px; /* 確保圖片區塊在電腦版有足夠高度 */
 }
 
 .store-image-block img {
