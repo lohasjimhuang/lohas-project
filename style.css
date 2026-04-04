@@ -833,7 +833,7 @@ body.no-scroll {
 .store-location-section {
     width: 100%;
     background-color: #fff;
-    padding: 80px 0; /* 讓上下留白多一點，營造日系空氣感 */
+    padding: 0 0 80px 0;
 }
 
 .store-location-container {
@@ -904,7 +904,7 @@ body.no-scroll {
 /* --- 手機版 RWD --- */
 @media (max-width: 768px) {
     .store-location-section {
-        padding: 40px 0;
+        padding: 0 0 40px 0;
     }
 
     .store-location-container {
