@@ -324,6 +324,11 @@ body.no-scroll {
     border-radius: 50px;
     font-size: 16px;
     text-decoration: none;
+    transition: background-color 0.3s ease; /* 新增這行：讓變色效果更順暢 */
+}
+
+.btn-primary:hover {
+    background-color: #765F4A; 
 }
 
 .mobile-cta {
@@ -774,19 +779,20 @@ body.no-scroll {
 }
 
 .store-location-container {
-    max-width: 1200px;
+    width: 100%;       /* 改為 100% 寬度 */
+    max-width: none;   /* 移除 1200px 的限制 */
     margin: 0 auto;
     display: flex;
     align-items: stretch; /* 讓左右區塊等高 */
     background-color: #F9F8F6; /* 溫潤的大地色系背景 */
-    border-radius: 12px; /* 微微的圓角，增加柔和感 */
+    border-radius: 0px;
     overflow: hidden; /* 確保圖片圓角不會突出 */
-    box-shadow: 0 10px 30px rgba(80, 66, 45, 0.05); /* 加上極淡的陰影增加立體感 */
+    box-shadow: none; /* 滿版設計通常不使用外陰影 */
 }
 
 .store-text-block {
     flex: 4;
-    padding: 60px 80px;
+    padding: 60px 10%; /* 使用百分比 padding，確保在大螢幕上文字不會太靠邊 */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -825,7 +831,7 @@ body.no-scroll {
 .store-image-block {
     flex: 6;
     position: relative;
-    min-height: 400px; /* 確保圖片區塊在電腦版有足夠高度 */
+    min-height: 500px; /* 確保圖片區塊在電腦版有足夠高度 */
 }
 
 .store-image-block img {
