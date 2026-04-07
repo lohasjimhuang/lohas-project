@@ -850,9 +850,7 @@ body.no-scroll {
 
 .store-text-block {
     flex: 4;
-    /* 改用 clamp(最小像素, 理想百分比, 最大像素) */
-    /* 上 40px | 右(靠近圖片) 至少維持 60px | 下 40px | 左 至少維持 40px */
-    padding: 40px clamp(60px, 8%, 100px) 40px clamp(40px, 10%, 120px);
+    padding: 40px 10%; /* 使用百分比 padding，確保在大螢幕上文字不會太靠邊 */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -903,24 +901,6 @@ body.no-scroll {
     object-fit: cover; /* 讓圖片自動填滿且不變形 */
 }
 
-/* --- 新增：平板與小筆電尺寸 (769px ~ 1100px) 的過渡微調 --- */
-@media (min-width: 769px) and (max-width: 1100px) {
-    .store-text-block {
-        flex: 5; /* 將文字區塊的比例調大（與圖片變成 5:5），避免寬度不夠 */
-        padding-left: 40px; /* 固定左側邊距 */
-        padding-right: 60px; /* 固定右側與圖片的安全距離 */
-    }
-    .store-image-block {
-        flex: 5; /* 圖片區塊配合縮小比例 */
-    }
-    .store-title {
-        font-size: 28px; /* 字體稍微縮小，讓排版更順暢 */
-    }
-    .store-desc {
-        font-size: 15px;
-    }
-}
-
 /* --- 手機版 RWD --- */
 @media (max-width: 768px) {
     .store-location-section {
@@ -934,7 +914,7 @@ body.no-scroll {
     }
 
     .store-text-block {
-        padding: 5px 25px 40px 25px;
+        padding: 40px 25px 40px 25px;
         align-items: center; /* 手機版文字與按鈕置中 */
         text-align: center;
     }
