@@ -1203,3 +1203,163 @@ body.no-scroll {
         max-width: 280px;
     }
 }
+
+
+/* =========================================
+   獨立頁面：雷刻服務專屬樣式
+========================================= */
+
+.engraving-service-page {
+    background-color: #fff;
+    padding-top: 70px; /* 避開固定的 Header */
+}
+
+/* 共用：區塊標題與通用線條 */
+.engraving-service-page .section-header {
+    text-align: center;
+    margin: 60px 0 40px;
+    padding: 0 20px;
+}
+.engraving-service-page .section-title {
+    color: #50422D;
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+.engraving-service-page .title-line {
+    width: 40px;
+    height: 2px;
+    background: #50422D;
+    margin: 15px auto;
+}
+
+/* 區塊一：Hero Banner */
+.engraving-hero {
+    position: relative;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+}
+.engraving-hero .hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -2;
+}
+.engraving-hero .hero-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+.engraving-hero::after {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* 深色遮罩讓文字清楚 */
+    z-index: -1;
+}
+.engraving-hero .hero-content {
+    max-width: 800px; padding: 20px;
+}
+.engraving-hero .hero-subtitle {
+    font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 10px;
+}
+.engraving-hero .hero-title {
+    font-size: 3rem; font-weight: 700; margin-bottom: 15px;
+}
+.engraving-hero .hero-desc {
+    font-size: 16px; margin: 0 auto 30px; opacity: 0.9; line-height: 1.8;
+}
+.engraving-hero .hero-btns {
+    display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+}
+
+/* 區塊二：技術規格 */
+.engraving-specs {
+    padding: 80px 0;
+    background-color: #F9F8F6;
+}
+.specs-container {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; gap: 30px; padding: 0 20px;
+}
+.spec-card {
+    flex: 1; background: #fff; padding: 50px 30px;
+    border-radius: 12px; text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease;
+}
+.spec-card:hover { transform: translateY(-10px); }
+.spec-icon { font-size: 40px; color: #CDBEA2; margin-bottom: 25px; }
+.spec-card h3 { color: #50422D; margin-bottom: 15px; }
+.spec-card p { font-size: 14px; color: #666; line-height: 1.6; }
+
+/* 區塊三：客製流程 */
+.engraving-process { padding: 80px 0; }
+.process-wrapper {
+    display: flex; align-items: center; justify-content: center;
+    gap: 30px; max-width: 1000px; margin: 0 auto; padding: 0 20px;
+}
+.process-item { text-align: center; flex: 1; }
+.step-circle {
+    width: 60px; height: 60px; border: 1px solid #50422D;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; font-size: 18px; color: #50422D; font-weight: bold;
+}
+.process-item h4 { color: #50422D; margin-bottom: 10px; }
+.process-item p { font-size: 14px; color: #666; }
+.process-arrow { color: #CDBEA2; font-size: 24px; }
+
+/* 區塊四：靈感藝廊 */
+.inspiration-grid-section { padding-bottom: 100px; }
+.grid-container {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px; max-width: 1200px; margin: 0 auto; padding: 0 20px;
+}
+.grid-item {
+    background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;
+}
+.grid-item:hover { transform: translateY(-5px); }
+.grid-img img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.grid-text { padding: 20px; }
+.grid-text .tag { font-size: 10px; color: #CDBEA2; letter-spacing: 1px; font-weight: bold; display: block; margin-bottom: 5px;}
+.grid-text h5 { color: #50422D; font-size: 18px; margin-bottom: 8px;}
+.grid-text p { font-size: 14px; color: #666; margin-bottom: 15px;}
+.btn-more-simple {
+    background: none; border: 1px solid #ddd; color: #555;
+    padding: 6px 16px; font-size: 12px; border-radius: 4px;
+    cursor: pointer; transition: 0.3s;
+}
+.btn-more-simple:hover { background: #50422D; color: #fff; border-color: #50422D; }
+
+/* 區塊五：FAQ */
+.engraving-faq { padding: 60px 0 80px; background: #F9F8F6; }
+.faq-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+.faq-item { margin-bottom: 30px; border-bottom: 1px solid #eaeaea; padding-bottom: 20px; }
+.faq-item h4 { color: #50422D; margin-bottom: 12px; font-size: 18px; }
+.faq-item p { color: #666; font-size: 15px; line-height: 1.6; }
+
+/* 區塊六：門市預約 CTA */
+.store-cta-section { padding: 80px 20px; }
+.cta-box {
+    background: #50422D; padding: 50px; border-radius: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1000px; margin: 0 auto; color: #fff;
+}
+.cta-content h3 { font-size: 24px; margin-bottom: 10px; }
+.cta-content p { font-size: 15px; opacity: 0.8; }
+.cta-box .btn-primary { 
+    background: #fff !important; color: #50422D !important; 
+    font-weight: bold; border: none;
+}
+.cta-box .btn-primary:hover { background: #F9F8F6 !important; }
+
+/* 手機版 RWD 適應 */
+@media (max-width: 768px) {
+    .engraving-hero { height: 70vh; }
+    .engraving-hero .hero-title { font-size: 2.2rem; }
+    .specs-container, .process-wrapper { flex-direction: column; gap: 40px; }
+    .process-arrow { transform: rotate(90deg); margin: -10px 0; }
+    .cta-box { flex-direction: column; text-align: center; gap: 25px; padding: 40px 20px; }
+}
