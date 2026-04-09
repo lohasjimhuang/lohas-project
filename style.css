@@ -1207,7 +1207,7 @@ body.no-scroll {
 
 
 /* =========================================
-   獨立頁面：雷刻服務專屬樣式
+   獨立頁面：雷刻服務專屬樣式 (完整修正版)
 ========================================= */
 
 .engraving-service-page {
@@ -1215,26 +1215,7 @@ body.no-scroll {
     padding-top: 70px; /* 避開固定的 Header */
 }
 
-/* 共用：區塊標題與通用線條 */
-.engraving-service-page .section-header {
-    text-align: center;
-    margin: 60px 0 40px;
-    padding: 0 20px;
-}
-.engraving-service-page .section-title {
-    color: #50422D;
-    font-size: 28px;
-    letter-spacing: 2px;
-    font-weight: 700;
-}
-.engraving-service-page .title-line {
-    width: 40px;
-    height: 2px;
-    background: #50422D;
-    margin: 15px auto;
-}
-
-/* --- 雷刻服務 Hero Banner 修正 --- */
+/* 1. Hero Banner 核心修正區 */
 .engraving-hero {
     position: relative;
     height: 85vh; /* 電腦版高度 */
@@ -1247,7 +1228,7 @@ body.no-scroll {
     margin-top: 0; 
 }
 
-/* 強制背景圖片容器與圖片填滿 */
+/* 關鍵：強制背景容器與圖片填滿整個 Hero 區域 */
 .engraving-hero .hero-bg,
 .engraving-hero .hero-bg picture,
 .engraving-hero .hero-bg img {
@@ -1260,204 +1241,129 @@ body.no-scroll {
 }
 
 .engraving-hero .hero-bg img {
-    object-fit: cover; /* 確保圖片不變形且填滿 */
+    object-fit: cover; /* 確保圖片不變形 */
     object-position: center;
     z-index: -2;
 }
 
-/* 黑色遮罩，確保文字可讀性 */
+/* 增加深色遮罩，確保文字白字清晰 */
 .engraving-hero::after {
-    content: ''; 
+    content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
     background: rgba(0, 0, 0, 0.4); 
     z-index: -1;
 }
 
-/* 手機版 RWD 高度微調 */
-@media (max-width: 768px) {
-    .engraving-hero {
-        height: 70vh; 
-    }
-}
 .engraving-hero .hero-content {
-    max-width: 800px; padding: 20px;
-}
-.engraving-hero .hero-subtitle {
-    font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 10px;
-}
-.engraving-hero .hero-title {
-    font-size: 3rem; font-weight: 700; margin-bottom: 15px;
-}
-.engraving-hero .hero-desc {
-    font-size: 16px; margin: 0 auto 30px; opacity: 0.9; line-height: 1.8;
-}
-.engraving-hero .hero-btns {
-    display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+    max-width: 800px;
+    padding: 20px;
+    z-index: 1;
 }
 
-/* 區塊二：技術規格 */
+.engraving-hero .hero-subtitle {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.engraving-hero .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.engraving-hero .hero-desc {
+    font-size: 16px;
+    margin: 0 auto 30px;
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+/* 2. 其他區塊樣式 (規格、流程、藝廊) */
+.engraving-service-page .section-header {
+    text-align: center;
+    margin: 60px 0 40px;
+    padding: 0 20px;
+}
+
+.engraving-service-page .section-title {
+    color: #50422D;
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.engraving-service-page .title-line {
+    width: 40px;
+    height: 2px;
+    background: #50422D;
+    margin: 15px auto;
+}
+
 .engraving-specs {
     padding: 80px 0;
     background-color: #F9F8F6;
 }
+
 .specs-container {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; gap: 30px; padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
 }
+
 .spec-card {
-    flex: 1; background: #fff; padding: 50px 30px;
-    border-radius: 12px; text-align: center;
+    flex: 1;
+    background: #fff;
+    padding: 50px 30px;
+    border-radius: 12px;
+    text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     transition: transform 0.3s ease;
 }
+
 .spec-card:hover { transform: translateY(-10px); }
 .spec-icon { font-size: 40px; color: #CDBEA2; margin-bottom: 25px; }
-.spec-card h3 { color: #50422D; margin-bottom: 15px; }
-.spec-card p { font-size: 14px; color: #666; line-height: 1.6; }
 
-/* 區塊三：客製流程 */
 .engraving-process { padding: 80px 0; }
 .process-wrapper {
-    display: flex; align-items: center; justify-content: center;
-    gap: 30px; max-width: 1000px; margin: 0 auto; padding: 0 20px;
-}
-.process-item { text-align: center; flex: 1; }
-.step-circle {
-    width: 60px; height: 60px; border: 1px solid #50422D;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px; font-size: 18px; color: #50422D; font-weight: bold;
-}
-.process-item h4 { color: #50422D; margin-bottom: 10px; }
-.process-item p { font-size: 14px; color: #666; }
-.process-arrow { color: #CDBEA2; font-size: 24px; }
-
-/* 區塊四：靈感藝廊 */
-.inspiration-grid-section { padding-bottom: 100px; }
-.grid-container {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px; max-width: 1200px; margin: 0 auto; padding: 0 20px;
-}
-.grid-item {
-    background: #fff; border-radius: 12px; overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;
-}
-.grid-item:hover { transform: translateY(-5px); }
-.grid-img img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
-.grid-text { padding: 20px; }
-.grid-text .tag { font-size: 10px; color: #CDBEA2; letter-spacing: 1px; font-weight: bold; display: block; margin-bottom: 5px;}
-.grid-text h5 { color: #50422D; font-size: 18px; margin-bottom: 8px;}
-.grid-text p { font-size: 14px; color: #666; margin-bottom: 15px;}
-.btn-more-simple {
-    background: none; border: 1px solid #ddd; color: #555;
-    padding: 6px 16px; font-size: 12px; border-radius: 4px;
-    cursor: pointer; transition: 0.3s;
-}
-.btn-more-simple:hover { background: #50422D; color: #fff; border-color: #50422D; }
-
-/* 區塊五：FAQ */
-.engraving-faq { padding: 60px 0 80px; background: #F9F8F6; }
-.faq-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-.faq-item { margin-bottom: 30px; border-bottom: 1px solid #eaeaea; padding-bottom: 20px; }
-.faq-item h4 { color: #50422D; margin-bottom: 12px; font-size: 18px; }
-.faq-item p { color: #666; font-size: 15px; line-height: 1.6; }
-
-/* =========================================
-   區塊六：門市預約 CTA (圖文左右排版)
-========================================= */
-.store-cta-section { 
-    padding: 80px 20px; 
-}
-
-/* 加上 with-image 後的排版設定 */
-.cta-box.with-image {
-    background: #50422D; 
-    border-radius: 20px;
-    display: flex; 
-    align-items: stretch; /* 讓左右兩側等高 */
-    max-width: 1000px; 
-    margin: 0 auto; 
-    color: #fff;
-    padding: 0; /* 移除原本的 padding，改由內層控制 */
-    overflow: hidden; /* 非常重要：讓左側圖片配合外框產生圓角 */
-    box-shadow: 0 10px 30px rgba(80, 66, 45, 0.15); /* 加一點低調的陰影增加立體感 */
-}
-
-/* 左側圖片區塊 */
-.cta-img-block {
-    flex: 1; /* 佔據一半寬度 */
-    min-height: 350px; /* 確保電腦版有足夠高度 */
-}
-
-.cta-img-block img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 圖片填滿且不變形 */
-    display: block;
-}
-
-/* 右側文字區塊 */
-.cta-text-block {
-    flex: 1;
-    padding: 60px 50px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: flex-start; /* 讓文字與按鈕靠左對齊 */
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.cta-text-block .cta-content h3 { 
-    font-size: 26px; 
-    margin-bottom: 12px; 
+.step-circle {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #50422D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 18px;
+    color: #50422D;
+    font-weight: bold;
 }
 
-.cta-text-block .cta-content p { 
-    font-size: 15px; 
-    opacity: 0.85; 
-    line-height: 1.6;
-    margin-bottom: 30px; /* 增加與下方按鈕的呼吸空間 */
-}
-
-.cta-box.with-image .btn-primary { 
-    background: #fff !important; 
-    color: #50422D !important; 
-    font-weight: bold; 
-    border: none;
-    padding: 12px 35px;
-    display: inline-block;
-}
-
-.cta-box.with-image .btn-primary:hover { 
-    background: #F9F8F6 !important; 
-    transform: translateY(-2px); /* 按鈕滑過微微上浮 */
-}
-
-/* 手機版 RWD 適應 */
-@media (max-width: 768px) {
-    .cta-box.with-image { 
-        flex-direction: column; /* 手機版變成垂直排列 */
-    }
-    
-    .cta-img-block {
-        min-height: 250px; /* 手機版圖片高度稍微縮小 */
-    }
-    
-    .cta-text-block { 
-        padding: 40px 25px; 
-        align-items: center; /* 手機版文字與按鈕置中 */
-        text-align: center; 
-    }
-    
-    .cta-text-block .cta-content p {
-        margin-bottom: 25px;
-    }
-}
-
-/* 手機版 RWD 適應 */
+/* 3. 手機版 RWD 適應 */
 @media (max-width: 768px) {
     .engraving-hero { height: 70vh; }
     .engraving-hero .hero-title { font-size: 2.2rem; }
     .specs-container, .process-wrapper { flex-direction: column; gap: 40px; }
-    .process-arrow { transform: rotate(90deg); margin: -10px 0; }
-    .cta-box { flex-direction: column; text-align: center; gap: 25px; padding: 40px 20px; }
+    
+    .process-arrow { 
+        transform: rotate(90deg); 
+        margin: -10px 0; 
+        text-align: center;
+    }
 }
