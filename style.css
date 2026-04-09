@@ -1234,20 +1234,20 @@ body.no-scroll {
     margin: 15px auto;
 }
 
-/* 區塊一：Hero Banner */
+/* --- 雷刻服務 Hero Banner 修正 --- */
 .engraving-hero {
     position: relative;
-    height: 85vh;
+    height: 85vh; /* 電腦版高度 */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
     overflow: hidden;
-    margin-top: 0; /* 確保不被重複推擠 */
+    margin-top: 0; 
 }
 
-/* 強制圖片填滿背景 */
+/* 強制背景圖片容器與圖片填滿 */
 .engraving-hero .hero-bg,
 .engraving-hero .hero-bg picture,
 .engraving-hero .hero-bg img {
@@ -1260,31 +1260,25 @@ body.no-scroll {
 }
 
 .engraving-hero .hero-bg img {
-    object-fit: cover; /* 關鍵：確保圖片不變形且填滿 */
+    object-fit: cover; /* 確保圖片不變形且填滿 */
     object-position: center;
     z-index: -2;
 }
 
-/* 手機版高度與間距微調 */
-@media (max-width: 768px) {
-    .engraving-hero {
-        height: 70vh; /* 手機版稍微縮短 */
-    }
-}
-
-.engraving-hero .hero-bg {
+/* 黑色遮罩，確保文字可讀性 */
+.engraving-hero::after {
+    content: ''; 
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -2;
-}
-.engraving-hero .hero-bg img {
-    width: 100%; height: 100%; object-fit: cover;
-}
-.engraving-hero::after {
-    content: ''; position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* 深色遮罩讓文字清楚 */
+    background: rgba(0, 0, 0, 0.4); 
     z-index: -1;
+}
+
+/* 手機版 RWD 高度微調 */
+@media (max-width: 768px) {
+    .engraving-hero {
+        height: 70vh; 
+    }
 }
 .engraving-hero .hero-content {
     max-width: 800px; padding: 20px;
