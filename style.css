@@ -1211,7 +1211,7 @@ body.no-scroll {
 
 .engraving-service-page {
     background-color: #fff;
-    padding-top: 70px; /* 避開固定的 Header */
+    padding-top: 0; /* 移除推擠，讓 Banner 衝到最頂端 */
 }
 
 /* 共用：區塊標題與通用線條 */
