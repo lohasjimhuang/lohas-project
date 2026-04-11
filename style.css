@@ -1237,19 +1237,15 @@ body.no-scroll {
 .engraving-hero {
     position: relative;
     width: 100%;
-    /* 1. 高度完全比照首頁 */
-    height: 100vh; 
+    height: 100vh; /* 滿版高度 */
     display: flex;
-    /* 2. 對齊方式比照首頁：垂直靠下、水平靠左 */
-    align-items: flex-end;    
-    justify-content: flex-start; 
-    overflow: hidden;
-    color: #fff;
-    /* 3. 間距比照首頁 */
-    padding-left: 5%;        
-    padding-bottom: 40px;     
+    align-items: flex-end; /* 文字靠底 */
+    justify-content: flex-start; /* 文字靠左 */
+    padding-left: 5%;
+    padding-bottom: 60px; /* 增加底部間距避免太貼齊邊緣 */
     z-index: 1;
 }
+
 /* 確保背景圖與首頁邏輯一致 */
 .engraving-hero .hero-bg {
     position: absolute;
@@ -1267,16 +1263,12 @@ body.no-scroll {
     object-position: center;
 }
 .engraving-hero::after {
-    content: ''; position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0); /* 保持變淺的遮罩 */
-    z-index: 2;
+    background: rgba(0, 0, 0, 0.1); /* 僅保留 10% 透明度 */
 }
+
 .engraving-hero .hero-content {
-    text-align: left;
-    max-width: 800px;
-    position: relative;
     z-index: 3;
+    position: relative;
 }
 
 .engraving-hero .hero-title {
