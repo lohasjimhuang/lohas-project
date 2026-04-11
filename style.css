@@ -1243,6 +1243,7 @@ body.no-scroll {
     text-align: center;
     color: #fff;
     overflow: hidden;
+    z-index: 1;
 }
 .engraving-hero .hero-bg {
     position: absolute;
