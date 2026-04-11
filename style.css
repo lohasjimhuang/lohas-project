@@ -1236,12 +1236,13 @@ body.no-scroll {
 /* 區塊一：Hero Banner */
 .engraving-hero {
     position: relative;
-    height: 85vh;
+    width: 100%;
+    height: 100vh; /* 👉 比照首頁滿版高度 */
     display: flex;
-    align-items: center;
-    justify-content: flex-start; /* 👉 從 center 改為 flex-start (靠左對齊) */
-    text-align: left;            /* 👉 從 center 改為 left (文字靠左) */
-    padding-left: 8%;
+    align-items: flex-end; /* 👉 比照首頁：垂直靠下 */
+    justify-content: flex-start; /* 👉 比照首頁：水平靠左 */
+    padding-left: 5%; /* 👉 比照首頁左側間距 */
+    padding-bottom: 40px; /* 👉 比照首頁底部間距 */
     color: #fff;
     overflow: hidden;
     z-index: 1;
@@ -1249,31 +1250,47 @@ body.no-scroll {
 .engraving-hero .hero-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -2;
+    z-index: 1;
 }
 .engraving-hero .hero-bg img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
 }
 .engraving-hero::after {
     content: ''; position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.1); /* 深色遮罩讓文字清楚 */
-    z-index: -1;
+    background: rgba(0, 0, 0, 0.1); /* 保持變淺的遮罩 */
+    z-index: 2;
 }
 .engraving-hero .hero-content {
-    max-width: 800px; padding: 20px;
+    text-align: left; /* 👉 文字靠左 */
+    max-width: 800px;
+    padding: 0;
+    position: relative;
+    z-index: 3;
 }
 .engraving-hero .hero-subtitle {
-    font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 10px;
+    font-size: 1.0rem; /* 👉 比照首頁副標題大小 */
+    font-weight: 400;
+    letter-spacing: 2px; 
+    margin-bottom: 5px; /* 👉 比照首頁間距 */
 }
 .engraving-hero .hero-title {
-    font-size: 3rem; font-weight: 700; margin-bottom: 15px;
+    font-size: 2.5rem; /* 👉 比照首頁大標題大小 */
+    font-weight: 700; 
+    margin-top: -10px; 
+    margin-bottom: 5px;
+    letter-spacing: 1px;
 }
 .engraving-hero .hero-desc {
-    font-size: 16px; margin: 0 0 30px 0; opacity: 0.9; line-height: 1.8;
+    font-size: 16px; 
+    margin: 0 0 20px 0; /* 👉 配合靠左，取消置中並留適當下方間距 */
+    opacity: 0.9; 
+    line-height: 1.8;
 }
 .engraving-hero .hero-btns {
-    display: flex; justify-content: flex-start; gap: 15px; flex-wrap: wrap;
+    display: flex; 
+    justify-content: flex-start; /* 👉 按鈕靠左 */
+    flex-wrap: wrap;
 }
 
 /* 區塊二：技術規格 */
@@ -1359,8 +1376,14 @@ body.no-scroll {
 
 /* 手機版 RWD 適應 */
 @media (max-width: 768px) {
-    .engraving-hero { height: 70vh; }
-    .engraving-hero .hero-title { font-size: 2.2rem; }
+    .engraving-hero { 
+        height: 100svh; /* 👉 比照首頁手機版滿版高度 */
+        padding-left: 20px; /* 👉 比照首頁手機版左間距 */
+        padding-bottom: 40px; /* 👉 比照首頁手機版底間距 */
+    }
+    .engraving-hero .hero-title { font-size: 2.0rem; margin-bottom: 3px; }
+    .engraving-hero .hero-subtitle { font-size: 0.9rem; margin-bottom: 3px; }
+    .engraving-hero .hero-desc { font-size: 14px; margin-bottom: 15px; } /* 稍微縮小描述文字的間距，避免擠壓按鈕 */
     .specs-container, .process-wrapper { flex-direction: column; gap: 40px; }
     .process-arrow { transform: rotate(90deg); margin: -10px 0; }
     .cta-box { flex-direction: column; text-align: center; gap: 25px; padding: 40px 20px; }
