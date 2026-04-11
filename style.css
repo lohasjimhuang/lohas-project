@@ -1258,7 +1258,7 @@ body.no-scroll {
 .engraving-hero::after {
     content: ''; position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.1); /* 保持變淺的遮罩 */
+    background: rgba(0, 0, 0, 0); /* 保持變淺的遮罩 */
     z-index: 2;
 }
 .engraving-hero .hero-content {
