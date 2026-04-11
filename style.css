@@ -1292,9 +1292,17 @@ body.no-scroll {
     line-height: 1.8;
 }
 .engraving-hero .hero-btns {
-    display: flex; 
-    justify-content: flex-start; /* 👉 按鈕靠左 */
+    display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    gap: 15px; /* 直接使用 gap 產生按鈕間的水平與垂直間距 */
+    margin-top: 20px;
+}
+
+.engraving-hero .btn-outline {
+    border: 1px solid #000000; /* 修改為黑色外框 */
+    color: #000000;           /* 修改為黑色文字 */
+    background: transparent;
 }
 
 /* 區塊二：技術規格 */
