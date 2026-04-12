@@ -1369,11 +1369,22 @@ body.no-scroll {
 .grid-text h5 { color: #50422D; font-size: 18px; margin-bottom: 8px;}
 .grid-text p { font-size: 14px; color: #666; margin-bottom: 15px;}
 .btn-more-simple {
-    background: none; border: 1px solid #ddd; color: #555;
-    padding: 6px 16px; font-size: 12px; border-radius: 4px;
-    cursor: pointer; transition: 0.3s;
+    display: inline-block; 
+    text-decoration: none; 
+    background: none; 
+    border: 1px solid #ddd; 
+    color: #555;
+    padding: 6px 16px; 
+    font-size: 12px; 
+    border-radius: 4px;
+    cursor: pointer; 
+    transition: 0.3s;
 }
-.btn-more-simple:hover { background: #50422D; color: #fff; border-color: #50422D; }
+.btn-more-simple:hover { 
+    background: #50422D; 
+    color: #fff; 
+    border-color: #50422D; 
+}
 
 /* 區塊五：FAQ */
 .engraving-faq { padding: 60px 0 80px; background: #F9F8F6; }
