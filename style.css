@@ -1680,34 +1680,19 @@ body.no-scroll {
         flex-direction: column;
     }
 
-    .gallery-tabs {
-        order: 1; /* 第一名：ALL 頁籤 */
-    }
-
-    
+    /* 手機版將側邊欄搬到底部或折疊 (這裡採取 JINS 常用的排列方式：先圖片後篩選) */
     .jins-sidebar {
-        order: 2; /* 第二名：排序、分類與標籤 (移到中間) */
-        display: block; /* 確保它是顯示狀態 */
-        margin-bottom: 20px;
-        background: #f9f9f9;
-        padding: 15px;
-        border-radius: 8px;
+        width: 100%;
+        margin-right: 0;
+        margin-top: 40px;
+        order: 2; /* 將篩選器移到圖片下方 */
     }
 
     .content-area {
-        display: flex;
-        flex-direction: column;
+        order: 1;
+        width: 100%;
     }
 
-.gallery-grid {
-        order: 3; /* 第三名：照片牆 */
-    }
-
-.jins-sidebar .filter-group {
-        margin-bottom: 15px;
-    }
-}
-    
     /* 手機版變成雙欄網格 */
     .coord-grid {
         grid-template-columns: repeat(2, 1fr);
