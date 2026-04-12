@@ -1460,41 +1460,6 @@ body.no-scroll {
     letter-spacing: 2px;
 }
 
-/* Pickup! 標籤列 */
-.pickup-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 40px;
-}
-
-.pickup-label {
-    background-color: #000;
-    color: #fff;
-    padding: 3px 8px;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-right: 5px;
-}
-
-.pickup-tag {
-    color: #000;
-    text-decoration: none;
-    font-size: 12px;
-    border: 1px solid #ddd;
-    padding: 4px 14px;
-    border-radius: 20px; /* JINS 特有的藥丸型 Tag */
-    transition: all 0.2s;
-}
-
-.pickup-tag:hover {
-    border-color: #000;
-    background-color: #f9f9f9;
-}
-
 /* 頂部分類頁籤 */
 .top-tabs {
     display: flex;
