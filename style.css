@@ -779,19 +779,22 @@ body.no-scroll {
     }
 }
 
-/* 針對母親節卡片修改文字與按鈕為樂活標準色 */
-.mother-day .item-overlay {
-    color: #50422D; /* 更改整體文字為深褐色 */
+/* 針對母親節與商店街卡片修改文字為樂活標準色 */
+.mother-day .item-overlay,
+.shopping-street-style .item-overlay {
+    color: #50422D; 
 }
 
-/* 將 VIEW MORE 按鈕的邊框與文字也改為深褐色 */
-.mother-day .btn-more {
+/* 將按鈕的邊框與文字也改為深褐色 */
+.mother-day .btn-more,
+.shopping-street-style .btn-more {
     border: 1px solid #50422D;
     color: #50422D;
 }
 
-/* 讓滑鼠移過去 (Hover) 時，按鈕變成深褐底白字，維持整體質感 */
-.mother-day:hover .btn-more {
+/* 滑鼠移過去時，按鈕變成深褐底白字 */
+.mother-day:hover .btn-more,
+.shopping-street-style:hover .btn-more {
     background: #50422D;
     color: #ffffff;
 }
