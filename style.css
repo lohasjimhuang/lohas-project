@@ -1713,3 +1713,286 @@ body.no-scroll {
         gap: 20px 10px;
     }
 }
+
+/* =========================================
+   刻圖市集 (LINE STORE 介面風格) 專屬樣式
+========================================= */
+
+/* 市集背景設定 */
+.market-body {
+    background-color: #FAFAFA; /* 模擬 LINE 乾淨的極淺灰底色 */
+}
+
+.market-main-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+/* 頂部次導覽列 (Sticky) */
+.market-subnav {
+    position: sticky;
+    top: 70px; /* 緊貼在主導覽列下方 */
+    z-index: 90;
+    background-color: #fff;
+    border-bottom: 1px solid #EBEBEB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.market-tabs {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    overflow-x: auto; /* 手機版可橫向滑動 */
+    scrollbar-width: none;
+}
+.market-tabs::-webkit-scrollbar { display: none; }
+
+.market-tabs li a {
+    display: block;
+    padding: 15px 0;
+    color: #888;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s;
+}
+
+/* 使用 LOHAS 品牌褐色作為高光色 */
+.market-tabs li a.active, .market-tabs li a:hover {
+    color: #50422D; 
+    border-bottom-color: #50422D;
+}
+
+.market-search {
+    color: #50422D;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+}
+
+/* 大橫幅區塊 */
+.market-banner-wrapper {
+    margin: 20px 20px 40px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff; /* 避免圖片載入前閃爍 */
+}
+
+.market-hero-banner {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+/* 內容區塊標題 */
+.market-section {
+    padding: 0 20px;
+    margin-bottom: 50px;
+}
+
+.market-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.market-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.market-see-all {
+    font-size: 13px;
+    color: #8C7A6B; /* 次級品牌色 */
+    text-decoration: none;
+}
+.market-see-all:hover { text-decoration: underline; }
+
+/* 網格系統 (LINE STORE 核心佈局) */
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+/* 商品卡片設計 */
+.market-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.market-card:hover {
+    background-color: #F9F8F6;
+    transform: translateY(-2px);
+}
+
+.market-card-img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 強制正方形 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.market-card-img img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain; /* 確保雷刻去背圖不變形 */
+}
+
+/* 微標籤 (Badges) */
+.market-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+    z-index: 2;
+}
+.badge-premium { background-color: #CDBEA2; }
+.badge-new { background-color: #8C7A6B; }
+.badge-hot { background-color: #D98C8C; }
+
+/* 卡片文字 */
+.market-item-title {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.market-item-author {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =========================================
+   彈出預覽視窗 (Modal)
+========================================= */
+.market-modal {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000; /* 高於 header */
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+.market-modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    position: relative;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: marketFadeIn 0.3s ease;
+}
+
+@keyframes marketFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.market-close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 24px; color: #aaa;
+    cursor: pointer;
+}
+.market-close-btn:hover { color: #333; }
+
+.market-modal-body {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.market-modal-image {
+    flex: 1;
+    background-color: #F9F8F6;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.market-modal-image img {
+    width: 100%;
+    max-width: 180px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+
+.market-modal-details { flex: 1.2; }
+.market-modal-details h2 { font-size: 20px; color: #50422D; margin-bottom: 5px; }
+.market-description { font-size: 14px; color: #666; margin: 15px 0 25px; line-height: 1.6; }
+
+.market-modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.market-btn-primary {
+    background-color: #50422D; color: #fff;
+    border: none; padding: 10px 20px; border-radius: 25px;
+    font-size: 14px; cursor: pointer; flex: 1;
+}
+.market-btn-outline {
+    background-color: #fff; color: #50422D;
+    border: 1px solid #50422D; padding: 10px 15px; border-radius: 25px;
+    font-size: 14px; cursor: pointer;
+}
+
+/* --- 手機版 RWD 調整 --- */
+@media (max-width: 768px) {
+    .market-grid {
+        grid-template-columns: repeat(3, 1fr); /* 手機版一行顯示 3 個更像貼圖商城 */
+        gap: 10px;
+    }
+    
+    .market-banner-wrapper { margin: 10px 15px 30px; }
+    .market-section { padding: 0 15px; }
+    
+    .market-item-title { font-size: 12px; }
+    .market-item-author { font-size: 10px; }
+    
+    .market-modal-body {
+        flex-direction: column;
+        text-align: center;
+    }
+    .market-modal-actions {
+        flex-direction: column;
+    }
+}
+@media (max-width: 480px) {
+    .market-grid {
+        grid-template-columns: repeat(2, 1fr); /* 螢幕極小時改為 2 欄 */
+    }
+}
