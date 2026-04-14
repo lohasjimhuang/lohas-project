@@ -1714,247 +1714,138 @@ body.no-scroll {
     }
 }
 
-/* =========================================
-   刻圖市集 (LINE STORE 橫向滑動版)
-========================================= */
+:root {
+    --primary-color: #8C7A6B;    /* 大地色調 */
+    --secondary-color: #A9B89C;  /* 清新綠 */
+    --accent-red: #D98C8C;       /* 柔和紅 */
+    --bg-light: #FAFAFA;         /* 淺灰背景 */
+    --text-main: #333333;
+    --text-muted: #888888;
+    --border-color: #EEEEEE;
+    --card-bg: #FFFFFF;
+}
 
-.line-market-body {
-    background-color: #FFFFFF; /* LINE STORE 非常依賴大面積純白 */
+body {
     font-family: 'Noto Sans TC', sans-serif;
+    background-color: var(--bg-light);
+    margin: 0;
+    color: var(--text-main);
 }
 
-/* 雙層導覽列：吸頂次選單 */
-.line-subnav {
+/* 導覽列 */
+.lohas-navbar {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
-    top: 70px; /* 對齊主導覽列高度 */
-    background: #FFFFFF;
-    border-bottom: 1px solid #EBEBEB;
-    z-index: 99;
+    top: 0;
+    z-index: 100;
 }
 
-.subnav-container {
-    max-width: 1040px; /* LINE STORE 內容區寬度較為集中 */
+.nav-container {
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.subnav-tabs {
+.logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.nav-links {
     display: flex;
     list-style: none;
     gap: 30px;
-    overflow-x: auto;
-    scrollbar-width: none;
 }
-.subnav-tabs::-webkit-scrollbar { display: none; }
 
-.subnav-tabs li a {
-    display: block;
-    padding: 16px 0;
-    font-size: 15px;
-    font-weight: 500;
-    color: #666;
+.nav-links a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
     text-decoration: none;
-    white-space: nowrap;
-    border-bottom: 3px solid transparent; /* 較粗的底線符合 LINE 風格 */
     transition: 0.2s;
 }
 
-/* 高光色改為溫潤的大地色/墨綠色 */
-.subnav-tabs li a.active, 
-.subnav-tabs li a:hover {
-    color: #50422D;
-    border-bottom-color: #50422D;
-    font-weight: 700;
-}
-
-.subnav-search {
-    background: #F5F5F5;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 13px;
-    color: #888;
-    cursor: pointer;
-}
-
-/* 主內容區限制寬度 */
-.line-market-main {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 20px 0 80px;
-}
-
-/* 頂部大橫幅 */
-.line-banner-section {
-    padding: 0 20px;
-    margin-bottom: 40px;
-}
-.line-hero-img {
-    width: 100%;
-    aspect-ratio: 21/9;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-/* --- 核心：橫向滑動區塊 --- */
-.line-row-section {
-    margin-bottom: 50px;
-}
-
-.line-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    margin-bottom: 15px;
-}
-
-.line-section-header h2 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #111;
-}
-
-.line-see-all {
-    font-size: 13px;
-    color: #50422D;
-    text-decoration: none;
-}
-
-/* 橫向捲動容器 (重點技術) */
-.line-horizontal-scroll {
-    display: flex;
-    gap: 15px;
-    padding: 0 20px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox 隱藏捲軸 */
-}
-.line-horizontal-scroll::-webkit-scrollbar {
-    display: none; /* Chrome 隱藏捲軸 */
-}
-
-/* --- 極簡卡片設計 --- */
-.line-card {
-    flex: 0 0 calc(20% - 12px); /* 電腦版顯示 5 個 */
-    min-width: 140px;
-    scroll-snap-align: start;
-    position: relative;
-    cursor: pointer;
-    text-align: left; /* LINE STORE 文字靠左 */
-}
-
-.line-card-img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background-color: #FAFAFA; /* 極淺灰底，讓去背圖更明顯 */
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-    transition: transform 0.2s;
-}
-
-.line-card-img img {
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
-}
-
-.line-card:hover .line-card-img {
-    transform: translateY(-3px);
-    background-color: #F0EBE6; /* 懸浮時透出一點點大地色 */
-}
-
-.line-card-title {
-    font-size: 14px;
-    color: #111;
+.nav-links a.active, .nav-links a:hover {
+    color: var(--primary-color);
     font-weight: 500;
-    margin-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.line-card-author {
-    font-size: 12px;
-    color: #888;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* 按鈕 */
+button {
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    border: none;
+    transition: 0.2s;
 }
 
-/* 小寫的 New 標籤 (仿 LINE 的綠色 N) */
-.badge-new {
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    background-color: #A9B89C; /* 清新綠 */
-    color: #fff;
-    font-size: 10px;
-    font-weight: 900;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
+.btn-primary { background: var(--primary-color); color: white; }
+.btn-outline { background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); }
+
+/* Banner */
+.campaign-banner {
+    max-width: 1100px;
+    margin: 20px auto;
+    background: #EBE6E0;
+    border-radius: 15px;
+    padding: 50px 20px;
+    text-align: center;
 }
 
-/* --- 排行榜網格 (Ranking) --- */
-.ranking-section {
-    background-color: #FAFAFA; /* 排行榜區域給予淺底色區隔 */
-    padding: 30px 0;
-}
-
-.line-ranking-grid {
+/* 網格系統 */
+.store-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.icon-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 排名區以網格呈現 */
-    gap: 20px 15px;
-    padding: 0 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
 }
 
-.ranking-card {
-    flex: auto; /* 解除橫向滑動的寬度限制 */
+/* 卡片 */
+.icon-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
 }
 
-/* 經典排行榜數字 */
-.rank-number {
+.icon-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+.image-wrapper { width: 100%; aspect-ratio: 1/1; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
+.image-wrapper img { width: 80%; object-fit: contain; }
+
+.badge {
     position: absolute;
-    top: 5px;
-    left: 8px;
-    font-size: 24px;
-    font-weight: 900;
-    font-style: italic;
-    color: #CCC;
-    z-index: 2;
-    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff; /* 白邊效果 */
+    top: 10px;
+    left: 10px;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: white;
 }
+.badge.hit { background: var(--accent-red); }
+.badge.new { background: var(--secondary-color); }
 
-/* 前三名給予品牌特調色彩 */
-.rank-1 { color: #D98C8C; font-size: 28px; } /* 柔磚紅 */
-.rank-2 { color: #8C7A6B; } /* 大地褐 */
-.rank-3 { color: #A9B89C; } /* 清新綠 */
+.icon-title { font-size: 14px; margin: 5px 0; }
+.designer-name { font-size: 12px; color: var(--text-muted); }
 
-/* --- 手機版 RWD 適應 --- */
-@media (max-width: 768px) {
-    .subnav-tabs { padding: 0 10px; }
-    .line-section-header h2 { font-size: 16px; }
-    
-    .line-card {
-        flex: 0 0 calc(33.333% - 10px); /* 手機橫向滑動一次顯示約 3.5 個 */
-        min-width: 110px;
-    }
-    
-    .line-ranking-grid {
-        grid-template-columns: repeat(3, 1fr); /* 手機版排行榜變 3 欄 */
-    }
-}
-@media (max-width: 480px) {
-    .line-card { flex: 0 0 calc(40% - 10px); }
-    .line-ranking-grid { grid-template-columns: repeat(2, 1fr); }
+/* Modal */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+.modal-content { background: white; width: 90%; max-width: 550px; margin: 10% auto; padding: 30px; border-radius: 15px; position: relative; }
+.modal-body { display: flex; gap: 25px; }
+.modal-image { flex: 1; background: #f9f9f9; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.modal-image img { width: 100%; }
+.modal-details { flex: 1.2; }
+.close-btn { position: absolute; right: 20px; top: 10px; font-size: 24px; cursor: pointer; }
+
+@media (max-width: 600px) {
+    .modal-body { flex-direction: column; }
+    .nav-links { display: none; }
 }
