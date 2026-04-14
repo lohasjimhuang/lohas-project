@@ -44,117 +44,128 @@
 
 <main class="market-main-content" style="padding-top: 70px;">
     
-    <div class="market-subnav">
-        <ul class="market-tabs">
-            <li><a href="#" class="active">首頁</a></li>
-            <li><a href="#">官方優選</a></li>
-            <li><a href="#">個人原創</a></li>
-            <li><a href="#">文字圖騰</a></li>
-            <li><a href="#">節慶限定</a></li>
-        </ul>
-        <div class="market-search">
-            <i class="fas fa-search"></i>
-        </div>
-    </div>
-
-    <div class="market-banner-wrapper">
-        <img src="images/market-banner.jpg" alt="我的眼鏡我設計" class="market-hero-banner">
-    </div>
-
-    <section class="market-section">
-        <div class="market-section-header">
-            <h2 class="market-section-title">官方優選設計</h2>
-            <a href="#" class="market-see-all">顯示全部 &gt;</a>
-        </div>
+    <div class="market-layout">
         
-        <div class="market-grid">
-            <div class="market-card" onclick="openMarketModal('LOHAS 經典草寫', 'LOHAS 官方團隊', 'images/gallery.jpg', '最百搭的品牌經典草寫，適合各種框型。')">
-                <div class="market-badge badge-premium">Premium</div>
-                <div class="market-card-img">
-                    <img src="images/gallery.jpg" alt="LOHAS 經典草寫">
-                </div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">LOHAS 經典草寫</h3>
-                    <p class="market-item-author">LOHAS 官方團隊</p>
-                </div>
+        <aside class="market-sidebar">
+            <div class="market-search-box">
+                <input type="text" placeholder="搜尋刻圖設計...">
+                <i class="fas fa-search"></i>
             </div>
 
-            <div class="market-card" onclick="openMarketModal('極簡幾何', '設計師 Eric', 'images/hero-banner-engraving-mobile.jpg', '用最簡單的線條，勾勒出極致的個人風格。')">
-                <div class="market-badge badge-new">New</div>
-                <div class="market-card-img">
-                    <img src="images/hero-banner-engraving-mobile.jpg" alt="極簡幾何">
-                </div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">極簡幾何系列</h3>
-                    <p class="market-item-author">設計師 Eric</p>
-                </div>
-            </div>
+            <h3 class="sidebar-title">市集分類</h3>
+            <ul class="market-category-list">
+                <li><a href="#" class="active">首頁</a></li>
+                <li><a href="#">官方優選</a></li>
+                <li><a href="#">個人原創</a></li>
+                <li><a href="#">文字圖騰</a></li>
+                <li><a href="#">節慶限定</a></li>
+                <li><a href="#">情侶對鏡</a></li>
+                <li><a href="#">毛孩專區</a></li>
+            </ul>
+        </aside>
+
+        <div class="market-content-area">
             
-            <div class="market-card">
-                <div class="market-card-img">
-                    <img src="images/gallery.jpg" alt="動物森友會">
-                </div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">可愛動物森友會</h3>
-                    <p class="market-item-author">插畫家 兔兔</p>
-                </div>
+            <div class="market-banner-wrapper">
+                <img src="images/market-banner.jpg" alt="我的眼鏡我設計" class="market-hero-banner">
             </div>
 
-            <div class="market-card">
-                <div class="market-card-img">
-                    <img src="images/hero-banner-engraving-mobile.jpg" alt="情侶紀念日">
+            <section class="market-section">
+                <div class="market-section-header">
+                    <h2 class="market-section-title">官方優選設計</h2>
+                    <a href="#" class="market-see-all">顯示全部 &gt;</a>
                 </div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">情侶紀念日專屬</h3>
-                    <p class="market-item-author">LOHAS 官方團隊</p>
+                
+                <div class="market-grid">
+                    <div class="market-card" onclick="openMarketModal('LOHAS 經典草寫', 'LOHAS 官方團隊', 'images/gallery.jpg', '最百搭的品牌經典草寫，適合各種框型。')">
+                        <div class="market-badge badge-premium">Premium</div>
+                        <div class="market-card-img">
+                            <img src="images/gallery.jpg" alt="LOHAS 經典草寫">
+                        </div>
+                        <div class="market-card-info">
+                            <h3 class="market-item-title">LOHAS 經典草寫</h3>
+                            <p class="market-item-author">LOHAS 官方團隊</p>
+                        </div>
+                    </div>
+
+                    <div class="market-card" onclick="openMarketModal('極簡幾何', '設計師 Eric', 'images/hero-banner-engraving-mobile.jpg', '用最簡單的線條，勾勒出極致的個人風格。')">
+                        <div class="market-badge badge-new">New</div>
+                        <div class="market-card-img">
+                            <img src="images/hero-banner-engraving-mobile.jpg" alt="極簡幾何">
+                        </div>
+                        <div class="market-card-info">
+                            <h3 class="market-item-title">極簡幾何系列</h3>
+                            <p class="market-item-author">設計師 Eric</p>
+                        </div>
+                    </div>
+                    
+                    <div class="market-card">
+                        <div class="market-card-img">
+                            <img src="images/gallery.jpg" alt="動物森友會">
+                        </div>
+                        <div class="market-card-info">
+                            <h3 class="market-item-title">可愛動物森友會</h3>
+                            <p class="market-item-author">插畫家 兔兔</p>
+                        </div>
+                    </div>
+
+                    <div class="market-card">
+                        <div class="market-card-img">
+                            <img src="images/hero-banner-engraving-mobile.jpg" alt="情侶紀念日">
+                        </div>
+                        <div class="market-card-info">
+                            <h3 class="market-item-title">情侶紀念日專屬</h3>
+                            <p class="market-item-author">LOHAS 官方團隊</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            <section class="market-section">
+                <div class="market-section-header">
+                    <h2 class="market-section-title">個人原創市集</h2>
+                    <a href="#" class="market-see-all">顯示全部 &gt;</a>
+                </div>
+                
+                <div class="market-grid">
+                    <div class="market-card">
+                        <div class="market-badge badge-hot">熱門排行 1</div>
+                        <div class="market-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
+                        <div class="market-card-info">
+                            <h3 class="market-item-title">月契之紋</h3>
+                            <p class="market-item-author">黃邦哲</p>
+                        </div>
+                    </div>
+
+                    <div class="market-card">
+                        <div class="market-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
+                        <div class="market-card-info">
+                            <h3 class="market-item-title">哭哭貓咪</h3>
+                            <p class="market-item-author">孫以丞</p>
+                        </div>
+                    </div>
+
+                    <div class="market-card">
+                        <div class="market-badge badge-new">New</div>
+                        <div class="market-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
+                        <div class="market-card-info">
+                            <h3 class="market-item-title">迷路 (聖誕款)</h3>
+                            <p class="market-item-author">詹証閔</p>
+                        </div>
+                    </div>
+
+                    <div class="market-card">
+                        <div class="market-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
+                        <div class="market-card-info">
+                            <h3 class="market-item-title">吉財娃娃</h3>
+                            <p class="market-item-author">熊品琇</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
-    </section>
-
-    <section class="market-section">
-        <div class="market-section-header">
-            <h2 class="market-section-title">個人原創市集</h2>
-            <a href="#" class="market-see-all">顯示全部 &gt;</a>
-        </div>
-        
-        <div class="market-grid">
-            <div class="market-card">
-                <div class="market-badge badge-hot">熱門排行 1</div>
-                <div class="market-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">月契之紋</h3>
-                    <p class="market-item-author">黃邦哲</p>
-                </div>
-            </div>
-
-            <div class="market-card">
-                <div class="market-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">哭哭貓咪</h3>
-                    <p class="market-item-author">孫以丞</p>
-                </div>
-            </div>
-
-            <div class="market-card">
-                <div class="market-badge badge-new">New</div>
-                <div class="market-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">迷路 (聖誕款)</h3>
-                    <p class="market-item-author">詹証閔</p>
-                </div>
-            </div>
-
-            <div class="market-card">
-                <div class="market-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">吉財娃娃</h3>
-                    <p class="market-item-author">熊品琇</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    </div>
 </main>
 
 <div id="marketModal" class="market-modal">
