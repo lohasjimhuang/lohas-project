@@ -1714,56 +1714,247 @@ body.no-scroll {
     }
 }
 
-/* --- LINE STORE 風格市集專屬 --- */
-.line-market-body { background-color: #fff; }
+/* =========================================
+   刻圖市集 (LINE STORE 橫向滑動版)
+========================================= */
 
+.line-market-body {
+    background-color: #FFFFFF; /* LINE STORE 非常依賴大面積純白 */
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* 雙層導覽列：吸頂次選單 */
 .line-subnav {
-    position: sticky; top: 70px; background: #fff;
-    border-bottom: 1px solid #ebebeb; z-index: 90;
+    position: sticky;
+    top: 70px; /* 對齊主導覽列高度 */
+    background: #FFFFFF;
+    border-bottom: 1px solid #EBEBEB;
+    z-index: 99;
 }
+
 .subnav-container {
-    max-width: 1040px; margin: 0 auto; padding: 0 20px;
-    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1040px; /* LINE STORE 內容區寬度較為集中 */
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.subnav-tabs { display: flex; list-style: none; gap: 25px; overflow-x: auto; scrollbar-width: none; }
+
+.subnav-tabs {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
 .subnav-tabs::-webkit-scrollbar { display: none; }
-.subnav-tabs a {
-    display: block; padding: 15px 0; color: #888; font-size: 14px;
-    text-decoration: none; border-bottom: 3px solid transparent;
+
+.subnav-tabs li a {
+    display: block;
+    padding: 16px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent; /* 較粗的底線符合 LINE 風格 */
+    transition: 0.2s;
 }
-.subnav-tabs a.active { color: #50422D; border-bottom-color: #50422D; font-weight: 700; }
 
-.line-banner-section { padding: 20px; max-width: 1040px; margin: 0 auto; }
-.line-hero-img { width: 100%; border-radius: 12px; aspect-ratio: 21/9; object-fit: cover; }
+/* 高光色改為溫潤的大地色/墨綠色 */
+.subnav-tabs li a.active, 
+.subnav-tabs li a:hover {
+    color: #50422D;
+    border-bottom-color: #50422D;
+    font-weight: 700;
+}
 
+.subnav-search {
+    background: #F5F5F5;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #888;
+    cursor: pointer;
+}
+
+/* 主內容區限制寬度 */
+.line-market-main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 20px 0 80px;
+}
+
+/* 頂部大橫幅 */
+.line-banner-section {
+    padding: 0 20px;
+    margin-bottom: 40px;
+}
+.line-hero-img {
+    width: 100%;
+    aspect-ratio: 21/9;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* --- 核心：橫向滑動區塊 --- */
+.line-row-section {
+    margin-bottom: 50px;
+}
+
+.line-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 15px;
+}
+
+.line-section-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+}
+
+.line-see-all {
+    font-size: 13px;
+    color: #50422D;
+    text-decoration: none;
+}
+
+/* 橫向捲動容器 (重點技術) */
 .line-horizontal-scroll {
-    display: flex; gap: 15px; padding: 0 20px;
-    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    display: flex;
+    gap: 15px;
+    padding: 0 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox 隱藏捲軸 */
 }
-.line-horizontal-scroll::-webkit-scrollbar { display: none; }
+.line-horizontal-scroll::-webkit-scrollbar {
+    display: none; /* Chrome 隱藏捲軸 */
+}
 
-.line-card { flex: 0 0 160px; scroll-snap-align: start; position: relative; }
+/* --- 極簡卡片設計 --- */
+.line-card {
+    flex: 0 0 calc(20% - 12px); /* 電腦版顯示 5 個 */
+    min-width: 140px;
+    scroll-snap-align: start;
+    position: relative;
+    cursor: pointer;
+    text-align: left; /* LINE STORE 文字靠左 */
+}
+
 .line-card-img {
-    width: 100%; aspect-ratio: 1/1; background: #fafafa;
-    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #FAFAFA; /* 極淺灰底，讓去背圖更明顯 */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    transition: transform 0.2s;
 }
-.line-card-img img { width: 80%; object-fit: contain; }
-.line-card-title { font-size: 14px; margin: 8px 0 2px; font-weight: 500; }
-.line-card-author { font-size: 12px; color: #888; }
 
-.ranking-section { background: #fafafa; padding: 40px 0; margin-top: 40px; }
+.line-card-img img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.line-card:hover .line-card-img {
+    transform: translateY(-3px);
+    background-color: #F0EBE6; /* 懸浮時透出一點點大地色 */
+}
+
+.line-card-title {
+    font-size: 14px;
+    color: #111;
+    font-weight: 500;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.line-card-author {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 小寫的 New 標籤 (仿 LINE 的綠色 N) */
+.badge-new {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    background-color: #A9B89C; /* 清新綠 */
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+/* --- 排行榜網格 (Ranking) --- */
+.ranking-section {
+    background-color: #FAFAFA; /* 排行榜區域給予淺底色區隔 */
+    padding: 30px 0;
+}
+
 .line-ranking-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 20px; max-width: 1040px; margin: 0 auto; padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 排名區以網格呈現 */
+    gap: 20px 15px;
+    padding: 0 20px;
 }
-.rank-number {
-    position: absolute; top: 5px; left: 10px; font-size: 24px;
-    font-weight: 900; font-style: italic; color: #ccc; z-index: 2;
-}
-.rank-1 { color: #D98C8C; font-size: 30px; }
 
-/* 行動版 RWD 適配 */
+.ranking-card {
+    flex: auto; /* 解除橫向滑動的寬度限制 */
+}
+
+/* 經典排行榜數字 */
+.rank-number {
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    font-size: 24px;
+    font-weight: 900;
+    font-style: italic;
+    color: #CCC;
+    z-index: 2;
+    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff; /* 白邊效果 */
+}
+
+/* 前三名給予品牌特調色彩 */
+.rank-1 { color: #D98C8C; font-size: 28px; } /* 柔磚紅 */
+.rank-2 { color: #8C7A6B; } /* 大地褐 */
+.rank-3 { color: #A9B89C; } /* 清新綠 */
+
+/* --- 手機版 RWD 適應 --- */
 @media (max-width: 768px) {
-    .line-card { flex: 0 0 130px; }
+    .subnav-tabs { padding: 0 10px; }
+    .line-section-header h2 { font-size: 16px; }
+    
+    .line-card {
+        flex: 0 0 calc(33.333% - 10px); /* 手機橫向滑動一次顯示約 3.5 個 */
+        min-width: 110px;
+    }
+    
+    .line-ranking-grid {
+        grid-template-columns: repeat(3, 1fr); /* 手機版排行榜變 3 欄 */
+    }
+}
+@media (max-width: 480px) {
+    .line-card { flex: 0 0 calc(40% - 10px); }
     .line-ranking-grid { grid-template-columns: repeat(2, 1fr); }
 }
