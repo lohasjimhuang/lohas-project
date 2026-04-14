@@ -1996,3 +1996,93 @@ body.no-scroll {
         grid-template-columns: repeat(2, 1fr); /* 螢幕極小時改為 2 欄 */
     }
 }
+
+/* 輪播 Banner 樣式 */
+.market-hero-carousel {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    background: #fff;
+}
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 21 / 7; /* 調整為較扁長的比例 */
+}
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 左右佈局容器 */
+.market-layout-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+/* 左側分類選單 */
+.market-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 90px; /* 避開主導覽列 */
+}
+
+.sidebar-group h3 {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    color: #50422D;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.sidebar-menu li a.active, .sidebar-menu li a:hover {
+    color: #CDBEA2;
+    font-weight: bold;
+}
+
+/* 右側內容區 */
+.market-content-area {
+    flex: 1;
+}
+
+/* 手機版 RWD 調整 */
+@media (max-width: 768px) {
+    .market-layout-container {
+        flex-direction: column;
+    }
+    .market-sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+        overflow-x: auto;
+    }
+    .sidebar-menu {
+        display: flex;
+        gap: 20px;
+        border-bottom: 1px solid #eee;
+    }
+    .sidebar-menu li a {
+        white-space: nowrap;
+    }
+}
