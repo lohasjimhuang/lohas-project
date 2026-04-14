@@ -1824,6 +1824,7 @@ body.no-scroll {
 
 /* 大橫幅區塊 */
 .market-banner-wrapper {
+    position: relative;
     margin: 20px 20px 40px;
     border-radius: 12px;
     overflow: hidden;
@@ -1836,6 +1837,45 @@ body.no-scroll {
     object-fit: cover;
     display: block;
 }
+
+/* 文字內容區塊：定位在左下角 */
+.market-banner-content {
+    position: absolute;
+    bottom: 30px;    /* 距離底部距離 */
+    left: 30px;      /* 距離左側距離 */
+    color: #ffffff;  /* 文字設為白色 */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* 增加陰影確保在淺色背景也清晰 */
+    z-index: 2;
+}
+
+/* 大標題樣式 */
+.market-banner-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+/* 小標題樣式 */
+.market-banner-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+/* 手機版適應 (RWD) */
+@media (max-width: 768px) {
+    .market-banner-content {
+        bottom: 15px;
+        left: 15px;
+    }
+    .market-banner-title {
+        font-size: 1.5rem;
+    }
+    .market-banner-subtitle {
+        font-size: 0.9rem;
+    }
 
 /* 內容區塊標題 */
 .market-section {
