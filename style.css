@@ -2112,6 +2112,24 @@ body.no-scroll {
         color: #fff;
         border-color: #50422D;
     }
+
+    .market-banner-wrapper { 
+        margin: 10px calc(50% - 50vw) 30px; 
+        border-radius: 0;
+    }
+    
+    /* 縮小並調整文字位置 */
+    .market-banner-text {
+        bottom: 20px;
+        left: 20px;
+    }
+    .market-banner-text h2 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    .market-banner-text p {
+        font-size: 14px;
+    }
 }
 @media (max-width: 480px) {
     .market-grid {
