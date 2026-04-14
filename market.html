@@ -43,28 +43,48 @@
 
 <main class="market-main-content" style="padding-top: 70px;">
     
-    <div class="market-subnav">
-        <ul class="market-tabs">
-            <li><a href="#" class="active">首頁</a></li>
-            <li><a href="#">官方優選</a></li>
-            <li><a href="#">個人原創</a></li>
-            <li><a href="#">文字圖騰</a></li>
-            <li><a href="#">節慶限定</a></li>
-        </ul>
-        <div class="market-search">
-            <i class="fas fa-search"></i>
+    <section class="market-hero-carousel">
+        <div class="carousel-container" id="market-carousel">
+            <div class="carousel-track">
+                <div class="carousel-item"><img src="images/market-banner.jpg" alt="Banner 1"></div>
+                </div>
+            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <div class="market-layout-container">
+        
+        <aside class="market-sidebar">
+            <div class="sidebar-group">
+                <h3>主題分類</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> 市集首頁</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> 官方優選</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> 個人原創</a></li>
+                    <li><a href="#"><i class="fas fa-font"></i> 文字圖騰</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> 節慶限定</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-group">
+                <h3>熱門標籤</h3>
+                <div class="hashtag-cloud">
+                    <a href="#">#極簡</a><a href="#">#貓咪</a><a href="#">#紀念日</a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="market-content-area">
+            <section class="market-section">
+                <div class="market-section-header">
+                    <h2 class="market-section-title">官方優選設計</h2>
+                </div>
+                <div class="market-grid">
+                    </div>
+            </section>
         </div>
     </div>
-
-    <div class="market-banner-wrapper">
-        <img src="images/market-banner.jpg" alt="我的眼鏡我設計" class="market-hero-banner">
-    </div>
-
-    <section class="market-section">
-        <div class="market-section-header">
-            <h2 class="market-section-title">官方優選設計</h2>
-            <a href="#" class="market-see-all">顯示全部 &gt;</a>
-        </div>
+</main>
         
         <div class="market-grid">
             <div class="market-card" onclick="openMarketModal('LOHAS 經典草寫', 'LOHAS 官方團隊', 'images/gallery.jpg', '最百搭的品牌經典草寫，適合各種框型。')">
