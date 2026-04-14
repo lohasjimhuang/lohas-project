@@ -1824,8 +1824,10 @@ body.no-scroll {
 
 /* 大橫幅區塊 */
 .market-banner-wrapper {
-    margin: 20px 20px 40px;
-    border-radius: 12px;
+    position: relative; /* 讓內部的文字可以絕對定位 */
+    margin: 20px calc(50% - 50vw) 40px; 
+    width: 100vw;
+    border-radius: 0;
     overflow: hidden;
     background-color: #fff; /* 避免圖片載入前閃爍 */
 }
@@ -1835,6 +1837,30 @@ body.no-scroll {
     aspect-ratio: 21 / 9;
     object-fit: cover;
     display: block;
+}
+
+.market-banner-text {
+    position: absolute;
+    bottom: 10%; /* 距離底部 10% */
+    left: 10%;   /* 距離左邊 10%（可依視覺喜好調整對齊點） */
+    color: #ffffff; /* 白色文字 */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* 加入文字陰影避免背景太亮導致看不清 */
+    z-index: 2;
+}
+
+/* 大標題 */
+.market-banner-text h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+/* 小標題 */
+.market-banner-text p {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 
 /* 內容區塊標題 */
