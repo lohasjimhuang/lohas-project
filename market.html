@@ -95,6 +95,28 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const modal = document.getElementById("iconModal");
+
+function openModal(title, author, imgSrc, description) {
+    document.getElementById("modalTitle").innerText = title;
+    document.getElementById("modalAuthor").innerText = "設計師: " + author;
+    document.getElementById("modalImg").src = imgSrc;
+    document.getElementById("modalDesc").innerText = description;
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden"; // 鎖定滾動
+}
+
+function closeModal() {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+    </script>
 </body>
 </html>
