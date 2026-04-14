@@ -1,118 +1,100 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鏡片刻圖市集 | Lohas 樂活眼鏡</title>
+    <title>LOHAS 刻圖市集 | 樂活眼鏡客製化服務</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="line-market-body">
+<body>
 
-<header class="main-header">
-    <nav class="nav-container">
-        <div class="logo"><a href="index.html"><img src="images/lohas-logo.svg" alt="Lohas樂活眼鏡"></a></div>
-        <ul class="nav-links" id="nav-list">
-            <li><a href="#">最新消息</a></li>
-            <li><a href="engraving.html">獨家雷刻服務</a></li>
-            <li><a href="#">門市據點</a></li>
-        </ul>
+    <nav class="lohas-navbar">
+        <div class="nav-container">
+            <div class="logo">LOHAS 刻圖市集</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">全部</a></li>
+                <li><a href="#">最新上架</a></li>
+                <li><a href="#">熱門動物</a></li>
+                <li><a href="#">質感文字</a></li>
+            </ul>
+            <div class="user-actions">
+                <button class="btn-outline">我的收藏</button>
+                <button class="btn-primary">登入</button>
+            </div>
+        </div>
     </nav>
-</header>
 
-<nav class="line-subnav">
-    <div class="subnav-container">
-        <ul class="subnav-tabs">
-            <li><a href="#" class="active">首頁</a></li>
-            <li><a href="#">官方刻圖</a></li>
-            <li><a href="#">個人原創</a></li>
-            <li><a href="#">質感文字</a></li>
-            <li><a href="#">節慶限定</a></li>
-        </ul>
-        <div class="subnav-search">
-            <i class="fas fa-search"></i> 搜尋
+    <header class="campaign-banner">
+        <div class="banner-content">
+            <h1>我的眼鏡我設計</h1>
+            <p>立即挑選喜愛的刻圖，打造獨一無二的雷射雕刻眼鏡</p>
+            <button class="btn-primary">開始創作</button>
+        </div>
+    </header>
+
+    <main class="store-container">
+        <div class="section-header">
+            <h2>熱門社群原創刻圖</h2>
+            <a href="#" class="see-all">顯示全部 ></a>
+        </div>
+
+        <div class="icon-grid">
+            <div class="icon-card" onclick="openModal('月契之紋', '黃邦哲', 'https://via.placeholder.com/200/FAFAFA/8C7A6B?text=月', '那道紋印如月光沈落在肌膚上，宛若某種被遺忘的古老契約。')">
+                <div class="badge hit">熱門 ❤️ 37</div>
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/200/FAFAFA/8C7A6B?text=月" alt="月契之紋">
+                </div>
+                <div class="card-info">
+                    <h3 class="icon-title">月契之紋</h3>
+                    <p class="designer-name">設計: 黃邦哲</p>
+                </div>
+            </div>
+
+            <div class="icon-card" onclick="openModal('哭哭貓咪', '孫以丞', 'https://via.placeholder.com/200/FAFAFA/A9B89C?text=貓', '不哭不哭，眼淚是珍珠。')">
+                <div class="badge new">New ✨</div>
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/200/FAFAFA/A9B89C?text=貓" alt="哭哭貓咪">
+                </div>
+                <div class="card-info">
+                    <h3 class="icon-title">哭哭貓咪</h3>
+                    <p class="designer-name">設計: 孫以丞</p>
+                </div>
+            </div>
+
+            <div class="icon-card" onclick="openModal('迷路', '詹証閔', 'https://via.placeholder.com/200/FAFAFA/D98C8C?text=鹿', '聖誕節應景款，讓麋鹿陪伴你的視界。')">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/200/FAFAFA/D98C8C?text=鹿" alt="迷路">
+                </div>
+                <div class="card-info">
+                    <h3 class="icon-title">迷路 (聖誕款)</h3>
+                    <p class="designer-name">設計: 詹証閔</p>
+                </div>
+            </div>
+
+            </div>
+    </main>
+
+    <div id="iconModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImg" src="" alt="預覽圖">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle">標題</h2>
+                    <p id="modalAuthor" class="designer-name">設計師</p>
+                    <p id="modalDesc" class="description">描述文字...</p>
+                    <div class="modal-actions">
+                        <button class="btn-outline">加入收藏</button>
+                        <button class="btn-primary">使用此圖</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
 
-<main class="line-market-main">
-    
-    <div class="line-banner-section">
-        <img src="images/market-banner.jpg" alt="我的眼鏡我設計" class="line-hero-img">
-    </div>
-
-    <section class="line-row-section">
-        <div class="line-section-header">
-            <h2>NEW 最新上架，為視界注入新意☁️</h2>
-            <a href="#" class="line-see-all">顯示全部</a>
-        </div>
-        
-        <div class="line-horizontal-scroll">
-            <div class="line-card" onclick="openModal('極簡幾何', 'Eric', 'images/hero-banner-engraving-mobile.jpg')">
-                <div class="line-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="極簡幾何"></div>
-                <h3 class="line-card-title">極簡幾何系列</h3>
-                <p class="line-card-author">Eric</p>
-            </div>
-            <div class="line-card" onclick="openModal('動物森友會', '兔兔', 'images/gallery.jpg')">
-                <div class="badge-new">N</div>
-                <div class="line-card-img"><img src="images/gallery.jpg" alt="動物森友會"></div>
-                <h3 class="line-card-title">可愛動物森友會</h3>
-                <p class="line-card-author">兔兔</p>
-            </div>
-            <div class="line-card">
-                <div class="line-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="情侶紀念日"></div>
-                <h3 class="line-card-title">情侶紀念日</h3>
-                <p class="line-card-author">LOHAS 官方</p>
-            </div>
-            <div class="line-card">
-                <div class="line-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
-                <h3 class="line-card-title">質感草寫字體</h3>
-                <p class="line-card-author">LOHAS 官方</p>
-            </div>
-            <div class="line-card">
-                <div class="line-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
-                <h3 class="line-card-title">日系小清新</h3>
-                <p class="line-card-author">Afen</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="line-row-section ranking-section">
-        <div class="line-section-header">
-            <h2>市集熱門話題排行榜</h2>
-            <a href="#" class="line-see-all">查看完整排行</a>
-        </div>
-
-        <div class="line-ranking-grid">
-            <div class="line-card ranking-card">
-                <div class="rank-number rank-1">1</div>
-                <div class="line-card-img"><img src="images/gallery.jpg" alt="月契之紋"></div>
-                <h3 class="line-card-title">月契之紋</h3>
-                <p class="line-card-author">黃邦哲</p>
-            </div>
-            <div class="line-card ranking-card">
-                <div class="rank-number rank-2">2</div>
-                <div class="line-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="迷路"></div>
-                <h3 class="line-card-title">迷路 (聖誕款)</h3>
-                <p class="line-card-author">詹証閔</p>
-            </div>
-            <div class="line-card ranking-card">
-                <div class="rank-number rank-3">3</div>
-                <div class="line-card-img"><img src="images/gallery.jpg" alt="哭哭貓咪"></div>
-                <h3 class="line-card-title">哭哭貓咪</h3>
-                <p class="line-card-author">孫以丞</p>
-            </div>
-            <div class="line-card ranking-card">
-                <div class="rank-number">4</div>
-                <div class="line-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="吉財娃娃"></div>
-                <h3 class="line-card-title">吉財娃娃</h3>
-                <p class="line-card-author">熊品琇</p>
-            </div>
-        </div>
-    </section>
-
-</main>
-
+    <script src="script.js"></script>
 </body>
 </html>
