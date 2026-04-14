@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鏡片刻圖市集 - Lohas 樂活眼鏡</title>
+    <title>刻圖市集 | Lohas 樂活眼鏡</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
-<body class="market-body">
+<body class="line-market-body">
 
 <header class="main-header">
     <nav class="nav-container">
@@ -17,13 +17,11 @@
                 <img src="images/lohas-logo.svg" alt="Lohas樂活眼鏡">
             </a>
         </div>
-
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
-
         <ul class="nav-links" id="nav-list">
             <li><a href="/news/1-最新消息">最新消息</a></li>
             <li><a href="engraving.html">獨家雷刻服務</a></li>
@@ -34,154 +32,108 @@
             <li><a href="/vipstore">樂活商店街</a></li>
             <li class="mobile-cta"><a href="/loginM.html" class="btn-primary">會員專區</a></li>
         </ul>
-
         <div class="nav-cta">
             <a href="#" class="btn-primary">會員專區</a>
         </div>
     </nav>
 </header>
 
-<main class="market-main-content" style="padding-top: 70px;">
-    
-    <div class="market-subnav">
-        <ul class="market-tabs">
-            <li><a href="#" class="active">首頁</a></li>
-            <li><a href="#">官方優選</a></li>
-            <li><a href="#">個人原創</a></li>
-            <li><a href="#">文字圖騰</a></li>
-            <li><a href="#">節慶限定</a></li>
-        </ul>
-        <div class="market-search">
-            <i class="fas fa-search"></i>
+<main class="line-market-main" style="margin-top: 70px;">
+    <nav class="line-subnav">
+        <div class="subnav-container">
+            <ul class="subnav-tabs">
+                <li><a href="#" class="active">首頁</a></li>
+                <li><a href="#">官方推薦</a></li>
+                <li><a href="#">個人原創</a></li>
+                <li><a href="#">手寫字體</a></li>
+                <li><a href="#">節慶限定</a></li>
+            </ul>
+            <div class="subnav-search"><i class="fas fa-search"></i></div>
         </div>
+    </nav>
+
+    <div class="line-banner-section">
+        <img src="images/market-banner.jpg" alt="我的眼鏡我設計" class="line-hero-img">
     </div>
 
-    <div class="market-banner-wrapper">
-        <img src="images/market-banner.jpg" alt="我的眼鏡我設計" class="market-hero-banner">
-    </div>
-
-    <section class="market-section">
-        <div class="market-section-header">
-            <h2 class="market-section-title">官方優選設計</h2>
-            <a href="#" class="market-see-all">顯示全部 &gt;</a>
+    <section class="line-row-section">
+        <div class="line-section-header">
+            <h2>NEW 最新上架，為視界注入新意☁️</h2>
+            <a href="#" class="line-see-all">顯示全部</a>
         </div>
-        
-        <div class="market-grid">
-            <div class="market-card" onclick="openMarketModal('LOHAS 經典草寫', 'LOHAS 官方團隊', 'images/gallery.jpg', '最百搭的品牌經典草寫，適合各種框型。')">
-                <div class="market-badge badge-premium">Premium</div>
-                <div class="market-card-img">
-                    <img src="images/gallery.jpg" alt="LOHAS 經典草寫">
-                </div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">LOHAS 經典草寫</h3>
-                    <p class="market-item-author">LOHAS 官方團隊</p>
-                </div>
+        <div class="line-horizontal-scroll">
+            <div class="line-card" onclick="openModal('極簡幾何', 'Eric', 'images/hero-banner-engraving-mobile.jpg')">
+                <div class="line-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
+                <h3 class="line-card-title">極簡幾何系列</h3>
+                <p class="line-card-author">Eric</p>
             </div>
-
-            <div class="market-card" onclick="openMarketModal('極簡幾何', '設計師 Eric', 'images/hero-banner-engraving-mobile.jpg', '用最簡單的線條，勾勒出極致的個人風格。')">
-                <div class="market-badge badge-new">New</div>
-                <div class="market-card-img">
-                    <img src="images/hero-banner-engraving-mobile.jpg" alt="極簡幾何">
-                </div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">極簡幾何系列</h3>
-                    <p class="market-item-author">設計師 Eric</p>
-                </div>
+            <div class="line-card" onclick="openModal('LOHAS 經典', '官方團隊', 'images/gallery.jpg')">
+                <div class="badge-new">N</div>
+                <div class="line-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
+                <h3 class="line-card-title">LOHAS 經典草寫</h3>
+                <p class="line-card-author">官方團隊</p>
             </div>
-            
-            <div class="market-card">
-                <div class="market-card-img">
-                    <img src="images/gallery.jpg" alt="動物森友會">
-                </div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">可愛動物森友會</h3>
-                    <p class="market-item-author">插畫家 兔兔</p>
-                </div>
+            <div class="line-card">
+                <div class="line-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
+                <h3 class="line-card-title">情侶紀念日</h3>
+                <p class="line-card-author">官方團隊</p>
             </div>
-
-            <div class="market-card">
-                <div class="market-card-img">
-                    <img src="images/hero-banner-engraving-mobile.jpg" alt="情侶紀念日">
-                </div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">情侶紀念日專屬</h3>
-                    <p class="market-item-author">LOHAS 官方團隊</p>
-                </div>
+            <div class="line-card">
+                <div class="line-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
+                <h3 class="line-card-title">質感設計款</h3>
+                <p class="line-card-author">Afen</p>
             </div>
         </div>
     </section>
 
-    <section class="market-section">
-        <div class="market-section-header">
-            <h2 class="market-section-title">個人原創市集</h2>
-            <a href="#" class="market-see-all">顯示全部 &gt;</a>
+    <section class="line-row-section ranking-section">
+        <div class="line-section-header">
+            <h2>市集熱門話題排行榜</h2>
+            <a href="#" class="line-see-all">完整排行</a>
         </div>
-        
-        <div class="market-grid">
-            <div class="market-card">
-                <div class="market-badge badge-hot">熱門排行 1</div>
-                <div class="market-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">月契之紋</h3>
-                    <p class="market-item-author">黃邦哲</p>
-                </div>
+        <div class="line-ranking-grid">
+            <div class="line-card ranking-card">
+                <div class="rank-number rank-1">1</div>
+                <div class="line-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
+                <h3 class="line-card-title">月契之紋</h3>
+                <p class="line-card-author">黃邦哲</p>
             </div>
-
-            <div class="market-card">
-                <div class="market-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">哭哭貓咪</h3>
-                    <p class="market-item-author">孫以丞</p>
-                </div>
+            <div class="line-card ranking-card">
+                <div class="rank-number rank-2">2</div>
+                <div class="line-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
+                <h3 class="line-card-title">迷路系列</h3>
+                <p class="line-card-author">詹証閔</p>
             </div>
-
-            <div class="market-card">
-                <div class="market-badge badge-new">New</div>
-                <div class="market-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">迷路 (聖誕款)</h3>
-                    <p class="market-item-author">詹証閔</p>
-                </div>
-            </div>
-
-            <div class="market-card">
-                <div class="market-card-img"><img src="images/hero-banner-engraving-mobile.jpg" alt="圖案"></div>
-                <div class="market-card-info">
-                    <h3 class="market-item-title">吉財娃娃</h3>
-                    <p class="market-item-author">熊品琇</p>
-                </div>
+            <div class="line-card ranking-card">
+                <div class="rank-number rank-3">3</div>
+                <div class="line-card-img"><img src="images/gallery.jpg" alt="圖案"></div>
+                <h3 class="line-card-title">哭哭貓咪</h3>
+                <p class="line-card-author">孫以丞</p>
             </div>
         </div>
     </section>
-
 </main>
 
-<div id="marketModal" class="market-modal">
-    <div class="market-modal-content">
-        <span class="market-close-btn" onclick="closeMarketModal()">&times;</span>
-        <div class="market-modal-body">
-            <div class="market-modal-image">
-                <img id="modalImg" src="" alt="預覽圖">
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-links">
+            <div class="footer-social-wrap">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#" class="social-link"><i class="fa-brands fa-threads"></i> Threads</a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="#" class="social-link"><i class="fab fa-line"></i> LINE</a>
             </div>
-            <div class="market-modal-details">
-                <h2 id="modalTitle">標題</h2>
-                <p id="modalAuthor" class="market-item-author">設計師</p>
-                <p id="modalDesc" class="market-description">描述文字...</p>
-                <div class="market-modal-actions">
-                    <button class="market-btn-outline"><i class="far fa-heart"></i> 加入願望清單</button>
-                    <button class="market-btn-primary">立即使用設計</button>
-                </div>
             </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Lohas 樂活眼鏡 All Rights Reserved.</p>
         </div>
     </div>
-</div>
-
-<footer class="main-footer">
-    </footer>
+</footer>
 
 <script>
-    // 保留你原有的選單控制腳本
     document.addEventListener('DOMContentLoaded', () => {
+        // 延用 index.html 的選單控制邏輯
         const menu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         if (menu && navList) {
@@ -191,32 +143,16 @@
                 document.body.style.overflow = navList.classList.contains('active') ? 'hidden' : 'auto';
             });
         }
+        // 頁尾摺疊邏輯
+        const footerHeaders = document.querySelectorAll('.footer-column h3');
+        footerHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    this.parentElement.classList.toggle('active');
+                }
+            });
+        });
     });
-
-    // 市集專用 Modal 控制腳本
-    const modal = document.getElementById("marketModal");
-
-    function openMarketModal(title, author, imgSrc, description) {
-        document.getElementById("modalTitle").innerText = title;
-        document.getElementById("modalAuthor").innerText = author;
-        document.getElementById("modalImg").src = imgSrc;
-        document.getElementById("modalDesc").innerText = description;
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden"; 
-    }
-
-    function closeMarketModal() {
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-    }
-
-    // 點擊背景關閉
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeMarketModal();
-        }
-    }
 </script>
-
 </body>
 </html>
