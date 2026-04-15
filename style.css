@@ -2100,7 +2100,7 @@ body.no-scroll {
 
 .split-item {
     display: flex;
-    min-height: 450px;
+    min-height: 300px;
     align-items: stretch;
 }
 
@@ -2109,7 +2109,7 @@ body.no-scroll {
 }
 
 .split-img {
-    flex: 1;
+    flex: 0 0 35%;
     overflow: hidden;
 }
 
@@ -2122,7 +2122,7 @@ body.no-scroll {
 .split-text {
     flex: 1;
     background-color: #F9F8F6; /* 大地色系底色 */
-    padding: 60px 8%;
+    padding: 30px 8%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2130,15 +2130,16 @@ body.no-scroll {
 }
 
 .split-text h3 {
-    font-size: 24px;
+    font-size: 20px;
     color: #50422D;
-    margin: 10px 0 20px;
+    margin: 5px 0 10px;
 }
 
 .split-text p {
+    font-size: 14px; 
     color: #666;
-    line-height: 1.8;
-    margin-bottom: 30px;
+    line-height: 1.6;
+    margin-bottom: 15px;
 }
 
 /* 手機版 RWD：全部改為垂直排列 */
@@ -2147,10 +2148,10 @@ body.no-scroll {
         flex-direction: column;
     }
     .split-img {
-        height: 300px;
+        height: 200px;
     }
     .split-text {
-        padding: 40px 30px;
+        padding: 30px 20px;
         align-items: center;
         text-align: center;
     }
