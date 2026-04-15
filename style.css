@@ -2100,8 +2100,15 @@ body.no-scroll {
 
 .split-item {
     display: flex;
-    min-height: 300px;
+    min-height: 200px; /* 維持你原本的設定 */
     align-items: stretch;
+    margin-bottom: 30px; /* 【新增】設定區域之間的間距，可依需求調整數值 */
+    box-shadow: none !important; /* 【新增】確保移除任何可能的陰影 */
+    border: none; /* 【建議】確保沒有邊框造成的視覺陰影感 */
+}
+
+.split-item:last-child {
+    margin-bottom: 0;
 }
 
 .split-item.inverse {
@@ -2163,6 +2170,7 @@ body.no-scroll {
     display: flex;
     gap: 2px; /* 兩圖中間的極細白線感 */
     background-color: #fff;
+    box-shadow: none !important; /* 確保圖片群組也沒有陰影 */
 }
 
 /* 人物照佔比 60% */
