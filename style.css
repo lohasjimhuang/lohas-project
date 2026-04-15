@@ -2092,3 +2092,66 @@ body.no-scroll {
         grid-template-columns: repeat(2, 1fr); /* 螢幕極小時改為 2 欄 */
     }
 }
+
+.kol-split-banners {
+    width: 100%;
+    background: #fff;
+}
+
+.split-item {
+    display: flex;
+    min-height: 450px;
+    align-items: stretch;
+}
+
+.split-item.inverse {
+    flex-direction: row-reverse; /* 讓圖文左右對調 */
+}
+
+.split-img {
+    flex: 1;
+    overflow: hidden;
+}
+
+.split-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.split-text {
+    flex: 1;
+    background-color: #F9F8F6; /* 大地色系底色 */
+    padding: 60px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.split-text h3 {
+    font-size: 24px;
+    color: #50422D;
+    margin: 10px 0 20px;
+}
+
+.split-text p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* 手機版 RWD：全部改為垂直排列 */
+@media (max-width: 768px) {
+    .split-item, .split-item.inverse {
+        flex-direction: column;
+    }
+    .split-img {
+        height: 300px;
+    }
+    .split-text {
+        padding: 40px 30px;
+        align-items: center;
+        text-align: center;
+    }
+}
