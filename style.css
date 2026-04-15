@@ -2156,3 +2156,48 @@ body.no-scroll {
         text-align: center;
     }
 }
+
+/* 雙圖組合容器 */
+.split-img-group {
+    flex: 0 0 35%; /* 稍微加寬一點點以容納兩張圖，原為25% */
+    display: flex;
+    gap: 2px; /* 兩圖中間的極細白線感 */
+    background-color: #fff;
+}
+
+/* 人物照佔比 60% */
+.main-portrait {
+    flex: 6;
+    overflow: hidden;
+}
+
+/* 細節照佔比 40% */
+.detail-shot {
+    flex: 4;
+    overflow: hidden;
+    border-left: 1px solid #f0f0f0;
+}
+
+.split-img-group img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 為了維持壓扁感，調整內容區塊 */
+.kol-split-banners .split-item {
+    min-height: 200px;
+    align-items: stretch;
+}
+
+/* 手機版 RWD 調整：左右並列改為上下堆疊或維持並列 */
+@media (max-width: 768px) {
+    .split-img-group {
+        flex: none;
+        height: 180px; /* 手機版高度 */
+    }
+    .split-item, .split-item.inverse {
+        flex-direction: column;
+    }
+}
