@@ -2093,6 +2093,10 @@ body.no-scroll {
     }
 }
 
+/* =========================================
+   KOL
+========================================= */
+
 .kol-split-banners {
     width: 100%;
     background: #fff;
@@ -2102,7 +2106,7 @@ body.no-scroll {
     display: flex;
     min-height: 200px; /* 維持你原本的設定 */
     align-items: stretch;
-    margin-bottom: 30px; /* 【新增】設定區域之間的間距，可依需求調整數值 */
+    margin-bottom: 15px; /* 【新增】設定區域之間的間距，可依需求調整數值 */
     box-shadow: none !important; /* 【新增】確保移除任何可能的陰影 */
     border: none; /* 【建議】確保沒有邊框造成的視覺陰影感 */
 }
@@ -2168,7 +2172,7 @@ body.no-scroll {
 .split-img-group {
     flex: 0 0 35%; /* 稍微加寬一點點以容納兩張圖，原為25% */
     display: flex;
-    gap: 2px; /* 兩圖中間的極細白線感 */
+    gap: 0px; /* 兩圖中間的極細白線感 */
     background-color: #fff;
     box-shadow: none !important; /* 確保圖片群組也沒有陰影 */
 }
