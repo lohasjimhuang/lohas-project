@@ -2242,102 +2242,91 @@ body.no-scroll {
     }
 }
 
-/* --- 雷刻載體區塊 --- */
+/* --- 雷刻載體區塊 (步驟樣式控制) --- */
 .engraving-services {
     padding: 80px 0;
-    background-color: #F9F8F6; /* 採用與技術規格一致的底色 */
+    background-color: #fff; /* 回歸純白背景 */
     text-align: center;
 }
 
-.engraving-services .container {
-    max-width: 1200px;
+.services-step-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* 標題與線條樣式 (精準對齊 engraving-specs) */
-.engraving-services .section-header {
-    margin-bottom: 50px;
+/* 為了讓 6 個載體視覺平衡，分為兩行呈現 */
+.services-step-wrapper.second-row {
+    margin-top: 60px;
 }
 
-.engraving-services .section-title {
-    color: #50422D; /* 樂活品牌色 */
-    font-size: 28px;
-    letter-spacing: 2px;
-    font-weight: 700;
+.service-step-item {
+    text-align: center;
+    flex: 1;
 }
 
-.engraving-services .title-line {
-    width: 40px;
-    height: 2px;
-    background: #50422D;
-    margin: 15px auto;
-}
-
-.engraving-services .section-subtitle {
-    font-size: 15px;
-    color: #666;
-    line-height: 1.6;
-    letter-spacing: 1px;
-}
-
-/* 網格與小卡樣式 */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px 30px;
-}
-
-.service-item {
-    background: #fff;
-    padding: 40px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    transition: transform 0.3s ease;
-}
-
-.service-item:hover {
-    transform: translateY(-5px);
-}
-
-.icon-wrapper {
+/* 復刻 step-circle 樣式 */
+.step-icon-circle {
     width: 60px;
     height: 60px;
-    margin: 0 auto 20px;
+    border: 1px solid #50422D;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #CDBEA2; /* 細體線條框 */
-    border-radius: 50%;
+    margin: 0 auto 20px;
+    transition: all 0.3s ease;
 }
 
-.icon-wrapper img {
-    width: 30px;
-    height: auto;
-    opacity: 0.8;
+.step-icon-circle svg {
+    width: 28px;
+    height: 28px;
 }
 
-.service-item h3 {
+/* 滑過時與品牌色呼應 */
+.service-step-item:hover .step-icon-circle {
+    background-color: #F9F8F6;
+    transform: translateY(-3px);
+}
+
+.service-step-item h4 {
     color: #50422D;
+    margin-bottom: 10px;
     font-size: 18px;
-    margin-bottom: 12px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
-.service-item p {
+.service-step-item p {
     font-size: 14px;
     color: #666;
     line-height: 1.6;
 }
 
-/* 手機版 RWD 適應 */
+/* 復刻箭頭樣式 */
+.step-arrow {
+    color: #CDBEA2;
+    font-size: 20px;
+}
+
+/* 手機版 RWD：改為垂直排列並調整箭頭方向 */
 @media (max-width: 768px) {
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px 15px;
+    .services-step-wrapper {
+        flex-direction: column;
+        gap: 40px;
     }
-    
-    .engraving-services {
-        padding: 50px 0;
+    .services-step-wrapper.second-row {
+        margin-top: 40px;
+    }
+    .step-arrow {
+        transform: rotate(90deg);
+        margin: -10px 0;
+    }
+    /* 最後一個箭頭在手機版隱藏 */
+    .second-row .step-arrow:last-of-type {
+        display: none;
     }
 }
