@@ -2242,91 +2242,106 @@ body.no-scroll {
     }
 }
 
-/* --- 雷刻載體區塊 (步驟樣式控制) --- */
-.engraving-services {
-    padding: 80px 0;
-    background-color: #fff; /* 回歸純白背景 */
-    text-align: center;
-}
-
-.services-step-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 為了讓 6 個載體視覺平衡，分為兩行呈現 */
-.services-step-wrapper.second-row {
-    margin-top: 60px;
-}
-
-.service-step-item {
-    text-align: center;
-    flex: 1;
-}
-
-/* 復刻 step-circle 樣式 */
-.step-icon-circle {
-    width: 60px;
-    height: 60px;
-    border: 1px solid #50422D;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    transition: all 0.3s ease;
-}
-
-.step-icon-circle svg {
-    width: 28px;
-    height: 28px;
-}
-
-/* 滑過時與品牌色呼應 */
-.service-step-item:hover .step-icon-circle {
+/* --- 載體滾動區域樣式 --- */
+.engraving-scroll-section {
+    padding: 100px 0;
     background-color: #F9F8F6;
-    transform: translateY(-3px);
 }
 
-.service-step-item h4 {
+/* 滾動容器控制 */
+.scroll-container {
+    max-width: 1100px;
+    margin: 50px auto 0;
+}
+
+.scroll-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 400px; /* 每一站的高度 */
+    border-bottom: 1px solid #E0E0E0;
+    padding: 60px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+/* 當滑動到視窗時觸發顯示 */
+.scroll-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.item-content-left {
+    flex: 0 0 45%;
+    text-align: left;
+}
+
+.item-content-left h3 {
+    font-size: 24px;
     color: #50422D;
-    margin-bottom: 10px;
-    font-size: 18px;
+    margin-bottom: 15px;
     font-weight: 700;
 }
 
-.service-step-item p {
-    font-size: 14px;
+.item-content-left p {
+    font-size: 16px;
     color: #666;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
-/* 復刻箭頭樣式 */
-.step-arrow {
-    color: #CDBEA2;
-    font-size: 20px;
+.icon-box {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
 }
 
-/* 手機版 RWD：改為垂直排列並調整箭頭方向 */
+.icon-box img {
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
+}
+
+/* 右側數字轉動區塊 */
+.item-counter-right {
+    flex: 0 0 45%;
+    text-align: right;
+}
+
+.counter-box {
+    display: inline-block;
+}
+
+.count-number {
+    display: block;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 80px; /* 大數字展現氣勢 */
+    font-weight: 300;
+    color: #50422D;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.counter-label {
+    font-size: 13px;
+    color: #999;
+    letter-spacing: 1px;
+}
+
+/* 手機版調整 */
 @media (max-width: 768px) {
-    .services-step-wrapper {
+    .scroll-item {
         flex-direction: column;
-        gap: 40px;
+        height: auto;
+        text-align: center;
+        padding: 40px 20px;
     }
-    .services-step-wrapper.second-row {
-        margin-top: 40px;
+    .item-content-left, .item-counter-right {
+        flex: 1;
+        text-align: center;
     }
-    .step-arrow {
-        transform: rotate(90deg);
-        margin: -10px 0;
-    }
-    /* 最後一個箭頭在手機版隱藏 */
-    .second-row .step-arrow:last-of-type {
-        display: none;
+    .count-number {
+        font-size: 60px;
+        margin-top: 20px;
     }
 }
