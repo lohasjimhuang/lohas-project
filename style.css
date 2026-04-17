@@ -2214,24 +2214,30 @@ body.no-scroll {
     }
 }
 
-/* 雷刻靈感分享牆預覽區域樣式 */
+/* 雷刻靈感分享牆預覽區樣式 */
 .inspiration-wall-preview {
-    padding: 60px 0;
+    padding: 60px 20px 100px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* 複用原有的 coord-grid，但在這裡限制顯示欄數 */
-.inspiration-wall-preview .coord-grid {
+/* 建立一個三欄的網格，並複用 gallery.html 的小卡樣式 */
+.preview-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 這裡設定只顯示 3 欄 */
+    grid-template-columns: repeat(3, 1fr); /* 核心設定：只顯示三欄 */
     gap: 25px;
-    padding: 0 20px;
+    margin-bottom: 50px;
 }
 
-/* 手機版 RWD 調整 */
+/* 讓按鈕容器置中 */
+.view-more-container {
+    text-align: center;
+}
+
+/* RWD：手機版調整為單欄或多欄滾動 */
 @media (max-width: 768px) {
-    .inspiration-wall-preview .coord-grid {
-        grid-template-columns: repeat(1, 1fr); /* 手機版改為單欄顯示，或維持雙欄 */
+    .preview-grid {
+        grid-template-columns: repeat(1, 1fr); /* 手機版可改為單欄 */
+        gap: 20px;
     }
 }
