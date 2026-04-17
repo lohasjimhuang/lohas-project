@@ -2241,3 +2241,100 @@ body.no-scroll {
         gap: 20px;
     }
 }
+
+/* 雷刻服務區塊樣式 */
+.engraving-services {
+    padding: 80px 0;
+    background-color: #f9f9f9; /* 輕微的灰色背景區隔 */
+    text-align: center;
+}
+
+.engraving-services .section-header {
+    margin-bottom: 50px;
+}
+
+.engraving-services .section-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.engraving-services .section-subtitle {
+    font-size: 14px;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 電腦版三行 */
+    gap: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.service-item {
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+}
+
+.icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.icon-wrapper img {
+    width: 40px; /* 圖示大小控制 */
+    height: auto;
+    opacity: 0.7;
+}
+
+.service-item h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #222;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.service-item h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.service-item p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* 行動裝置適應 (Mobile) */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 手機版兩行 */
+    }
+    .engraving-services {
+        padding: 50px 0;
+    }
+}
