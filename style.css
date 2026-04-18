@@ -1320,24 +1320,48 @@ body.no-scroll {
 }
 
 /* 區塊二：技術規格 */
-.engraving-specs {
-    padding: 80px 0;
-    background-color: #F9F8F6;
-}
 .specs-container {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; gap: 30px; padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 電腦版 4 欄排列 */
+    gap: 30px;
+    padding: 0 20px;
 }
+
 .spec-card {
-    flex: 1; background: #fff; padding: 50px 30px;
-    border-radius: 12px; text-align: center;
+    background: #fff;
+    padding: 40px 25px; /* 稍微縮小內距以適應 4 欄 */
+    border-radius: 12px;
+    text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
-.spec-card:hover { transform: translateY(-10px); }
-.spec-icon { font-size: 40px; color: #CDBEA2; margin-bottom: 25px; }
-.spec-card h3 { color: #50422D; margin-bottom: 15px; }
-.spec-card p { font-size: 14px; color: #666; line-height: 1.6; }
+
+.spec-card:hover {
+    transform: translateY(-10px);
+}
+
+.spec-icon {
+    font-size: 40px;
+    color: #CDBEA2;
+    margin-bottom: 25px;
+}
+
+.spec-card h3 {
+    color: #50422D;
+    margin-bottom: 15px;
+    font-size: 18px; /* 調整標題大小 */
+    font-weight: 700;
+}
+
+.spec-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
 
 /* 區塊三：客製流程 */
 .engraving-process { padding: 80px 0; }
@@ -1449,6 +1473,19 @@ body.no-scroll {
     .specs-container, .process-wrapper { flex-direction: column; gap: 40px; }
     .process-arrow { transform: rotate(90deg); margin: -10px 0; }
     .cta-box { flex-direction: column; text-align: center; gap: 25px; padding: 40px 20px; }
+}
+/* RWD 回應式調整 */
+@media (max-width: 1024px) {
+    .specs-container {
+        grid-template-columns: repeat(2, 1fr); /* 平板版改為 2 欄 */
+    }
+}
+
+@media (max-width: 576px) {
+    .specs-container {
+        grid-template-columns: 1fr; /* 手機版改為 1 欄 */
+        gap: 20px;
+    }
 }
 
 /* --- JINS Coordinate 1:1 復刻樣式 --- */
