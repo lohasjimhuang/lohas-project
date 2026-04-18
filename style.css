@@ -2242,80 +2242,55 @@ body.no-scroll {
     }
 }
 
-/* --- 載體滾動區域樣式 --- */
-.engraving-scroll-section {
-    padding: 100px 0;
+/* 載體區域新樣式 */
+.engraving-carrier-section {
+    padding: 80px 0;
     background-color: #F9F8F6;
+    text-align: center;
 }
 
-/* 滾動容器控制 */
-.scroll-container {
-    max-width: 1100px;
-    margin: 50px auto 0;
+/* 6種載體網格佈置：電腦版 3 個一排（分兩行） */
+.carrier-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 20px;
+    max-width: 900px;
+    margin: 50px auto;
 }
 
-.scroll-item {
+.carrier-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carrier-item .icon-box {
+    font-size: 32px;
+    color: #50422D;
+    opacity: 0.6;
+    margin-bottom: 10px;
+    height: 40px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 400px; /* 每一站的高度 */
-    border-bottom: 1px solid #E0E0E0;
-    padding: 60px 0;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
 }
 
-/* 當滑動到視窗時觸發顯示 */
-.scroll-item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.item-content-left {
-    flex: 0 0 45%;
-    text-align: left;
-}
-
-.item-content-left h3 {
-    font-size: 24px;
-    color: #50422D;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.item-content-left p {
+.carrier-item p {
     font-size: 16px;
-    color: #666;
-    line-height: 1.8;
+    color: #50422D;
+    font-weight: 500;
 }
 
-.icon-box {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 20px;
-}
-
-.icon-box img {
-    width: 100%;
-    height: auto;
-    opacity: 0.6;
-}
-
-/* 右側數字轉動區塊 */
-.item-counter-right {
-    flex: 0 0 45%;
-    text-align: right;
-}
-
-.counter-box {
-    display: inline-block;
+/* 總數量數字區域 */
+.total-counter-wrapper {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #E0E0E0;
 }
 
 .count-number {
     display: block;
     font-family: 'Helvetica Neue', sans-serif;
-    font-size: 80px; /* 大數字展現氣勢 */
+    font-size: 80px;
     font-weight: 300;
     color: #50422D;
     line-height: 1;
@@ -2323,25 +2298,18 @@ body.no-scroll {
 }
 
 .counter-label {
-    font-size: 13px;
-    color: #999;
+    font-size: 14px;
+    color: #888;
     letter-spacing: 1px;
 }
 
-/* 手機版調整 */
+/* 手機版調整：改為 2 個一排（分三行） */
 @media (max-width: 768px) {
-    .scroll-item {
-        flex-direction: column;
-        height: auto;
-        text-align: center;
-        padding: 40px 20px;
-    }
-    .item-content-left, .item-counter-right {
-        flex: 1;
-        text-align: center;
+    .carrier-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 10px;
     }
     .count-number {
         font-size: 60px;
-        margin-top: 20px;
     }
 }
