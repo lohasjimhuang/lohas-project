@@ -2281,7 +2281,7 @@ body.no-scroll {
 
 /* 載體區域新樣式 */
 .engraving-carrier-section {
-    padding: 80px 0;
+    padding: 100px 0;
     background-color: #F9F8F6;
     text-align: center;
 }
@@ -2290,31 +2290,46 @@ body.no-scroll {
 .carrier-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px 20px;
-    max-width: 900px;
-    margin: 50px auto;
+    gap: 60px 40px;
+    max-width: 1000px;
+    margin: 60px auto;
 }
 
 .carrier-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer; /* 提示可點擊 */
+    padding: 30px 20px;
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.carrier-item:hover {
+    transform: translateY(-8px);
+    background-color: #fff;
+    box-shadow: 0 15px 35px rgba(80, 66, 45, 0.08);
 }
 
 .carrier-item .icon-box {
-    font-size: 32px;
+    font-size: 56px;
     color: #50422D;
-    opacity: 0.6;
-    margin-bottom: 10px;
-    height: 40px;
+    opacity: 0.85;
+    margin-bottom: 20px;
+    height: auto;
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.carrier-item:hover .icon-box {
+    transform: scale(1.1); /* 滑鼠懸浮時圖示微微放大 */
 }
 
 .carrier-item p {
-    font-size: 16px;
+    font-size: 20px;
     color: #50422D;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 /* 總數量數字區域 */
@@ -2344,7 +2359,13 @@ body.no-scroll {
 @media (max-width: 768px) {
     .carrier-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px 10px;
+        gap: 30px 15px;
+    }
+    .carrier-item .icon-box {
+        font-size: 46px; /* 手機版圖示稍微縮小 */
+    }
+    .carrier-item p {
+        font-size: 16px;
     }
     .count-number {
         font-size: 60px;
