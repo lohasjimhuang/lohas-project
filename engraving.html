@@ -110,31 +110,35 @@
         </div>
 
         <div class="carrier-grid">
-            <div class="carrier-item">
-                <div class="icon-box"><i class="fa-regular fa-circle"></i></div>
-                <p>光學鏡片</p>
-            </div>
-            <div class="carrier-item">
-                <div class="icon-box"><i class="fa-solid fa-glasses"></i></div>
-                <p>鏡框</p>
-            </div>
-            <div class="carrier-item">
-                <div class="icon-box"><i class="fa-solid fa-box-open"></i></div>
-                <p>眼鏡盒</p>
-            </div>
-            <div class="carrier-item">
-                <div class="icon-box"><i class="fa-regular fa-square"></i></div>
-                <p>眼鏡布</p>
-            </div>
-            <div class="carrier-item">
-                <div class="icon-box"><i class="fa-solid fa-bag-shopping"></i></div>
-                <p>周邊配件</p>
-            </div>
-            <div class="carrier-item">
-                <div class="icon-box"><i class="fa-solid fa-droplet"></i></div>
-                <p>鼻墊</p>
-            </div>
-        </div>
+    <div class="carrier-item" onclick="openCarrierModal('光學鏡片', 'images/hero-banner-engraving.jpg', '在光學鏡片邊緣雷刻專屬文字或小圖案，精準避開視覺中心，不影響視線，展現低調的個人品味。')">
+        <div class="icon-box"><i class="fa-regular fa-circle"></i></div>
+        <p>光學鏡片</p>
+    </div>
+    <div class="carrier-item" onclick="openCarrierModal('鏡框', 'images/market-collab-05.jpg', '於鏡腳內側或金屬框面上進行微米級精密雷刻，讓您的鏡框成為獨一無二的專屬配件。')">
+        <div class="icon-box"><i class="fa-solid fa-glasses"></i></div>
+        <p>鏡框</p>
+    </div>
+    <div class="carrier-item" onclick="openCarrierModal('眼鏡盒', 'images/gallery.jpg', '特製的木質或皮革眼鏡盒皆可進行大面積的雷刻圖騰，無論是送禮或自用，都能留下深刻印記。')">
+        <div class="icon-box"><i class="fa-solid fa-box-open"></i></div>
+        <p>眼鏡盒</p>
+    </div>
+    <div class="carrier-item" onclick="openCarrierModal('眼鏡布', 'images/market-design-01.jpg', '採用不傷纖維的溫和雷刻技術，將喜歡的插畫或文字刻印在超纖維眼鏡布上。')">
+        <div class="icon-box"><i class="fa-regular fa-square"></i></div>
+        <p>眼鏡布</p>
+    </div>
+    <div class="carrier-item" onclick="openCarrierModal('周邊配件', 'images/market-design-02.jpg', '除了眼鏡本身，各式周邊皮件、隱形眼鏡水盒袋等小收納配件，皆可為您客製專屬圖樣。')">
+        <div class="icon-box"><i class="fa-solid fa-bag-shopping"></i></div>
+        <p>周邊配件</p>
+    </div>
+    <div class="carrier-item" onclick="openCarrierModal('鼻墊', 'images/market-design-03.jpg', '業界罕見的微型雷刻技術，連最細微的金屬鼻墊也能刻上單字或迷你圖騰，細節滿分。')">
+        <div class="icon-box"><i class="fa-solid fa-droplet"></i></div>
+        <p>鼻墊</p>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 50px;">
+    <a href="gallery.html" class="btn btn-primary" style="padding: 16px 40px; font-size: 18px; letter-spacing: 2px;">探索靈感分享牆</a>
+</div>
 
         <div class="total-counter-wrapper">
             <div class="counter-box">
@@ -462,6 +466,24 @@
         </div>
     </section>
 
+<div id="carrierModal" class="market-modal">
+    <div class="market-modal-content">
+        <span class="market-close-btn" onclick="closeCarrierModal()">&times;</span>
+        <div class="market-modal-body">
+            <div class="market-modal-image">
+                <img id="carrierModalImg" src="" alt="雷刻範例圖">
+            </div>
+            <div class="market-modal-details">
+                <h2 id="carrierModalTitle" style="font-size: 24px; color: #50422D; margin-bottom: 15px;">標題</h2>
+                <p id="carrierModalDesc" class="market-description" style="font-size: 16px; line-height: 1.8;">描述文字...</p>
+                <div class="market-modal-actions" style="margin-top: 20px;">
+                    <a href="gallery.html" class="market-btn-outline" style="text-decoration: none; display: inline-block;">查看更多此類範例</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
 </main>
 
 <footer class="main-footer">
@@ -608,6 +630,32 @@
         window.requestAnimationFrame(step);
     }
 });
+
+// 六大載體範例 Modal 控制邏輯
+function openCarrierModal(title, imgSrc, description) {
+    document.getElementById("carrierModalTitle").innerText = title;
+    document.getElementById("carrierModalImg").src = imgSrc;
+    document.getElementById("carrierModalDesc").innerText = description;
+    
+    var modal = document.getElementById("carrierModal");
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden"; // 鎖定背景捲動
+}
+
+function closeCarrierModal() {
+    var modal = document.getElementById("carrierModal");
+    modal.style.display = "none";
+    document.body.style.overflow = "auto"; // 恢復背景捲動
+}
+
+// 點擊 Modal 黑色半透明背景時自動關閉
+window.addEventListener('click', function(event) {
+    var modal = document.getElementById("carrierModal");
+    if (event.target == modal) {
+        closeCarrierModal();
+    }
+});
+    
 </script>
 
 </body>
