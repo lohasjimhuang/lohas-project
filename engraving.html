@@ -516,87 +516,84 @@
 </footer>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const menu = document.getElementById('mobile-menu');
-        const navList = document.getElementById('nav-list');
-
-        if (menu && navList) {
-            menu.addEventListener('click', () => {
-                menu.classList.toggle('active');
-                navList.classList.toggle('active');
-                document.body.style.overflow = navList.classList.contains('active') ? 'hidden' : 'auto';
-            });
-        }
-
-        const footerHeaders = document.querySelectorAll('.footer-column h3');
-        footerHeaders.forEach(header => {
-            header.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    const column = this.parentElement;
-                    column.classList.toggle('active');
-                }
-            });
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. 導覽列與選單邏輯 (維持不變)
+    const menu = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+    if (menu && navList) {
+        menu.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            navList.classList.toggle('active');
+            document.body.style.overflow = navList.classList.contains('active') ? 'hidden' : 'auto';
         });
+    }
 
-        const dropdownParents = document.querySelectorAll('.dropdown-parent > a');
-        dropdownParents.forEach(parent => {
-            parent.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    const parentLi = this.parentElement;
-                    parentLi.classList.toggle('active');
-                }
-            });
+    const footerHeaders = document.querySelectorAll('.footer-column h3');
+    footerHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                const column = this.parentElement;
+                column.classList.toggle('active');
+            }
         });
-
-        const megaMenuParent = document.querySelector('.mega-menu-parent');
-        if (megaMenuParent) {
-            megaMenuParent.addEventListener('mouseenter', () => {
-                if (window.innerWidth > 768) { document.body.classList.add('no-scroll'); }
-            });
-            megaMenuParent.addEventListener('mouseleave', () => {
-                if (window.innerWidth > 768) { document.body.classList.remove('no-scroll'); }
-            });
-        }
     });
-    document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.scroll-item');
+
+    const dropdownParents = document.querySelectorAll('.dropdown-parent > a');
+    dropdownParents.forEach(parent => {
+        parent.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const parentLi = this.parentElement;
+                parentLi.classList.toggle('active');
+            }
+        });
+    });
+
+    const megaMenuParent = document.querySelector('.mega-menu-parent');
+    if (megaMenuParent) {
+        megaMenuParent.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 768) { document.body.classList.add('no-scroll'); }
+        });
+        megaMenuParent.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 768) { document.body.classList.remove('no-scroll'); }
+        });
+    }
+
+    // 2. 修正後的數字滑動邏輯
+    // 改為偵測新的計數器容器
+    const counterSection = document.querySelector('.total-counter-wrapper');
     
-    // 偵測元素是否進入視窗的觀察器
     const observerOptions = {
-        threshold: 0.3 // 看到 30% 就觸發
+        threshold: 0.5 // 看到一半時觸發
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const item = entry.target;
-                item.classList.add('is-visible');
-                
-                // 觸發數字轉動
-                const countElement = item.querySelector('.count-number');
+                // 尋找容器內的數字元素
+                const countElement = entry.target.querySelector('.count-number');
                 if (countElement && !countElement.dataset.animated) {
                     animateCount(countElement);
-                    countElement.dataset.animated = "true"; // 確保只跑一次
+                    countElement.dataset.animated = "true"; 
                 }
             }
         });
     }, observerOptions);
 
-    items.forEach(item => observer.observe(item));
+    if (counterSection) {
+        observer.observe(counterSection);
+    }
 
-    // 數字轉動函數
     function animateCount(el) {
         const target = parseInt(el.dataset.target);
-        const duration = 2000; // 轉動 2 秒
-        const startTimestamp = performance.now();
+        const duration = 2000; 
+        let startTimestamp = null; // 這裡必須從 const 改為 let
         
         const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             const currentCount = Math.floor(progress * target);
             
-            // 加入千分位格式
             el.innerText = currentCount.toLocaleString();
             
             if (progress < 1) {
