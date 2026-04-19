@@ -2333,24 +2333,6 @@ body.no-scroll {
 }
 
 
-/* 在文字下方加入一個小箭頭 */
-.carrier-item p::after {
-    content: '\f061'; /* FontAwesome 的箭頭代碼 (需確認 html 有引入 FA) */
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 12px;
-    margin-left: 8px;
-    color: #CDBEA2;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-/* 滑鼠移入時箭頭向右微推 */
-.carrier-item:hover p::after {
-    transform: translateX(4px);
-    color: #50422D;
-}
-
 /* 總數量數字區域 */
 .total-counter-wrapper {
     margin-top: 60px;
