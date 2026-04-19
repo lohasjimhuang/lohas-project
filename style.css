@@ -2290,7 +2290,7 @@ body.no-scroll {
 .carrier-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 60px 40px;
+    gap: 60px 20px;
     max-width: 1000px;
     margin: 60px auto;
 }
@@ -2300,7 +2300,7 @@ body.no-scroll {
     flex-direction: column;
     align-items: center;
     cursor: pointer; /* 提示可點擊 */
-    padding: 30px 20px;
+    padding: 30px 10px;
     border-radius: 16px;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -2359,7 +2359,12 @@ body.no-scroll {
 @media (max-width: 768px) {
     .carrier-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px 15px;
+        gap: 30px 8px;
+    }
+
+    .carrier-item {
+        /* 縮小手機版的內距 */
+        padding: 20px 5px; 
     }
     .carrier-item .icon-box {
         font-size: 46px; /* 手機版圖示稍微縮小 */
