@@ -2351,6 +2351,17 @@ body.no-scroll {
     margin-bottom: 20px;
 }
 
+.btn-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-more-simple {
+    display: inline-block; /* 確保寬度僅依據文字長度 */
+    width: auto;           /* 強制不繼承父層寬度 */
+    white-space: nowrap;
+}
+
 /* 總數量數字區域 */
 .total-counter-wrapper {
     margin-top: 60px;
