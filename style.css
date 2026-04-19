@@ -1401,11 +1401,12 @@ body.no-scroll {
     background: none; 
     border: 1px solid #ddd; 
     color: #555;
-    padding: 6px 16px; 
+    padding: 8px 20px; 
     font-size: 12px; 
     border-radius: 4px;
     cursor: pointer; 
     transition: 0.3s;
+    width: fit-content;
 }
 .btn-more-simple:hover { 
     background: #50422D; 
@@ -2355,7 +2356,7 @@ body.no-scroll {
 .total-counter-wrapper {
     margin-top: 60px;
     padding-top: 40px;
-    border-top: 1px solid #E0E0E0;
+    border-top: none;
 }
 
 .count-number {
@@ -2380,12 +2381,21 @@ body.no-scroll {
 @media (max-width: 768px) {
     .carrier-info-grid {
         grid-template-columns: 1fr;
+        gap: 0;
     }
     .carrier-info-card {
         flex-direction: column;
+        border-radius: 0; /* [修正] 取消圓角 */
+        box-shadow: none; /* [建議] 滿版設計通常取消陰影更俐落 */
+        border-bottom: 1px solid #eee; /* [新增] 加上細線區隔卡片 */
     }
     .carrier-card-img {
         height: 200px;
+        border-radius: 0;
+    }
+
+    .carrier-card-img img {
+        border-radius: 0; 
     }
 
     .count-number {
