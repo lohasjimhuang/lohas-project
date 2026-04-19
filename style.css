@@ -1396,13 +1396,12 @@ body.no-scroll {
 .grid-text h5 { color: #50422D; font-size: 18px; margin-bottom: 8px;}
 .grid-text p { font-size: 14px; color: #666; margin-bottom: 15px;}
 .btn-more-simple {
-    display: inline-block;
-    width: auto;
+    display: inline-block; 
     text-decoration: none; 
     background: none; 
     border: 1px solid #ddd; 
     color: #555;
-    padding: 8px 20px; 
+    padding: 6px 16px; 
     font-size: 12px; 
     border-radius: 4px;
     cursor: pointer; 
@@ -2356,7 +2355,7 @@ body.no-scroll {
 .total-counter-wrapper {
     margin-top: 60px;
     padding-top: 40px;
-    border-top: none;
+    border-top: 1px solid #E0E0E0;
 }
 
 .count-number {
@@ -2379,20 +2378,14 @@ body.no-scroll {
 
 /* 手機版 RWD：改回單欄垂直排版 */
 @media (max-width: 768px) {
-    .carrier-info-card {
-        flex-direction: column;
-        border-radius: 0px; /* 取消圓角 */
-        box-shadow: none;   /* 移除陰影讓視覺更乾淨 */
+    .carrier-info-grid {
+        grid-template-columns: 1fr;
     }
     .carrier-info-card {
         flex-direction: column;
     }
     .carrier-card-img {
         height: 200px;
-    }
-
-    .carrier-card-img img {
-        border-radius: 0px; /* 確保圖片也沒有圓角 */
     }
 
     .count-number {
