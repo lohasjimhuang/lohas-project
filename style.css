@@ -2286,52 +2286,70 @@ body.no-scroll {
     text-align: center;
 }
 
-/* 6種載體網格佈置：電腦版 3 個一排（分兩行） */
-.carrier-grid {
+/* 全新二合一排版樣式 */
+.carrier-info-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px 20px;
-    max-width: 1000px;
+    grid-template-columns: repeat(2, 1fr); /* 電腦版 2 個一行 */
+    gap: 30px;
+    max-width: 1100px;
     margin: 60px auto;
 }
 
-.carrier-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer; /* 提示可點擊 */
-    padding: 30px 10px;
-    border-radius: 16px;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.carrier-item:hover {
-    transform: translateY(-8px);
-    background-color: #fff;
-    box-shadow: 0 15px 35px rgba(80, 66, 45, 0.08);
-}
-
-.carrier-item .icon-box {
-    font-size: 56px;
-    color: #CDBEA2;
-    opacity: 0.85;
-    margin-bottom: 20px;
-    height: auto;
-    display: flex;
-    align-items: center;
+.carrier-info-card {
+    display: flex; /* 左右分欄 */
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(80, 66, 45, 0.05);
+    text-align: left;
     transition: transform 0.3s ease;
 }
 
-.carrier-item:hover .icon-box {
-    transform: scale(1.1); /* 滑鼠懸浮時圖示微微放大 */
+.carrier-info-card:hover {
+    transform: translateY(-5px);
 }
 
-.carrier-item p {
-    font-size: 20px;
+.carrier-card-img {
+    flex: 0 0 40%;
+}
+
+.carrier-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carrier-card-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carrier-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.carrier-card-header i {
+    font-size: 24px;
+    color: #CDBEA2;
+}
+
+.carrier-card-header h3 {
+    font-size: 22px;
     color: #50422D;
-    font-weight: 700;
 }
 
+.carrier-card-content p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
 
 /* 總數量數字區域 */
 .total-counter-wrapper {
@@ -2358,23 +2376,18 @@ body.no-scroll {
 
 
 
-/* 手機版調整：改為 2 個一排（分三行） */
+/* 手機版 RWD：改回單欄垂直排版 */
 @media (max-width: 768px) {
-    .carrier-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px 8px;
+    .carrier-info-grid {
+        grid-template-columns: 1fr;
+    }
+    .carrier-info-card {
+        flex-direction: column;
+    }
+    .carrier-card-img {
+        height: 200px;
     }
 
-    .carrier-item {
-        /* 縮小手機版的內距 */
-        padding: 20px 5px; 
-    }
-    .carrier-item .icon-box {
-        font-size: 46px; /* 手機版圖示稍微縮小 */
-    }
-    .carrier-item p {
-        font-size: 16px;
-    }
     .count-number {
         font-size: 60px;
     }
