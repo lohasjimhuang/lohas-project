@@ -2281,7 +2281,7 @@ body.no-scroll {
 
 /* 載體區域新樣式 */
 .engraving-carrier-section {
-    padding: 100px 0;
+    padding: 120px 0;
     background-color: #F9F8F6;
     text-align: center;
 }
@@ -2290,36 +2290,33 @@ body.no-scroll {
 .carrier-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 60px 40px;
+    gap: 50px 30px;
     max-width: 1000px;
     margin: 60px auto;
 }
 
 .carrier-item {
+    .carrier-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    cursor: pointer; /* 提示可點擊 */
-    padding: 30px 20px;
-    border-radius: 16px;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    padding: 40px 20px;
+    background-color: transparent;
 }
 
-.carrier-item:hover {
-    transform: translateY(-8px);
-    background-color: #fff;
-    box-shadow: 0 15px 35px rgba(80, 66, 45, 0.08);
-}
-
+/* 圖示容器：顏色改為 #CDBEA2 並放大 */
 .carrier-item .icon-box {
-    font-size: 56px;
-    color: #CDBEA2;
-    opacity: 0.85;
-    margin-bottom: 20px;
-    height: auto;
+    font-size: 64px; 
+    color: #CDBEA2;  
+    margin-bottom: 25px;
     display: flex;
     align-items: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* 讓圖示放大有滑順感 */
+}
+
+.carrier-item:hover .icon-box {
+    transform: scale(1.1);
 }
 
 .carrier-item:hover .icon-box {
@@ -2330,6 +2327,7 @@ body.no-scroll {
     font-size: 20px;
     color: #50422D;
     font-weight: 700;
+    letter-spacing: 2px;
 }
 
 /* 總數量數字區域 */
@@ -2359,10 +2357,10 @@ body.no-scroll {
 @media (max-width: 768px) {
     .carrier-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px 15px;
+        gap: 25px 15px;
     }
     .carrier-item .icon-box {
-        font-size: 46px; /* 手機版圖示稍微縮小 */
+        font-size: 48px; /* 手機版圖示稍微縮小 */
     }
     .carrier-item p {
         font-size: 16px;
