@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷刻分享牆 - Lohas 樂活眼鏡</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="gallery-page">
+
+<header class="main-header">
+    </header>
+    
+<main class="gallery-container" style="margin-top: 100px;">
+    <section class="gallery-hero">
+        <div class="hero-text">
+            <span class="tag">GALLERY</span>
+            <h1>每一片鏡片，都刻下獨一無二的故事。</h1>
+            <p>這裡彙集了大家在鏡片上雷刻的創意與心意，每一份作品，都是專屬於您的記憶。</p>
+        </div>
+    </section>
+
+    <div class="gallery-layout">
+        <aside class="gallery-sidebar">
+            <div class="filter-group">
+                <h3>分類瀏覽</h3>
+                <ul class="filter-menu">
+                    <li class="active"><a href="#">全部作品 <span>14,014</span></a></li>
+                    <li><a href="#">愛情 / 情侶 <span>68</span></a></li>
+                    <li><a href="#">紀念日 / 日期 <span>72</span></a></li>
+                    <li><a href="#">名字 / 暱稱 <span>96</span></a></li>
+                    <li><a href="#">座右銘 / 文字 <span>64</span></a></li>
+                    <li><a href="#">圖案 / 插畫 <span>78</span></a></li>
+                    <li><a href="#">寵物 / 動物 <span>38</span></a></li>
+                </ul>
+            </div>
+
+            <div class="filter-group">
+                <h3>熱門標籤</h3>
+                <div class="tag-cloud">
+                    <a href="#">生日快樂</a>
+                    <a href="#">畢業快樂</a>
+                    <a href="#">結婚紀念日</a>
+                    <a href="#">I Love You</a>
+                    <a href="#">Good Luck</a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="gallery-main">
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <div class="card-img">
+                        <img src="images/gallery.jpg" alt="雷刻作品">
+                        <div class="card-overlay">
+                            <button class="btn-like"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h4>名字刻字</h4>
+                        <div class="card-meta">
+                            <span class="category">名字/暱稱</span>
+                            <span class="likes"><i class="fas fa-heart"></i> 128</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            <div class="jins-pagination">
+                <span class="current">1</span>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&gt;</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="upload-cta">
+        <div class="upload-box">
+            <div class="upload-icon">
+                <i class="fas fa-camera"></i>
+            </div>
+            <div class="upload-content">
+                <h3>您也有專屬故事想分享嗎？</h3>
+                <p>上傳您的刻字作品，讓更多人看見您的創意心意！</p>
+            </div>
+            <a href="#" class="btn-primary">立即上傳作品</a>
+        </div>
+    </section>
+</main>
+
+<footer class="main-footer">
+    </footer>
+
+</body>
+</html>
