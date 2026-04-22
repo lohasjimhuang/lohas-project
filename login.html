@@ -107,53 +107,51 @@
 
     // 2. 登入邏輯
     loginBtn.addEventListener('click', async () => {
-        const account = document.getElementById('account').value.trim();
-        const password = document.getElementById('password').value.trim();
+    const account = document.getElementById('account').value.trim();
+    const password = document.getElementById('password').value.trim();
+    
+    if (!account || !password) {
+        showError('請輸入完整帳號與密碼');
+        return;
+    }
+
+    loginBtn.innerText = '驗證中...';
+    loginBtn.disabled = true;
+    errorMsg.classList.add('hidden');
+
+    try {
+        // 修正重點：移除多餘的外層 data，直接傳送 apikey 與內部 data
+        const response = await fetch(`${PROXY_URL}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                apikey: API_KEY,
+                apiver: API_VER,
+                data: { 
+                    account: account, 
+                    password: password 
+                }
+            })
+        });
         
-        if (!account || !password) {
-            showError('請輸入完整帳號與密碼');
-            return;
+        const result = await response.json();
+
+        // 判斷回傳
+        if (result.code === "200" && result.data) {
+            // 登入成功邏輯...
+            fetchProfile(result.data.erpid);
+        } else {
+            // 這裡會顯示 (051) 的具體錯誤訊息
+            showError(result.errmessage || result.message || '登入失敗');
         }
-
-        loginBtn.innerText = '驗證中...';
-        loginBtn.disabled = true;
-        errorMsg.classList.add('hidden');
-
-        try {
-            // 依照 API 文件要求的「data 包 data」格式發送
-            const response = await fetch(`${PROXY_URL}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    data: {
-                        apikey: API_KEY,
-                        apiver: API_VER,
-                        data: { 
-                            account: account, 
-                            password: password 
-                        }
-                    }
-                })
-            });
-            
-            const result = await response.json();
-
-            // 判斷回傳狀態
-            if (result.code === "200" && result.data && result.data.erpid) {
-                // 登入成功，呼叫取得資料接口
-                fetchProfile(result.data.erpid);
-            } else {
-                // 顯示後端回傳的錯誤訊息 (例如 errmessage)
-                showError(result.errmessage || result.message || '登入失敗，請檢查帳號密碼');
-            }
-        } catch (err) {
-            console.error('Fetch Error:', err);
-            showError('連線至伺服器發生異常，請確認 Proxy 是否啟動');
-        } finally {
-            loginBtn.innerText = '登入';
-            loginBtn.disabled = false;
-        }
-    });
+    } catch (err) {
+        console.error('連線異常:', err);
+        showError('連線至代理伺服器發生異常');
+    } finally {
+        loginBtn.innerText = '登入';
+        loginBtn.disabled = false;
+    }
+});
 
     // 3. 取得會員資料邏輯
     async function fetchProfile(erpid) {
