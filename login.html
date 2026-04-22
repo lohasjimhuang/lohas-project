@@ -114,24 +114,32 @@ function showError(msg) {
 
 // 隱藏錯誤訊息
 function hideError() {
-    errorMsg.classList.add('hidden');
+    const errorMsg = document.getElementById('error-msg');
+    if (errorMsg) {
+        errorMsg.classList.add('hidden');
+    }
 }
-
+   
 // 2. 登入邏輯
-loginBtn.addEventListener('click', async () => {
+document.getElementById('login-btn').addEventListener('click', async () => {
     const account = document.getElementById('account').value.trim();
     const password = document.getElementById('password').value.trim();
-    
+    const loginBtn = document.getElementById('login-btn');
+    const errorMsg = document.getElementById('error-msg');
+
     if (!account || !password) {
         showError('請輸入帳號與密碼');
         return;
     }
 
-    document.getElementById('error-msg').classList.add('hidden');
+    hideError(); // 點擊時先隱藏舊錯誤
     loginBtn.innerText = '驗證中...';
     loginBtn.disabled = true;
 
     try {
+        // 取得當前月份 (格式: YYYY-MM)，以符合 API 051 錯誤的要求
+        const currentMonth = new Date().toISOString().slice(0, 7);
+
         const response = await fetch(`${PROXY_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -139,26 +147,31 @@ loginBtn.addEventListener('click', async () => {
                 data: {
                     apikey: API_KEY,
                     apiver: API_VER,
-                    data: { account: account, password: password }
+                    data: {
+                        account: account,
+                        password: password,
+                        month: currentMonth // [修正] 補上後端要求的月份欄位
+                    }
                 }
             })
         });
         
         const result = await response.json();
-
-        // 核心修正：自動相容您提供的回傳格式
+        
+        // 兼容不同的回傳層級
         const finalData = result.data ? result.data : result;
 
         if (finalData.code === "200") {
             alert('登入成功！');
+            // 抓取 erpid 並跳轉
             const erpid = finalData.data?.erpid || finalData.erpid;
             fetchProfile(erpid);
         } else {
-            // 這裡會正確抓到您截圖中的 "系統目前發生異常..."
+            // 顯示後端回傳的具體錯誤 (例如 051 的文字)
             showError(finalData.errmessage || finalData.message || '登入失敗');
         }
     } catch (err) {
-        showError('連線異常，請檢查 Proxy 伺服器狀態');
+        showError('代理伺服器連線異常，請檢查 Proxy 狀態');
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
