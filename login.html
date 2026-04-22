@@ -126,13 +126,15 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         data: {
-        apikey: API_KEY, // [cite: 309, 575]
-        apiver: API_VER, // [cite: 309, 576]
-        data: { 
-          account: account, // [cite: 305, 568]
-          password: password // [cite: 305, 568]
+          apikey: API_KEY,
+          apiver: API_VER,
+          data: [ // <--- 注意這裡：改用中括號 (陣列)
+            {
+              account: account,
+              password: password
+            }
+          ] // <--- 注意這裡：結尾中括號
         }
-       }
       })
     });
         
