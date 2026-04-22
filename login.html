@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOHAS 會員登入</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Gogoro 風格：乾淨、黑白灰、極簡 */
+    body { 
+      background-color: #ffffff; 
+      color: #333333; 
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+    }
+    .input-gogoro { 
+      border: 1px solid #e5e5e5; 
+      border-radius: 8px; 
+      padding: 14px 16px; 
+      width: 100%; 
+      transition: border-color 0.3s; 
+      background-color: #fafafa;
+    }
+    .input-gogoro:focus { 
+      outline: none; 
+      border-color: #000000; 
+      background-color: #ffffff;
+    }
+    .btn-gogoro { 
+      background-color: #000000; 
+      color: #ffffff; 
+      border-radius: 8px; 
+      padding: 14px 16px; 
+      width: 100%; 
+      font-weight: 500; 
+      letter-spacing: 2px;
+      transition: background-color 0.3s; 
+    }
+    .btn-gogoro:hover:not(:disabled) { 
+      background-color: #333333; 
+    }
+    .btn-gogoro:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+  <div id="login-section" class="w-full max-w-sm">
+    <div class="text-center mb-10">
+      <img src="images/lohas-logo.svg" alt="LOHAS" class="mx-auto h-8 mb-6" onerror="this.style.display='none'; document.getElementById('logo-text').classList.remove('hidden');">
+      <h1 id="logo-text" class="text-3xl font-bold tracking-[0.2em] mb-6 hidden">LOHAS</h1>
+      <h2 class="text-sm font-medium text-gray-400 tracking-wider">登入您的會員帳號</h2>
+    </div>
+    
+    <div class="space-y-5">
+      <div>
+        <input type="text" id="account" class="input-gogoro" placeholder="帳號">
+      </div>
+      <div>
+        <input type="password" id="password" class="input-gogoro" placeholder="密碼">
+      </div>
+      <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
+      <button id="login-btn" class="btn-gogoro mt-2">登入</button>
+    </div>
+  </div>
+
+  <div id="profile-section" class="w-full max-w-md hidden">
+    <div class="text-center mb-10">
+      <h1 class="text-2xl font-bold tracking-[0.2em] mb-2">MEMBER PROFILE</h1>
+      <h2 class="text-sm text-gray-400 tracking-wider">會員基本資料</h2>
+    </div>
+    
+    <div class="bg-white rounded-xl p-8 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100">
+      <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+        <span class="text-gray-400 text-sm tracking-widest">姓名</span>
+        <span id="profile-name" class="font-medium text-gray-800 tracking-wide">-</span>
+      </div>
+      <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+        <span class="text-gray-400 text-sm tracking-widest">電話</span>
+        <span id="profile-mobile" class="font-medium text-gray-800 tracking-wide">-</span>
+      </div>
+      <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+        <span class="text-gray-400 text-sm tracking-widest">信箱</span>
+        <span id="profile-email" class="font-medium text-gray-800 tracking-wide">-</span>
+      </div>
+      <div class="flex justify-between items-center pb-2">
+        <span class="text-gray-400 text-sm tracking-widest">生日</span>
+        <span id="profile-birthday" class="font-medium text-gray-800 tracking-wide">-</span>
+      </div>
+    </div>
+    
+    <button id="logout-btn" class="w-full mt-10 py-3 text-sm font-bold text-gray-400 tracking-[0.2em] hover:text-black transition-colors">登出</button>
+  </div>
+
+  <script>
+    // 依據 API 文件設定測試站參數
+    const API_URL = 'https://lohastest.realtime.tw/webapi/v010';
+    const API_KEY = 'ch856m30xangih8r';
+    const API_VER = '0.1.0';
+
+    const loginSection = document.getElementById('login-section');
+    const profileSection = document.getElementById('profile-section');
+    const errorMsg = document.getElementById('error-msg');
+    const loginBtn = document.getElementById('login-btn');
+
+    // 1. 處理登入請求 (對應文件 API 28)
+    loginBtn.addEventListener('click', async () => {
+      const account = document.getElementById('account').value.trim();
+      const password = document.getElementById('password').value.trim();
+      
+      if (!account || !password) {
+        showError('請輸入完整帳號與密碼');
+        return;
+      }
+
+      loginBtn.innerText = '驗證中...';
+      loginBtn.disabled = true;
+      errorMsg.classList.add('hidden');
+
+      try {
+        const response = await fetch(`${API_URL}/officialWed/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            apikey: API_KEY,
+            apiver: API_VER,
+            data: { account: account, password: password }
+          })
+        });
+        
+        const result = await response.json();
+
+        // 判斷登入是否成功並取得 erpid
+        if (result.code === "200" && result.data && result.data.erpid) {
+          fetchProfile(result.data.erpid);
+        } else {
+          showError(result.message || '登入失敗，請檢查帳號密碼');
+        }
+      } catch (err) {
+        console.error(err);
+        showError('網路發生異常，請稍後再試');
+      } finally {
+        loginBtn.innerText = '登入';
+        loginBtn.disabled = false;
+      }
+    });
+
+    // 2. 處理取得會員資料請求 (對應文件 API 1)
+    async function fetchProfile(erpid) {
+      try {
+        const response = await fetch(`${API_URL}/member/list`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            apikey: API_KEY,
+            apiver: API_VER,
+            data: { client_id: erpid }
+          })
+        });
+        
+        const result = await response.json();
+
+        if (result.code === "200" && result.data) {
+          // 渲染資料至 UI
+          document.getElementById('profile-name').innerText = result.data.name || '未提供';
+          document.getElementById('profile-mobile').innerText = result.data.mobile || '未提供';
+          document.getElementById('profile-email').innerText = result.data.email || '未提供';
+          document.getElementById('profile-birthday').innerText = result.data.birthday || '未提供';
+          
+          // 切換視圖
+          loginSection.classList.add('hidden');
+          profileSection.classList.remove('hidden');
+        } else {
+          showError('無法取得會員資料');
+        }
+      } catch (err) {
+        console.error(err);
+        showError('讀取資料時發生錯誤');
+      }
+    }
+
+    // 3. 處理登出邏輯
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      // 清空輸入框
+      document.getElementById('account').value = '';
+      document.getElementById('password').value = '';
+      
+      // 切換回登入視圖
+      profileSection.classList.add('hidden');
+      loginSection.classList.remove('hidden');
+    });
+
+    // 錯誤訊息提示函數
+    function showError(msg) {
+      errorMsg.innerText = msg;
+      errorMsg.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
