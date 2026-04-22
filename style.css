@@ -2402,3 +2402,68 @@ body.no-scroll {
         font-size: 60px;
     }
 }
+
+/* 醒目分類標籤 */
+.category-mia {
+    color: #e67e22 !important; /* 鮮艷的顏色 */
+    font-weight: 700 !important;
+    position: relative;
+}
+.new-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    border-radius: 50%;
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+/* 網紅介紹頁面樣式 */
+.mia-intro-container {
+    background: #fffaf0;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 40px;
+    border: 1px solid #ffeaa7;
+}
+.mia-hero-banner {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+.mia-banner-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+.mia-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+.mia-social-links .social-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.mia-social-links .web { background: #555; color: #fff; }
+.mia-social-links .fb { background: #1877f2; color: #fff; }
+.mia-social-links .ig { background: #e4405f; color: #fff; }
+
+@media (max-width: 768px) {
+    .mia-info-grid { grid-template-columns: 1fr; }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
