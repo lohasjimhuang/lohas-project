@@ -125,12 +125,14 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        data: {
         apikey: API_KEY, // [cite: 309, 575]
         apiver: API_VER, // [cite: 309, 576]
         data: { 
           account: account, // [cite: 305, 568]
           password: password // [cite: 305, 568]
         }
+       }
       })
     });
         
