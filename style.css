@@ -1860,6 +1860,38 @@ body.no-scroll {
     min-width: 0;
 }
 
+/* 1. 確保佈局容器頂部對齊 */
+.market-layout {
+    display: flex;
+    align-items: flex-start; /* 強制所有子元素從頂部開始對齊 */
+    gap: 30px; /* 根據您的設計調整左右間距 */
+}
+
+/* 2. 統一側邊欄與內容區的頂部間距 */
+.market-sidebar,
+.market-content-area {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 3. 處理搜尋框內可能的預設邊距 */
+.market-search-box {
+    margin-top: 0 !important;
+}
+
+/* 4. 確保 Banner 容器沒有額外的推移 */
+.market-banner-wrapper {
+    margin-top: 0 !important;
+    line-height: 0; /* 消除圖片下方的微小空隙 */
+}
+
+.market-hero-banner {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
 /* 大橫幅區塊 */
 .market-banner-wrapper {
     margin: 20px 20px 40px;
@@ -2402,3 +2434,4 @@ body.no-scroll {
         font-size: 60px;
     }
 }
+
