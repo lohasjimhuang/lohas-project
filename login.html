@@ -107,6 +107,7 @@ const loginBtn = document.getElementById('login-btn');
 
 // 顯示錯誤訊息的函式
 function showError(msg) {
+  const errorMsg = document.getElementById('error-msg');
     errorMsg.innerText = msg;
     errorMsg.classList.remove('hidden'); // 移除 hidden 類別以顯示文字
 }
@@ -121,13 +122,12 @@ loginBtn.addEventListener('click', async () => {
     const account = document.getElementById('account').value.trim();
     const password = document.getElementById('password').value.trim();
     
-    // 前端第一關驗證：若為空值直接顯示警示，不發送請求
     if (!account || !password) {
         showError('請輸入帳號與密碼');
         return;
     }
 
-    hideError(); // 重新嘗試時先隱藏舊的錯誤
+    document.getElementById('error-msg').classList.add('hidden');
     loginBtn.innerText = '驗證中...';
     loginBtn.disabled = true;
 
@@ -136,28 +136,29 @@ loginBtn.addEventListener('click', async () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                apikey: API_KEY,
-                apiver: API_VER,
-                data: { // 依據您的後端需求包裝一至二層
-                    account: account,
-                    password: password
+                data: {
+                    apikey: API_KEY,
+                    apiver: API_VER,
+                    data: { account: account, password: password }
                 }
             })
         });
         
         const result = await response.json();
+
+        // 核心修正：自動相容您提供的回傳格式
         const finalData = result.data ? result.data : result;
 
         if (finalData.code === "200") {
             alert('登入成功！');
-            fetchProfile(finalData.data.erpid);
+            const erpid = finalData.data?.erpid || finalData.erpid;
+            fetchProfile(erpid);
         } else {
-            // 抓取後端回傳的錯誤文字，若無則顯示預設失敗語句
-            showError(finalData.errmessage || finalData.message || '帳號或密碼錯誤');
+            // 這裡會正確抓到您截圖中的 "系統目前發生異常..."
+            showError(finalData.errmessage || finalData.message || '登入失敗');
         }
     } catch (err) {
-        console.error('Fetch Error:', err);
-        showError('代理伺服器連線異常，請稍後再試'); // 捕捉網路或伺服器斷線
+        showError('連線異常，請檢查 Proxy 伺服器狀態');
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
