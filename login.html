@@ -95,49 +95,40 @@
   </div>
 
  <script>
- // 1. 設定參數
+// 1. 基礎設定
 const PROXY_URL = 'https://lohas-proxy.onrender.com/api'; 
 const API_KEY = 'ch856m30xangih8r';
 const API_VER = '0.1.0';
 
-const loginSection = document.getElementById('login-section');
-const profileSection = document.getElementById('profile-section');
-const errorMsg = document.getElementById('error-msg');
 const loginBtn = document.getElementById('login-btn');
+const errorMsg = document.getElementById('error-msg');
 
-// 顯示錯誤訊息的函式
+// 顯示與隱藏警示語 (確保 CSS 中有 .hidden { display: none !important; })
 function showError(msg) {
-  const errorMsg = document.getElementById('error-msg');
     errorMsg.innerText = msg;
-    errorMsg.classList.remove('hidden'); // 移除 hidden 類別以顯示文字
+    errorMsg.classList.remove('hidden');
 }
 
-// 隱藏錯誤訊息
 function hideError() {
-    const errorMsg = document.getElementById('error-msg');
-    if (errorMsg) {
-        errorMsg.classList.add('hidden');
-    }
+    errorMsg.classList.add('hidden');
 }
-   
-// 2. 登入邏輯
-document.getElementById('login-btn').addEventListener('click', async () => {
+
+// 2. 登入主邏輯
+loginBtn.addEventListener('click', async () => {
     const account = document.getElementById('account').value.trim();
     const password = document.getElementById('password').value.trim();
-    const loginBtn = document.getElementById('login-btn');
-    const errorMsg = document.getElementById('error-msg');
-
+    
     if (!account || !password) {
         showError('請輸入帳號與密碼');
         return;
     }
 
-    hideError(); // 點擊時先隱藏舊錯誤
+    hideError();
     loginBtn.innerText = '驗證中...';
     loginBtn.disabled = true;
 
     try {
-        // 取得當前月份 (格式: YYYY-MM)，以符合 API 051 錯誤的要求
+        // 根據 051 錯誤的要求，補上當前月份參數 (YYYY-MM)
         const currentMonth = new Date().toISOString().slice(0, 7);
 
         const response = await fetch(`${PROXY_URL}/login`, {
@@ -150,7 +141,7 @@ document.getElementById('login-btn').addEventListener('click', async () => {
                     data: {
                         account: account,
                         password: password,
-                        month: currentMonth // [修正] 補上後端要求的月份欄位
+                        month: currentMonth // 強制帶入月份以符合後端邏輯
                     }
                 }
             })
@@ -158,25 +149,33 @@ document.getElementById('login-btn').addEventListener('click', async () => {
         
         const result = await response.json();
         
-        // 兼容不同的回傳層級
-        const finalData = result.data ? result.data : result;
+        // 自動解析回傳層級 (相容 result.data.code 或 result.code)
+        const finalCode = result.code || (result.data && result.data.code);
+        const finalData = result.data ? (result.data.data || result.data) : result;
 
-        if (finalData.code === "200") {
+        if (finalCode === "200") {
             alert('登入成功！');
-            // 抓取 erpid 並跳轉
-            const erpid = finalData.data?.erpid || finalData.erpid;
-            fetchProfile(erpid);
+            // 抓取會員 ERPID 並導向資料頁面
+            const erpid = finalData.erpid || result.erpid;
+            if (erpid) {
+                fetchProfile(erpid);
+            } else {
+                showError('登入成功，但無法取得會員編號');
+            }
         } else {
-            // 顯示後端回傳的具體錯誤 (例如 051 的文字)
-            showError(finalData.errmessage || finalData.message || '登入失敗');
+            // 如果後端仍回傳 051 或 000，將具體原因顯示出來
+            const errMsg = result.errmessage || result.message || '登入失敗，請確認資料';
+            showError(errMsg);
         }
     } catch (err) {
-        showError('代理伺服器連線異常，請檢查 Proxy 狀態');
+        showError('代理伺服器連線異常，請檢查網路');
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
     }
 });
+
+// 3. 獲取資料邏輯 (略，請保留您原有的 fetchProfile 函式)
 
 // 3. 取得會員資料邏輯
 async function fetchProfile(erpid) {
