@@ -96,7 +96,7 @@
 
   <script>
     // 依據 API 文件設定測試站參數
-    const API_URL = 'https://lohastest.realtime.tw/webapi/v010';
+    const PROXY_URL = 'https://lohas-proxy.onrender.com/api';
     const API_KEY = 'ch856m30xangih8r';
     const API_VER = '0.1.0';
 
@@ -120,15 +120,19 @@
       errorMsg.classList.add('hidden');
 
       try {
-        const response = await fetch(`${API_URL}/officialWed/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            apikey: API_KEY,
-            apiver: API_VER,
-            data: { account: account, password: password }
-          })
-        });
+    // 這裡改為呼叫您的代理伺服器路徑
+    const response = await fetch(`${PROXY_URL}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        apikey: API_KEY, // [cite: 309, 575]
+        apiver: API_VER, // [cite: 309, 576]
+        data: { 
+          account: account, // [cite: 305, 568]
+          password: password // [cite: 305, 568]
+        }
+      })
+    });
         
         const result = await response.json();
 
