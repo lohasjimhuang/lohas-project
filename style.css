@@ -1879,7 +1879,6 @@ body.no-scroll {
     aspect-ratio: 21 / 9;
     object-fit: cover;
     display: block;
-    margin: 0;
 }
 
 /* 內容區塊標題 */
