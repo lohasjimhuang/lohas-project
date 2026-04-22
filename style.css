@@ -1860,6 +1860,11 @@ body.no-scroll {
     min-width: 0;
 }
 
+.market-content-area,
+.market-banner-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
 
 /* 大橫幅區塊 */
 .market-banner-wrapper {
@@ -1874,6 +1879,7 @@ body.no-scroll {
     aspect-ratio: 21 / 9;
     object-fit: cover;
     display: block;
+    margin: 0;
 }
 
 /* 內容區塊標題 */
