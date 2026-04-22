@@ -110,43 +110,41 @@
     const account = document.getElementById('account').value.trim();
     const password = document.getElementById('password').value.trim();
     
-    if (!account || !password) {
-        showError('請輸入完整帳號與密碼');
-        return;
-    }
-
-    loginBtn.innerText = '驗證中...';
-    loginBtn.disabled = true;
-    errorMsg.classList.add('hidden');
+    // ... 前面的驗證省略 ...
 
     try {
-        // 修正重點：移除多餘的外層 data，直接傳送 apikey 與內部 data
         const response = await fetch(`${PROXY_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                apikey: API_KEY,
-                apiver: API_VER,
-                data: { 
-                    account: account, 
-                    password: password 
+                data: {  // 第一層：必須叫 data
+                    apikey: API_KEY,
+                    apiver: API_VER,
+                    data: { // 第二層：裡面的資料外殼也叫 data
+                        account: account,
+                        password: password
+                    }
                 }
             })
         });
         
         const result = await response.json();
 
-        // 判斷回傳
-        if (result.code === "200" && result.data) {
-            // 登入成功邏輯...
-            fetchProfile(result.data.erpid);
+        // 特別注意：因為我們包了三層，回傳結果可能也會被包在 data 裡
+        // 如果 result.code 抓不到，請試著抓 result.data.code
+        const finalData = result.data ? result.data : result;
+
+        if (finalData.code === "200") {
+            alert('登入成功！');
+            fetchProfile(finalData.data.erpid);
         } else {
-            // 這裡會顯示 (051) 的具體錯誤訊息
-            showError(result.errmessage || result.message || '登入失敗');
+            // 這裡會抓到正常的錯誤訊息，不再是月份錯誤
+            showError(finalData.errmessage || finalData.message || '登入失敗');
         }
     } catch (err) {
-        console.error('連線異常:', err);
-        showError('連線至代理伺服器發生異常');
+        showError('代理伺服器連線異常');
+    }
+
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
