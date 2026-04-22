@@ -2402,38 +2402,3 @@ body.no-scroll {
         font-size: 60px;
     }
 }
-
-/* 側邊欄醒目效果 */
-.category-mia-highlight {
-    background: linear-gradient(90deg, #fff5e6, #ffffff);
-    color: #d35400 !important;
-    border-left: 4px solid #e67e22;
-    font-weight: bold;
-}
-
-.new-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #ff4757;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 5px;
-    box-shadow: 0 0 8px #ff4757;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.9); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.7; }
-    100% { transform: scale(0.9); opacity: 1; }
-}
-
-/* 內容面板過場動畫 */
-.content-panel {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
