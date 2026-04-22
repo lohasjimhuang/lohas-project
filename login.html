@@ -96,7 +96,7 @@
 
  <script>
 // 1. 基礎設定
-const PROXY_URL = 'https://lohas-proxy.onrender.com/api'; 
+const PROXY_URL = 'https://lohas-proxy.onrender.com/api/proxy';
 const API_KEY = 'ch856m30xangih8r';
 const API_VER = '0.1.0';
 
@@ -129,10 +129,10 @@ loginBtn.addEventListener('click', async () => {
     loginBtn.disabled = true;
 
     try {
-        // 解決 051 錯誤的關鍵：產生 YYYY-MM 格式
         const currentMonth = new Date().toISOString().slice(0, 7); 
 
-        const response = await fetch(`${PROXY_URL}/login`, {
+        // ✅ 修改 1：網址補上 /proxy
+        const response = await fetch(`${PROXY_URL}/proxy/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -142,28 +142,41 @@ loginBtn.addEventListener('click', async () => {
                     data: { 
                         account: account, 
                         password: password,
-                        month: currentMonth // 補上後端強制要求的月份欄位
+                        month: currentMonth
                     }
                 }
             })
         });
 
+        // ✅ 修改 2：先檢查 HTTP 狀態，避免解析 404/500 的 HTML 噴錯
+        if (!response.ok) {
+            showError(`伺服器回應異常 (${response.status})`);
+            return;
+        }
+
         const result = await response.json();
         
-        // 兼容多種回傳格式
-        const status = result.code || result.data?.code;
+        // ✅ 修改 3：狀態碼容錯（有些 API 回數字 200，有些回字串 "200"）
+        const rawStatus = result.code ?? result.data?.code;
+        const status = String(rawStatus);
         const info = result.data?.data || result.data || result;
 
         if (status === "200") {
-            alert('登入成功！');
-            // 抓取 ERPID 並呼叫 memberList API 取得姓名、生日、信箱
+            // 抓 ERPID 並呼叫 memberList 取得完整資料
             const erpid = info.erpid || result.erpid;
-            fetchProfile(erpid); 
+            
+            // ✅ 修改 4：ERPID 防呆
+            if (!erpid) {
+                showError('登入成功但找不到會員 ID');
+                return;
+            }
+            
+            await fetchProfile(erpid);  // ✅ 改 5：加 await，確保等它跑完
         } else {
-            // 如果還是失敗，顯示後端給的具體原因
-            showError(result.errmessage || result.message || '登入失敗');
+            showError(result.errmessage || result.message || `登入失敗 (${status})`);
         }
     } catch (err) {
+        console.error('登入錯誤：', err);  // ✅ 修改 6：把錯誤印到 console 方便除錯
         showError('系統連線異常，請檢查 Proxy 狀態');
     } finally {
         loginBtn.innerText = '登入';
@@ -174,7 +187,7 @@ loginBtn.addEventListener('click', async () => {
 // 真正拿「姓名、生日、信箱」的 API
 async function fetchProfile(erpid) {
     try {
-        const response = await fetch(`${PROXY_URL}/memberList`, {
+        const response = await fetch(`${PROXY_URL}/proxy/memberList`, { ... });
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -196,8 +209,8 @@ async function fetchProfile(erpid) {
             document.getElementById('profile-email').innerText = member.email;   // 信箱
             document.getElementById('profile-mobile').innerText = member.mobile; // 電話
 
-            loginSection.classList.add('hidden');
-            profileSection.classList.remove('hidden');
+            document.getElementById('login-section').classList.add('hidden');
+document.getElementById('profile-section').classList.remove('hidden');
         }
     } catch (err) {
         showError('讀取會員詳情失敗');
