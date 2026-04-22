@@ -54,11 +54,10 @@
 
             
             <ul class="market-category-list">
-                <li><a href="#" class="active">首頁</a></li>
-                <li><a href="#">官方聯名</a></li>
-                <li><a href="#">個人原創</a></li>
-                
-            </ul>
+    <li><a href="#" class="active" data-filter="all">首頁</a></li>
+    <li><a href="#" data-filter="official">官方聯名</a></li>
+    <li><a href="#" data-filter="original">個人原創</a></li>
+</ul>
         </aside>
 
         <div class="market-content-area">
@@ -67,7 +66,7 @@
                 <img src="images/market-banner.jpg" alt="我的眼鏡我設計" class="market-hero-banner">
             </div>
 
-            <section class="market-section">
+            <section class="market-section" data-category="official">
                 <div class="market-section-header">
                     <h2 class="market-section-title">官方聯名設計</h2>
                     <a href="#" class="market-see-all">顯示全部 &gt;</a>
@@ -118,7 +117,7 @@
                 </div>
             </section>
 
-            <section class="market-section">
+            <section class="market-section" data-category="original">
                 <div class="market-section-header">
                     <h2 class="market-section-title">個人原創作品</h2>
                     <a href="#" class="market-see-all">顯示全部 &gt;</a>
@@ -225,6 +224,38 @@
             closeMarketModal();
         }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const filterLinks = document.querySelectorAll('.market-category-list a');
+    const sections = document.querySelectorAll('.market-section');
+
+    filterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // 1. 切換選單的 active 樣式
+            filterLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            // 2. 取得點擊的分類值
+            const filterValue = link.getAttribute('data-filter');
+
+            // 3. 執行篩選邏輯
+            sections.forEach(section => {
+                const sectionCategory = section.getAttribute('data-category');
+
+                if (filterValue === 'all') {
+                    section.style.display = 'block'; // 顯示全部
+                } else if (sectionCategory === filterValue) {
+                    section.style.display = 'block'; // 顯示符合的分類
+                } else {
+                    section.style.display = 'none';  // 隱藏不符合的分類
+                }
+            });
+        });
+    });
+});
+    
 </script>
 
 </body>
