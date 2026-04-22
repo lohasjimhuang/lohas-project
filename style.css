@@ -2403,67 +2403,37 @@ body.no-scroll {
     }
 }
 
-/* 醒目分類標籤 */
-.category-mia {
-    color: #e67e22 !important; /* 鮮艷的顏色 */
-    font-weight: 700 !important;
-    position: relative;
+/* 側邊欄醒目效果 */
+.category-mia-highlight {
+    background: linear-gradient(90deg, #fff5e6, #ffffff);
+    color: #d35400 !important;
+    border-left: 4px solid #e67e22;
+    font-weight: bold;
 }
+
 .new-dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: red;
+    width: 8px;
+    height: 8px;
+    background-color: #ff4757;
     border-radius: 50%;
-    margin-left: 5px;
-    animation: blink 1s infinite;
-}
-
-/* 網紅介紹頁面樣式 */
-.mia-intro-container {
-    background: #fffaf0;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 40px;
-    border: 1px solid #ffeaa7;
-}
-.mia-hero-banner {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 25px;
-}
-.mia-banner-text {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: white;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-}
-.mia-info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-.mia-social-links .social-btn {
     display: inline-block;
-    padding: 8px 15px;
-    margin: 5px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
-}
-.mia-social-links .web { background: #555; color: #fff; }
-.mia-social-links .fb { background: #1877f2; color: #fff; }
-.mia-social-links .ig { background: #e4405f; color: #fff; }
-
-@media (max-width: 768px) {
-    .mia-info-grid { grid-template-columns: 1fr; }
+    margin-left: 5px;
+    box-shadow: 0 0 8px #ff4757;
+    animation: pulse 1.5s infinite;
 }
 
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(0.9); opacity: 1; }
+}
+
+/* 內容面板過場動畫 */
+.content-panel {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
