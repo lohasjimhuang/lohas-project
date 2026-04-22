@@ -255,6 +255,57 @@
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const filterLinks = document.querySelectorAll('.market-category-list a');
+    const sections = document.querySelectorAll('.market-section');
+
+    // --- 1. 定義統一的篩選邏輯 ---
+    function applyFilter(filterValue) {
+        // 更新選單按鈕的 active 樣式
+        filterLinks.forEach(link => {
+            if (link.getAttribute('data-filter') === filterValue) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
+        // 根據分類顯示或隱藏區塊
+        sections.forEach(section => {
+            const sectionCategory = section.getAttribute('data-category');
+            
+            if (filterValue === 'all' || !filterValue) {
+                section.style.display = 'block';
+            } else if (sectionCategory === filterValue) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    }
+
+    // --- 2. 處理點擊事件 ---
+    filterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const filterValue = link.getAttribute('data-filter');
+            
+            // 點擊時同步更新網址 Hash (例如 #official)，方便使用者分享
+            window.location.hash = filterValue;
+            applyFilter(filterValue);
+        });
+    });
+
+    // --- 3. 處理外部連結進入 (關鍵) ---
+    // 讀取網址列 # 後面的文字 (例如 official)
+    const initialHash = window.location.hash.replace('#', '');
+    if (initialHash) {
+        applyFilter(initialHash);
+    } else {
+        applyFilter('all'); // 預設顯示全部
+    }
+});
     
 </script>
 
