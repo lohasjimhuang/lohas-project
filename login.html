@@ -162,11 +162,13 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            apikey: API_KEY,
-            apiver: API_VER,
-            data: { client_id: erpid }
-          })
-        });
+  apikey: API_KEY,
+  apiver: API_VER,
+  data: {
+    account: account,
+    password: password
+  }
+})
         
         const result = await response.json();
 
