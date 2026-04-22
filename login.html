@@ -124,12 +124,12 @@ loginBtn.addEventListener('click', async () => {
         return;
     }
 
-    hideError();
+    hideError(); 
     loginBtn.innerText = '驗證中...';
     loginBtn.disabled = true;
 
     try {
-        // 取得當前月份，解決 051 錯誤關鍵
+        // 解決 051 錯誤的關鍵：產生 YYYY-MM 格式
         const currentMonth = new Date().toISOString().slice(0, 7); 
 
         const response = await fetch(`${PROXY_URL}/login`, {
@@ -142,26 +142,29 @@ loginBtn.addEventListener('click', async () => {
                     data: { 
                         account: account, 
                         password: password,
-                        month: currentMonth // 補上這個，API 就不會報 051 錯誤
+                        month: currentMonth // 補上後端強制要求的月份欄位
                     }
                 }
             })
         });
 
         const result = await response.json();
-        const finalData = result.data || result;
+        
+        // 兼容多種回傳格式
+        const status = result.code || result.data?.code;
+        const info = result.data?.data || result.data || result;
 
-        if (finalData.code === "200") {
-            alert('驗證成功，正在讀取會員資料...');
-            // 抓取關鍵的 erpid
-            const erpid = finalData.data?.erpid || finalData.erpid;
-            fetchProfile(erpid); // 呼叫第二支 API 拿姓名、生日、信箱
+        if (status === "200") {
+            alert('登入成功！');
+            // 抓取 ERPID 並呼叫 memberList API 取得姓名、生日、信箱
+            const erpid = info.erpid || result.erpid;
+            fetchProfile(erpid); 
         } else {
-            // 如果還是 051，這裡會顯示 "月份欄位錯誤"
-            showError(finalData.errmessage || '帳號或密碼錯誤');
+            // 如果還是失敗，顯示後端給的具體原因
+            showError(result.errmessage || result.message || '登入失敗');
         }
     } catch (err) {
-        showError('伺服器連線失敗');
+        showError('系統連線異常，請檢查 Proxy 狀態');
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
