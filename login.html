@@ -109,42 +109,44 @@
     loginBtn.addEventListener('click', async () => {
     const account = document.getElementById('account').value.trim();
     const password = document.getElementById('password').value.trim();
-    
-    // ... 前面的驗證省略 ...
+
+    if (!account || !password) {
+        showError('請輸入帳號與密碼');
+        return;
+    }
+
+    loginBtn.innerText = '驗證中...';
+    loginBtn.disabled = true;
 
     try {
         const response = await fetch(`${PROXY_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                data: {  // 第一層：必須叫 data
-                    apikey: API_KEY,
-                    apiver: API_VER,
-                    data: { // 第二層：裡面的資料外殼也叫 data
-                        account: account,
-                        password: password
-                    }
-                }
+                apikey: API_KEY,
+                apiver: API_VER,
+                data: { account, password } // 依據 Proxy 需求調整層級
             })
         });
-        
-        const result = await response.json();
 
-        // 特別注意：因為我們包了三層，回傳結果可能也會被包在 data 裡
-        // 如果 result.code 抓不到，請試著抓 result.data.code
-        const finalData = result.data ? result.data : result;
+        const result = await response.json();
+        // 增加對 result.data 的安全性檢查
+        const finalData = result.data || result;
 
         if (finalData.code === "200") {
             alert('登入成功！');
-            fetchProfile(finalData.data.erpid);
+            // 確保有抓到 erpid 再執行
+            if (finalData.data && finalData.data.erpid) {
+                fetchProfile(finalData.data.erpid);
+            } else {
+                showError('登入成功但遺失 ERPID');
+            }
         } else {
-            // 這裡會抓到正常的錯誤訊息，不再是月份錯誤
-            showError(finalData.errmessage || finalData.message || '登入失敗');
+            showError(finalData.errmessage || '帳號或密碼錯誤');
         }
     } catch (err) {
-        showError('代理伺服器連線異常');
-    }
-
+        console.error("Login Error:", err);
+        showError('伺服器連線異常，請檢查網路狀態');
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
