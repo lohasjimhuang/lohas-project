@@ -94,9 +94,9 @@
     <button id="logout-btn" class="w-full mt-10 py-3 text-sm font-bold text-gray-400 tracking-[0.2em] hover:text-black transition-colors">登出</button>
   </div>
 
-  <script>
-    // 依據 API 文件設定測試站參數
-    const PROXY_URL = 'https://lohas-proxy.onrender.com/api';
+ <script>
+    // 1. 設定參數：請確保網址最後沒有多餘的斜線
+    const PROXY_URL = 'https://lohas-proxy.onrender.com/api'; 
     const API_KEY = 'ch856m30xangih8r';
     const API_VER = '0.1.0';
 
@@ -105,108 +105,103 @@
     const errorMsg = document.getElementById('error-msg');
     const loginBtn = document.getElementById('login-btn');
 
-    // 1. 處理登入請求 (對應文件 API 28)
+    // 2. 登入邏輯
     loginBtn.addEventListener('click', async () => {
-      const account = document.getElementById('account').value.trim();
-      const password = document.getElementById('password').value.trim();
-      
-      if (!account || !password) {
-        showError('請輸入完整帳號與密碼');
-        return;
-      }
+        const account = document.getElementById('account').value.trim();
+        const password = document.getElementById('password').value.trim();
+        
+        if (!account || !password) {
+            showError('請輸入完整帳號與密碼');
+            return;
+        }
 
-      loginBtn.innerText = '驗證中...';
-      loginBtn.disabled = true;
-      errorMsg.classList.add('hidden');
+        loginBtn.innerText = '驗證中...';
+        loginBtn.disabled = true;
+        errorMsg.classList.add('hidden');
 
-      try {
-    // 這裡改為呼叫您的代理伺服器路徑
-    const response = await fetch(`${PROXY_URL}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        data: {
-          apikey: API_KEY,
-          apiver: API_VER,
-          data: [ // <--- 注意這裡：改用中括號 (陣列)
-            {
-              account: account,
-              password: password
+        try {
+            // 依照 API 文件要求的「data 包 data」格式發送
+            const response = await fetch(`${PROXY_URL}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    data: {
+                        apikey: API_KEY,
+                        apiver: API_VER,
+                        data: { 
+                            account: account, 
+                            password: password 
+                        }
+                    }
+                })
+            });
+            
+            const result = await response.json();
+
+            // 判斷回傳狀態
+            if (result.code === "200" && result.data && result.data.erpid) {
+                // 登入成功，呼叫取得資料接口
+                fetchProfile(result.data.erpid);
+            } else {
+                // 顯示後端回傳的錯誤訊息 (例如 errmessage)
+                showError(result.errmessage || result.message || '登入失敗，請檢查帳號密碼');
             }
-          ] // <--- 注意這裡：結尾中括號
+        } catch (err) {
+            console.error('Fetch Error:', err);
+            showError('連線至伺服器發生異常，請確認 Proxy 是否啟動');
+        } finally {
+            loginBtn.innerText = '登入';
+            loginBtn.disabled = false;
         }
-      })
-    });
-        
-        const result = await response.json();
-
-        // 判斷登入是否成功並取得 erpid
-        if (result.code === "200" && result.data && result.data.erpid) {
-          fetchProfile(result.data.erpid);
-        } else {
-          showError(result.message || '登入失敗，請檢查帳號密碼');
-        }
-      } catch (err) {
-        console.error(err);
-        showError('網路發生異常，請稍後再試');
-      } finally {
-        loginBtn.innerText = '登入';
-        loginBtn.disabled = false;
-      }
     });
 
-    // 2. 處理取得會員資料請求 (對應文件 API 1)
+    // 3. 取得會員資料邏輯
     async function fetchProfile(erpid) {
-      try {
-        const response = await fetch(`${API_URL}/member/list`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-  apikey: API_KEY,
-  apiver: API_VER,
-  data: {
-    account: account,
-    password: password
-  }
-})
-        
-        const result = await response.json();
+        try {
+            // 注意：若您的 Proxy server.js 只有寫 /api/login，這裡會失敗
+            // 建議將 Proxy 改為通用轉發，或增加 /api/memberList 路由
+            const response = await fetch(`${PROXY_URL}/memberList`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    data: {
+                        apikey: API_KEY,
+                        apiver: API_VER,
+                        data: { client_id: erpid }
+                    }
+                })
+            });
+            
+            const result = await response.json();
 
-        if (result.code === "200" && result.data) {
-          // 渲染資料至 UI
-          document.getElementById('profile-name').innerText = result.data.name || '未提供';
-          document.getElementById('profile-mobile').innerText = result.data.mobile || '未提供';
-          document.getElementById('profile-email').innerText = result.data.email || '未提供';
-          document.getElementById('profile-birthday').innerText = result.data.birthday || '未提供';
-          
-          // 切換視圖
-          loginSection.classList.add('hidden');
-          profileSection.classList.remove('hidden');
-        } else {
-          showError('無法取得會員資料');
+            if (result.code === "200" && result.data) {
+                // 渲染資料至 UI
+                document.getElementById('profile-name').innerText = result.data.name || '未提供';
+                document.getElementById('profile-mobile').innerText = result.data.mobile || '未提供';
+                document.getElementById('profile-email').innerText = result.data.email || '未提供';
+                document.getElementById('profile-birthday').innerText = result.data.birthday || '未提供';
+                
+                // 切換顯示區塊
+                loginSection.classList.add('hidden');
+                profileSection.classList.remove('hidden');
+            } else {
+                showError('登入成功但無法讀取詳細資料');
+            }
+        } catch (err) {
+            console.error('Profile Error:', err);
+            showError('讀取會員資料時發生錯誤');
         }
-      } catch (err) {
-        console.error(err);
-        showError('讀取資料時發生錯誤');
-      }
     }
 
-    // 3. 處理登出邏輯
+    // 4. 登出
     document.getElementById('logout-btn').addEventListener('click', () => {
-      // 清空輸入框
-      document.getElementById('account').value = '';
-      document.getElementById('password').value = '';
-      
-      // 切換回登入視圖
-      profileSection.classList.add('hidden');
-      loginSection.classList.remove('hidden');
+        location.reload(); // 最簡單的登出方式：重新整理網頁
     });
 
-    // 錯誤訊息提示函數
     function showError(msg) {
-      errorMsg.innerText = msg;
-      errorMsg.classList.remove('hidden');
+        errorMsg.innerText = msg;
+        errorMsg.classList.remove('hidden');
     }
-  </script>
+</script>
 </body>
 </html>
