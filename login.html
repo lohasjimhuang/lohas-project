@@ -114,6 +114,7 @@ function hideError() {
 }
 
 // 2. 登入主邏輯
+// 登入邏輯修正
 loginBtn.addEventListener('click', async () => {
     const account = document.getElementById('account').value.trim();
     const password = document.getElementById('password').value.trim();
@@ -128,8 +129,8 @@ loginBtn.addEventListener('click', async () => {
     loginBtn.disabled = true;
 
     try {
-        // 根據 051 錯誤的要求，補上當前月份參數 (YYYY-MM)
-        const currentMonth = new Date().toISOString().slice(0, 7);
+        // 取得當前月份，解決 051 錯誤關鍵
+        const currentMonth = new Date().toISOString().slice(0, 7); 
 
         const response = await fetch(`${PROXY_URL}/login`, {
             method: 'POST',
@@ -138,74 +139,65 @@ loginBtn.addEventListener('click', async () => {
                 data: {
                     apikey: API_KEY,
                     apiver: API_VER,
-                    data: {
-                        account: account,
+                    data: { 
+                        account: account, 
                         password: password,
-                        month: currentMonth // 強制帶入月份以符合後端邏輯
+                        month: currentMonth // 補上這個，API 就不會報 051 錯誤
                     }
                 }
             })
         });
-        
-        const result = await response.json();
-        
-        // 自動解析回傳層級 (相容 result.data.code 或 result.code)
-        const finalCode = result.code || (result.data && result.data.code);
-        const finalData = result.data ? (result.data.data || result.data) : result;
 
-        if (finalCode === "200") {
-            alert('登入成功！');
-            // 抓取會員 ERPID 並導向資料頁面
-            const erpid = finalData.erpid || result.erpid;
-            if (erpid) {
-                fetchProfile(erpid);
-            } else {
-                showError('登入成功，但無法取得會員編號');
-            }
+        const result = await response.json();
+        const finalData = result.data || result;
+
+        if (finalData.code === "200") {
+            alert('驗證成功，正在讀取會員資料...');
+            // 抓取關鍵的 erpid
+            const erpid = finalData.data?.erpid || finalData.erpid;
+            fetchProfile(erpid); // 呼叫第二支 API 拿姓名、生日、信箱
         } else {
-            // 如果後端仍回傳 051 或 000，將具體原因顯示出來
-            const errMsg = result.errmessage || result.message || '登入失敗，請確認資料';
-            showError(errMsg);
+            // 如果還是 051，這裡會顯示 "月份欄位錯誤"
+            showError(finalData.errmessage || '帳號或密碼錯誤');
         }
     } catch (err) {
-        showError('代理伺服器連線異常，請檢查網路');
+        showError('伺服器連線失敗');
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
     }
 });
 
-// 3. 獲取資料邏輯 (略，請保留您原有的 fetchProfile 函式)
-
-// 3. 取得會員資料邏輯
+// 真正拿「姓名、生日、信箱」的 API
 async function fetchProfile(erpid) {
     try {
         const response = await fetch(`${PROXY_URL}/memberList`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                apikey: API_KEY,
-                apiver: API_VER,
-                data: { client_id: erpid }
+                data: {
+                    apikey: API_KEY,
+                    apiver: API_VER,
+                    data: { client_id: erpid }
+                }
             })
         });
-        
-        const result = await response.json();
-        const finalData = result.data || result;
 
-        if (finalData.code === "200" && finalData.data) {
-            document.getElementById('profile-name').innerText = finalData.data.name || '未提供';
-            document.getElementById('profile-mobile').innerText = finalData.data.mobile || '未提供';
-            document.getElementById('profile-email').innerText = finalData.data.email || '未提供';
-            document.getElementById('profile-birthday').innerText = finalData.data.birthday || '未提供';
-            
+        const res = await response.json();
+        const member = res.data?.data || res.data;
+
+        if (member) {
+            // 這裡就是你要的資料
+            document.getElementById('profile-name').innerText = member.name;     // 姓名
+            document.getElementById('profile-birthday').innerText = member.birthday; // 生日
+            document.getElementById('profile-email').innerText = member.email;   // 信箱
+            document.getElementById('profile-mobile').innerText = member.mobile; // 電話
+
             loginSection.classList.add('hidden');
             profileSection.classList.remove('hidden');
-        } else {
-            showError('登入成功但無法讀取詳細資料');
         }
     } catch (err) {
-        showError('讀取會員資料時發生錯誤');
+        showError('讀取會員詳情失敗');
     }
 }
 
