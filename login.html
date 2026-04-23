@@ -130,20 +130,18 @@ loginBtn.addEventListener('click', async () => {
     loginBtn.disabled = true;
 
     try {
-        // 修改點 A：網址路徑需包含 officialWed [cite: 16, 982]
-        // 修改點 B：移除多餘的 month 欄位，避免 051 錯誤 [cite: 32, 984]
         const response = await fetch(`${PROXY_URL}/proxy/officialWed/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                apikey: API_KEY, // 修正資料結構，不需額外包一層 data 
-                apiver: API_VER,
-                data: { 
-                    account: account, 
-                    password: password 
-                }
-            })
-        });
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        apikey: API_KEY, // 依照文件，apikey 應在第一層 [cite: 40, 62]
+        apiver: API_VER, // 依照文件，apiver 應在第一層 [cite: 40, 63]
+        data: { 
+            account: account, 
+            password: password 
+        }
+    })
+});
 
         if (!response.ok) {
             showError(`伺服器回應異常 (${response.status})`);
