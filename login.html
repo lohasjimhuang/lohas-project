@@ -115,7 +115,7 @@ function hideError() {
     errorMsg.classList.add('hidden');
 }
 
-// 2. 登入主邏輯
+// 登入主邏輯
 loginBtn.addEventListener('click', async () => {
     const account = document.getElementById('account').value.trim();
     const password = document.getElementById('password').value.trim();
@@ -130,40 +130,35 @@ loginBtn.addEventListener('click', async () => {
     loginBtn.disabled = true;
 
     try {
+        // 修正 A：路徑必須包含 officialWed/login 
+        // 修正 B：資料結構扁平化，apikey 在第一層，移除 month 欄位 [cite: 38-40]
         const response = await fetch(`${PROXY_URL}/proxy/officialWed/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        apikey: API_KEY, // 依照文件，apikey 應在第一層 [cite: 40, 62]
-        apiver: API_VER, // 依照文件，apiver 應在第一層 [cite: 40, 63]
-        data: { 
-            account: account, 
-            password: password 
-        }
-    })
-});
-
-        if (!response.ok) {
-            showError(`伺服器回應異常 (${response.status})`);
-            return;
-        }
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                apiver: "0.1.0",
+                apikey: "ch856m30xangih8r",
+                data: { 
+                    account: account, 
+                    password: password 
+                }
+            })
+        });
 
         const result = await response.json();
         
-        // 修改點 C：根據文件，成功代碼為 "200" [cite: 32, 1000]
+        // 修正 C：判斷 code 是否為字串 "200" [cite: 1000]
         if (result.code === "200") {
-            const erpid = result.data?.erpid; // 取得會員客編 [cite: 986, 1004]
-            
-            if (!erpid) {
-                showError('登入成功但找不到會員 ID');
-                return;
+            const erpid = result.data?.erpid; 
+            if (erpid) {
+                await fetchProfile(erpid); 
+            } else {
+                showError('找不到會員 ID');
             }
-            await fetchProfile(erpid); 
         } else {
             showError(result.message || `登入失敗 (${result.code})`);
         }
     } catch (err) {
-        console.error('登入錯誤：', err);
         showError('系統連線異常');
     } finally {
         loginBtn.innerText = '登入';
@@ -172,22 +167,22 @@ loginBtn.addEventListener('click', async () => {
 });
 
 // 3. 取得會員詳細資料
+
 async function fetchProfile(erpid) {
     try {
-        // 修改點 D：網址路徑修正為 member/list [cite: 8, 52]
+        // 修正 D：路徑必須是 member/list [cite: 52]
         const response = await fetch(`${PROXY_URL}/proxy/member/list`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                apikey: API_KEY,
-                apiver: API_VER,
-                data: { client_id: erpid } // 參數名稱為 client_id 
+                apiver: "0.1.0",
+                apikey: "ch856m30xangih8r",
+                data: { client_id: erpid } // 參數名稱為 client_id [cite: 54]
             })
         });
 
         const res = await response.json();
-        // 修改點 E：解析回傳的會員資料物件 [cite: 56, 70-74]
-        const member = res.data;
+        const member = res.data; // 文件顯示會員資料直接放在 data 物件中 [cite: 69-74]
 
         if (res.code === "200" && member) {
             document.getElementById('profile-name').innerText = member.name || '-';
@@ -198,10 +193,10 @@ async function fetchProfile(erpid) {
             loginSection.classList.add('hidden');
             profileSection.classList.remove('hidden');
         } else {
-            showError('找不到會員資料');
+            showError('讀取詳情失敗');
         }
     } catch (err) {
-        showError('讀取會員詳情失敗');
+        showError('系統連線異常');
     }
 }
 
