@@ -96,10 +96,8 @@
   </div>
 
 <script>
-// 1. 基礎設定
-// 請確保此網址與您 Render Dashboard 顯示的網址一致（結尾不要多餘的斜線）
-const PROXY_URL = 'https://lohas-proxy.onrender.com/api'; 
-const API_KEY = 'ch856m30xangih8r'; // 測試站專用 Key
+const PROXY_URL = 'https://lohas-proxy.onrender.com/api'; // 請確認您的 Render 服務名稱
+const API_KEY = 'ch856m30xangih8r'; // 測試站 Key
 const API_VER = '0.1.0';
 
 const loginBtn = document.getElementById('login-btn');
@@ -112,11 +110,7 @@ function showError(msg) {
     errorMsg.classList.remove('hidden');
 }
 
-function hideError() {
-    errorMsg.classList.add('hidden');
-}
-
-// 2. 登入主邏輯
+// 登入主邏輯
 loginBtn.addEventListener('click', async () => {
     const account = document.getElementById('account').value.trim();
     const password = document.getElementById('password').value.trim();
@@ -126,71 +120,62 @@ loginBtn.addEventListener('click', async () => {
         return;
     }
 
-    hideError(); 
-    loginBtn.innerText = '系統喚醒中...'; // 免費版喚醒提示
+    errorMsg.classList.add('hidden');
+    loginBtn.innerText = '系統喚醒中...(免費版需30秒)';
     loginBtn.disabled = true;
 
     try {
-        // 正確路徑：officialWed/login [cite: 981-982]
-        // 正確結構：apikey 和 apiver 必須在第一層 
+        // 修正：路徑必須對接文件中的 officialWed/login
         const response = await fetch(`${PROXY_URL}/proxy/officialWed/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                apiver: API_VER,
-                apikey: API_KEY,
-                data: { 
+                apiver: API_VER, // 第一層
+                apikey: API_KEY, // 第一層
+                data: {          // 第二層放帳密
                     account: account, 
                     password: password 
                 }
             })
         });
 
-        if (!response.ok) {
-            showError(`伺服器連線失敗 (${response.status})`);
-            return;
-        }
-
         const result = await response.json();
         
-        // 判斷狀態碼（注意：API 有時回傳字串 "200"）
+        // 判斷 API 回傳碼
         if (String(result.code) === "200") {
-            const erpid = result.data?.erpid;
-            
+            const erpid = result.data?.erpid; // 文件指出回傳 erpid
             if (erpid) {
                 await fetchProfile(erpid); 
             } else {
-                showError('登入成功但找不到會員客編');
+                showError('登入成功但找不到 erpid');
             }
         } else {
-            // 顯示 API 回傳的具體錯誤訊息 [cite: 905]
-            showError(result.errmessage || result.message || `錯誤代碼: ${result.code}`);
+            showError(result.errmessage || result.message || `錯誤: ${result.code}`);
         }
     } catch (err) {
-        console.error('Login Error:', err);
-        showError('連線超時，請稍後再試（伺服器喚醒中）');
+        showError('連線超時，可能是 Render 正在啟動，請稍後再試');
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
     }
 });
 
-// 3. 取得會員詳細資料
+// 取得會員資料
 async function fetchProfile(erpid) {
     try {
-        // 正確路徑：member/list [cite: 52]
+        // 修正：網址必須對接文件中的 member/list
         const response = await fetch(`${PROXY_URL}/proxy/member/list`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 apiver: API_VER,
                 apikey: API_KEY,
-                data: { client_id: erpid } // 使用 client_id 查詢 [cite: 54]
+                data: { client_id: erpid } // 參數必須是 client_id
             })
         });
 
         const res = await response.json();
-        const member = res.data; // 會員資料物件 [cite: 69-74]
+        const member = res.data;
 
         if (String(res.code) === "200" && member) {
             document.getElementById('profile-name').innerText = member.name || '-';
@@ -200,11 +185,9 @@ async function fetchProfile(erpid) {
 
             loginSection.classList.add('hidden');
             profileSection.classList.remove('hidden');
-        } else {
-            showError('讀取詳情失敗');
         }
     } catch (err) {
-        showError('資料讀取異常');
+        showError('讀取詳情失敗');
     }
 }
 
