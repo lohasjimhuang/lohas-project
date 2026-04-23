@@ -98,15 +98,14 @@
 <script>
 // 1. 基礎設定
 const PROXY_URL = 'https://lohas-proxy.onrender.com/api'; 
-const API_KEY = 'ch856m30xangih8r';
-const API_VER = '0.1.0';
+const API_KEY = 'ch856m30xangih8r'; // 測試站 API Key [cite: 29]
+const API_VER = '0.1.0'; // 統一 API 版本 [cite: 29, 40]
 
 const loginBtn = document.getElementById('login-btn');
 const errorMsg = document.getElementById('error-msg');
 const loginSection = document.getElementById('login-section');
 const profileSection = document.getElementById('profile-section');
 
-// 顯示與隱藏警示語
 function showError(msg) {
     errorMsg.innerText = msg;
     errorMsg.classList.remove('hidden');
@@ -131,27 +130,21 @@ loginBtn.addEventListener('click', async () => {
     loginBtn.disabled = true;
 
     try {
-        // 解決 051 錯誤的關鍵：產生 YYYY-MM 格式
-        const currentMonth = new Date().toISOString().slice(0, 7); 
-
-        // 網址要對應 Proxy 的 /api/proxy/* 路由
-        const response = await fetch(`${PROXY_URL}/proxy/login`, {
+        // 修改點 A：網址路徑需包含 officialWed [cite: 16, 982]
+        // 修改點 B：移除多餘的 month 欄位，避免 051 錯誤 [cite: 32, 984]
+        const response = await fetch(`${PROXY_URL}/proxy/officialWed/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                data: {
-                    apikey: API_KEY,
-                    apiver: API_VER,
-                    data: { 
-                        account: account, 
-                        password: password,
-                        month: currentMonth // 後端強制要求的月份欄位
-                    }
+                apikey: API_KEY, // 修正資料結構，不需額外包一層 data 
+                apiver: API_VER,
+                data: { 
+                    account: account, 
+                    password: password 
                 }
             })
         });
 
-        // 先檢查 HTTP 狀態，避免解析 404/500 的 HTML 噴錯
         if (!response.ok) {
             showError(`伺服器回應異常 (${response.status})`);
             return;
@@ -159,58 +152,46 @@ loginBtn.addEventListener('click', async () => {
 
         const result = await response.json();
         
-        // 狀態碼容錯：有時回數字 200，有時回字串 "200"
-        const rawStatus = result.code ?? result.data?.code;
-        const status = String(rawStatus);
-        const info = result.data?.data || result.data || result;
-
-        if (status === "200") {
-            // 抓 ERPID 並呼叫 memberList 取得姓名、生日、信箱
-            const erpid = info.erpid || result.erpid;
+        // 修改點 C：根據文件，成功代碼為 "200" [cite: 32, 1000]
+        if (result.code === "200") {
+            const erpid = result.data?.erpid; // 取得會員客編 [cite: 986, 1004]
             
             if (!erpid) {
                 showError('登入成功但找不到會員 ID');
                 return;
             }
-            
             await fetchProfile(erpid); 
         } else {
-            // 顯示後端給的具體原因
-            showError(result.errmessage || result.message || `登入失敗 (${status})`);
+            showError(result.message || `登入失敗 (${result.code})`);
         }
     } catch (err) {
         console.error('登入錯誤：', err);
-        showError('系統連線異常，請檢查 Proxy 狀態');
+        showError('系統連線異常');
     } finally {
         loginBtn.innerText = '登入';
         loginBtn.disabled = false;
     }
 });
 
-// 3. 取得會員詳細資料（姓名、生日、信箱、電話）
+// 3. 取得會員詳細資料
 async function fetchProfile(erpid) {
     try {
-        const response = await fetch(`${PROXY_URL}/proxy/memberList`, {
+        // 修改點 D：網址路徑修正為 member/list [cite: 8, 52]
+        const response = await fetch(`${PROXY_URL}/proxy/member/list`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                data: {
-                    apikey: API_KEY,
-                    apiver: API_VER,
-                    data: { client_id: erpid }
-                }
+                apikey: API_KEY,
+                apiver: API_VER,
+                data: { client_id: erpid } // 參數名稱為 client_id 
             })
         });
 
-        if (!response.ok) {
-            showError(`讀取會員資料失敗 (${response.status})`);
-            return;
-        }
-
         const res = await response.json();
-        const member = res.data?.data || res.data;
+        // 修改點 E：解析回傳的會員資料物件 [cite: 56, 70-74]
+        const member = res.data;
 
-        if (member) {
+        if (res.code === "200" && member) {
             document.getElementById('profile-name').innerText = member.name || '-';
             document.getElementById('profile-birthday').innerText = member.birthday || '-';
             document.getElementById('profile-email').innerText = member.email || '-';
@@ -222,12 +203,10 @@ async function fetchProfile(erpid) {
             showError('找不到會員資料');
         }
     } catch (err) {
-        console.error('讀取會員資料錯誤：', err);
         showError('讀取會員詳情失敗');
     }
 }
 
-// 4. 登出
 document.getElementById('logout-btn').addEventListener('click', () => {
     location.reload(); 
 });
