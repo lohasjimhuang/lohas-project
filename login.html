@@ -62,37 +62,76 @@ body{
   </div>
 </div>
 
-<div id="profile-section" class="w-full max-w-md hidden">
-  <div class="text-center mb-10">
-    <h1 class="text-2xl font-bold tracking-[0.2em] mb-2">MEMBER PROFILE</h1>
-    <p class="text-sm text-gray-400 tracking-wider">會員基本資料</p>
-  </div>
+<div id="profile-section" class="w-full max-w-5xl hidden flex flex-col md:flex-row gap-8 items-start">
+  
+  <aside class="w-full md:w-64 bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 overflow-hidden">
+    <div class="p-6 border-b border-gray-50">
+      <p class="text-xs text-gray-400 tracking-widest uppercase">Member Center</p>
+      <h2 class="text-lg font-bold text-gray-800 mt-1">會員中心</h2>
+    </div>
+    <nav class="p-2">
+      <ul class="space-y-1">
+        <li>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-black bg-gray-50 rounded-lg transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            會員總覽
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-500 hover:text-black hover:bg-gray-50 rounded-lg transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            我的收藏
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-500 hover:text-black hover:bg-gray-50 rounded-lg transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+            雷刻紀錄
+          </a>
+        </li>
+        <li class="pt-4 mt-4 border-t border-gray-100">
+          <button id="logout-btn-sidebar" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-400 hover:text-red-600 w-full text-left transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            登出
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </aside>
 
-  <div class="bg-white rounded-xl p-8 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100">
-    <div class="flex justify-between border-b border-gray-100 pb-4">
-      <span class="text-gray-400 text-sm">姓名</span>
-      <span id="profile-name">-</span>
+  <main class="flex-1 w-full">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold tracking-[0.1em] mb-1">MEMBER PROFILE</h1>
+      <p class="text-sm text-gray-400 tracking-wider">會員基本資料</p>
     </div>
 
-    <div class="flex justify-between border-b border-gray-100 pb-4">
-      <span class="text-gray-400 text-sm">電話</span>
-      <span id="profile-mobile">-</span>
+    <div class="bg-white rounded-xl p-8 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-1 border-b border-gray-50 pb-4">
+          <span class="text-gray-400 text-xs uppercase tracking-widest">姓名</span>
+          <div id="profile-name" class="text-lg font-medium text-gray-800">-</div>
+        </div>
+        <div class="space-y-1 border-b border-gray-50 pb-4">
+          <span class="text-gray-400 text-xs uppercase tracking-widest">電話</span>
+          <div id="profile-mobile" class="text-lg font-medium text-gray-800">-</div>
+        </div>
+        <div class="space-y-1 border-b border-gray-50 pb-4">
+          <span class="text-gray-400 text-xs uppercase tracking-widest">信箱</span>
+          <div id="profile-email" class="text-lg font-medium text-gray-800">-</div>
+        </div>
+        <div class="space-y-1 border-b border-gray-50 pb-4">
+          <span class="text-gray-400 text-xs uppercase tracking-widest">生日</span>
+          <div id="profile-birthday" class="text-lg font-medium text-gray-800">-</div>
+        </div>
+      </div>
+      
+      <div class="pt-6">
+        <button class="px-6 py-2 border border-black text-sm hover:bg-black hover:text-white transition-all rounded-lg">
+          修改資料
+        </button>
+      </div>
     </div>
-
-    <div class="flex justify-between border-b border-gray-100 pb-4">
-      <span class="text-gray-400 text-sm">信箱</span>
-      <span id="profile-email">-</span>
-    </div>
-
-    <div class="flex justify-between">
-      <span class="text-gray-400 text-sm">生日</span>
-      <span id="profile-birthday">-</span>
-    </div>
-  </div>
-
-  <button id="logout-btn" class="w-full mt-10 py-3 text-sm text-gray-400 hover:text-black tracking-[0.2em]">
-    登出
-  </button>
+  </main>
 </div>
 
 <script>
@@ -244,6 +283,10 @@ async function fetchProfileByMobile(mobile, loginName){
 document.getElementById('logout-btn').addEventListener('click', ()=>{
   location.reload();
 });
+document.getElementById('logout-btn-sidebar')?.addEventListener('click', ()=>{
+  location.reload();
+});
+  
 </script>
 
 </body>
