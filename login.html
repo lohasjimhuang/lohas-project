@@ -204,9 +204,9 @@ async function fetchProfileByMobile(mobile, loginName){
     console.log('[會員資料]', profileResult);
 
     if(String(profileResult.code) !== '200' || !profileResult.data){
-      showError(profileResult.errmessage || profileResult.message || '登入成功，但手機查不到會員完整資料');
-      return;
-    }
+  showError('APP帳號與手機會員資料不一致，請確認後再試');
+  return;
+}
 
     const member = profileResult.data;
     const memberName = member.name || '';
