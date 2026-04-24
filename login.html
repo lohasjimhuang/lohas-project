@@ -130,14 +130,15 @@ loginBtn.addEventListener('click', async () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                apiver: API_VER, // 第一層
-                apikey: API_KEY, // 第一層
-                data: {          // 第二層放帳密
-                    account: account, 
-                    password: password 
-                }
-            })
-        });
+  data: {
+    apikey: API_KEY,
+    apiver: API_VER,
+    data: {
+      account,
+      password
+    }
+  }
+})
 
         const result = await response.json();
         
@@ -168,11 +169,14 @@ async function fetchProfile(erpid) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                apiver: API_VER,
-                apikey: API_KEY,
-                data: { client_id: erpid } // 參數必須是 client_id
-            })
-        });
+  data: {
+    apikey: API_KEY,
+    apiver: API_VER,
+    data: {
+      client_id: erpid
+    }
+  }
+})
 
         const res = await response.json();
         const member = res.data;
