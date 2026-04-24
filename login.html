@@ -204,7 +204,7 @@ async function fetchProfileByMobile(mobile, loginName){
     console.log('[會員資料]', profileResult);
 
     if(String(profileResult.code) !== '200' || !profileResult.data){
-  showError('APP帳號與手機會員資料不一致，請確認後再試');
+  showError('會員帳號與手機號碼不一致，請確認後再試');
   return;
 }
 
@@ -212,7 +212,7 @@ async function fetchProfileByMobile(mobile, loginName){
     const memberName = member.name || '';
 
     if(loginName && memberName && loginName !== memberName){
-      showError('APP帳號與手機會員資料不一致，請確認後再試');
+      showError('會員帳號與手機號碼不一致，請確認後再試');
       console.warn('[姓名不一致]', {
         loginName: loginName,
         memberName: memberName
