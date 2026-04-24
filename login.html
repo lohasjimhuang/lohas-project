@@ -1,241 +1,287 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LOHAS 會員登入</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background-color: #ffffff;
-      color: #333333;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
-    .input-gogoro {
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      padding: 14px 16px;
-      width: 100%;
-      background-color: #fafafa;
-    }
-    .input-gogoro:focus {
-      outline: none;
-      border-color: #000000;
-      background-color: #ffffff;
-    }
-    .btn-gogoro {
-      background-color: #000000;
-      color: #ffffff;
-      border-radius: 8px;
-      padding: 14px 16px;
-      width: 100%;
-      font-weight: 500;
-      letter-spacing: 2px;
-    }
-    .btn-gogoro:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
-    }
-    .hidden {
-      display: none !important;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOHAS 會員登入</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+  background:#ffffff;
+  color:#333;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.input-gogoro{
+  border:1px solid #e5e5e5;
+  border-radius:8px;
+  padding:14px 16px;
+  width:100%;
+  background:#fafafa;
+}
+.input-gogoro:focus{
+  outline:none;
+  border-color:#000;
+  background:#fff;
+}
+.btn-gogoro{
+  background:#000;
+  color:#fff;
+  border-radius:8px;
+  padding:14px 16px;
+  width:100%;
+  font-weight:500;
+  letter-spacing:2px;
+}
+.btn-gogoro:disabled{
+  background:#ccc;
+  cursor:not-allowed;
+}
+.hidden{
+  display:none!important;
+}
+</style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center p-4">
 
-  <div id="login-section" class="w-full max-w-sm">
-    <div class="text-center mb-10">
-      <img
-        src="images/lohas-logo.svg"
-        alt="LOHAS"
-        class="mx-auto h-8 mb-6"
-        onerror="this.style.display='none'; document.getElementById('logo-text').classList.remove('hidden');"
-      />
-      <h1 id="logo-text" class="text-3xl font-bold tracking-[0.2em] mb-6 hidden">LOHAS</h1>
-      <h2 class="text-sm font-medium text-gray-400 tracking-wider">登入您的會員帳號</h2>
-    </div>
+<!-- 登入頁 -->
+<div id="login-section" class="w-full max-w-sm">
 
-    <div class="space-y-5">
-      <input type="text" id="account" class="input-gogoro" placeholder="帳號" autocomplete="username" />
-      <input type="password" id="password" class="input-gogoro" placeholder="密碼" autocomplete="current-password" />
-      <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
-      <button id="login-btn" class="btn-gogoro mt-2">登入</button>
-    </div>
+  <div class="text-center mb-10">
+    <h1 class="text-3xl font-bold tracking-[0.25em] mb-5">LOHAS</h1>
+    <p class="text-sm text-gray-400 tracking-widest">會員登入</p>
   </div>
 
-  <div id="profile-section" class="w-full max-w-md hidden">
-    <div class="text-center mb-10">
-      <h1 class="text-2xl font-bold tracking-[0.2em] mb-2">MEMBER PROFILE</h1>
-      <h2 class="text-sm text-gray-400 tracking-wider">會員基本資料</h2>
-    </div>
+  <div class="space-y-5">
+    <input
+      type="text"
+      id="account"
+      class="input-gogoro"
+      placeholder="手機號碼"
+      autocomplete="username"
+    >
 
-    <div class="bg-white rounded-xl p-8 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100">
-      <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-        <span class="text-gray-400 text-sm tracking-widest">姓名</span>
-        <span id="profile-name" class="font-medium text-gray-800 tracking-wide">-</span>
-      </div>
+    <input
+      type="password"
+      id="password"
+      class="input-gogoro"
+      placeholder="密碼"
+      autocomplete="current-password"
+    >
 
-      <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-        <span class="text-gray-400 text-sm tracking-widest">電話</span>
-        <span id="profile-mobile" class="font-medium text-gray-800 tracking-wide">-</span>
-      </div>
+    <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
 
-      <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-        <span class="text-gray-400 text-sm tracking-widest">信箱</span>
-        <span id="profile-email" class="font-medium text-gray-800 tracking-wide">-</span>
-      </div>
-
-      <div class="flex justify-between items-center pb-2">
-        <span class="text-gray-400 text-sm tracking-widest">生日</span>
-        <span id="profile-birthday" class="font-medium text-gray-800 tracking-wide">-</span>
-      </div>
-    </div>
-
-    <button id="logout-btn" class="w-full mt-10 py-3 text-sm font-bold text-gray-400 tracking-[0.2em] hover:text-black transition-colors">
-      登出
+    <button id="login-btn" class="btn-gogoro">
+      登入
     </button>
   </div>
 
+</div>
+
+<!-- 會員資料 -->
+<div id="profile-section" class="w-full max-w-md hidden">
+
+  <div class="text-center mb-10">
+    <h1 class="text-2xl font-bold tracking-[0.2em] mb-2">MEMBER PROFILE</h1>
+    <p class="text-sm text-gray-400 tracking-wider">會員基本資料</p>
+  </div>
+
+  <div class="bg-white rounded-xl p-8 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100">
+
+    <div class="flex justify-between border-b border-gray-100 pb-4">
+      <span class="text-gray-400 text-sm">姓名</span>
+      <span id="profile-name">-</span>
+    </div>
+
+    <div class="flex justify-between border-b border-gray-100 pb-4">
+      <span class="text-gray-400 text-sm">電話</span>
+      <span id="profile-mobile">-</span>
+    </div>
+
+    <div class="flex justify-between border-b border-gray-100 pb-4">
+      <span class="text-gray-400 text-sm">信箱</span>
+      <span id="profile-email">-</span>
+    </div>
+
+    <div class="flex justify-between">
+      <span class="text-gray-400 text-sm">生日</span>
+      <span id="profile-birthday">-</span>
+    </div>
+
+  </div>
+
+  <button
+    id="logout-btn"
+    class="w-full mt-10 py-3 text-sm text-gray-400 hover:text-black tracking-[0.2em]"
+  >
+    登出
+  </button>
+
+</div>
+
 <script>
 const PROXY_URL = 'https://lohas-proxy.onrender.com/api';
-const API_KEY = 'bfjY2jssj9dDajq0';
-const API_VER = '0.1.0';
+const API_KEY   = 'bfjY2jssj9dDajq0';
+const API_VER   = '0.1.0';
 
-const loginBtn = document.getElementById('login-btn');
-const errorMsg = document.getElementById('error-msg');
-const loginSection = document.getElementById('login-section');
+const loginBtn       = document.getElementById('login-btn');
+const errorMsg       = document.getElementById('error-msg');
+const loginSection   = document.getElementById('login-section');
 const profileSection = document.getElementById('profile-section');
 
-function showError(msg) {
+function showError(msg){
   errorMsg.innerText = msg;
   errorMsg.classList.remove('hidden');
 }
 
-function clearError() {
-  errorMsg.innerText = '';
+function clearError(){
   errorMsg.classList.add('hidden');
 }
 
-function setLoading(isLoading) {
-  loginBtn.disabled = isLoading;
-  loginBtn.innerText = isLoading ? '系統喚醒中...(免費版需30秒)' : '登入';
+function setLoading(status){
+  loginBtn.disabled = status;
+  loginBtn.innerText = status
+    ? '系統喚醒中...(免費版需30秒)'
+    : '登入';
 }
 
 loginBtn.addEventListener('click', login);
 
-document.getElementById('password').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') login();
+document.getElementById('password').addEventListener('keydown', e=>{
+  if(e.key === 'Enter') login();
 });
 
-async function login() {
-  const account = document.getElementById('account').value.trim();
+async function login(){
+
+  const mobile   = document.getElementById('account').value.trim();
   const password = document.getElementById('password').value.trim();
 
-  if (!account || !password) {
-    showError('請輸入帳號與密碼');
+  if(!mobile || !password){
+    showError('請輸入手機與密碼');
     return;
   }
 
   clearError();
   setLoading(true);
 
-  try {
-    const response = await fetch(`${PROXY_URL}/proxy/officialWed/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        data: {
-          apikey: API_KEY,
-          apiver: API_VER,
-          data: {
-            account: account,
-            password: password
+  try{
+
+    // 第一步：登入驗證
+    const response = await fetch(`${PROXY_URL}/proxy/officialWed/login`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        data:{
+          apikey:API_KEY,
+          apiver:API_VER,
+          data:{
+            account:mobile,
+            password:password
           }
         }
       })
     });
 
     const result = await response.json();
-    console.log('[Login Result]', result);
+    console.log('登入結果', result);
 
-    if (String(result.code) === '200') {
-      const erpid =
-        result.data?.erpid ||
-        result.data?.erpId ||
-        result.data?.client_id ||
-        result.data?.clientId;
-
-      const erpname = result.data?.erpname || result.data?.erpName || result.data?.name || '-';
-
-      if (!erpid) {
-        showError('登入成功，但找不到會員 erpid');
-        return;
-      }
-
-      await fetchProfile(erpid, erpname);
-    } else {
-      showError(result.errmessage || result.message || `登入失敗：${result.code}`);
+    if(String(result.code) !== '200'){
+      showError(result.errmessage || '登入失敗');
+      setLoading(false);
+      return;
     }
 
-  } catch (err) {
-    console.error('[Login Error]', err);
-    showError('連線失敗，可能是 Render 免費版正在喚醒，請稍後再試一次');
-  } finally {
-    setLoading(false);
+    const fallbackName =
+      result.data?.erpname ||
+      result.data?.name ||
+      '-';
+
+    // 第二步：用手機查完整會員資料
+    await fetchProfileByMobile(mobile, fallbackName);
+
+  }catch(err){
+    console.error(err);
+    showError('連線失敗，請稍後再試');
   }
+
+  setLoading(false);
 }
 
-async function fetchProfile(erpid, fallbackName) {
-  try {
-    const response = await fetch(`${PROXY_URL}/proxy/member/list`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        apikey: API_KEY,
-        apiver: API_VER,
-        data: {
-          client_id: Number(erpid)
+async function fetchProfileByMobile(mobile, fallbackName){
+
+  try{
+
+    const response = await fetch(`${PROXY_URL}/proxy/member/list`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        apikey:API_KEY,
+        apiver:API_VER,
+        data:{
+          mobile:mobile
         }
       })
     });
 
     const res = await response.json();
-    console.log('[Profile Result]', res);
+    console.log('會員資料', res);
 
-    if (String(res.code) === '200' && res.data) {
+    if(String(res.code) === '200' && res.data){
+
       const member = res.data;
 
-      document.getElementById('profile-name').innerText = member.name || fallbackName || '-';
-      document.getElementById('profile-mobile').innerText = member.mobile || '-';
-      document.getElementById('profile-email').innerText = member.email || '-';
-      document.getElementById('profile-birthday').innerText = member.birthday || '-';
-    } else {
-      document.getElementById('profile-name').innerText = fallbackName || '-';
-      document.getElementById('profile-mobile').innerText = '尚未取得';
-      document.getElementById('profile-email').innerText = '尚未取得';
-      document.getElementById('profile-birthday').innerText = '尚未取得';
+      document.getElementById('profile-name').innerText =
+        member.name || fallbackName || '-';
 
-      console.warn('[Profile API Failed]', res);
+      document.getElementById('profile-mobile').innerText =
+        member.mobile || mobile || '-';
+
+      document.getElementById('profile-email').innerText =
+        member.email || '-';
+
+      document.getElementById('profile-birthday').innerText =
+        member.birthday || '-';
+
+    }else{
+
+      // 查不到也至少顯示登入成功姓名
+      document.getElementById('profile-name').innerText =
+        fallbackName || '-';
+
+      document.getElementById('profile-mobile').innerText =
+        mobile || '-';
+
+      document.getElementById('profile-email').innerText =
+        '尚未取得';
+
+      document.getElementById('profile-birthday').innerText =
+        '尚未取得';
     }
 
     loginSection.classList.add('hidden');
     profileSection.classList.remove('hidden');
 
-  } catch (err) {
-    console.error('[Profile Error]', err);
+  }catch(err){
 
-    document.getElementById('profile-name').innerText = fallbackName || '-';
-    document.getElementById('profile-mobile').innerText = '尚未取得';
-    document.getElementById('profile-email').innerText = '尚未取得';
-    document.getElementById('profile-birthday').innerText = '尚未取得';
+    document.getElementById('profile-name').innerText =
+      fallbackName || '-';
+
+    document.getElementById('profile-mobile').innerText =
+      mobile || '-';
+
+    document.getElementById('profile-email').innerText =
+      '尚未取得';
+
+    document.getElementById('profile-birthday').innerText =
+      '尚未取得';
 
     loginSection.classList.add('hidden');
     profileSection.classList.remove('hidden');
   }
 }
 
-document.getElementById('logout-btn').addEventListener('click', () => {
+document.getElementById('logout-btn').addEventListener('click', ()=>{
   location.reload();
 });
 </script>
