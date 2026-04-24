@@ -117,7 +117,7 @@ function clearError(){
 
 function setLoading(status){
   loginBtn.disabled = status;
-  loginBtn.innerText = status ? '系統喚醒中...(免費版需30秒)' : '登入';
+  loginBtn.innerText = status ? '登入中...' : '登入';
 }
 
 loginBtn.addEventListener('click', login);
