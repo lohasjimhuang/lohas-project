@@ -16,7 +16,6 @@
       border-radius: 8px;
       padding: 14px 16px;
       width: 100%;
-      transition: border-color 0.3s;
       background-color: #fafafa;
     }
     .input-gogoro:focus {
@@ -32,10 +31,6 @@
       width: 100%;
       font-weight: 500;
       letter-spacing: 2px;
-      transition: background-color 0.3s;
-    }
-    .btn-gogoro:hover:not(:disabled) {
-      background-color: #333333;
     }
     .btn-gogoro:disabled {
       background-color: #cccccc;
@@ -64,9 +59,7 @@
     <div class="space-y-5">
       <input type="text" id="account" class="input-gogoro" placeholder="帳號" autocomplete="username" />
       <input type="password" id="password" class="input-gogoro" placeholder="密碼" autocomplete="current-password" />
-
       <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
-
       <button id="login-btn" class="btn-gogoro mt-2">登入</button>
     </div>
   </div>
@@ -132,9 +125,7 @@ function setLoading(isLoading) {
 loginBtn.addEventListener('click', login);
 
 document.getElementById('password').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') {
-    login();
-  }
+  if (e.key === 'Enter') login();
 });
 
 async function login() {
@@ -153,21 +144,6 @@ async function login() {
     const response = await fetch(`${PROXY_URL}/proxy/officialWed/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-
-      /*
-        這裡是重點：
-        officialWed/login 要包成：
-        {
-          data: {
-            apikey,
-            apiver,
-            data: {
-              account,
-              password
-            }
-          }
-        }
-      */
       body: JSON.stringify({
         data: {
           apikey: API_KEY,
@@ -190,12 +166,14 @@ async function login() {
         result.data?.client_id ||
         result.data?.clientId;
 
+      const erpname = result.data?.erpname || result.data?.erpName || result.data?.name || '-';
+
       if (!erpid) {
         showError('登入成功，但找不到會員 erpid');
         return;
       }
 
-      await fetchProfile(erpid);
+      await fetchProfile(erpid, erpname);
     } else {
       showError(result.errmessage || result.message || `登入失敗：${result.code}`);
     }
@@ -208,22 +186,11 @@ async function login() {
   }
 }
 
-async function fetchProfile(erpid) {
+async function fetchProfile(erpid, fallbackName) {
   try {
     const response = await fetch(`${PROXY_URL}/proxy/member/list`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-
-      /*
-        member/list 維持原本格式：
-        {
-          apikey,
-          apiver,
-          data: {
-            client_id
-          }
-        }
-      */
       body: JSON.stringify({
         apikey: API_KEY,
         apiver: API_VER,
@@ -236,24 +203,35 @@ async function fetchProfile(erpid) {
     const res = await response.json();
     console.log('[Profile Result]', res);
 
-    if (String(res.code) !== '200' || !res.data) {
-      showError(res.errmessage || res.message || '讀取會員資料失敗');
-      return;
+    if (String(res.code) === '200' && res.data) {
+      const member = res.data;
+
+      document.getElementById('profile-name').innerText = member.name || fallbackName || '-';
+      document.getElementById('profile-mobile').innerText = member.mobile || '-';
+      document.getElementById('profile-email').innerText = member.email || '-';
+      document.getElementById('profile-birthday').innerText = member.birthday || '-';
+    } else {
+      document.getElementById('profile-name').innerText = fallbackName || '-';
+      document.getElementById('profile-mobile').innerText = '尚未取得';
+      document.getElementById('profile-email').innerText = '尚未取得';
+      document.getElementById('profile-birthday').innerText = '尚未取得';
+
+      console.warn('[Profile API Failed]', res);
     }
-
-    const member = res.data;
-
-    document.getElementById('profile-name').innerText = member.name || '-';
-    document.getElementById('profile-mobile').innerText = member.mobile || '-';
-    document.getElementById('profile-email').innerText = member.email || '-';
-    document.getElementById('profile-birthday').innerText = member.birthday || '-';
 
     loginSection.classList.add('hidden');
     profileSection.classList.remove('hidden');
 
   } catch (err) {
     console.error('[Profile Error]', err);
-    showError('讀取會員詳情失敗');
+
+    document.getElementById('profile-name').innerText = fallbackName || '-';
+    document.getElementById('profile-mobile').innerText = '尚未取得';
+    document.getElementById('profile-email').innerText = '尚未取得';
+    document.getElementById('profile-birthday').innerText = '尚未取得';
+
+    loginSection.classList.add('hidden');
+    profileSection.classList.remove('hidden');
   }
 }
 
