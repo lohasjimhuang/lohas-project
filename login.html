@@ -187,118 +187,169 @@
 </div>
 
 <script>
-    // 1. 統一登出邏輯：清除資料、切換 UI 並清空表單
-    function handleLogout() {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userData');
-        localStorage.removeItem('userAccount');
-        
-        // 切換回登入畫面
-        document.getElementById('profile-section').classList.add('hidden');
-        document.getElementById('login-section').classList.remove('hidden');
-        
-        // 清空密碼欄位以示安全
-        document.getElementById('password').value = '';
-        document.getElementById('error-msg').classList.add('hidden');
-        
-        console.log('User logged out successfully.');
-    }
+const PROXY_URL = 'https://lohas-proxy.onrender.com/api';
+const API_KEY = 'bfjY2jssj9dDajq0';
+const API_VER = '0.1.0';
 
-    // 2. 登入成功後的 UI 渲染邏輯
-    function showUserProfile(data) {
-        document.getElementById('login-section').classList.add('hidden');
-        document.getElementById('profile-section').classList.remove('hidden');
-        
-        // 渲染會員資料 (對應您新版 HTML 的 ID)
-        document.getElementById('profile-name').textContent = data.Name || '未提供';
-        document.getElementById('profile-mobile').textContent = data.Mobile || '未提供';
-        document.getElementById('profile-email').textContent = data.Email || '未提供';
-        document.getElementById('profile-birthday').textContent = data.Birthday || '未提供';
-    }
+const loginBtn = document.getElementById('login-btn');
+const errorMsg = document.getElementById('error-msg');
+const loginSection = document.getElementById('login-section');
+const profileSection = document.getElementById('profile-section');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const loginBtn = document.getElementById('login-btn');
-        const logoutBtnSidebar = document.getElementById('logout-btn-sidebar');
-        const errorMsg = document.getElementById('error-msg');
+function showError(msg){
+  errorMsg.innerText = msg;
+  errorMsg.classList.remove('hidden');
+}
 
-        // A. 檢查初始登入狀態
-        const savedData = localStorage.getItem('userData');
-        if (localStorage.getItem('isLoggedIn') === 'true' && savedData) {
-            showUserProfile(JSON.parse(savedData));
+function clearError(){
+  errorMsg.innerText = '';
+  errorMsg.classList.add('hidden');
+}
+
+function setLoading(status){
+  loginBtn.disabled = status;
+  loginBtn.innerText = status ? '登入中...' : '登入';
+}
+
+loginBtn.addEventListener('click', login);
+
+document.getElementById('password').addEventListener('keydown', e=>{
+  if(e.key === 'Enter') login();
+});
+
+async function login(){
+  const account = document.getElementById('account').value.trim();
+  const mobile = document.getElementById('mobile').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  if(!account || !mobile || !password){
+    showError('請輸入 APP帳號、手機號碼與密碼');
+    return;
+  }
+
+  clearError();
+  setLoading(true);
+
+  try{
+    const loginResponse = await fetch(`${PROXY_URL}/proxy/officialWed/login`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        data:{
+          apikey:API_KEY,
+          apiver:API_VER,
+          data:{
+            account:account,
+            password:password
+          }
         }
-
-        // B. 登入按鈕點擊事件 (原本的 API 串接邏輯)
-        if (loginBtn) {
-            loginBtn.addEventListener('click', () => {
-                const account = document.getElementById('account').value;
-                const mobile = document.getElementById('mobile').value;
-                const password = document.getElementById('password').value;
-
-                if (!account || !mobile || !password) {
-                    errorMsg.textContent = '請填寫所有欄位';
-                    errorMsg.classList.remove('hidden');
-                    return;
-                }
-
-                loginBtn.textContent = '登入中...';
-                loginBtn.disabled = true;
-
-                // 串接原本的 Google Apps Script API
-                fetch('https://script.google.com/macros/s/AKfycbz_S26N_eYvX-Y_iHshR81h83X_E4mD0uFas0-N9425W966_MREtN5N16Ym36zSj-mF/exec', {
-                    method: 'POST',
-                    mode: 'no-cors', // 配合您的 API 設定
-                    cache: 'no-cache',
-                    body: JSON.stringify({
-                        action: 'login',
-                        account: account,
-                        mobile: mobile,
-                        password: password
-                    })
-                })
-                .then(() => {
-                    // 由於 no-cors 無法取得 response，維持您原本的處理方式：
-                    // 假設成功並記錄狀態，或依照您的實際 API 回傳邏輯修改
-                    const mockUserData = {
-                        Name: account,
-                        Mobile: mobile,
-                        Email: 'user@lohas.com',
-                        Birthday: '1990/01/01'
-                    };
-                    
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userData', JSON.stringify(mockUserData));
-                    
-                    showUserProfile(mockUserData);
-                    loginBtn.textContent = '登入';
-                    loginBtn.disabled = false;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    errorMsg.textContent = '連線失敗，請稍後再試';
-                    errorMsg.classList.remove('hidden');
-                    loginBtn.textContent = '登入';
-                    loginBtn.disabled = false;
-                });
-            });
-        }
-
-        // C. 側邊欄登出按鈕點擊事件 (新版 ID)
-        if (logoutBtnSidebar) {
-            logoutBtnSidebar.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleLogout();
-            });
-        }
-        
-        // D. 額外支援原本可能的舊登出 ID
-        const oldLogoutBtn = document.getElementById('logout-btn');
-        if (oldLogoutBtn) {
-            oldLogoutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleLogout();
-            });
-        }
+      })
     });
+
+    const loginResult = await loginResponse.json();
+    console.log('[登入結果]', loginResult);
+
+    if(String(loginResult.code) !== '200'){
+      showError(loginResult.message || loginResult.errmessage || '帳號或密碼錯誤');
+      return;
+    }
+
+    const loginName =
+      loginResult.data?.erpname ||
+      loginResult.data?.erpName ||
+      loginResult.data?.name ||
+      '';
+
+    await fetchProfileByMobile(mobile, loginName);
+
+  }catch(err){
+    console.error('[登入錯誤]', err);
+    showError('連線失敗，請稍後再試');
+  }finally{
+    setLoading(false);
+  }
+}
+
+async function fetchProfileByMobile(mobile, loginName){
+  try{
+    const profileResponse = await fetch(`${PROXY_URL}/proxy/member/list`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+
+      /*
+        這裡是這版的重點：
+        member/list 也改成雙層 data 格式測試
+      */
+      body:JSON.stringify({
+        data:{
+          apikey:API_KEY,
+          apiver:API_VER,
+          data:{
+            mobile:mobile
+          }
+        }
+      })
+    });
+
+    const profileResult = await profileResponse.json();
+    console.log('[會員資料]', profileResult);
+
+    if(String(profileResult.code) !== '200' || !profileResult.data){
+  showError('會員帳號與手機號碼不一致，請確認後再試');
+  return;
+}
+
+    const member = profileResult.data;
+    const memberName = member.name || '';
+
+    if(loginName && memberName && loginName !== memberName){
+      showError('會員帳號與手機號碼不一致，請確認後再試');
+      console.warn('[姓名不一致]', {
+        loginName: loginName,
+        memberName: memberName
+      });
+      return;
+    }
+
+    document.getElementById('profile-name').innerText =
+      member.name || loginName || '-';
+
+    document.getElementById('profile-mobile').innerText =
+      member.mobile || mobile || '-';
+
+    document.getElementById('profile-email').innerText =
+      member.email || '-';
+
+    document.getElementById('profile-birthday').innerText =
+      member.birthday || '-';
+
+    loginSection.classList.add('hidden');
+    profileSection.classList.remove('hidden');
+
+  }catch(err){
+    console.error('[會員資料錯誤]', err);
+    showError('讀取會員資料失敗');
+  }
+}
+
+document.getElementById('logout-btn').addEventListener('click', ()=>{
+  location.reload();
+});
+// 登出邏輯：支援原本按鈕與側邊欄按鈕
+const logoutBtns = [
+  document.getElementById('logout-btn'),
+  document.getElementById('logout-btn-sidebar')
+];
+
+logoutBtns.forEach(btn => {
+  if (btn) {
+    btn.addEventListener('click', () => {
+      // 執行登出動作：重新整理頁面
+      location.reload();
+    });
+  }
+});
+  
 </script>
 
 </body>
