@@ -1,137 +1,189 @@
-<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOHAS 會員登入</title>
+<title>LOHAS 樂活眼鏡 - 會員登入</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-body{
-  background:#fff;
-  color:#333;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-}
-.input-gogoro{
-  border:1px solid #e5e5e5;
-  border-radius:8px;
-  padding:14px 16px;
-  width:100%;
-  background:#fafafa;
-}
-.input-gogoro:focus{
-  outline:none;
-  border-color:#000;
-  background:#fff;
-}
-.btn-gogoro{
-  background:#000;
-  color:#fff;
-  border-radius:8px;
-  padding:14px 16px;
-  width:100%;
-  font-weight:500;
-  letter-spacing:2px;
-}
-.btn-gogoro:disabled{
-  background:#ccc;
-  cursor:not-allowed;
-}
-.hidden{
-  display:none!important;
-}
+    :root {
+        --lohas-brand-color: #50422D;
+        --lohas-hover-color: #765F4A;
+        --lohas-bg-warm: #F9F8F6;
+        --lohas-text-light: #CDBEA2;
+    }
+
+    body {
+        background: #fff;
+        color: #333;
+        font-family: "Noto Sans TC", sans-serif;
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    /* 登入區塊樣式調整 */
+    .input-lohas {
+        border: 1px solid #e5e5e5;
+        border-radius: 50px; /* 統一首頁圓角感 */
+        padding: 12px 20px;
+        width: 100%;
+        background: #fafafa;
+        transition: all 0.3s ease;
+    }
+    .input-lohas:focus {
+        outline: none;
+        border-color: var(--lohas-brand-color);
+        background: #fff;
+    }
+    .btn-lohas {
+        background: var(--lohas-brand-color);
+        color: #fff;
+        border-radius: 50px;
+        padding: 12px 16px;
+        width: 100%;
+        font-weight: 500;
+        letter-spacing: 2px;
+        transition: background 0.3s ease;
+    }
+    .btn-lohas:hover {
+        background: var(--lohas-hover-color);
+    }
+
+    /* 會員中心佈局：側邊欄無限延伸關鍵 */
+    #profile-section {
+        display: flex;
+        min-height: 100vh;
+        align-items: stretch; /* 讓子元素等高 */
+    }
+
+    /* 側邊欄延伸效果：利用偽元素背景或直接設定父層背景 */
+    .sidebar-wrapper {
+        width: 280px;
+        background: var(--lohas-bg-warm);
+        border-right: 1px solid #eee;
+        flex-shrink: 0;
+    }
+
+    .main-content-wrapper {
+        flex-grow: 1;
+        padding: 60px 40px;
+        background: #fff;
+    }
+
+    .nav-item-active {
+        background: #fff;
+        color: var(--lohas-brand-color);
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(80, 66, 45, 0.05);
+    }
+
+    .profile-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(80, 66, 45, 0.05);
+        border: 1px solid var(--lohas-bg-warm);
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 768px) {
+        #profile-section { flex-direction: column; }
+        .sidebar-wrapper { width: 100%; border-right: none; border-bottom: 1px solid #eee; }
+        .main-content-wrapper { padding: 30px 20px; }
+    }
 </style>
 </head>
 
-<body class="min-h-screen flex items-center justify-center p-4">
+<body>
 
-<div id="login-section" class="w-full max-w-sm">
-  <div class="text-center mb-10">
-    <h1 class="text-3xl font-bold tracking-[0.25em] mb-5">LOHAS</h1>
-    <p class="text-sm text-gray-400 tracking-widest">會員登入</p>
-  </div>
+<div id="login-section" class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-sm">
+        <div class="text-center mb-10">
+            <img src="images/lohas-logo.svg" alt="Lohas" class="h-10 mx-auto mb-6">
+            <p class="text-sm text-gray-400 tracking-widest">MEMBER LOGIN</p>
+        </div>
 
-  <div class="space-y-5">
-    <input type="text" id="account" class="input-gogoro" placeholder="APP帳號">
-    <input type="text" id="mobile" class="input-gogoro" placeholder="手機號碼">
-    <input type="password" id="password" class="input-gogoro" placeholder="密碼">
-
-    <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
-
-    <button id="login-btn" class="btn-gogoro">登入</button>
-  </div>
+        <div class="space-y-5">
+            <input type="text" id="account" class="input-lohas" placeholder="APP 帳號">
+            <input type="text" id="mobile" class="input-lohas" placeholder="手機號碼">
+            <input type="password" id="password" class="input-lohas" placeholder="密碼">
+            <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
+            <button id="login-btn" class="btn-lohas">登入</button>
+        </div>
+    </div>
 </div>
 
-<div id="profile-section" class="w-full max-w-5xl hidden flex flex-col md:flex-row gap-8 items-start">
-  
-  <aside class="w-full md:w-64 bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 overflow-hidden">
-    <div class="p-6 border-b border-gray-50">
-      <p class="text-xs text-gray-400 tracking-widest uppercase">Member Center</p>
-      <h2 class="text-lg font-bold text-gray-800 mt-1">會員中心</h2>
-    </div>
-    <nav class="p-2">
-      <ul class="space-y-1">
-        <li>
-          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-black bg-gray-50 rounded-lg transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-            會員總覽
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-500 hover:text-black hover:bg-gray-50 rounded-lg transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-            我的收藏
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-500 hover:text-black hover:bg-gray-50 rounded-lg transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-            雷刻紀錄
-          </a>
-        </li>
-        <li class="pt-4 mt-4 border-t border-gray-100">
-          <button id="logout-btn-sidebar" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-400 hover:text-red-600 w-full text-left transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-            登出
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </aside>
+<div id="profile-section" class="hidden">
+    
+    <aside class="sidebar-wrapper">
+        <div class="p-8 border-b border-gray-100">
+            <p class="text-xs text-[#CDBEA2] tracking-widest uppercase mb-1">Member Center</p>
+            <h2 class="text-xl font-bold text-[#50422D]">會員中心</h2>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-6 py-4 text-sm font-medium rounded-xl transition-all nav-item-active">
+                        <i class="fa-solid fa-user"></i> 會員總覽
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-6 py-4 text-sm font-medium text-[#50422D] hover:bg-white/50 rounded-xl transition-all">
+                        <i class="fa-solid fa-heart"></i> 我的收藏
+                    </a>
+                </li>
+                <li>
+                    <a href="engraving.html" class="flex items-center gap-3 px-6 py-4 text-sm font-medium text-[#50422D] hover:bg-white/50 rounded-xl transition-all">
+                        <i class="fa-solid fa-pen-nib"></i> 雷刻紀錄
+                    </a>
+                </li>
+                <li class="pt-8 mt-8 border-t border-gray-200/50">
+                    <button id="logout-btn-sidebar" class="flex items-center gap-3 px-6 py-4 text-sm font-medium text-red-400 hover:text-red-600 w-full text-left transition-colors">
+                        <i class="fa-solid fa-right-from-bracket"></i> 登出帳號
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-  <main class="flex-1 w-full">
-    <div class="mb-8">
-      <h1 class="text-2xl font-bold tracking-[0.1em] mb-1">MEMBER PROFILE</h1>
-      <p class="text-sm text-gray-400 tracking-wider">會員基本資料</p>
-    </div>
+    <main class="main-content-wrapper">
+        <div class="max-w-4xl">
+            <div class="mb-10">
+                <h1 class="text-2xl font-bold tracking-[0.1em] text-[#50422D] mb-1 uppercase">Member Profile</h1>
+                <p class="text-sm text-[#CDBEA2] tracking-wider">會員基本資料</p>
+            </div>
 
-    <div class="bg-white rounded-xl p-8 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="space-y-1 border-b border-gray-50 pb-4">
-          <span class="text-gray-400 text-xs uppercase tracking-widest">姓名</span>
-          <div id="profile-name" class="text-lg font-medium text-gray-800">-</div>
+            <div class="profile-card space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                    <div class="space-y-2 border-b border-gray-50 pb-4">
+                        <span class="text-[#CDBEA2] text-xs uppercase tracking-widest font-bold">姓名</span>
+                        <div id="profile-name" class="text-lg font-medium text-[#50422D]">-</div>
+                    </div>
+                    <div class="space-y-2 border-b border-gray-50 pb-4">
+                        <span class="text-[#CDBEA2] text-xs uppercase tracking-widest font-bold">電話</span>
+                        <div id="profile-mobile" class="text-lg font-medium text-[#50422D]">-</div>
+                    </div>
+                    <div class="space-y-2 border-b border-gray-50 pb-4">
+                        <span class="text-[#CDBEA2] text-xs uppercase tracking-widest font-bold">信箱</span>
+                        <div id="profile-email" class="text-lg font-medium text-[#50422D]">-</div>
+                    </div>
+                    <div class="space-y-2 border-b border-gray-50 pb-4">
+                        <span class="text-[#CDBEA2] text-xs uppercase tracking-widest font-bold">生日</span>
+                        <div id="profile-birthday" class="text-lg font-medium text-[#50422D]">-</div>
+                    </div>
+                </div>
+                
+                <div class="pt-6">
+                    <button class="px-8 py-3 border border-[#50422D] text-[#50422D] text-sm font-medium hover:bg-[#50422D] hover:text-white transition-all rounded-full">
+                        修改資料
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="space-y-1 border-b border-gray-50 pb-4">
-          <span class="text-gray-400 text-xs uppercase tracking-widest">電話</span>
-          <div id="profile-mobile" class="text-lg font-medium text-gray-800">-</div>
-        </div>
-        <div class="space-y-1 border-b border-gray-50 pb-4">
-          <span class="text-gray-400 text-xs uppercase tracking-widest">信箱</span>
-          <div id="profile-email" class="text-lg font-medium text-gray-800">-</div>
-        </div>
-        <div class="space-y-1 border-b border-gray-50 pb-4">
-          <span class="text-gray-400 text-xs uppercase tracking-widest">生日</span>
-          <div id="profile-birthday" class="text-lg font-medium text-gray-800">-</div>
-        </div>
-      </div>
-      
-      <div class="pt-6">
-        <button class="px-6 py-2 border border-black text-sm hover:bg-black hover:text-white transition-all rounded-lg">
-          修改資料
-        </button>
-      </div>
-    </div>
-  </main>
+    </main>
 </div>
 
 <script>
