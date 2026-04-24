@@ -283,8 +283,19 @@ async function fetchProfileByMobile(mobile, loginName){
 document.getElementById('logout-btn').addEventListener('click', ()=>{
   location.reload();
 });
-document.getElementById('logout-btn-sidebar')?.addEventListener('click', ()=>{
-  location.reload();
+// 登出邏輯：支援原本按鈕與側邊欄按鈕
+const logoutBtns = [
+  document.getElementById('logout-btn'),
+  document.getElementById('logout-btn-sidebar')
+];
+
+logoutBtns.forEach(btn => {
+  if (btn) {
+    btn.addEventListener('click', () => {
+      // 執行登出動作：重新整理頁面
+      location.reload();
+    });
+  }
 });
   
 </script>
