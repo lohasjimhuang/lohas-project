@@ -160,7 +160,6 @@ async function login(){
 
     if(String(loginResult.code) !== '200'){
       showError(loginResult.message || loginResult.errmessage || '帳號或密碼錯誤');
-      setLoading(false);
       return;
     }
 
@@ -175,9 +174,9 @@ async function login(){
   }catch(err){
     console.error('[登入錯誤]', err);
     showError('連線失敗，請稍後再試');
+  }finally{
+    setLoading(false);
   }
-
-  setLoading(false);
 }
 
 async function fetchProfileByMobile(mobile, loginName){
@@ -185,11 +184,18 @@ async function fetchProfileByMobile(mobile, loginName){
     const profileResponse = await fetch(`${PROXY_URL}/proxy/member/list`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
+
+      /*
+        這裡是這版的重點：
+        member/list 也改成雙層 data 格式測試
+      */
       body:JSON.stringify({
-        apikey:API_KEY,
-        apiver:API_VER,
         data:{
-          mobile:mobile
+          apikey:API_KEY,
+          apiver:API_VER,
+          data:{
+            mobile:mobile
+          }
         }
       })
     });
@@ -198,7 +204,7 @@ async function fetchProfileByMobile(mobile, loginName){
     console.log('[會員資料]', profileResult);
 
     if(String(profileResult.code) !== '200' || !profileResult.data){
-      showError('登入成功，但手機查不到會員完整資料');
+      showError(profileResult.errmessage || profileResult.message || '登入成功，但手機查不到會員完整資料');
       return;
     }
 
