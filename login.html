@@ -73,11 +73,17 @@
     }
 
     .nav-item-active {
-        background: #fff;
-        color: var(--lohas-brand-color);
-        font-weight: 700;
-        box-shadow: 0 4px 12px rgba(80, 66, 45, 0.05);
-    }
+    background: var(--lohas-brand-color) !important; /* 使用標準色 #50422D */
+    color: #fff !important;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(80, 66, 45, 0.15);
+}
+
+    /* 調整一般選單項目的 Hover 效果，確保文字顏色一致 */
+.sidebar-nav-link:hover:not(.nav-item-active) {
+    background: #fff;
+    color: var(--lohas-brand-color);
+}
 
     .profile-card {
         background: #fff;
@@ -118,36 +124,36 @@
 
 <div id="profile-section" class="hidden">
     
-    <aside class="sidebar-wrapper">
-        <div class="p-8 border-b border-gray-100">
-            <p class="text-xs text-[#CDBEA2] tracking-widest uppercase mb-1">Member Center</p>
-            <h2 class="text-xl font-bold text-[#50422D]">會員中心</h2>
-        </div>
-        <nav class="p-4">
-            <ul class="space-y-2">
-                <li>
-                    <a href="#" class="flex items-center gap-3 px-6 py-4 text-sm font-medium rounded-xl transition-all nav-item-active">
-                        <i class="fa-solid fa-user"></i> 會員總覽
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center gap-3 px-6 py-4 text-sm font-medium text-[#50422D] hover:bg-white/50 rounded-xl transition-all">
-                        <i class="fa-solid fa-heart"></i> 我的收藏
-                    </a>
-                </li>
-                <li>
-                    <a href="engraving.html" class="flex items-center gap-3 px-6 py-4 text-sm font-medium text-[#50422D] hover:bg-white/50 rounded-xl transition-all">
-                        <i class="fa-solid fa-pen-nib"></i> 雷刻紀錄
-                    </a>
-                </li>
-                <li class="pt-8 mt-8 border-t border-gray-200/50">
-                    <button id="logout-btn-sidebar" class="flex items-center gap-3 px-6 py-4 text-sm font-medium text-red-400 hover:text-red-600 w-full text-left transition-colors">
-                        <i class="fa-solid fa-right-from-bracket"></i> 登出帳號
-                    </button>
-                </li>
-            </ul>
-        </nav>
-    </aside>
+   <aside class="sidebar-wrapper">
+    <div class="p-8 border-b border-gray-100">
+        <p class="text-xs text-[#CDBEA2] tracking-widest uppercase mb-1">Member Center</p>
+        <h2 class="text-xl font-bold text-[#50422D]">會員中心</h2>
+    </div>
+    <nav class="p-4">
+        <ul class="space-y-2">
+            <li>
+                <a href="#" class="flex items-center px-6 py-4 text-sm font-medium rounded-xl transition-all nav-item-active">
+                    會員總覽
+                </a>
+            </li>
+            <li>
+                <a href="#" class="sidebar-nav-link flex items-center px-6 py-4 text-sm font-medium text-[#50422D] rounded-xl transition-all">
+                    我的收藏
+                </a>
+            </li>
+            <li>
+                <a href="engraving.html" class="sidebar-nav-link flex items-center px-6 py-4 text-sm font-medium text-[#50422D] rounded-xl transition-all">
+                    雷刻紀錄
+                </a>
+            </li>
+            <li class="pt-8 mt-8 border-t border-gray-200/50">
+                <button id="logout-btn-sidebar" class="flex items-center px-6 py-4 text-sm font-medium text-red-400 hover:text-red-600 w-full text-left transition-colors">
+                    登出帳號
+                </button>
+            </li>
+        </ul>
+    </nav>
+</aside>
 
     <main class="main-content-wrapper">
         <div class="max-w-4xl">
