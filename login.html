@@ -8,7 +8,7 @@
 
 <style>
 body{
-  background:#ffffff;
+  background:#fff;
   color:#333;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
@@ -45,50 +45,30 @@ body{
 
 <body class="min-h-screen flex items-center justify-center p-4">
 
-<!-- 登入頁 -->
 <div id="login-section" class="w-full max-w-sm">
-
   <div class="text-center mb-10">
     <h1 class="text-3xl font-bold tracking-[0.25em] mb-5">LOHAS</h1>
     <p class="text-sm text-gray-400 tracking-widest">會員登入</p>
   </div>
 
   <div class="space-y-5">
-    <input
-      type="text"
-      id="account"
-      class="input-gogoro"
-      placeholder="手機號碼"
-      autocomplete="username"
-    >
-
-    <input
-      type="password"
-      id="password"
-      class="input-gogoro"
-      placeholder="密碼"
-      autocomplete="current-password"
-    >
+    <input type="text" id="account" class="input-gogoro" placeholder="APP帳號">
+    <input type="text" id="mobile" class="input-gogoro" placeholder="手機號碼">
+    <input type="password" id="password" class="input-gogoro" placeholder="密碼">
 
     <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
 
-    <button id="login-btn" class="btn-gogoro">
-      登入
-    </button>
+    <button id="login-btn" class="btn-gogoro">登入</button>
   </div>
-
 </div>
 
-<!-- 會員資料 -->
 <div id="profile-section" class="w-full max-w-md hidden">
-
   <div class="text-center mb-10">
     <h1 class="text-2xl font-bold tracking-[0.2em] mb-2">MEMBER PROFILE</h1>
     <p class="text-sm text-gray-400 tracking-wider">會員基本資料</p>
   </div>
 
   <div class="bg-white rounded-xl p-8 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100">
-
     <div class="flex justify-between border-b border-gray-100 pb-4">
       <span class="text-gray-400 text-sm">姓名</span>
       <span id="profile-name">-</span>
@@ -108,26 +88,21 @@ body{
       <span class="text-gray-400 text-sm">生日</span>
       <span id="profile-birthday">-</span>
     </div>
-
   </div>
 
-  <button
-    id="logout-btn"
-    class="w-full mt-10 py-3 text-sm text-gray-400 hover:text-black tracking-[0.2em]"
-  >
+  <button id="logout-btn" class="w-full mt-10 py-3 text-sm text-gray-400 hover:text-black tracking-[0.2em]">
     登出
   </button>
-
 </div>
 
 <script>
 const PROXY_URL = 'https://lohas-proxy.onrender.com/api';
-const API_KEY   = 'bfjY2jssj9dDajq0';
-const API_VER   = '0.1.0';
+const API_KEY = 'bfjY2jssj9dDajq0';
+const API_VER = '0.1.0';
 
-const loginBtn       = document.getElementById('login-btn');
-const errorMsg       = document.getElementById('error-msg');
-const loginSection   = document.getElementById('login-section');
+const loginBtn = document.getElementById('login-btn');
+const errorMsg = document.getElementById('error-msg');
+const loginSection = document.getElementById('login-section');
 const profileSection = document.getElementById('profile-section');
 
 function showError(msg){
@@ -136,14 +111,13 @@ function showError(msg){
 }
 
 function clearError(){
+  errorMsg.innerText = '';
   errorMsg.classList.add('hidden');
 }
 
 function setLoading(status){
   loginBtn.disabled = status;
-  loginBtn.innerText = status
-    ? '系統喚醒中...(免費版需30秒)'
-    : '登入';
+  loginBtn.innerText = status ? '系統喚醒中...(免費版需30秒)' : '登入';
 }
 
 loginBtn.addEventListener('click', login);
@@ -153,12 +127,12 @@ document.getElementById('password').addEventListener('keydown', e=>{
 });
 
 async function login(){
-
-  const mobile   = document.getElementById('account').value.trim();
+  const account = document.getElementById('account').value.trim();
+  const mobile = document.getElementById('mobile').value.trim();
   const password = document.getElementById('password').value.trim();
 
-  if(!mobile || !password){
-    showError('請輸入手機與密碼');
+  if(!account || !mobile || !password){
+    showError('請輸入 APP帳號、手機號碼與密碼');
     return;
   }
 
@@ -166,9 +140,7 @@ async function login(){
   setLoading(true);
 
   try{
-
-    // 第一步：登入驗證
-    const response = await fetch(`${PROXY_URL}/proxy/officialWed/login`,{
+    const loginResponse = await fetch(`${PROXY_URL}/proxy/officialWed/login`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -176,43 +148,41 @@ async function login(){
           apikey:API_KEY,
           apiver:API_VER,
           data:{
-            account:mobile,
+            account:account,
             password:password
           }
         }
       })
     });
 
-    const result = await response.json();
-    console.log('登入結果', result);
+    const loginResult = await loginResponse.json();
+    console.log('[登入結果]', loginResult);
 
-    if(String(result.code) !== '200'){
-      showError(result.errmessage || '登入失敗');
+    if(String(loginResult.code) !== '200'){
+      showError(loginResult.message || loginResult.errmessage || '帳號或密碼錯誤');
       setLoading(false);
       return;
     }
 
-    const fallbackName =
-      result.data?.erpname ||
-      result.data?.name ||
-      '-';
+    const loginName =
+      loginResult.data?.erpname ||
+      loginResult.data?.erpName ||
+      loginResult.data?.name ||
+      '';
 
-    // 第二步：用手機查完整會員資料
-    await fetchProfileByMobile(mobile, fallbackName);
+    await fetchProfileByMobile(mobile, loginName);
 
   }catch(err){
-    console.error(err);
+    console.error('[登入錯誤]', err);
     showError('連線失敗，請稍後再試');
   }
 
   setLoading(false);
 }
 
-async function fetchProfileByMobile(mobile, fallbackName){
-
+async function fetchProfileByMobile(mobile, loginName){
   try{
-
-    const response = await fetch(`${PROXY_URL}/proxy/member/list`,{
+    const profileResponse = await fetch(`${PROXY_URL}/proxy/member/list`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -224,60 +194,44 @@ async function fetchProfileByMobile(mobile, fallbackName){
       })
     });
 
-    const res = await response.json();
-    console.log('會員資料', res);
+    const profileResult = await profileResponse.json();
+    console.log('[會員資料]', profileResult);
 
-    if(String(res.code) === '200' && res.data){
-
-      const member = res.data;
-
-      document.getElementById('profile-name').innerText =
-        member.name || fallbackName || '-';
-
-      document.getElementById('profile-mobile').innerText =
-        member.mobile || mobile || '-';
-
-      document.getElementById('profile-email').innerText =
-        member.email || '-';
-
-      document.getElementById('profile-birthday').innerText =
-        member.birthday || '-';
-
-    }else{
-
-      // 查不到也至少顯示登入成功姓名
-      document.getElementById('profile-name').innerText =
-        fallbackName || '-';
-
-      document.getElementById('profile-mobile').innerText =
-        mobile || '-';
-
-      document.getElementById('profile-email').innerText =
-        '尚未取得';
-
-      document.getElementById('profile-birthday').innerText =
-        '尚未取得';
+    if(String(profileResult.code) !== '200' || !profileResult.data){
+      showError('登入成功，但手機查不到會員完整資料');
+      return;
     }
+
+    const member = profileResult.data;
+    const memberName = member.name || '';
+
+    if(loginName && memberName && loginName !== memberName){
+      showError('APP帳號與手機會員資料不一致，請確認後再試');
+      console.warn('[姓名不一致]', {
+        loginName: loginName,
+        memberName: memberName
+      });
+      return;
+    }
+
+    document.getElementById('profile-name').innerText =
+      member.name || loginName || '-';
+
+    document.getElementById('profile-mobile').innerText =
+      member.mobile || mobile || '-';
+
+    document.getElementById('profile-email').innerText =
+      member.email || '-';
+
+    document.getElementById('profile-birthday').innerText =
+      member.birthday || '-';
 
     loginSection.classList.add('hidden');
     profileSection.classList.remove('hidden');
 
   }catch(err){
-
-    document.getElementById('profile-name').innerText =
-      fallbackName || '-';
-
-    document.getElementById('profile-mobile').innerText =
-      mobile || '-';
-
-    document.getElementById('profile-email').innerText =
-      '尚未取得';
-
-    document.getElementById('profile-birthday').innerText =
-      '尚未取得';
-
-    loginSection.classList.add('hidden');
-    profileSection.classList.remove('hidden');
+    console.error('[會員資料錯誤]', err);
+    showError('讀取會員資料失敗');
   }
 }
 
