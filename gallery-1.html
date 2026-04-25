@@ -547,7 +547,7 @@
                     </div>
                 </div>
                 <div class="cta-right">
-                    <a href="#" class="btn-upload">立即上傳作品</a>
+                    <a href="javascript:void(0);" class="btn-primary" onclick="openUploadModal()">立即上傳作品</a>
                     <div class="deco-imgs">
                         <img src="images/lens-01.jpg" alt="photo1">
                         <img src="images/frame-01.jpg" alt="photo2">
@@ -657,6 +657,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // 你可以手動呼叫這行來測試開啟彈窗：
     // uploadModal.style.display = 'flex';
 });
+
+    // 控制彈出視窗開關
+const modal = document.getElementById('uploadModal');
+const closeBtn = document.getElementById('closeUpload');
+
+// 當點擊按鈕時執行這個 function
+function openUploadModal() {
+    modal.style.display = 'flex'; // 顯示視窗
+    document.body.style.overflow = 'hidden'; // 防止背景滾動，這與你在 style.css 中設定的 no-scroll 邏輯一致
+}
+
+// 點擊 X 關閉視窗
+if (closeBtn) {
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+}
     
 </script>
 
