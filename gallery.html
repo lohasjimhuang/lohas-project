@@ -1,171 +1,921 @@
-<!-- gallery.html -->
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>雷刻靈感分享牆 - Lohas 樂活眼鏡</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>雷刻靈感分享牆 - Lohas 樂活眼鏡</title>
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="gallery.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="gallery.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
+  <header class="main-header">
+    <nav class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/lohas-logo.svg" alt="Lohas樂活眼鏡" />
+        </a>
+      </div>
 
-<header class="main-header">
-  <nav class="nav-container">
-    <div class="logo">
-      <a href="index.html"><img src="images/lohas-logo.svg"></a>
+      <button class="menu-toggle" id="mobile-menu" type="button" aria-label="開啟選單">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul class="nav-links" id="nav-list">
+        <li><a href="#">最新消息</a></li>
+        <li><a href="engraving.html">獨家雷刻服務</a></li>
+        <li><a href="#">購物商城</a></li>
+        <li><a href="#">門市據點</a></li>
+        <li><a href="#">樂活商店街</a></li>
+        <li class="mobile-cta"><a href="#" class="btn-primary">會員專區</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="#" class="btn-primary">會員專區</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="plan1-layout">
+      <section class="plan1-content">
+        <div class="plan1-banner">
+          <img src="images/hero-banner-engraving.jpg" alt="Gallery" class="bg" />
+          <div class="banner-text">
+            <h2>從名字到祝福，<br />這裡收藏每一份真實的刻圖故事。</h2>
+            <p>看看大家把回憶、心意與重要的人，留在每天陪伴的眼鏡上。</p>
+          </div>
+        </div>
+
+        <div class="mobile-top-filter">
+          <div class="jins-filter-title mobile-filter-title">
+            <h3>找刻圖靈感</h3>
+          </div>
+          <div class="mobile-search-row">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="search" class="filter-search-input" id="mobileSearchInput" placeholder="搜尋作品關鍵字" />
+            </div>
+          </div>
+          <div class="mobile-row">
+            <select class="filter-select" id="mobileTopicFilter" aria-label="想刻什麼？">
+              <option>想刻什麼？</option>
+              <option>愛情 / 情侶</option>
+              <option>紀念日 / 日期</option>
+              <option>名字 / 暱稱</option>
+              <option>座右銘 / 文字</option>
+              <option>圖案 / 插畫</option>
+              <option>寵物 / 動物</option>
+              <option>家庭 / 親子</option>
+            </select>
+            <select class="filter-select" id="mobileCarrierFilter" aria-label="刻在哪裡？">
+              <option>刻在哪裡？</option>
+              <option>鏡片</option>
+              <option>鏡框</option>
+              <option>眼鏡布</option>
+              <option>眼鏡盒</option>
+              <option>鼻墊</option>
+              <option>其他週邊配件</option>
+            </select>
+            <button type="button" class="mobile-filter-open" id="mobileFilterBtn">更多</button>
+          </div>
+        </div>
+
+        <div class="jins-filter-area">
+          <div class="jins-filter-top">
+            <div class="jins-filter-title">
+              <h3>找一個適合你的刻圖靈感</h3>
+            </div>
+            <div class="result-meta">共 412 件作品</div>
+          </div>
+
+          <div class="filter-toolbar">
+            <div class="filter-groups">
+              <div class="filter-group">
+                <span class="filter-label">靈感主題</span>
+                <select class="filter-select" id="desktopTopicFilter" aria-label="靈感主題">
+                  <option>全部作品</option>
+                  <option>愛情 / 情侶</option>
+                  <option>紀念日 / 日期</option>
+                  <option>名字 / 暱稱</option>
+                  <option>座右銘 / 文字</option>
+                  <option>圖案 / 插畫</option>
+                  <option>寵物 / 動物</option>
+                  <option>家庭 / 親子</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <span class="filter-label">刻印位置</span>
+                <select class="filter-select" id="desktopCarrierFilter" aria-label="刻印位置">
+                  <option>全部位置</option>
+                  <option>鏡片</option>
+                  <option>鏡框</option>
+                  <option>眼鏡布</option>
+                  <option>眼鏡盒</option>
+                  <option>鼻墊</option>
+                  <option>其他週邊配件</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="search-area">
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" class="filter-search-input" id="desktopSearchInput" placeholder="搜尋名字、主題或作品" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="plan1-grid" id="galleryGrid">
+          <a href="#" class="plan1-card" data-topic="名字 / 暱稱" data-carrier="鏡片" data-name="林＊姐" data-story="把自己的名字刻在鏡片角落，每天戴上都像是一個小小的專屬印記。" data-images="images/lens-01.jpg,images/frame-01.jpg,images/cloth-01.jpg" data-tags="全部 名字刻印 鏡片刻圖 極簡風">
+            <div class="img-box"><img src="images/lens-01.jpg" alt="名字刻圖" /></div>
+            <div class="info"><div><div class="topic-pill">名字 / 暱稱</div><div class="title">名字刻圖</div><div class="desc">林＊姐</div></div></div>
+          </a>
+
+          <a href="#" class="plan1-card" data-topic="紀念日 / 日期" data-carrier="鏡片" data-name="王＊生" data-story="想把重要的紀念日留下來，讓那一天不只是日期，而是每天都能看見的回憶。" data-images="images/lens-01.jpg,images/box-01.jpg,images/frame-01.jpg" data-tags="全部 生日禮物 鏡片刻圖 極簡風">
+            <div class="img-box"><img src="images/lens-01.jpg" alt="紀念日" /></div>
+            <div class="info"><div><div class="topic-pill">紀念日 / 日期</div><div class="title">紀念日</div><div class="desc">王＊生</div></div></div>
+          </a>
+
+          <a href="#" class="plan1-card" data-topic="座右銘 / 文字" data-carrier="鏡框" data-name="陳＊姐" data-story="一句提醒自己的話，刻在每天都會使用的眼鏡上，像是給自己的溫柔打氣。" data-images="images/frame-01.jpg,images/lens-01.jpg,images/box-01.jpg" data-tags="全部 極簡風">
+            <div class="img-box"><img src="images/frame-01.jpg" alt="文字刻圖" /></div>
+            <div class="info"><div><div class="topic-pill">座右銘 / 文字</div><div class="title">文字刻圖</div><div class="desc">陳＊姐</div></div></div>
+          </a>
+
+          <a href="#" class="plan1-card" data-topic="愛情 / 情侶" data-carrier="鏡片" data-name="吳＊生" data-story="把兩個人才懂的符號刻在眼鏡上，不明顯，卻是彼此最懂的小秘密。" data-images="images/lens-01.jpg,images/cloth-01.jpg,images/frame-01.jpg" data-tags="全部 情侶刻圖 鏡片刻圖">
+            <div class="img-box"><img src="images/lens-01.jpg" alt="情侶刻圖" /></div>
+            <div class="info"><div><div class="topic-pill">愛情 / 情侶</div><div class="title">情侶刻圖</div><div class="desc">吳＊生</div></div></div>
+          </a>
+
+          <a href="#" class="plan1-card" data-topic="座右銘 / 文字" data-carrier="眼鏡盒" data-name="林＊姐" data-story="刻在眼鏡盒上的一句話，像是每次收起眼鏡時，也把今天好好收藏起來。" data-images="images/box-01.jpg,images/lens-01.jpg,images/cloth-01.jpg" data-tags="全部 極簡風">
+            <div class="img-box"><img src="images/box-01.jpg" alt="座右銘" /></div>
+            <div class="info"><div><div class="topic-pill">座右銘 / 文字</div><div class="title">座右銘</div><div class="desc">林＊姐</div></div></div>
+          </a>
+
+          <a href="#" class="plan1-card" data-topic="寵物 / 動物" data-carrier="鏡片" data-name="王＊姐" data-story="把毛孩的名字刻在身邊，像是牠一直陪著自己，看見每天的風景。" data-images="images/lens-01.jpg,images/frame-01.jpg,images/box-01.jpg" data-tags="全部 寵物紀念 鏡片刻圖">
+            <div class="img-box"><img src="images/lens-01.jpg" alt="寵物名字" /></div>
+            <div class="info"><div><div class="topic-pill">寵物 / 動物</div><div class="title">寵物名字</div><div class="desc">王＊姐</div></div></div>
+          </a>
+
+          <a href="#" class="plan1-card" data-topic="圖案 / 插畫" data-carrier="眼鏡布" data-name="陳＊姐" data-story="選了一個很簡單的小圖案，放在眼鏡布上，讓日常用品也有自己的風格。" data-images="images/cloth-01.jpg,images/lens-01.jpg,images/frame-01.jpg" data-tags="全部 情侶刻圖 手寫感">
+            <div class="img-box"><img src="images/cloth-01.jpg" alt="我們的故事" /></div>
+            <div class="info"><div><div class="topic-pill">圖案 / 插畫</div><div class="title">我們的故事</div><div class="desc">陳＊姐</div></div></div>
+          </a>
+
+          <a href="#" class="plan1-card" data-topic="家庭 / 親子" data-carrier="鏡片" data-name="李＊生" data-story="想把家人的祝福帶在身邊，簡單幾個字，卻是每天都會想起的安心感。" data-images="images/lens-01.jpg,images/box-01.jpg,images/cloth-01.jpg" data-tags="全部 鏡片刻圖">
+            <div class="img-box"><img src="images/lens-01.jpg" alt="家人平安" /></div>
+            <div class="info"><div><div class="topic-pill">家庭 / 親子</div><div class="title">家人平安</div><div class="desc">李＊生</div></div></div>
+          </a>
+        </div>
+
+        <div class="plan1-cta">
+          <div class="cta-left">
+            <div class="icon-circle"><i class="fas fa-camera"></i></div>
+            <div class="cta-text">
+              <h3>你也想讓作品出現在分享牆嗎？</h3>
+              <p>加入大家的刻圖故事，讓更多人看見你的創意作品。</p>
+            </div>
+          </div>
+
+          <div class="cta-right">
+            <button type="button" class="btn-upload" id="openUploadBtn">我也想上牆</button>
+            <div class="deco-imgs">
+              <img src="images/lens-01.jpg" alt="photo1" />
+              <img src="images/frame-01.jpg" alt="photo2" />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
+  </main>
 
-    <button class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
+  <div class="filter-drawer-overlay" id="filterDrawer" aria-hidden="true">
+    <div class="filter-drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="drawer-header">
+        <h3 id="drawerTitle">篩選作品</h3>
+        <button type="button" class="drawer-close" id="drawerClose" aria-label="關閉篩選">&times;</button>
+      </div>
 
-    <ul class="nav-links" id="nav-list">
-      <li><a href="#">最新消息</a></li>
-      <li><a href="#">獨家雷刻服務</a></li>
-      <li><a href="#">購物商城</a></li>
-      <li><a href="#">門市據點</a></li>
-      <li><a href="#">樂活商店街</a></li>
-    </ul>
+      <div class="drawer-section">
+        <p class="drawer-section-title">靈感主題</p>
+        <div class="drawer-chip-grid">
+          <button type="button" class="chip active">全部作品</button>
+          <button type="button" class="chip">愛情 / 情侶</button>
+          <button type="button" class="chip">紀念日 / 日期</button>
+          <button type="button" class="chip">名字 / 暱稱</button>
+          <button type="button" class="chip">座右銘 / 文字</button>
+          <button type="button" class="chip">圖案 / 插畫</button>
+          <button type="button" class="chip">寵物 / 動物</button>
+          <button type="button" class="chip">家庭 / 親子</button>
+        </div>
+      </div>
 
-    <a href="#" class="btn-primary nav-cta">會員專區</a>
-  </nav>
-</header>
+      <div class="drawer-section">
+        <p class="drawer-section-title">刻印位置</p>
+        <div class="drawer-chip-grid">
+          <button type="button" class="chip active">全部位置</button>
+          <button type="button" class="chip">鏡片</button>
+          <button type="button" class="chip">鏡框</button>
+          <button type="button" class="chip">眼鏡布</button>
+          <button type="button" class="chip">眼鏡盒</button>
+          <button type="button" class="chip">鼻墊</button>
+          <button type="button" class="chip">其他週邊配件</button>
+        </div>
+      </div>
 
-<main>
-
-<section class="hero-banner">
-  <img src="images/hero-banner-engraving.jpg">
-  <div class="hero-text">
-    <h1>從名字到祝福，<br>這裡收藏每一份真實的刻圖故事。</h1>
-    <p>看看大家把回憶、心意與重要的人，留在每天陪伴的眼鏡上。</p>
+      <div class="drawer-actions">
+        <button type="button" class="drawer-reset" id="drawerReset">重設</button>
+        <button type="button" class="drawer-apply" id="drawerApply">套用篩選</button>
+      </div>
+    </div>
   </div>
-</section>
 
-<section class="filter-wrap">
-
-  <div class="filter-top">
-    <h2>找刻圖靈感</h2>
-    <span id="countText">共 8 件作品</span>
+  <div id="detailModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
+      <div class="modal-header">
+        <h2 id="detailModalTitle">作品分享</h2>
+        <button id="closeDetail" class="close-btn" type="button" aria-label="關閉作品詳情">&times;</button>
+      </div>
+      <div class="modal-body" id="detailBody"></div>
+    </div>
   </div>
 
-  <div class="filter-row">
+  <div id="uploadModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content upload-modal" role="dialog" aria-modal="true" aria-labelledby="uploadModalTitle">
+      <div class="modal-header">
+        <h2 id="uploadModalTitle">分享你的作品 <span class="subtitle">可拖曳調整首圖順序</span></h2>
+        <button id="closeUpload" class="close-btn" type="button" aria-label="關閉上傳視窗">&times;</button>
+      </div>
 
-    <select id="topicFilter">
-      <option>全部作品</option>
-      <option>愛情 / 情侶</option>
-      <option>紀念日 / 日期</option>
-      <option>名字 / 暱稱</option>
-      <option>座右銘 / 文字</option>
-      <option>圖案 / 插畫</option>
-      <option>寵物 / 動物</option>
-      <option>家庭 / 親子</option>
-    </select>
+      <div class="modal-body">
+        <input id="fileInput" class="hidden-file-input" type="file" accept="image/*" />
 
-    <select id="carrierFilter">
-      <option>全部位置</option>
-      <option>鏡片</option>
-      <option>鏡框</option>
-      <option>眼鏡布</option>
-      <option>眼鏡盒</option>
-      <option>鼻墊</option>
-      <option>其他週邊配件</option>
-    </select>
+        <div class="upload-grid">
+          <div class="upload-box main-upload" data-slot="0" tabindex="0" role="button" aria-label="上傳首圖">
+            <span class="badge-main">首圖</span>
+            <div class="upload-placeholder">
+              <i class="fa-regular fa-image"></i>
+              <p>新增圖片</p>
+              <span class="upload-hint">點擊選擇，或拖曳圖片到這裡</span>
+            </div>
+          </div>
 
-    <div class="search-box">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="搜尋名字、主題或作品">
+          <div class="sub-upload-container">
+            <div class="upload-box sub-upload" data-slot="1" tabindex="0" role="button" aria-label="上傳圖片二">
+              <div class="upload-placeholder">
+                <i class="fa-regular fa-image"></i>
+                <p>新增圖片</p>
+                <span class="upload-hint">副圖</span>
+              </div>
+            </div>
+
+            <div class="upload-box sub-upload" data-slot="2" tabindex="0" role="button" aria-label="上傳圖片三">
+              <div class="upload-placeholder">
+                <i class="fa-regular fa-image"></i>
+                <p>新增圖片</p>
+                <span class="upload-hint">副圖</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-row">
+            <label for="workTitle">作品名稱</label>
+            <input id="workTitle" type="text" maxlength="24" placeholder="例如：把回憶刻在日常裡" />
+          </div>
+
+          <div class="two-col">
+            <div class="form-row">
+              <label for="workCategory">靈感主題</label>
+              <select id="workCategory">
+                <option value="名字 / 暱稱">名字 / 暱稱</option>
+                <option value="愛情 / 情侶">愛情 / 情侶</option>
+                <option value="紀念日 / 日期">紀念日 / 日期</option>
+                <option value="座右銘 / 文字">座右銘 / 文字</option>
+                <option value="圖案 / 插畫">圖案 / 插畫</option>
+                <option value="寵物 / 動物">寵物 / 動物</option>
+                <option value="家庭 / 親子">家庭 / 親子</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="carrierCategory">刻印位置</label>
+              <select id="carrierCategory">
+                <option value="鏡片">鏡片</option>
+                <option value="鏡框">鏡框</option>
+                <option value="眼鏡布">眼鏡布</option>
+                <option value="眼鏡盒">眼鏡盒</option>
+                <option value="鼻墊">鼻墊</option>
+                <option value="其他週邊配件">其他週邊配件</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="shareText">分享故事</label>
+            <textarea id="shareText" maxlength="100" placeholder="寫下這份刻圖背後的小故事（最多 100 字）..."></textarea>
+          </div>
+
+          <div class="char-counter"><span id="currentChar">0</span>/100</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-preview" id="previewBtn">預覽作品</button>
+        <button type="button" class="btn-submit" id="submitBtn">送出分享</button>
+      </div>
     </div>
-
   </div>
 
-</section>
+  <div id="toast" class="toast">已完成</div>
 
-<section class="gallery-grid" id="galleryGrid">
-
-  <a href="#" class="card" data-topic="名字 / 暱稱" data-carrier="鏡片">
-    <img src="images/lens-01.jpg">
-    <div class="card-info">
-      <span class="pill">名字 / 暱稱</span>
-      <h3>名字刻圖</h3>
-      <p>林＊姐</p>
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Lohas 樂活眼鏡 All Rights Reserved.</p>
+      </div>
     </div>
-  </a>
+  </footer>
 
-  <a href="#" class="card" data-topic="愛情 / 情侶" data-carrier="鏡片">
-    <img src="images/lens-01.jpg">
-    <div class="card-info">
-      <span class="pill">愛情 / 情侶</span>
-      <h3>情侶刻圖</h3>
-      <p>吳＊生</p>
-    </div>
-  </a>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
+      const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+      const SUPABASE_BUCKET = "gallery-uploads";
+      const SUPABASE_TABLE = "gallery_posts";
+      const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  <a href="#" class="card" data-topic="圖案 / 插畫" data-carrier="眼鏡布">
-    <img src="images/cloth-01.jpg">
-    <div class="card-info">
-      <span class="pill">圖案 / 插畫</span>
-      <h3>我們的故事</h3>
-      <p>陳＊姐</p>
-    </div>
-  </a>
+      const state = {
+        selectedSlot: null,
+        draggedSlot: null,
+        images: [null, null, null],
+        files: [null, null, null]
+      };
 
-  <a href="#" class="card" data-topic="家庭 / 親子" data-carrier="鏡片">
-    <img src="images/lens-01.jpg">
-    <div class="card-info">
-      <span class="pill">家庭 / 親子</span>
-      <h3>家人平安</h3>
-      <p>李＊生</p>
-    </div>
-  </a>
+      const menu = document.getElementById("mobile-menu");
+      const navList = document.getElementById("nav-list");
+      const openUploadBtn = document.getElementById("openUploadBtn");
+      const uploadModal = document.getElementById("uploadModal");
+      const detailModal = document.getElementById("detailModal");
+      const closeDetail = document.getElementById("closeDetail");
+      const detailBody = document.getElementById("detailBody");
+      const closeUpload = document.getElementById("closeUpload");
+      const fileInput = document.getElementById("fileInput");
+      const uploadBoxes = document.querySelectorAll(".upload-box");
+      const shareText = document.getElementById("shareText");
+      const currentChar = document.getElementById("currentChar");
+      const workTitle = document.getElementById("workTitle");
+      const workCategory = document.getElementById("workCategory");
+      const carrierCategory = document.getElementById("carrierCategory");
+      const previewBtn = document.getElementById("previewBtn");
+      const submitBtn = document.getElementById("submitBtn");
+      const galleryGrid = document.getElementById("galleryGrid");
+      const toast = document.getElementById("toast");
+      const mobileFilterBtn = document.getElementById("mobileFilterBtn");
+      const mobileTopicFilter = document.getElementById("mobileTopicFilter");
+      const mobileCarrierFilter = document.getElementById("mobileCarrierFilter");
+      const filterDrawer = document.getElementById("filterDrawer");
+      const drawerClose = document.getElementById("drawerClose");
+      const drawerApply = document.getElementById("drawerApply");
+      const drawerReset = document.getElementById("drawerReset");
+      const desktopTopicFilter = document.getElementById("desktopTopicFilter");
+      const desktopCarrierFilter = document.getElementById("desktopCarrierFilter");
+      const desktopSearchInput = document.getElementById("desktopSearchInput");
+      const mobileSearchInput = document.getElementById("mobileSearchInput");
+      const resultMeta = document.querySelector(".result-meta");
 
-</section>
+      const filterState = {
+        topic: "全部作品",
+        carrier: "全部位置",
+        keyword: ""
+      };
 
-</main>
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("is-show");
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => {
+          toast.classList.remove("is-show");
+        }, 1800);
+      }
 
-<script>
-const topicFilter = document.getElementById("topicFilter");
-const carrierFilter = document.getElementById("carrierFilter");
-const searchInput = document.getElementById("searchInput");
-const cards = document.querySelectorAll(".card");
-const countText = document.getElementById("countText");
+      function openModal() {
+        uploadModal.classList.add("is-open");
+        uploadModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
 
-function filterCards(){
-let count = 0;
+      function closeModal() {
+        uploadModal.classList.remove("is-open");
+        uploadModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
 
-cards.forEach(card=>{
+      function openDetailModal(card) {
+        const images = (card.dataset.images || card.querySelector("img")?.src || "").split(",").map(item => item.trim()).filter(Boolean);
+        const title = card.querySelector(".title")?.textContent || "未命名作品";
+        const topic = card.dataset.topic || "未分類主題";
+        const carrier = card.dataset.carrier || "未分類位置";
+        const name = card.dataset.name || card.querySelector(".desc")?.textContent || "顧客";
+        const story = card.dataset.story || "這是一份來自顧客分享的刻圖作品。";
+        const mainImage = images[0] || "images/lens-01.jpg";
+        const subImages = images.slice(1, 3);
 
-const topic = card.dataset.topic;
-const carrier = card.dataset.carrier;
-const text = card.innerText.toLowerCase();
+        detailBody.innerHTML = `
+          <div class="detail-gallery">
+            <div class="detail-main-image"><img src="${mainImage}" alt="${title}" /></div>
+            <div class="detail-sub-list">
+              ${subImages.map(src => `<div class="detail-sub-image"><img src="${src}" alt="${title}" /></div>`).join("")}
+            </div>
+          </div>
+          <h3 class="detail-title">${title}</h3>
+          <div class="detail-meta">
+            <span class="detail-chip">${topic}</span>
+            <span class="detail-chip">${carrier}</span>
+            <span class="detail-chip">${name}</span>
+          </div>
+          <p class="detail-story">${story}</p>
+        `;
 
-const match1 = topicFilter.value === "全部作品" || topic === topicFilter.value;
-const match2 = carrierFilter.value === "全部位置" || carrier === carrierFilter.value;
-const match3 = text.includes(searchInput.value.toLowerCase());
+        detailModal.classList.add("is-open");
+        detailModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
 
-if(match1 && match2 && match3){
-card.style.display="inline-block";
-count++;
-}else{
-card.style.display="none";
-}
+      function closeDetailModal() {
+        detailModal.classList.remove("is-open");
+        detailModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
 
-});
+      function resetBox(slot) {
+        const box = document.querySelector(`.upload-box[data-slot="${slot}"]`);
+        const isMain = box.classList.contains("main-upload");
 
-countText.innerText = `共 ${count} 件作品`;
-}
+        box.classList.remove("has-image");
+        box.setAttribute("draggable", "false");
+        box.innerHTML = `
+          ${isMain ? '<span class="badge-main">首圖</span>' : ''}
+          <div class="upload-placeholder">
+            <i class="fa-regular fa-image"></i>
+            <p>新增圖片</p>
+            <span class="upload-hint">${isMain ? "點擊選擇，或拖曳圖片到這裡" : "副圖"}</span>
+          </div>
+        `;
+      }
 
-topicFilter.onchange = filterCards;
-carrierFilter.onchange = filterCards;
-searchInput.oninput = filterCards;
-</script>
+      function renderBox(slot) {
+        const box = document.querySelector(`.upload-box[data-slot="${slot}"]`);
+        const image = state.images[slot];
 
+        if (!image) {
+          resetBox(slot);
+          return;
+        }
+
+        const isMain = box.classList.contains("main-upload");
+        box.classList.add("has-image");
+        box.setAttribute("draggable", "true");
+        box.innerHTML = `
+          ${isMain ? '<span class="badge-main">首圖</span>' : ''}
+          <img class="preview-image" src="${image}" alt="上傳預覽圖片" />
+          <button class="delete-btn" type="button" data-delete-slot="${slot}" aria-label="刪除圖片">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+      }
+
+      function readImageFile(file, slot) {
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+          showToast("請上傳圖片格式");
+          return;
+        }
+
+        const maxSize = 8 * 1024 * 1024;
+        if (file.size > maxSize) {
+          showToast("圖片請小於 8MB");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = event => {
+          state.files[slot] = file;
+          state.images[slot] = event.target.result;
+          renderBox(slot);
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function openFilePicker(slot) {
+        state.selectedSlot = Number(slot);
+        fileInput.value = "";
+        fileInput.click();
+      }
+
+      function swapImages(fromSlot, toSlot) {
+        const temp = state.images[fromSlot];
+        state.images[fromSlot] = state.images[toSlot];
+        state.images[toSlot] = temp;
+
+        const tempFile = state.files[fromSlot];
+        state.files[fromSlot] = state.files[toSlot];
+        state.files[toSlot] = tempFile;
+        renderBox(fromSlot);
+        renderBox(toSlot);
+      }
+
+      function getMainImage() {
+        return state.images[0];
+      }
+
+      function getTitle() {
+        return workTitle.value.trim() || "未命名作品";
+      }
+
+      function getDesc() {
+        const content = workCategory.value || "雷刻作品";
+        const carrier = carrierCategory.value || "未分類載體";
+        return `${content}・${carrier}`;
+      }
+
+      function maskName(name) {
+        const cleanName = (name || "顧客").trim();
+        if (cleanName.length <= 1) return `${cleanName}＊`;
+        const first = cleanName.slice(0, 1);
+        const suffix = cleanName.includes("先生") ? "生" : cleanName.includes("小姐") ? "姐" : cleanName.slice(-1);
+        return `${first}＊${suffix}`;
+      }
+
+      function renderGalleryCard(post, prepend = false) {
+        const imageUrl = post.image_urls?.[0] || post.main_image_url || "images/lens-01.jpg";
+        const displayName = maskName(post.customer_name || "顧客");
+
+        const card = document.createElement("a");
+        card.href = "#";
+        card.className = "plan1-card";
+        card.dataset.topic = post.topic || "";
+        card.dataset.carrier = post.carrier || "";
+        card.dataset.name = displayName;
+        card.dataset.story = post.story || "這是一份來自顧客分享的刻圖作品。";
+        card.dataset.images = (post.image_urls || [imageUrl]).join(",");
+        card.innerHTML = `
+          <div class="img-box"><img src="${imageUrl}" alt="${post.title || "雷刻作品"}" /></div>
+          <div class="info">
+            <div>
+              <div class="topic-pill">${post.topic || "靈感主題"}</div>
+              <div class="title">${post.title || "未命名作品"}</div>
+              <div class="desc">${displayName}</div>
+            </div>
+          </div>
+        `;
+
+        if (prepend) galleryGrid.prepend(card);
+        else galleryGrid.appendChild(card);
+      }
+
+      async function loadPostsFromSupabase() {
+        if (SUPABASE_URL.includes("YOUR_PROJECT_ID") || SUPABASE_ANON_KEY.includes("YOUR_SUPABASE_ANON_KEY")) {
+          applyFilters();
+          return;
+        }
+
+        const { data, error } = await supabaseClient
+          .from(SUPABASE_TABLE)
+          .select("id,title,topic,carrier,story,customer_name,image_urls,main_image_url,created_at")
+          .eq("is_public", true)
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          console.error(error);
+          showToast("讀取作品失敗，請檢查 Supabase 設定");
+          return;
+        }
+
+        galleryGrid.innerHTML = "";
+        data.forEach(post => renderGalleryCard(post));
+        applyFilters();
+      }
+
+      function validateForm() {
+        if (!getMainImage()) {
+          showToast("請至少上傳一張首圖");
+          return false;
+        }
+
+        if (!workTitle.value.trim()) {
+          showToast("請輸入作品名稱");
+          workTitle.focus();
+          return false;
+        }
+
+        return true;
+      }
+
+      function applyFilters() {
+        const cards = Array.from(document.querySelectorAll(".plan1-card"));
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const topic = card.dataset.topic || "";
+          const carrier = card.dataset.carrier || "";
+          const normalizedTopic = filterState.topic === "想刻什麼？" ? "全部作品" : filterState.topic;
+          const normalizedCarrier = filterState.carrier === "刻在哪裡？" ? "全部位置" : filterState.carrier;
+          const keyword = (filterState.keyword || "").toLowerCase().trim();
+          const title = card.querySelector(".title")?.textContent.toLowerCase() || "";
+          const desc = card.querySelector(".desc")?.textContent.toLowerCase() || "";
+          const tags = `${topic} ${carrier} ${title} ${desc}`.toLowerCase();
+          const matchTopic = normalizedTopic === "全部作品" || topic === normalizedTopic;
+          const matchCarrier = normalizedCarrier === "全部位置" || carrier === normalizedCarrier;
+          const matchKeyword = !keyword || tags.includes(keyword);
+          const shouldShow = matchTopic && matchCarrier && matchKeyword;
+
+          card.style.display = shouldShow ? "inline-block" : "none";
+          if (shouldShow) visibleCount += 1;
+        });
+
+        if (resultMeta) resultMeta.textContent = `共 ${visibleCount} 件作品`;
+      }
+
+      function syncDesktopFilters() {
+        if (desktopTopicFilter) filterState.topic = desktopTopicFilter.value;
+        if (desktopCarrierFilter) filterState.carrier = desktopCarrierFilter.value;
+        if (desktopSearchInput) filterState.keyword = desktopSearchInput.value;
+        applyFilters();
+      }
+
+      async function uploadImagesToSupabase() {
+        const uploadedUrls = [];
+        const files = state.files.filter(Boolean);
+
+        for (const file of files) {
+          const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
+          const filePath = `public/${Date.now()}-${crypto.randomUUID()}.${ext}`;
+          const { error: uploadError } = await supabaseClient.storage
+            .from(SUPABASE_BUCKET)
+            .upload(filePath, file, { cacheControl: "3600", upsert: false });
+
+          if (uploadError) throw uploadError;
+
+          const { data } = supabaseClient.storage
+            .from(SUPABASE_BUCKET)
+            .getPublicUrl(filePath);
+
+          uploadedUrls.push(data.publicUrl);
+        }
+
+        return uploadedUrls;
+      }
+
+      async function submitPostToSupabase() {
+        if (SUPABASE_URL.includes("YOUR_PROJECT_ID") || SUPABASE_ANON_KEY.includes("YOUR_SUPABASE_ANON_KEY")) {
+          throw new Error("請先填入 Supabase URL 與 Anon Key");
+        }
+
+        const imageUrls = await uploadImagesToSupabase();
+        const postPayload = {
+          title: getTitle(),
+          topic: workCategory.value,
+          carrier: carrierCategory.value,
+          story: shareText.value.trim(),
+          customer_name: "顧客",
+          image_urls: imageUrls,
+          main_image_url: imageUrls[0],
+          is_public: true
+        };
+
+        const { data, error } = await supabaseClient
+          .from(SUPABASE_TABLE)
+          .insert(postPayload)
+          .select("id,title,topic,carrier,story,customer_name,image_urls,main_image_url,created_at,is_public")
+          .single();
+
+        if (error) throw error;
+        return data;
+      }
+
+      function clearForm() {
+        state.images = [null, null, null];
+        state.files = [null, null, null];
+        uploadBoxes.forEach(box => resetBox(Number(box.dataset.slot)));
+        workTitle.value = "";
+        shareText.value = "";
+        currentChar.textContent = "0";
+        workCategory.selectedIndex = 0;
+        carrierCategory.selectedIndex = 0;
+      }
+
+      if (menu && navList) {
+        menu.addEventListener("click", () => {
+          menu.classList.toggle("active");
+          navList.classList.toggle("active");
+        });
+      }
+
+      openUploadBtn.addEventListener("click", openModal);
+      closeUpload.addEventListener("click", closeModal);
+      closeDetail.addEventListener("click", closeDetailModal);
+
+      uploadModal.addEventListener("click", event => {
+        if (event.target === uploadModal) closeModal();
+      });
+
+      detailModal.addEventListener("click", event => {
+        if (event.target === detailModal) closeDetailModal();
+      });
+
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+          if (uploadModal.classList.contains("is-open")) closeModal();
+          if (detailModal.classList.contains("is-open")) closeDetailModal();
+          if (filterDrawer.classList.contains("is-open")) closeFilterDrawer();
+        }
+      });
+
+      fileInput.addEventListener("change", event => {
+        const file = event.target.files[0];
+        if (state.selectedSlot !== null) readImageFile(file, state.selectedSlot);
+      });
+
+      uploadBoxes.forEach(box => {
+        const slot = Number(box.dataset.slot);
+        resetBox(slot);
+
+        box.addEventListener("click", event => {
+          const deleteBtn = event.target.closest("[data-delete-slot]");
+          if (deleteBtn) {
+            event.stopPropagation();
+            const deleteSlot = Number(deleteBtn.dataset.deleteSlot);
+            state.files[deleteSlot] = null;
+            state.images[deleteSlot] = null;
+            renderBox(deleteSlot);
+            return;
+          }
+          openFilePicker(slot);
+        });
+
+        box.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openFilePicker(slot);
+          }
+        });
+
+        box.addEventListener("dragover", event => {
+          event.preventDefault();
+          box.classList.add("drag-enter");
+        });
+
+        box.addEventListener("dragleave", () => box.classList.remove("drag-enter"));
+
+        box.addEventListener("drop", event => {
+          event.preventDefault();
+          box.classList.remove("drag-enter");
+          const file = event.dataTransfer.files[0];
+          if (file) {
+            readImageFile(file, slot);
+            return;
+          }
+          if (state.draggedSlot !== null && state.draggedSlot !== slot) swapImages(state.draggedSlot, slot);
+        });
+
+        box.addEventListener("dragstart", event => {
+          if (!state.images[slot]) {
+            event.preventDefault();
+            return;
+          }
+          state.draggedSlot = slot;
+          box.classList.add("dragging");
+          event.dataTransfer.setData("text/plain", String(slot));
+        });
+
+        box.addEventListener("dragend", () => {
+          state.draggedSlot = null;
+          box.classList.remove("dragging");
+        });
+      });
+
+      shareText.addEventListener("input", () => {
+        currentChar.textContent = shareText.value.length;
+      });
+
+      function openFilterDrawer() {
+        filterDrawer.classList.add("is-open");
+        filterDrawer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeFilterDrawer() {
+        filterDrawer.classList.remove("is-open");
+        filterDrawer.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      if (mobileFilterBtn && filterDrawer) {
+        mobileFilterBtn.addEventListener("click", openFilterDrawer);
+        drawerClose.addEventListener("click", closeFilterDrawer);
+        drawerApply.addEventListener("click", () => {
+          closeFilterDrawer();
+          applyFilters();
+          showToast("已套用篩選條件");
+        });
+        drawerReset.addEventListener("click", () => {
+          filterState.topic = "全部作品";
+          filterState.carrier = "全部位置";
+          if (desktopTopicFilter) desktopTopicFilter.value = "全部作品";
+          if (desktopCarrierFilter) desktopCarrierFilter.value = "全部位置";
+          if (mobileTopicFilter) mobileTopicFilter.value = "想刻什麼？";
+          if (mobileCarrierFilter) mobileCarrierFilter.value = "刻在哪裡？";
+          document.querySelectorAll(".drawer-chip-grid").forEach(group => {
+            group.querySelectorAll(".chip").forEach(item => item.classList.remove("active"));
+            const firstChip = group.querySelector(".chip");
+            if (firstChip) firstChip.classList.add("active");
+          });
+          applyFilters();
+          showToast("已重設篩選");
+        });
+        filterDrawer.addEventListener("click", event => {
+          if (event.target === filterDrawer) closeFilterDrawer();
+        });
+      }
+
+      document.querySelectorAll(".chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          const group = chip.parentElement;
+          const value = chip.textContent.trim();
+          group.querySelectorAll(".chip").forEach(item => item.classList.remove("active"));
+          chip.classList.add("active");
+
+          const sectionTitle = group.closest(".drawer-section")?.querySelector(".drawer-section-title")?.textContent || "";
+          if (sectionTitle.includes("靈感")) filterState.topic = value;
+          if (sectionTitle.includes("刻印")) filterState.carrier = value;
+        });
+      });
+
+      [desktopTopicFilter, desktopCarrierFilter, mobileTopicFilter, mobileCarrierFilter].forEach(select => {
+        if (select) select.addEventListener("change", () => {
+          if (select === mobileTopicFilter) filterState.topic = mobileTopicFilter.value;
+          else if (select === mobileCarrierFilter) filterState.carrier = mobileCarrierFilter.value;
+          else syncDesktopFilters();
+          applyFilters();
+        });
+      });
+
+      [desktopSearchInput, mobileSearchInput].forEach(input => {
+        if (input) input.addEventListener("input", () => {
+          filterState.keyword = input.value;
+          if (input === desktopSearchInput && mobileSearchInput) mobileSearchInput.value = input.value;
+          if (input === mobileSearchInput && desktopSearchInput) desktopSearchInput.value = input.value;
+          applyFilters();
+        });
+      });
+
+      galleryGrid.addEventListener("click", event => {
+        const card = event.target.closest(".plan1-card");
+        if (!card) return;
+        event.preventDefault();
+        openDetailModal(card);
+      });
+
+      previewBtn.addEventListener("click", () => {
+        if (!validateForm()) return;
+        showToast("預覽完成：內容已準備就緒");
+      });
+
+      submitBtn.addEventListener("click", async () => {
+        if (!validateForm()) return;
+
+        try {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "上傳中...";
+          const newPost = await submitPostToSupabase();
+          renderGalleryCard(newPost, true);
+          closeModal();
+          clearForm();
+          applyFilters();
+          showToast("你的作品已成功分享");
+        } catch (error) {
+          console.error(error);
+          showToast(error.message || "上傳失敗，請檢查 Supabase 權限設定");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "送出分享";
+        }
+      });
+
+      applyFilters();
+      loadPostsFromSupabase();
+    });
+  </script>
 </body>
 </html>
