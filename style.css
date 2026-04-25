@@ -2626,31 +2626,31 @@ body.no-scroll {
     position: relative; /* 確保叉叉相對於方框定位 */
 }
 
+/* 靜態圓形叉叉樣式 */
 .delete-btn {
     position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    color: #50422D; /* 樂活褐 */
-    border-radius: 50%;
+    top: -8px;    /* 稍微往外偏移一點更有設計感 */
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    background-color: #50422D; /* 樂活標準褐 */
+    color: #ffffff;
+    border-radius: 50%; /* 圓形 */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
-    z-index: 10;
-    border: 1px solid #ddd;
-    transition: all 0.2s ease;
+    z-index: 100; /* 確保在最上層 */
+    border: 2px solid #ffffff; /* 白色外圈增加辨識度 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .delete-btn:hover {
-    background: #50422D;
-    color: #fff;
+    background-color: #765F4A;
 }
 
-/* 隱藏原本的 placeholder 文字與圖示 */
+/* 當有圖片時隱藏預設的 + 號內容 */
 .upload-box.has-image .upload-placeholder {
     display: none;
 }
