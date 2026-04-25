@@ -1,0 +1,419 @@
+/* ========================================
+   Lohas 首頁專用 index.css
+   Hero / Cards / Secondary Banner / Store
+======================================== */
+
+/* ===== Hero Banner ===== */
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  color: #fff;
+  padding-left: 5%;
+  padding-bottom: 40px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+  text-align: left;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.hero-btns .btn {
+  display: inline-block;
+  padding: 12px 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.btn-outline {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: #333;
+}
+
+/* ===== 首頁橫向卡片 ===== */
+.owndays-grid-section {
+  padding: 40px 0;
+  background-color: #fff;
+}
+
+.owndays-wrapper {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.owndays-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
+  margin-bottom: 15px;
+}
+
+.owndays-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.scroll-btn {
+  width: 42px;
+  height: 42px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  color: #50422d;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.scroll-btn:hover {
+  background-color: #50422d;
+  color: #fff;
+  border-color: #50422d;
+}
+
+.owndays-container {
+  display: flex;
+  gap: 15px;
+  padding: 0 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.owndays-container::-webkit-scrollbar {
+  display: none;
+}
+
+.owndays-item {
+  position: relative;
+  flex: 0 0 calc(50% - 7.5px);
+  min-width: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  scroll-snap-align: start;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.owndays-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.item-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.05);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
+.item-overlay .tag {
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.item-overlay h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  font-weight: 800;
+}
+
+.item-overlay p {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.btn-more {
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid #fff;
+  padding: 8px 20px;
+  width: fit-content;
+  transition: 0.3s;
+}
+
+.owndays-item:hover img {
+  transform: scale(1.05);
+}
+
+.owndays-item:hover .btn-more {
+  background: #fff;
+  color: #000;
+}
+
+/* 特定卡片文字改品牌色 */
+.mother-day .item-overlay,
+.shopping-street-style .item-overlay {
+  color: #50422d;
+}
+
+.mother-day .btn-more,
+.shopping-street-style .btn-more {
+  border-color: #50422d;
+  color: #50422d;
+}
+
+.mother-day:hover .btn-more,
+.shopping-street-style:hover .btn-more {
+  background: #50422d;
+  color: #fff;
+}
+
+/* ===== Secondary Banner ===== */
+.secondary-banner {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+}
+
+.secondary-banner .hero-content {
+  text-align: center;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.secondary-banner .hero-btns .btn {
+  margin: 15px 5px 0;
+}
+
+/* ===== 門市據點 ===== */
+.store-location-section {
+  width: 100%;
+  background-color: #fff;
+  padding: 0 0 80px;
+}
+
+.store-location-container {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  background-color: #f9f8f6;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.store-text-block {
+  flex: 4;
+  padding: 40px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.store-title {
+  font-size: 32px;
+  color: #50422d;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.store-desc {
+  font-size: 16px;
+  color: #50422d;
+  line-height: 1.8;
+  margin-bottom: 35px;
+  opacity: 0.8;
+}
+
+.btn-store {
+  background-color: #50422d;
+  color: #fff !important;
+  padding: 12px 35px;
+  border-radius: 50px;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-store:hover {
+  background-color: #765f4a;
+}
+
+.store-image-block {
+  flex: 6;
+  position: relative;
+  min-height: 450px;
+}
+
+.store-image-block img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== 手機版 ===== */
+@media (max-width: 768px) {
+  .hero-banner {
+    padding-left: 20px;
+    padding-bottom: 40px;
+    height: 100svh;
+  }
+
+  .hero-content {
+    max-width: 90%;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 3px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+  }
+
+  .hero-btns .btn {
+    padding: 8px 25px;
+    font-size: 0.85rem;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  .scroll-btn {
+    display: none !important;
+  }
+
+  .owndays-grid-section {
+    padding-top: 20px !important;
+    padding-bottom: 20px;
+  }
+
+  .owndays-container {
+    padding-right: 30px;
+    padding-bottom: 20px;
+  }
+
+  .owndays-item {
+    flex: 0 0 85%;
+    aspect-ratio: 4 / 3;
+    scroll-snap-align: center;
+  }
+
+  .item-overlay {
+    padding: 20px;
+    justify-content: flex-end;
+  }
+
+  .item-overlay h2 {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .item-overlay p {
+    margin-bottom: 10px;
+  }
+
+  .secondary-banner {
+    height: 50vh;
+    min-height: 350px;
+  }
+
+  .store-location-section {
+    padding: 0 0 40px;
+  }
+
+  .store-location-container {
+    flex-direction: column-reverse;
+  }
+
+  .store-text-block {
+    padding: 0 25px 40px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .store-title {
+    font-size: 26px;
+  }
+
+  .store-desc {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+
+  .store-image-block {
+    width: 100%;
+    min-height: 280px;
+  }
+
+  .store-image-block img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3 !important;
+    object-fit: cover;
+  }
+}
