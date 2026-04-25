@@ -1626,6 +1626,21 @@ button {
   font-weight: 400;
   line-height: 1.2;
 }
+
+    .detail-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start !important; /* 不再推到最右 */
+  gap: 10px; /* 標題和姓名距離 */
+  margin-bottom: 12px;
+}
+
+.detail-user {
+  color: #8c7a6b;
+  font-size: 14px;
+  font-weight: 500;
+  flex: none !important;
+}
     
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2690,11 +2705,13 @@ document.getElementById("closeCrop").addEventListener("click", () => {
       </div>
     </div>
 
-    <h3 class="detail-title">${getTitle()}</h3>
+    <div class="detail-title-row">
+      <h3 class="detail-title">${getTitle()}</h3>
+      <span class="detail-user">${previewName}</span>
+    </div>
 
     <div class="detail-meta">
       <span class="detail-chip">${workCategory.value}</span>
-      <span class="detail-name">${previewName}</span>
       <span class="detail-chip">${carrierCategory.value}</span>
     </div>
 
@@ -2705,6 +2722,9 @@ document.getElementById("closeCrop").addEventListener("click", () => {
 
   detailModal.classList.add("is-open");
   detailModal.setAttribute("aria-hidden", "false");
+  uploadModal.classList.remove("is-open");
+  uploadModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "hidden";
 });
 
       submitBtn.addEventListener("click", async () => {
