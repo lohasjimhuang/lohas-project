@@ -1489,6 +1489,234 @@
     min-height: 150px !important;
   }
 }
+    /* 強制還原上傳視窗樣式 */
+#uploadModal,
+#uploadModal * {
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
+}
+
+#uploadModal.modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 3000 !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  background: rgba(35, 29, 22, 0.45) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+#uploadModal.modal-overlay.is-open {
+  display: flex !important;
+}
+
+#uploadModal .modal-content {
+  width: min(760px, 100%) !important;
+  max-height: calc(100vh - 48px) !important;
+  overflow: auto !important;
+  background: #fff !important;
+  border-radius: 24px !important;
+  box-shadow: 0 30px 80px rgba(0,0,0,.18) !important;
+}
+
+#uploadModal .modal-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5 !important;
+  background: rgba(255,255,255,.96) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 24px 28px 18px !important;
+  border-bottom: 1px solid #f0ece7 !important;
+}
+
+#uploadModal .modal-header h2 {
+  margin: 0 !important;
+  font-size: 22px !important;
+  color: #50422d !important;
+}
+
+#uploadModal .subtitle {
+  font-size: 13px !important;
+  color: #999 !important;
+  font-weight: 400 !important;
+}
+
+#uploadModal .modal-body {
+  padding: 28px !important;
+}
+
+#uploadModal .upload-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+#uploadModal .sub-upload-container {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  gap: 18px !important;
+}
+
+#uploadModal .upload-box {
+  position: relative !important;
+  min-height: 180px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  background: #fbfaf8 !important;
+  border: 1.5px dashed #d8cdbb !important;
+  cursor: pointer !important;
+}
+
+#uploadModal .main-upload {
+  min-height: 378px !important;
+}
+
+#uploadModal .upload-placeholder {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: inherit !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  color: #b09f8b !important;
+  text-align: center !important;
+  padding: 24px !important;
+}
+
+#uploadModal .upload-placeholder p {
+  margin: 0 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+#uploadModal .upload-hint {
+  font-size: 12px !important;
+  color: #aaa !important;
+}
+
+#uploadModal .badge-main {
+  position: absolute !important;
+  top: 14px !important;
+  left: 14px !important;
+  z-index: 2 !important;
+  background: rgba(80,66,45,.92) !important;
+  color: #fff !important;
+  padding: 6px 11px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+#uploadModal .form-section {
+  margin-top: 24px !important;
+  display: grid !important;
+  gap: 16px !important;
+}
+
+#uploadModal .two-col {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+}
+
+#uploadModal .form-row {
+  display: grid !important;
+  gap: 8px !important;
+}
+
+#uploadModal .form-row label {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #50422d !important;
+}
+
+#uploadModal .form-row input,
+#uploadModal .form-row select,
+#uploadModal .form-row textarea {
+  width: 100% !important;
+  border: 1px solid #ebe5dd !important;
+  background: #fff !important;
+  border-radius: 14px !important;
+  padding: 13px 15px !important;
+  font-size: 14px !important;
+  outline: none !important;
+}
+
+#uploadModal .form-row textarea {
+  min-height: 110px !important;
+  resize: vertical !important;
+  line-height: 1.7 !important;
+}
+
+#uploadModal .modal-footer {
+  position: sticky !important;
+  bottom: 0 !important;
+  background: rgba(255,255,255,.96) !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  padding: 18px 28px 24px !important;
+  border-top: 1px solid #f0ece7 !important;
+}
+
+#uploadModal .btn-preview,
+#uploadModal .btn-submit {
+  border: 0 !important;
+  cursor: pointer !important;
+  border-radius: 999px !important;
+  padding: 12px 26px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}
+
+#uploadModal .btn-preview {
+  background: #f4f1ed !important;
+  color: #50422d !important;
+}
+
+#uploadModal .btn-submit {
+  background: #50422d !important;
+  color: #fff !important;
+}
+
+@media (max-width: 768px) {
+  #uploadModal .upload-grid,
+  #uploadModal .two-col {
+    grid-template-columns: 1fr !important;
+  }
+
+  #uploadModal .main-upload {
+    min-height: 260px !important;
+  }
+
+  #uploadModal .sub-upload-container {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  #uploadModal .upload-box {
+    min-height: 150px !important;
+  }
+
+  #uploadModal .modal-footer {
+    flex-direction: column !important;
+  }
+
+  #uploadModal .btn-preview,
+  #uploadModal .btn-submit {
+    width: 100% !important;
+  }
+}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
