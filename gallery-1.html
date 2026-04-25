@@ -777,14 +777,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 檔案上傳預覽函式
+// 處理檔案上傳預覽
 function handleFileUpload(container, file) {
     if (!file.type.startsWith('image/')) return;
+    
     const reader = new FileReader();
     reader.onload = (e) => {
-        container.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">`;
+        renderImage(container, e.target.result);
     };
     reader.readAsDataURL(file);
+}
+
+// 渲染圖片與刪除按鈕
+function renderImage(container, imgSrc) {
+    container.classList.add('has-image');
+    container.innerHTML = `
+        <img src="${imgSrc}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+        <div class="delete-btn" onclick="deleteImage(event, this)"><i class="fas fa-times"></i></div>
+    `;
+    
+    // 如果是主圖框，記得補回標籤 (如果您原本有 badge-main)
+    if (container.classList.contains('main-upload')) {
+        container.insertAdjacentHTML('afterbegin', '<span class="badge-main">主圖</span>');
+    }
+}
+
+// 刪除圖片功能
+function deleteImage(event, btn) {
+    event.stopPropagation(); // 防止觸發方框的點擊事件
+    const container = btn.parentElement;
+    
+    // 恢復為原本的 placeholder 狀態
+    container.classList.remove('has-image');
+    
+    // 根據是否為主圖框恢復不同的 HTML
+    if (container.classList.contains('main-upload')) {
+        container.innerHTML = `
+            <span class="badge-main">主圖</span>
+            <div class="upload-placeholder">
+                <i class="fas fa-plus"></i>
+                <p>上傳主圖</p>
+            </div>
+        `;
+    } else {
+        container.innerHTML = `
+            <div class="upload-placeholder">
+                <i class="fas fa-plus"></i>
+            </div>
+        `;
+    }
 }
     
 </script>
