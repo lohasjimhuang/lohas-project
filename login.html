@@ -360,7 +360,53 @@ logoutBtns.forEach(btn => {
     });
   }
 });
-  
+
+// 修改渲染預覽圖的函式
+function renderPreview(container, imgSrc) {
+    container.classList.add('has-image');
+    
+    // 插入圖片與叉叉按鈕
+    container.innerHTML = `
+        <img src="${imgSrc}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+        <div class="delete-btn" onclick="removeImage(event, this)">
+            <i class="fas fa-times"></i>
+        </div>
+    `;
+
+    // 如果是主圖框，補回原本的「主圖」標籤
+    if (container.classList.contains('main-upload')) {
+        const badge = document.createElement('span');
+        badge.className = 'badge-main';
+        badge.innerText = '主圖';
+        container.appendChild(badge);
+    }
+}
+
+// 刪除圖片的函式
+function removeImage(event, btn) {
+    event.stopPropagation(); // 阻止觸發上傳框的點擊事件
+    const container = btn.parentElement;
+    
+    container.classList.remove('has-image');
+    
+    // 恢復為原本的 + 號狀態
+    if (container.classList.contains('main-upload')) {
+        container.innerHTML = `
+            <span class="badge-main">主圖</span>
+            <div class="upload-placeholder">
+                <i class="fas fa-plus"></i>
+                <p>上傳主圖</p>
+            </div>
+        `;
+    } else {
+        container.innerHTML = `
+            <div class="upload-placeholder">
+                <i class="fas fa-plus"></i>
+            </div>
+        `;
+    }
+}
+    
 </script>
 
 </body>
