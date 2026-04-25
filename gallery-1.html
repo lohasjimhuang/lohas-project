@@ -568,32 +568,28 @@
 
         <div class="modal-body">
             <div class="upload-grid">
-    <div class="upload-box main-upload" id="box-1">
-        <span class="badge-main">主圖</span>
-        <div class="upload-placeholder">
-            <i class="fas fa-plus"></i>
-            <p>上傳主圖</p>
-        </div>
-    </div>
+                <div class="upload-box main-upload" id="mainImage">
+                    <span class="badge-main">首圖</span>
+                    <div class="upload-placeholder">
+                        <i class="fa-regular fa-image"></i>
+                        <p>新增圖片</p>
+                    </div>
+                </div>
 
-    <div class="upload-box-group">
-        <div class="upload-box" id="box-2">
-            <div class="upload-placeholder">
-                <i class="fas fa-plus"></i>
-            </div>
-        </div>
-        <div class="upload-box" id="box-3">
-            <div class="upload-placeholder">
-                <i class="fas fa-plus"></i>
-            </div>
-        </div>
-        <div class="upload-box" id="box-4">
-            <div class="upload-placeholder">
-                <i class="fas fa-plus"></i>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="sub-upload-container">
+                    <div class="upload-box sub-upload">
+                        <div class="upload-placeholder">
+                            <i class="fa-regular fa-image"></i>
+                            <p>新增圖片</p>
+                        </div>
+                    </div>
+                    <div class="upload-box sub-upload">
+                        <div class="upload-placeholder">
+                            <i class="fa-regular fa-image"></i>
+                            <p>新增圖片</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="input-section">
@@ -830,109 +826,6 @@ function deleteImage(event, btn) {
             </div>
         `;
     }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const boxes = document.querySelectorAll('.upload-box');
-    let draggedSource = null;
-
-    boxes.forEach(box => {
-        box.setAttribute('draggable', 'true');
-
-        box.addEventListener('dragstart', (e) => {
-            // 只有框內有圖片時才允許拖曳排序
-            if (!box.classList.contains('has-image')) {
-                e.preventDefault();
-                return;
-            }
-            draggedSource = box;
-            box.style.opacity = '0.5';
-        });
-
-        box.addEventListener('dragend', () => {
-            box.style.opacity = '1';
-            draggedSource = null;
-            boxes.forEach(b => b.classList.remove('drag-enter'));
-        });
-
-        box.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            box.classList.add('drag-enter');
-        });
-
-        box.addEventListener('dragleave', () => {
-            box.classList.remove('drag-enter');
-        });
-
-        box.addEventListener('drop', (e) => {
-            e.preventDefault();
-            box.classList.remove('drag-enter');
-
-            // 處理區塊間的排序交換
-            if (draggedSource && draggedSource !== box) {
-                swapBoxContent(draggedSource, box);
-            }
-        });
-    });
-});
-
-/**
- * 核心：交換內容函式
- * 我們不交換整個 box 的 innerHTML，因為會把 badge-main 也換走
- * 我們只交換圖片 (img) 和刪除按鈕 (delete-btn)
- */
-function swapBoxContent(src, dest) {
-    // 取得雙方的圖片與刪除按鈕 (排除標籤與原本的 placeholder)
-    const srcImg = src.querySelector('img');
-    const srcDel = src.querySelector('.delete-btn');
-    const destImg = dest.querySelector('img');
-    const destDel = dest.querySelector('.delete-btn');
-
-    // 如果目標框原本沒圖片，則將來源移過去，來源變回 placeholder 狀態
-    if (!dest.classList.contains('has-image')) {
-        moveContent(src, dest);
-        resetToPlaceholder(src);
-    } else {
-        // 如果雙方都有圖片，進行內容互換
-        const tempImgSrc = srcImg.src;
-        srcImg.src = destImg.src;
-        destImg.src = tempImgSrc;
-    }
-}
-
-// 將圖片內容從 A 移到 B
-function moveContent(from, to) {
-    const imgSrc = from.querySelector('img').src;
-    to.classList.add('has-image');
-    // 渲染圖片與刪除按鈕，但不去動到 to 容器內原本就有的 badge-main
-    const imgHtml = `
-        <img src="${imgSrc}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
-        <div class="delete-btn" onclick="removeImage(event, this)"><i class="fas fa-times"></i></div>
-    `;
-    
-    // 移除 placeholder 並加入圖片內容
-    const placeholder = to.querySelector('.upload-placeholder');
-    if (placeholder) placeholder.style.display = 'none';
-    
-    // 避免重複加入，先移除舊的再加新的
-    const oldImg = to.querySelector('img');
-    const oldDel = to.querySelector('.delete-btn');
-    if (oldImg) oldImg.remove();
-    if (oldDel) oldDel.remove();
-    
-    to.insertAdjacentHTML('beforeend', imgHtml);
-}
-
-// 將方框重置回預設狀態
-function resetToPlaceholder(box) {
-    box.classList.remove('has-image');
-    const img = box.querySelector('img');
-    const del = box.querySelector('.delete-btn');
-    if (img) img.remove();
-    if (del) del.remove();
-    
-    const placeholder = box.querySelector('.upload-placeholder');
-    if (placeholder) placeholder.style.display = 'block';
 }
     
 </script>
