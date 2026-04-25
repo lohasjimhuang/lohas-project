@@ -1321,6 +1321,31 @@
       }
     }
 
+/* 修正手機版篩選抽屜叉叉被 header 擋住 */
+@media (max-width: 768px) {
+  .filter-drawer-overlay {
+    z-index: 12000 !important;
+  }
+
+  .filter-drawer {
+    max-height: calc(100dvh - 90px) !important;
+    padding-top: 26px !important;
+  }
+
+  .drawer-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fff;
+    padding-top: 4px;
+  }
+
+  .drawer-close {
+    position: relative;
+    z-index: 6;
+  }
+}
+    
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
