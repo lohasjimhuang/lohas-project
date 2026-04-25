@@ -1544,6 +1544,27 @@ button {
     max-height: calc(100vh - 96px) !important;
   }
 }
+
+/* 修正電腦版 Hero Banner 滿版 */
+@media (min-width: 769px) {
+
+  .plan1-banner {
+    width: 100vw !important;
+    max-width: none !important;
+
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+
+    border-radius: 0 !important;
+  }
+
+  .plan1-layout,
+  .plan1-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+}
     
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
