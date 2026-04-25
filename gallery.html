@@ -1598,6 +1598,34 @@ button {
     transform: translateY(34px);
   }
 }
+
+    .detail-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.detail-title {
+  margin: 0;
+}
+
+.detail-user {
+  flex-shrink: 0;
+  color: #8c7a6b;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+    .detail-name {
+  display: inline-flex;
+  align-items: center;
+  color: #8c7a6b;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.2;
+}
     
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1639,7 +1667,7 @@ button {
         <div class="plan1-banner">
           <img src="images/hero-banner-engraving.jpg" alt="Gallery" class="bg" />
           <div class="banner-text">
-            <h2>找一份屬於你的故事刻在眼鏡上。</h2>
+            <h2>全台唯一的眼鏡刻圖分享平台。</h2>
             <p>從名字到紀念日，收藏每一份真實上傳的刻圖作品。</p>
           </div>
         </div>
@@ -2059,12 +2087,15 @@ button {
               ${subImages.map(src => `<div class="detail-sub-image"><img src="${src}" alt="${title}" /></div>`).join("")}
             </div>
           </div>
-          <h3 class="detail-title">${title}</h3>
-          <div class="detail-meta">
-            <span class="detail-chip">${topic}</span>
-            <span class="detail-chip">${carrier}</span>
-            <span class="detail-chip">${name}</span>
-          </div>
+          <div class="detail-title-row">
+  <h3 class="detail-title">${title}</h3>
+  <span class="detail-user">${name}</span>
+</div>
+
+<div class="detail-meta">
+  <span class="detail-chip">${topic}</span>
+  <span class="detail-chip">${carrier}</span>
+</div>
           <p class="detail-story">${story}</p>
         `;
 
@@ -2636,9 +2667,45 @@ document.getElementById("closeCrop").addEventListener("click", () => {
       });
 
       previewBtn.addEventListener("click", () => {
-        if (!validateForm()) return;
-        showToast("預覽完成：內容已準備就緒");
-      });
+  if (!validateForm()) return;
+
+  const member = JSON.parse(localStorage.getItem("lohasMember") || "null");
+  const previewName = maskName(member?.name || "顧客");
+
+  const images = state.images.filter(Boolean);
+  const mainImage = images[0];
+  const subImages = images.slice(1, 3);
+
+  detailBody.innerHTML = `
+    <div class="detail-gallery">
+      <div class="detail-main-image">
+        <img src="${mainImage}" alt="${getTitle()}" />
+      </div>
+      <div class="detail-sub-list">
+        ${subImages.map(src => `
+          <div class="detail-sub-image">
+            <img src="${src}" alt="${getTitle()}" />
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <h3 class="detail-title">${getTitle()}</h3>
+
+    <div class="detail-meta">
+      <span class="detail-chip">${workCategory.value}</span>
+      <span class="detail-name">${previewName}</span>
+      <span class="detail-chip">${carrierCategory.value}</span>
+    </div>
+
+    <p class="detail-story">
+      ${shareText.value.trim() || "這是一份來自顧客分享的刻圖作品。"}
+    </p>
+  `;
+
+  detailModal.classList.add("is-open");
+  detailModal.setAttribute("aria-hidden", "false");
+});
 
       submitBtn.addEventListener("click", async () => {
         if (!validateForm()) return;
