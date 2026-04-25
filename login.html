@@ -334,6 +334,33 @@ async function fetchProfileByMobile(mobile, loginName){
     document.getElementById('profile-birthday').innerText =
       member.birthday || '-';
 
+document.getElementById('profile-birthday').innerText =
+  member.birthday || '-';
+
+
+/* ===== 新增：登入成功寫入會員資料 ===== */
+localStorage.setItem("lohasMember", JSON.stringify({
+  erpid: member.client_id || null,
+  name: member.name || loginName || '',
+  mobile: member.mobile || mobile || ''
+}));
+
+const redirect =
+  localStorage.getItem("redirectAfterLogin") || "login.html";
+
+localStorage.removeItem("redirectAfterLogin");
+
+/* 如果是從分享牆跳來登入，就跳回分享牆 */
+if (redirect !== "login.html") {
+  window.location.href = redirect;
+  return;
+}
+/* ===== 新增結束 ===== */
+
+
+loginSection.classList.add('hidden');
+profileSection.classList.remove('hidden');
+      
     loginSection.classList.add('hidden');
     profileSection.classList.remove('hidden');
 
