@@ -547,7 +547,7 @@
                     </div>
                 </div>
                 <div class="cta-right">
-                    <a href="#" class="btn-primary" onclick="openUploadModal(); return false;">立即上傳作品</a>
+                    <a href="javascript:void(0);" class="btn-primary" onclick="openUploadModal()">立即上傳作品</a>
                     <div class="deco-imgs">
                         <img src="images/lens-01.jpg" alt="photo1">
                         <img src="images/frame-01.jpg" alt="photo2">
@@ -616,97 +616,236 @@
 
     
 <script>
-// 1. 開啟彈出視窗的功能 (搬移至全域範疇)
-function openUploadModal() {
-    const modal = document.getElementById('uploadModal');
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-}
+    document.addEventListener('DOMContentLoaded', () => {
+        const menu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        if (menu && navList) {
+            menu.addEventListener('click', () => {
+                menu.classList.toggle('active');
+                navList.classList.toggle('active');
+            });
+        }
+    });
 
 document.addEventListener('DOMContentLoaded', () => {
     const uploadModal = document.getElementById('uploadModal');
-    const closeBtn = document.getElementById('closeUpload');
     const shareText = document.getElementById('shareText');
     const currentCharCount = document.getElementById('currentChar');
-    const menu = document.getElementById('mobile-menu');
-    const navList = document.getElementById('nav-list');
+    const closeBtn = document.getElementById('closeUpload');
 
-    // 2. 行動版選單切換
-    if (menu && navList) {
-        menu.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            navList.classList.toggle('active');
-        });
-    }
-
-    // 3. 關閉彈窗邏輯
-    if (closeBtn) {
-        closeBtn.onclick = function() {
-            uploadModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        };
-    }
-
-    // 點擊遮罩外部關閉
-    window.onclick = function(e) {
-        if (e.target === uploadModal) {
-            uploadModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    };
-
-    // 4. 字數監聽
-    if (shareText && currentCharCount) {
+    // 監聽字數輸入
+    if (shareText) {
         shareText.addEventListener('input', function() {
             currentCharCount.textContent = this.value.length;
         });
     }
 
-    // 5. 拖曳與圖片處理邏輯 (簡化版)
-    const boxes = document.querySelectorAll('.upload-box');
-    boxes.forEach(box => {
-        box.addEventListener('dragover', e => e.preventDefault());
-        box.addEventListener('drop', e => {
+    // 關閉彈窗邏輯
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            uploadModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // 點擊遮罩外部也可關閉
+    window.addEventListener('click', (e) => {
+        if (e.target === uploadModal) {
+            uploadModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // 你可以手動呼叫這行來測試開啟彈窗：
+    // uploadModal.style.display = 'flex';
+});
+
+    // 控制彈出視窗開關
+const modal = document.getElementById('uploadModal');
+const closeBtn = document.getElementById('closeUpload');
+
+// 當點擊按鈕時執行這個 function
+function openUploadModal() {
+    modal.style.display = 'flex'; // 顯示視窗
+    document.body.style.overflow = 'hidden'; // 防止背景滾動，這與你在 style.css 中設定的 no-scroll 邏輯一致
+}
+
+// 點擊 X 關閉視窗
+if (closeBtn) {
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadBoxes = document.querySelectorAll('.upload-box');
+
+    uploadBoxes.forEach(box => {
+        // --- 處理從電腦檔案總管拖曳檔案進入 ---
+        box.addEventListener('dragover', (e) => {
             e.preventDefault();
+            box.classList.add('drag-over');
+        });
+
+        box.addEventListener('dragleave', () => {
+            box.classList.remove('drag-over');
+        });
+
+        box.addEventListener('drop', (e) => {
+            e.preventDefault();
+            box.classList.remove('drag-over');
+            
             const files = e.dataTransfer.files;
-            if (files.length > 0) handleFileUpload(box, files[0]);
+            if (files.length > 0) {
+                handleFileUpload(box, files[0]); // 處理檔案顯示的函式
+            }
+        });
+
+        // --- 處理區塊間的自由拖曳交換 (選配) ---
+        box.setAttribute('draggable', true);
+        
+        box.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', box.id); // 記錄起始位置
+            box.style.opacity = '0.5';
+        });
+
+        box.addEventListener('dragend', () => {
+            box.style.opacity = '1';
         });
     });
 });
 
-// 檔案上傳預覽
 function handleFileUpload(container, file) {
-    if (!file.type.startsWith('image/')) return;
     const reader = new FileReader();
     reader.onload = (e) => {
-        container.classList.add('has-image');
-        const badge = container.classList.contains('main-upload') ? '<span class="badge-main">主圖</span>' : '';
-        container.innerHTML = `
-            ${badge}
-            <img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
-            <div class="delete-btn" onclick="deleteImage(event, this)"><i class="fas fa-times"></i></div>
-        `;
+        // 移除原本的 placeholder 並顯示圖片
+        container.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">`;
     };
     reader.readAsDataURL(file);
 }
 
-// 刪除圖片
-function deleteImage(event, btn) {
-    event.stopPropagation();
-    const container = btn.parentElement;
-    container.classList.remove('has-image');
-    const isMain = container.classList.contains('main-upload');
+document.addEventListener('DOMContentLoaded', () => {
+    const boxes = document.querySelectorAll('.upload-box');
+    let draggedSource = null;
+
+    boxes.forEach(box => {
+        // 設定為可拖動
+        box.setAttribute('draggable', 'true');
+
+        // --- 處理檔案拖放上傳 (電腦檔案拖入) ---
+        box.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            box.classList.add('drag-enter');
+        });
+
+        box.addEventListener('dragleave', () => {
+            box.classList.remove('drag-enter');
+        });
+
+        box.addEventListener('drop', (e) => {
+            e.preventDefault();
+            box.classList.remove('drag-enter');
+
+            // 判斷是「外部檔案」還是「內部方框交換」
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileUpload(box, files[0]);
+            } else if (draggedSource && draggedSource !== box) {
+        // --- 優化後的交換邏輯 ---
+        // 1. 取得兩者的圖片內容 (排除 badge-main)
+        const sourceImg = draggedSource.querySelector('img')?.src;
+        const targetImg = box.querySelector('img')?.src;
+
+        // 2. 分別重新渲染兩個方框，這會觸發 renderImage 並自動判斷該給哪邊標籤
+        if (sourceImg) renderImage(box, sourceImg);
+        else deleteImage(null, box.querySelector('.delete-btn') || box); // 若無圖則還原
+
+        if (targetImg) renderImage(draggedSource, targetImg);
+        else deleteImage(null, draggedSource.querySelector('.delete-btn') || draggedSource);
+    }
+});
+
+        // --- 處理內部方框排序拖動 ---
+        box.addEventListener('dragstart', (e) => {
+            // 如果方框內沒圖片，可以選擇不觸發拖動
+            if (!box.querySelector('img')) {
+                e.preventDefault();
+                return;
+            }
+            draggedSource = box;
+            box.classList.add('dragging');
+        });
+
+        box.addEventListener('dragend', () => {
+            box.classList.remove('dragging');
+            draggedSource = null;
+        });
+    });
+});
+
+// 處理檔案上傳預覽
+function handleFileUpload(container, file) {
+    if (!file.type.startsWith('image/')) return;
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        renderImage(container, e.target.result);
+    };
+    reader.readAsDataURL(file);
+}
+
+// 渲染圖片與刪除按鈕
+// 渲染圖片與刪除按鈕
+function renderImage(container, imgSrc) {
+    container.classList.add('has-image');
+    
+    // 定義標籤 HTML (如果是主圖框)
+    const badgeHtml = container.classList.contains('main-upload') ? '<span class="badge-main">主圖</span>' : '';
+    
+    // 使用重新拼接的方式，確保標籤始終存在
     container.innerHTML = `
-        ${isMain ? '<span class="badge-main">首圖</span>' : ''}
-        <div class="upload-placeholder">
-            <i class="fa-regular fa-image"></i>
-            <p>新增圖片</p>
-        </div>
+        ${badgeHtml}
+        <img src="${imgSrc}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+        <div class="delete-btn" onclick="deleteImage(event, this)"><i class="fas fa-times"></i></div>
     `;
 }
+    
+    // 如果是主圖框，記得補回標籤 (如果您原本有 badge-main)
+    if (container.classList.contains('main-upload')) {
+        container.insertAdjacentHTML('afterbegin', '<span class="badge-main">主圖</span>');
+    }
+}
+
+// 刪除圖片功能
+function deleteImage(event, btn) {
+    event.stopPropagation(); // 防止觸發方框的點擊事件
+    const container = btn.parentElement;
+    
+    // 恢復為原本的 placeholder 狀態
+    container.classList.remove('has-image');
+    
+    // 根據是否為主圖框恢復原本的圖文內容
+    if (container.classList.contains('main-upload')) {
+        container.innerHTML = `
+            <span class="badge-main">首圖</span>
+            <div class="upload-placeholder">
+                <i class="fa-regular fa-image"></i>
+                <p>新增圖片</p>
+            </div>
+        `;
+    } else {
+        container.innerHTML = `
+            <div class="upload-placeholder">
+                <i class="fa-regular fa-image"></i>
+                <p>新增圖片</p>
+            </div>
+        `;
+    }
+}
+    
 </script>
+
     
 
     
