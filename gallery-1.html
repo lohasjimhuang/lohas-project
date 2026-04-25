@@ -810,19 +810,20 @@ function deleteImage(event, btn) {
     // 恢復為原本的 placeholder 狀態
     container.classList.remove('has-image');
     
-    // 根據是否為主圖框恢復不同的 HTML
+    // 根據是否為主圖框恢復原本的圖文內容
     if (container.classList.contains('main-upload')) {
         container.innerHTML = `
-            <span class="badge-main">主圖</span>
+            <span class="badge-main">首圖</span>
             <div class="upload-placeholder">
-                <i class="fas fa-plus"></i>
-                <p>上傳主圖</p>
+                <i class="fa-regular fa-image"></i>
+                <p>新增圖片</p>
             </div>
         `;
     } else {
         container.innerHTML = `
             <div class="upload-placeholder">
-                <i class="fas fa-plus"></i>
+                <i class="fa-regular fa-image"></i>
+                <p>新增圖片</p>
             </div>
         `;
     }
