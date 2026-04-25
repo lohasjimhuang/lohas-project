@@ -2229,34 +2229,41 @@ button {
       }
 
       async function submitPostToSupabase() {
-        if (SUPABASE_URL.includes("YOUR_PROJECT_ID") || SUPABASE_ANON_KEY.includes("YOUR_SUPABASE_ANON_KEY")) {
-          throw new Error("請先填入 Supabase URL 與 Anon Key");
-        }
+  if (SUPABASE_URL.includes("YOUR_PROJECT_ID") || SUPABASE_ANON_KEY.includes("YOUR_SUPABASE_ANON_KEY")) {
+    throw new Error("請先填入 Supabase URL 與 Anon Key");
+  }
 
-        const imageUrls = await uploadImagesToSupabase();
-        const postPayload = {
-          title: getTitle(),
-          topic: workCategory.value,
-          carrier: carrierCategory.value,
-          story: shareText.value.trim(),
-         const member = JSON.parse(localStorage.getItem("lohasMember") || "null");
+  const member = JSON.parse(localStorage.getItem("lohasMember") || "null");
 
-customer_name: member?.name || "顧客",
-member_id: member?.erpid || null,
-          image_urls: imageUrls,
-          main_image_url: imageUrls[0],
-          is_public: true
-        };
+  if (!member || !member.erpid) {
+    throw new Error("請先登入會員後再分享作品");
+  }
 
-        const { data, error } = await supabaseClient
-          .from(SUPABASE_TABLE)
-          .insert(postPayload)
-          .select("id,title,topic,carrier,story,customer_name,image_urls,main_image_url,created_at,is_public")
-          .single();
+  const imageUrls = await uploadImagesToSupabase();
 
-        if (error) throw error;
-        return data;
-      }
+  const postPayload = {
+    title: getTitle(),
+    topic: workCategory.value,
+    carrier: carrierCategory.value,
+    story: shareText.value.trim(),
+
+    customer_name: member.name || "顧客",
+    member_id: member.erpid,
+
+    image_urls: imageUrls,
+    main_image_url: imageUrls[0],
+    is_public: true
+  };
+
+  const { data, error } = await supabaseClient
+    .from(SUPABASE_TABLE)
+    .insert(postPayload)
+    .select("id,title,topic,carrier,story,customer_name,member_id,image_urls,main_image_url,created_at,is_public")
+    .single();
+
+  if (error) throw error;
+  return data;
+}
 
       function clearForm() {
         state.images = [null, null, null];
