@@ -1641,6 +1641,30 @@ button {
   font-weight: 500;
   flex: none !important;
 }
+
+    /* 手機版 Hero Banner 提高到半屏 */
+@media (max-width: 768px) {
+  .plan1-banner {
+    height: 50vh !important;      /* 佔畫面一半 */
+    min-height: 360px !important; /* 小手機也不會太矮 */
+    padding: 0 22px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .banner-text {
+    transform: translateY(0) !important;
+    width: 100%;
+  }
+
+  .plan1-banner img.bg {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 0.18;
+  }
+}
     
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
