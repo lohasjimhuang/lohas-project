@@ -724,6 +724,68 @@ function handleFileUpload(container, file) {
     };
     reader.readAsDataURL(file);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const boxes = document.querySelectorAll('.upload-box');
+    let draggedSource = null;
+
+    boxes.forEach(box => {
+        // 設定為可拖動
+        box.setAttribute('draggable', 'true');
+
+        // --- 處理檔案拖放上傳 (電腦檔案拖入) ---
+        box.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            box.classList.add('drag-enter');
+        });
+
+        box.addEventListener('dragleave', () => {
+            box.classList.remove('drag-enter');
+        });
+
+        box.addEventListener('drop', (e) => {
+            e.preventDefault();
+            box.classList.remove('drag-enter');
+
+            // 判斷是「外部檔案」還是「內部方框交換」
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileUpload(box, files[0]);
+            } else if (draggedSource && draggedSource !== box) {
+                // 交換兩個方框的 HTML 內容
+                const tempContent = box.innerHTML;
+                box.innerHTML = draggedSource.innerHTML;
+                draggedSource.innerHTML = tempContent;
+            }
+        });
+
+        // --- 處理內部方框排序拖動 ---
+        box.addEventListener('dragstart', (e) => {
+            // 如果方框內沒圖片，可以選擇不觸發拖動
+            if (!box.querySelector('img')) {
+                e.preventDefault();
+                return;
+            }
+            draggedSource = box;
+            box.classList.add('dragging');
+        });
+
+        box.addEventListener('dragend', () => {
+            box.classList.remove('dragging');
+            draggedSource = null;
+        });
+    });
+});
+
+// 檔案上傳預覽函式
+function handleFileUpload(container, file) {
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        container.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">`;
+    };
+    reader.readAsDataURL(file);
+}
     
 </script>
 
