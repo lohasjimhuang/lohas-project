@@ -567,6 +567,52 @@
     </div>
 </footer>
 
+<div id="uploadModal" class="modal-overlay">
+    <div class="modal-content upload-modal">
+        <div class="modal-header">
+            <h2>新增分享圖片 <span class="subtitle">(可拖曳交換主圖)</span></h2>
+            <button id="closeUpload" class="close-btn">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <div class="upload-grid">
+                <div class="upload-box main-upload" id="mainImage">
+                    <span class="badge-main">首圖</span>
+                    <div class="upload-placeholder">
+                        <i class="fa-regular fa-image"></i>
+                        <p>新增圖片</p>
+                    </div>
+                </div>
+
+                <div class="sub-upload-container">
+                    <div class="upload-box sub-upload">
+                        <div class="upload-placeholder">
+                            <i class="fa-regular fa-image"></i>
+                            <p>新增圖片</p>
+                        </div>
+                    </div>
+                    <div class="upload-box sub-upload">
+                        <div class="upload-placeholder">
+                            <i class="fa-regular fa-image"></i>
+                            <p>新增圖片</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <textarea id="shareText" maxlength="100" placeholder="分享文字內容最多 100 字..."></textarea>
+                <div class="char-counter"><span id="currentChar">0</span>/100</div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-preview">預覽畫面</button>
+            <button class="btn-submit">發佈分享</button>
+        </div>
+    </div>
+</div>
+    
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const menu = document.getElementById('mobile-menu');
@@ -578,7 +624,44 @@
             });
         }
     });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadModal = document.getElementById('uploadModal');
+    const shareText = document.getElementById('shareText');
+    const currentCharCount = document.getElementById('currentChar');
+    const closeBtn = document.getElementById('closeUpload');
+
+    // 監聽字數輸入
+    if (shareText) {
+        shareText.addEventListener('input', function() {
+            currentCharCount.textContent = this.value.length;
+        });
+    }
+
+    // 關閉彈窗邏輯
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            uploadModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // 點擊遮罩外部也可關閉
+    window.addEventListener('click', (e) => {
+        if (e.target === uploadModal) {
+            uploadModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // 你可以手動呼叫這行來測試開啟彈窗：
+    // uploadModal.style.display = 'flex';
+});
+    
 </script>
 
+    
+
+    
 </body>
 </html>
