@@ -29,9 +29,20 @@ function initMobileMenu() {
   if (!menu || !navList) return;
 
   menu.addEventListener("click", () => {
-    menu.classList.toggle("active");
-    navList.classList.toggle("active");
-    document.body.style.overflow = navList.classList.contains("active") ? "hidden" : "auto";
+    const isOpen = navList.classList.toggle("active");
+
+    menu.classList.toggle("active", isOpen);
+    document.body.classList.toggle("no-scroll", isOpen);
+  });
+
+  navList.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 768 && !link.closest(".dropdown-parent")) {
+        navList.classList.remove("active");
+        menu.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      }
+    });
   });
 }
 
