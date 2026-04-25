@@ -677,6 +677,53 @@ if (closeBtn) {
         document.body.style.overflow = 'auto';
     };
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadBoxes = document.querySelectorAll('.upload-box');
+
+    uploadBoxes.forEach(box => {
+        // --- 處理從電腦檔案總管拖曳檔案進入 ---
+        box.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            box.classList.add('drag-over');
+        });
+
+        box.addEventListener('dragleave', () => {
+            box.classList.remove('drag-over');
+        });
+
+        box.addEventListener('drop', (e) => {
+            e.preventDefault();
+            box.classList.remove('drag-over');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileUpload(box, files[0]); // 處理檔案顯示的函式
+            }
+        });
+
+        // --- 處理區塊間的自由拖曳交換 (選配) ---
+        box.setAttribute('draggable', true);
+        
+        box.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', box.id); // 記錄起始位置
+            box.style.opacity = '0.5';
+        });
+
+        box.addEventListener('dragend', () => {
+            box.style.opacity = '1';
+        });
+    });
+});
+
+function handleFileUpload(container, file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        // 移除原本的 placeholder 並顯示圖片
+        container.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">`;
+    };
+    reader.readAsDataURL(file);
+}
     
 </script>
 
