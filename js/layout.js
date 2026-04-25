@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   await loadLayout();
+
   initMobileMenu();
   initMobileDropdown();
   initMegaMenuScrollLock();
@@ -22,6 +23,7 @@ async function loadLayout() {
   }
 }
 
+/* 手機版選單 */
 function initMobileMenu() {
   const menu = document.getElementById("mobile-menu");
   const navList = document.getElementById("nav-list");
@@ -29,23 +31,16 @@ function initMobileMenu() {
   if (!menu || !navList) return;
 
   menu.addEventListener("click", () => {
-    const isOpen = navList.classList.toggle("active");
+    menu.classList.toggle("active");
+    navList.classList.toggle("active");
 
-    menu.classList.toggle("active", isOpen);
-    document.body.classList.toggle("no-scroll", isOpen);
-  });
-
-  navList.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth <= 768 && !link.closest(".dropdown-parent")) {
-        navList.classList.remove("active");
-        menu.classList.remove("active");
-        document.body.classList.remove("no-scroll");
-      }
-    });
+    document.body.style.overflow = navList.classList.contains("active")
+      ? "hidden"
+      : "auto";
   });
 }
 
+/* 手機版 Mega Menu 點擊展開 */
 function initMobileDropdown() {
   const dropdownParents = document.querySelectorAll(".dropdown-parent > a");
 
@@ -59,6 +54,7 @@ function initMobileDropdown() {
   });
 }
 
+/* 電腦版 Mega Menu 開啟時禁止背景捲動 */
 function initMegaMenuScrollLock() {
   const megaMenuParent = document.querySelector(".mega-menu-parent");
 
@@ -77,6 +73,7 @@ function initMegaMenuScrollLock() {
   });
 }
 
+/* 手機版 Footer 折疊 */
 function initFooterAccordion() {
   const footerHeaders = document.querySelectorAll(".footer-column h3");
 
@@ -89,6 +86,7 @@ function initFooterAccordion() {
   });
 }
 
+/* Cookie Banner */
 function initCookieBanner() {
   const cookieBanner = document.getElementById("cookie-banner");
   const acceptBtn = document.getElementById("accept-cookies");
