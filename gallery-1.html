@@ -692,57 +692,15 @@ document.addEventListener('DOMContentLoaded', () => {
             box.classList.remove('drag-over');
         });
 
-        // --- 修改後的 drop 事件處理邏輯 ---
-box.addEventListener('drop', (e) => {
-    e.preventDefault();
-    box.classList.remove('drag-enter');
-
-    const files = e.dataTransfer.files;
-    if (files.length > 0) {
-        // 處理外部檔案拖入
-        handleFileUpload(box, files[0]);
-    } else if (draggedSource && draggedSource !== box) {
-        // 1. 交換兩個方框的 HTML 內容
-        const tempContent = box.innerHTML;
-        box.innerHTML = draggedSource.innerHTML;
-        draggedSource.innerHTML = tempContent;
-
-        // 2. 交換 has-image 狀態類別
-        const tempHasImage = box.classList.contains('has-image');
-        if (draggedSource.classList.contains('has-image')) {
-            box.classList.add('has-image');
-        } else {
-            box.classList.remove('has-image');
-        }
-        
-        if (tempHasImage) {
-            draggedSource.classList.add('has-image');
-        } else {
-            draggedSource.classList.remove('has-image');
-        }
-
-        // 3. 關鍵修正：檢查雙方，如果交換後沒圖片，就恢復該框對應的初始圖文
-        [box, draggedSource].forEach(container => {
-            if (!container.querySelector('img')) {
-                container.classList.remove('has-image');
-                resetToPlaceholder(container);
+        box.addEventListener('drop', (e) => {
+            e.preventDefault();
+            box.classList.remove('drag-over');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileUpload(box, files[0]); // 處理檔案顯示的函式
             }
         });
-    }
-});
-
-// 新增一個共用的恢復函式，確保代碼精簡
-function resetToPlaceholder(container) {
-    const isMain = container.classList.contains('main-upload');
-    container.innerHTML = `
-        ${isMain ? '<span class="badge-main">首圖</span>' : ''}
-        <div class="upload-placeholder">
-            <i class="fa-regular fa-image"></i>
-            <p>新增圖片</p>
-        </div>
-    `;
-}
-
 
         // --- 處理區塊間的自由拖曳交換 (選配) ---
         box.setAttribute('draggable', true);
@@ -846,11 +804,11 @@ function renderImage(container, imgSrc) {
 
 // 刪除圖片功能
 function deleteImage(event, btn) {
-    event.stopPropagation();
+    event.stopPropagation(); // 防止觸發方框的點擊事件
     const container = btn.parentElement;
+    
+    // 恢復為原本的 placeholder 狀態
     container.classList.remove('has-image');
-    resetToPlaceholder(container);
-}
     
     // 根據是否為主圖框恢復原本的圖文內容
     if (container.classList.contains('main-upload')) {
