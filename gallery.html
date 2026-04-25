@@ -8,6 +8,8 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
 
   <style>
     :root {
@@ -1856,7 +1858,25 @@ button {
       </div>
     </div>
   </div>
+<div id="cropModal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-content" style="max-width:720px;">
+    <div class="modal-header">
+      <h2>調整圖片裁切</h2>
+      <button id="closeCrop" class="close-btn" type="button">&times;</button>
+    </div>
 
+    <div class="modal-body">
+      <div style="width:100%; max-height:520px;">
+        <img id="cropImage" style="max-width:100%; display:block;">
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-preview" id="cancelCrop">取消</button>
+      <button type="button" class="btn-submit" id="applyCrop">套用裁切</button>
+    </div>
+  </div>
+</div>
   <div id="toast" class="toast">已完成</div>
 
   <footer class="main-footer">
@@ -2015,29 +2035,104 @@ button {
         `;
       }
 
-      function readImageFile(file, slot) {
-        if (!file) return;
+      let cropper = null;
+let cropTargetSlot = null;
+let cropTargetFile = null;
 
-        if (!file.type.startsWith("image/")) {
-          showToast("請上傳圖片格式");
-          return;
-        }
+function readImageFile(file, slot) {
+  if (!file) return;
 
-        const maxSize = 8 * 1024 * 1024;
-        if (file.size > maxSize) {
-          showToast("圖片請小於 8MB");
-          return;
-        }
+  if (!file.type.startsWith("image/")) {
+    showToast("請上傳圖片格式");
+    return;
+  }
 
-        const reader = new FileReader();
-        reader.onload = event => {
-          state.files[slot] = file;
-          state.images[slot] = event.target.result;
-          renderBox(slot);
-        };
-        reader.readAsDataURL(file);
-      }
+  cropTargetSlot = slot;
+  cropTargetFile = file;
 
+  const reader = new FileReader();
+
+  reader.onload = event => {
+    const cropModal = document.getElementById("cropModal");
+    const cropImage = document.getElementById("cropImage");
+
+    cropImage.src = event.target.result;
+    cropModal.classList.add("is-open");
+    cropModal.setAttribute("aria-hidden", "false");
+
+    if (cropper) cropper.destroy();
+
+    cropper = new Cropper(cropImage, {
+      aspectRatio: 1,
+      viewMode: 1,
+      dragMode: "move",
+      autoCropArea: 1,
+      responsive: true,
+      background: false,
+      movable: true,
+      zoomable: true,
+      scalable: false,
+      rotatable: false
+    });
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function base64ToFile(base64, filename) {
+  const arr = base64.split(",");
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+
+  return new File([u8arr], filename, { type: mime });
+}
+
+document.getElementById("applyCrop").addEventListener("click", () => {
+  if (!cropper || cropTargetSlot === null) return;
+
+  const canvas = cropper.getCroppedCanvas({
+    width: 1200,
+    height: 1200,
+    imageSmoothingQuality: "high"
+  });
+
+  const croppedBase64 = canvas.toDataURL("image/jpeg", 0.9);
+
+  state.images[cropTargetSlot] = croppedBase64;
+  state.files[cropTargetSlot] = base64ToFile(
+    croppedBase64,
+    `gallery_${Date.now()}_${cropTargetSlot}.jpg`
+  );
+
+  renderBox(cropTargetSlot);
+
+  document.getElementById("cropModal").classList.remove("is-open");
+
+  cropper.destroy();
+  cropper = null;
+  cropTargetSlot = null;
+});
+
+document.getElementById("cancelCrop").addEventListener("click", () => {
+  document.getElementById("cropModal").classList.remove("is-open");
+  if (cropper) cropper.destroy();
+  cropper = null;
+  cropTargetSlot = null;
+});
+
+document.getElementById("closeCrop").addEventListener("click", () => {
+  document.getElementById("cropModal").classList.remove("is-open");
+  if (cropper) cropper.destroy();
+  cropper = null;
+  cropTargetSlot = null;
+});
+      
       function openFilePicker(slot) {
         state.selectedSlot = Number(slot);
         fileInput.value = "";
