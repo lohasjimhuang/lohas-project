@@ -2595,3 +2595,16 @@ body.no-scroll {
         flex-direction: row;
     }
 }
+
+
+/* 當物件被拖曳懸停在上方時的樣式 */
+.upload-box.drag-over {
+    border-color: #50422D; /* 樂活褐 */
+    background-color: #F0EEE9;
+    transform: scale(1.02);
+}
+
+/* 確保圖片在拖曳過程中不會干擾事件 */
+.upload-box img {
+    pointer-events: none;
+}
