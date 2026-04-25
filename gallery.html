@@ -1430,6 +1430,56 @@
         max-width: none;
       }
     }
+    /* 修正上傳三格重疊 */
+.upload-modal .upload-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+  width: 100% !important;
+}
+
+.upload-modal .sub-upload-container {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  gap: 18px !important;
+}
+
+.upload-modal .upload-box {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.upload-modal .main-upload {
+  min-height: 378px !important;
+}
+
+.upload-modal .sub-upload {
+  min-height: 180px !important;
+}
+
+@media (max-width: 768px) {
+  .upload-modal .upload-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .upload-modal .main-upload {
+    min-height: 260px !important;
+  }
+
+  .upload-modal .sub-upload-container {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  .upload-modal .sub-upload {
+    min-height: 150px !important;
+  }
+}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
