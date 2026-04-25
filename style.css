@@ -2655,3 +2655,527 @@ body.no-scroll {
     display: none;
 }
 
+
+
+/* =========================================================
+   LOHAS 2026 PREMIUM UPGRADE PATCH
+   保留原 HTML / class，不破壞原架構的品牌升級覆寫
+   ========================================================= */
+
+:root {
+    --lohas-brown: #50422D;
+    --lohas-brown-2: #765F4A;
+    --lohas-sand: #CDBEA2;
+    --lohas-cream: #F9F8F6;
+    --lohas-warm-white: #FFFDFC;
+    --lohas-ink: #2F2A24;
+    --lohas-muted: rgba(80, 66, 45, 0.68);
+    --lohas-line: rgba(80, 66, 45, 0.12);
+    --lohas-shadow-sm: 0 8px 24px rgba(80, 66, 45, 0.06);
+    --lohas-shadow-md: 0 18px 45px rgba(80, 66, 45, 0.10);
+    --lohas-shadow-lg: 0 28px 80px rgba(80, 66, 45, 0.14);
+    --lohas-radius-sm: 10px;
+    --lohas-radius-md: 16px;
+    --lohas-radius-lg: 28px;
+    --lohas-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(205, 190, 162, 0.16), transparent 34%),
+        linear-gradient(180deg, #FFFFFF 0%, var(--lohas-warm-white) 100%);
+    color: var(--lohas-ink);
+    letter-spacing: 0.01em;
+}
+
+img {
+    max-width: 100%;
+}
+
+::selection {
+    background: rgba(205, 190, 162, 0.45);
+    color: var(--lohas-brown);
+}
+
+/* Header：更像高級品牌官網的玻璃導覽 */
+.main-header {
+    height: 74px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(165%) blur(22px);
+    -webkit-backdrop-filter: saturate(165%) blur(22px);
+    border-bottom: 1px solid rgba(80, 66, 45, 0.08);
+    box-shadow: 0 6px 28px rgba(80, 66, 45, 0.045);
+}
+
+.nav-container {
+    max-width: 1280px;
+}
+
+.logo img {
+    transition: transform 0.35s var(--lohas-ease), opacity 0.35s ease;
+}
+
+.logo:hover img {
+    transform: translateY(-1px) scale(1.015);
+    opacity: 0.92;
+}
+
+.nav-links {
+    gap: clamp(18px, 2.2vw, 34px);
+}
+
+.nav-links a {
+    color: var(--lohas-brown);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+@media (min-width: 769px) {
+    .nav-links > li > a::after {
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--lohas-brown), var(--lohas-sand));
+    }
+
+    .dropdown-menu,
+    .mega-menu {
+        border: 1px solid rgba(80, 66, 45, 0.08);
+        box-shadow: var(--lohas-shadow-lg);
+    }
+
+    .mega-menu {
+        top: 74px;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .mega-menu-container {
+        height: min(460px, 62vh);
+    }
+
+    .mega-image img {
+        transform: scale(1.01);
+        transition: transform 1.2s var(--lohas-ease);
+    }
+
+    .mega-menu-parent:hover .mega-image img {
+        transform: scale(1.055);
+    }
+
+    .mega-content {
+        padding: clamp(34px, 4vw, 64px) clamp(34px, 5vw, 86px);
+        gap: clamp(22px, 3vw, 42px);
+    }
+}
+
+.dropdown-menu {
+    border-radius: 14px;
+    padding: 12px 0;
+    box-shadow: var(--lohas-shadow-md);
+}
+
+.dropdown-menu a:hover {
+    background: linear-gradient(90deg, rgba(249,248,246,0.96), rgba(205,190,162,0.14));
+}
+
+/* Button System */
+.btn-primary,
+.btn-store,
+.market-btn-primary,
+.btn-submit,
+.btn-cookie-accept {
+    background: linear-gradient(135deg, var(--lohas-brown) 0%, var(--lohas-brown-2) 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 10px 24px rgba(80, 66, 45, 0.18);
+    transition: transform 0.35s var(--lohas-ease), box-shadow 0.35s var(--lohas-ease), filter 0.35s ease;
+}
+
+.btn-primary:hover,
+.btn-store:hover,
+.market-btn-primary:hover,
+.btn-submit:hover,
+.btn-cookie-accept:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(80, 66, 45, 0.24);
+    filter: brightness(1.04);
+}
+
+.btn-outline,
+.market-btn-outline,
+.btn-more,
+.btn-more-simple {
+    border-radius: 999px;
+    transition: transform 0.35s var(--lohas-ease), background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+.btn-outline:hover,
+.market-btn-outline:hover,
+.btn-more:hover,
+.btn-more-simple:hover {
+    transform: translateY(-2px);
+}
+
+/* Hero：加強沉浸感與文字層次 */
+.hero-banner,
+.engraving-hero,
+.secondary-banner {
+    isolation: isolate;
+}
+
+.hero-bg::after,
+.engraving-hero::after {
+    background:
+        linear-gradient(90deg, rgba(0,0,0,0.36) 0%, rgba(0,0,0,0.12) 45%, rgba(0,0,0,0.02) 100%),
+        linear-gradient(0deg, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.02) 55%);
+}
+
+.hero-bg img,
+.engraving-hero .hero-bg img,
+.secondary-banner .hero-bg img {
+    transform: scale(1.01);
+    transition: transform 1.4s var(--lohas-ease), filter 1.4s ease;
+}
+
+.hero-banner:hover .hero-bg img,
+.engraving-hero:hover .hero-bg img,
+.secondary-banner:hover .hero-bg img {
+    transform: scale(1.035);
+}
+
+.hero-content {
+    animation: lohasFadeUp 0.9s var(--lohas-ease) both;
+}
+
+.hero-title,
+.engraving-hero .hero-title {
+    font-size: clamp(2rem, 3.6vw, 4.2rem);
+    line-height: 1.08;
+    letter-spacing: 0.03em;
+    text-shadow: 0 12px 34px rgba(0,0,0,0.22);
+}
+
+.hero-subtitle,
+.engraving-hero .hero-subtitle {
+    font-size: clamp(0.9rem, 1.2vw, 1.12rem);
+    letter-spacing: 0.18em;
+    opacity: 0.94;
+}
+
+.hero-desc,
+.engraving-hero .hero-desc {
+    max-width: 560px;
+    color: rgba(255,255,255,0.9);
+}
+
+@keyframes lohasFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* 卡片：統一提升成溫潤高級感 */
+.owndays-item,
+.spec-card,
+.grid-item,
+.market-card,
+.cta-box,
+.store-location-container,
+.market-modal-content,
+.upload-modal-content,
+.glasses-card,
+.share-card,
+.coord-item,
+.split-item {
+    transition: transform 0.38s var(--lohas-ease), box-shadow 0.38s var(--lohas-ease), background-color 0.35s ease, opacity 0.35s ease;
+}
+
+.owndays-item,
+.spec-card,
+.grid-item,
+.market-card,
+.market-modal-content,
+.upload-modal-content,
+.cta-box {
+    border: 1px solid rgba(80, 66, 45, 0.08);
+    box-shadow: var(--lohas-shadow-sm);
+}
+
+.spec-card,
+.grid-item,
+.market-card,
+.market-modal-content,
+.upload-modal-content {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.owndays-item:hover,
+.spec-card:hover,
+.grid-item:hover,
+.market-card:hover,
+.glasses-card:hover,
+.share-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--lohas-shadow-md);
+}
+
+.item-overlay {
+    background:
+        linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.34) 100%);
+}
+
+.item-overlay .tag,
+.grid-text .tag,
+.market-badge {
+    letter-spacing: 0.15em;
+}
+
+/* Section spacing：讓頁面比較像 2026 品牌站 */
+.owndays-grid-section,
+.engraving-process,
+.inspiration-grid-section,
+.store-cta-section,
+.engraving-faq {
+    padding-top: clamp(44px, 7vw, 96px);
+    padding-bottom: clamp(44px, 7vw, 96px);
+}
+
+.engraving-service-page .section-header {
+    margin: clamp(44px, 7vw, 92px) 0 clamp(28px, 4vw, 52px);
+}
+
+.engraving-service-page .section-title,
+.store-title,
+.market-section-title,
+.page-title {
+    color: var(--lohas-brown);
+    letter-spacing: 0.08em;
+}
+
+.title-line {
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--lohas-brown), var(--lohas-sand)) !important;
+}
+
+/* Specs / process */
+.spec-card {
+    min-height: 220px;
+}
+
+.spec-icon {
+    color: var(--lohas-sand);
+    filter: drop-shadow(0 8px 18px rgba(205, 190, 162, 0.22));
+}
+
+.step-circle {
+    background: rgba(255,255,255,0.9);
+    box-shadow: inset 0 0 0 6px rgba(205,190,162,0.12), var(--lohas-shadow-sm);
+}
+
+/* Store location */
+.store-location-container {
+    background: linear-gradient(135deg, #F9F8F6 0%, #F1ECE4 100%);
+}
+
+.store-desc,
+.faq-item p,
+.grid-text p,
+.split-text p,
+.market-description {
+    color: var(--lohas-muted);
+}
+
+/* Market：更像高級貼圖商城 */
+.market-search-box {
+    border-color: rgba(80, 66, 45, 0.12);
+    box-shadow: 0 8px 20px rgba(80, 66, 45, 0.035);
+}
+
+.market-search-box input::placeholder,
+.input-section textarea::placeholder {
+    color: rgba(80, 66, 45, 0.38);
+}
+
+.market-category-list a.active,
+.market-category-list a:hover {
+    background: linear-gradient(135deg, var(--lohas-cream), rgba(205, 190, 162, 0.22));
+}
+
+.market-card-img {
+    border-radius: 14px;
+    background: linear-gradient(135deg, #FFFFFF, #F7F3ED);
+}
+
+.market-card:hover .market-card-img img {
+    transform: scale(1.045) rotate(-0.5deg);
+}
+
+.market-card-img img {
+    transition: transform 0.4s var(--lohas-ease);
+}
+
+/* JINS coordinate：更精緻 */
+.jins-style-page {
+    max-width: 1280px;
+}
+
+.coord-img {
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.045);
+}
+
+.coord-item:hover {
+    opacity: 1;
+    transform: translateY(-4px);
+}
+
+.top-tabs a.active::after {
+    height: 2px;
+    border-radius: 999px;
+}
+
+/* Footer：品牌感加強 */
+.main-footer {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(205, 190, 162, 0.16), transparent 32%),
+        linear-gradient(135deg, #3E3324 0%, var(--lohas-brown) 100%);
+}
+
+.footer-column ul li a,
+.social-link {
+    transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s var(--lohas-ease);
+}
+
+.footer-column ul li a:hover,
+.social-link:hover {
+    transform: translateX(2px);
+}
+
+/* Cookie */
+.cookie-banner {
+    background: rgba(36, 31, 25, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* Upload modal / form */
+.upload-box,
+.input-section textarea {
+    border: 1px solid rgba(80, 66, 45, 0.10);
+    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s var(--lohas-ease), box-shadow 0.3s ease;
+}
+
+.upload-box:hover,
+.input-section textarea:focus {
+    border-color: rgba(80, 66, 45, 0.32);
+    box-shadow: 0 10px 26px rgba(80, 66, 45, 0.08);
+}
+
+.delete-btn {
+    box-shadow: 0 8px 16px rgba(80, 66, 45, 0.22);
+}
+
+/* Mobile upgrade */
+@media (max-width: 768px) {
+    .main-header {
+        height: 66px;
+    }
+
+    .nav-links {
+        top: 66px;
+        height: calc(100dvh - 66px);
+        padding-top: 44px;
+        gap: 26px;
+        background:
+            radial-gradient(circle at 50% 0%, rgba(205,190,162,0.18), transparent 34%),
+            rgba(255,255,255,0.98);
+    }
+
+    .nav-links a {
+        font-size: 18px;
+        letter-spacing: 0.08em;
+    }
+
+    .hero-banner,
+    .engraving-hero {
+        padding-left: 22px;
+        padding-right: 22px;
+        padding-bottom: 52px;
+    }
+
+    .hero-title,
+    .engraving-hero .hero-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .hero-btns .btn,
+    .engraving-hero .hero-btns .btn {
+        padding: 9px 22px;
+        min-height: 40px;
+    }
+
+    .owndays-container {
+        gap: 12px;
+        scroll-padding-left: 20px;
+    }
+
+    .owndays-item {
+        border-radius: 16px;
+    }
+
+    .spec-card,
+    .grid-item,
+    .market-card {
+        border-radius: 16px;
+    }
+
+    .market-layout {
+        padding: 0 15px;
+    }
+
+    .market-category-list a.active {
+        background: linear-gradient(135deg, var(--lohas-brown), var(--lohas-brown-2));
+        color: #fff;
+    }
+
+    .footer-bottom {
+        gap: 14px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-subtitle,
+    .engraving-hero .hero-subtitle {
+        letter-spacing: 0.12em;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+}
+
+/* 減少動態偏好：保持可用性 */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
+}
