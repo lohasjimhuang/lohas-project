@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>雷刻靈感分享牆 - Lohas 樂活眼鏡</title>
-  <!-- 此版本不引用 style.css，所有分享牆樣式已內嵌，避免被全站 CSS 影響 -->
 
+  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
 
@@ -696,6 +696,7 @@
     .modal-overlay {
       position: fixed;
       inset: 0;
+      padding-top: 86px;
       z-index: 3000;
       display: none;
       align-items: center;
@@ -711,7 +712,8 @@
 
     .modal-content {
       width: min(760px, 100%);
-      max-height: calc(100vh - 48px);
+      margin-top: 84px;
+      max-height: calc(100vh - 120px);
       overflow: auto;
       background: #fff;
       border-radius: 24px;
@@ -1169,6 +1171,7 @@
 
       .modal-overlay {
         padding: 12px;
+        padding-top: 82px;
       }
 
       .modal-header,
@@ -1430,124 +1433,28 @@
         max-width: none;
       }
     }
+    /* 修正 header 擋住上傳視窗標題 */
+.modal-overlay {
+  padding-top: 90px !important;
+  align-items: flex-start !important;
+}
 
-    /* =====================================================
-       分享牆頁面隔離保護：此頁已移除 style.css，不會被全站 CSS 影響
-       如未來又加回 style.css，以下規則仍會優先保護本頁核心版型
-    ===================================================== */
-    .plan1-layout,
-    .plan1-layout *,
-    #filterDrawer,
-    #filterDrawer *,
-    #detailModal,
-    #detailModal *,
-    #uploadModal,
-    #uploadModal *,
-    .toast {
-      box-sizing: border-box !important;
-      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
-    }
+.modal-content {
+  margin-top: 0 !important;
+  max-height: calc(100vh - 120px) !important;
+}
 
-    .plan1-grid {
-      display: block !important;
-      column-count: 4 !important;
-      column-gap: 20px !important;
-    }
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding-top: 82px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
 
-    .plan1-card {
-      display: inline-block !important;
-      width: 100% !important;
-      margin: 0 0 26px !important;
-      break-inside: avoid !important;
-      -webkit-column-break-inside: avoid !important;
-      color: inherit !important;
-      text-decoration: none !important;
-      background: transparent !important;
-      border: 0 !important;
-      box-shadow: none !important;
-    }
-
-    .plan1-card .img-box {
-      width: 100% !important;
-      border-radius: 12px !important;
-      overflow: hidden !important;
-      background: #f9f8f6 !important;
-      margin-bottom: 12px !important;
-    }
-
-    .plan1-card .img-box img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-    }
-
-    #uploadModal .upload-grid {
-      display: grid !important;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) !important;
-      gap: 18px !important;
-      align-items: stretch !important;
-      width: 100% !important;
-    }
-
-    #uploadModal .sub-upload-container {
-      display: grid !important;
-      grid-template-columns: 1fr !important;
-      grid-template-rows: 1fr 1fr !important;
-      gap: 18px !important;
-    }
-
-    #uploadModal .upload-box {
-      position: relative !important;
-      display: block !important;
-      width: 100% !important;
-      min-height: 180px !important;
-      overflow: hidden !important;
-      border-radius: 18px !important;
-      background: #fbfaf8 !important;
-      border: 1.5px dashed #d8cdbb !important;
-    }
-
-    #uploadModal .main-upload {
-      min-height: 378px !important;
-    }
-
-    @media (max-width: 992px) {
-      .plan1-grid {
-        column-count: 3 !important;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .plan1-grid {
-        column-count: 2 !important;
-        column-gap: 14px !important;
-      }
-
-      #uploadModal .upload-grid {
-        grid-template-columns: 1fr !important;
-      }
-
-      #uploadModal .main-upload {
-        min-height: 260px !important;
-      }
-
-      #uploadModal .sub-upload-container {
-        grid-template-columns: 1fr 1fr !important;
-        grid-template-rows: auto !important;
-      }
-
-      #uploadModal .upload-box {
-        min-height: 150px !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .plan1-grid {
-        column-count: 1 !important;
-      }
-    }
-
+  .modal-content {
+    max-height: calc(100vh - 100px) !important;
+  }
+}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
