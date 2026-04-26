@@ -1265,3 +1265,18 @@ main {
     background: #fff;
   }
 }
+
+/* 修正背景圖層擋住點擊 */
+.plan1-banner .hero-bg,
+.plan1-banner .hero-bg img,
+.plan1-banner .hero-bg::after {
+  pointer-events: none;
+}
+
+.plan1-banner .banner-text,
+.plan1-banner .hero-btns,
+.plan1-banner .js-open-upload,
+.plan1-banner .btn-outline {
+  position: relative;
+  z-index: 3;
+}
