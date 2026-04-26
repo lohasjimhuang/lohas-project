@@ -1197,9 +1197,15 @@ main {
 
     @media (max-width: 480px) {
       .plan1-grid {
-        column-count: 1;
-      }
+    column-count: 2;
+    column-gap: 12px;
+    padding: 16px;
+  }
 
+.plan1-card {
+    margin-bottom: 16px;
+  }
+          
       .modal-header,
       .modal-body,
       .modal-footer {
