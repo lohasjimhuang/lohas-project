@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedSlot: null,
         draggedSlot: null,
         images: [null, null, null],
-        files: [null, null, null]
+        files: [null, null, null],
+  isPreviewMode: false
       };
 
       const menu = document.getElementById("mobile-menu");
@@ -106,10 +107,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       function closeDetailModal() {
-        detailModal.classList.remove("is-open");
-        detailModal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
+  detailModal.classList.remove("is-open");
+  detailModal.setAttribute("aria-hidden", "true");
+
+  if (state.isPreviewMode) {
+    uploadModal.classList.add("is-open");
+    uploadModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    state.isPreviewMode = false;
+  } else {
+    document.body.style.overflow = "";
+  }
+}
 
       function resetBox(slot) {
         const box = document.querySelector(`.upload-box[data-slot="${slot}"]`);
@@ -714,6 +723,8 @@ document.getElementById("closeCrop").addEventListener("click", () => {
     </p>
   `;
 
+state.isPreviewMode = true;
+            
   detailModal.classList.add("is-open");
   detailModal.setAttribute("aria-hidden", "false");
   uploadModal.classList.remove("is-open");
