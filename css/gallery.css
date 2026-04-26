@@ -1093,21 +1093,24 @@ main {
 }
 
 .plan1-banner .btn {
-  padding: 10px 24px;
-  font-size: 14px;
+  display: inline-block;
+  padding: 8px 25px;
+  font-size: 0.85rem;
+  margin: 0;
   border-radius: 50px;
   line-height: 1.4;
-  min-width: 132px;
+  min-width: auto;
   text-align: center;
-  margin-top: 10px;
+  white-space: nowrap;
 }
 
   .plan1-banner .hero-btns {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-    width: 100%;
-  }
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-top: 10px;
+  width: auto;
+}
      
 
       .jins-filter-area {
