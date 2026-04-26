@@ -369,8 +369,8 @@ document.getElementById("closeCrop").addEventListener("click", () => {
           return;
         }
 
-        data.forEach(post => renderGalleryCard(post, true));
-
+        galleryGrid.innerHTML = "";
+data.forEach(post => renderGalleryCard(post));
 updateCommunityStats(data);
 applyFilters();
       }
