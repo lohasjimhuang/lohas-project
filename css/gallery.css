@@ -136,7 +136,8 @@ main {
 
 .plan1-banner .hero-subtitle {
   font-size: 1rem;
-  margin-bottom: 5px;
+  margin-bottom: 16px;
+  line-height: 1.8;
   font-weight: 400 !important;
   letter-spacing: 2px;
   color: #fff;
@@ -1076,8 +1077,9 @@ main {
 }
 
 .plan1-banner .hero-subtitle {
-  font-size: 0.9rem;
-  margin-bottom: 3px;
+  ont-size: 0.9rem;
+  margin-bottom: 12px;
+  line-height: 1.8;
 }
 
 .plan1-banner .btn {
