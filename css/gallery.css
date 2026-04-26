@@ -1218,26 +1218,28 @@ main {
 }
 
 @media (max-width: 768px) {
+  #uploadModal {
+    padding: 76px 12px 20px !important;
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
   #uploadModal .modal-content {
-    max-height: calc(100dvh - 96px);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   #uploadModal .modal-body {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 24px;
+    overflow: visible !important;
+    padding-bottom: 24px !important;
   }
 
   #uploadModal .modal-footer {
-    flex-shrink: 0;
-    position: relative;
-    bottom: auto;
-    background: #fff;
+    position: relative !important;
+    bottom: auto !important;
+    padding-bottom: 28px !important;
   }
 
   #uploadModalTitle {
