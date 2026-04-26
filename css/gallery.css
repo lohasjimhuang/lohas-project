@@ -1093,11 +1093,20 @@ main {
 }
 
 .plan1-banner .btn {
-  padding: 8px 25px;
-  font-size: 0.85rem;
-  margin-top: 10px;
-}
+    padding: 10px 0;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
 
+  .plan1-banner .hero-btns {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+  }
      
 
       .jins-filter-area {
