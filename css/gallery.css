@@ -82,7 +82,8 @@ main {
 .plan1-banner {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 50vh;
+  min-height: 420px;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -1056,7 +1057,8 @@ main {
     @media (max-width: 768px) {
 
       .plan1-banner {
-  height: 100svh !important;
+  height: 50vh !important;
+  min-height: 360px !important;
   min-height: 0 !important;
   padding-left: 20px !important;
   padding-right: 20px !important;
