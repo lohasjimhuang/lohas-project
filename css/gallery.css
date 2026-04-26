@@ -1193,20 +1193,18 @@ main {
   max-height: calc(100dvh - 96px);
   display: flex;
   flex-direction: column;
-  overflow: visible;
+  overflow: hidden;
 }
 
 #cropModal .modal-body {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 16px;
+  overflow: hidden;
 }
 
 #cropModal .modal-body > div {
-  height: calc(100dvh - 320px);
-  max-height: 420px;
+  height: calc(100dvh - 260px);
+  max-height: none;
 }
 
 #cropImage {
@@ -1259,24 +1257,15 @@ main {
     line-height: 1.4;
   }
 
-  #cropModal {
-  padding: 76px 12px 20px;
-  align-items: flex-start;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
+  #cropModal .modal-body > div {
+    height: calc(100dvh - 250px);
+  }
 
-#cropModal .modal-body > div {
-  height: 52vh;
-  max-height: 360px;
-}
-
-#cropModal .modal-footer {
-  position: relative;
-  bottom: auto;
-  background: #fff;
-  padding-bottom: 32px;
-}
+  #cropModal .modal-footer {
+    position: relative;
+    bottom: auto;
+    background: #fff;
+  }
 }
 
 /* 修正背景圖層擋住點擊 */
