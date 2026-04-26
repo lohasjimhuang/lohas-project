@@ -377,21 +377,21 @@ updateCommunityStats(data);
 applyFilters();
       }
 
-      function validateForm() {
+     function validateForm() {
   if (workTitleError) {
     workTitleError.textContent = "";
   }
 
-  if (!workTitle.value.trim()) {
-    if (workTitleError) {
-      workTitleError.textContent = "請輸入分享名稱";
-    }
-    workTitle.focus();
+  if (!getMainImage()) {
+    showToast("請至少上傳一張首圖");
     return false;
   }
 
-  if (!getMainImage()) {
-    showToast("請至少上傳一張首圖");
+  if (!workTitle.value.trim()) {
+    if (workTitleError) {
+      workTitleError.textContent = "請輸入刻圖照片名稱";
+    }
+    workTitle.focus();
     return false;
   }
 
