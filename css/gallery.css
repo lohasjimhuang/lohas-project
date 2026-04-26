@@ -1299,6 +1299,30 @@ main {
   #detailModal .modal-body {
     padding-bottom: 42px;
   }
+
+   .modal-header {
+    position: relative;
+    top: auto;
+    background: #fff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .modal-content {
+    background: #fff;
+  }
+
+  .modal-body {
+    background: #fff;
+  }
+
+  .modal-footer {
+    background: #fff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }    
+      
+      
 }
 
 @media (max-width: 768px) {
