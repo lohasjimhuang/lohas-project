@@ -608,7 +608,8 @@ body.no-scroll {
 /* --- Cookie Banner --- */
 .cookie-banner {
     position: fixed;
-    bottom: -150px;
+    bottom: 0;
+    transform: translateY(120%);
     left: 0;
     width: 100%;
     background-color: rgba(25, 25, 25, 0.96);
@@ -620,7 +621,7 @@ body.no-scroll {
 }
 
 .cookie-banner.show {
-    transform: translateY(-150px);
+    transform: translateY(0);
 }
 
 .cookie-container {
@@ -667,10 +668,12 @@ body.no-scroll {
 @media screen and (max-width: 768px) {
     .cookie-banner {
         padding: 25px 0;
+        bottom: 0;
+        transform: translateY(120%);
     }
 
     .cookie-banner.show {
-        transform: translateY(-100%);
+        transform: translateY(0);
     }
 
     .cookie-container {
