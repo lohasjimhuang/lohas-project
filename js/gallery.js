@@ -559,8 +559,12 @@ document.getElementById("closeCrop").addEventListener("click", () => {
         box.addEventListener("dragleave", () => box.classList.remove("drag-enter"));
 
         box.addEventListener("drop", event => {
-          event.preventDefault();
-          box.classList.remove("drag-enter");
+  event.preventDefault();
+
+  document.querySelectorAll(".upload-box").forEach(item => {
+    item.classList.remove("dragging", "drag-enter");
+    item.style.opacity = "";
+  });
           const file = event.dataTransfer.files[0];
           if (file) {
             readImageFile(file, slot);
@@ -580,9 +584,13 @@ document.getElementById("closeCrop").addEventListener("click", () => {
         });
 
         box.addEventListener("dragend", () => {
-          state.draggedSlot = null;
-          box.classList.remove("dragging");
-        });
+  state.draggedSlot = null;
+
+  document.querySelectorAll(".upload-box").forEach(item => {
+    item.classList.remove("dragging", "drag-enter");
+    item.style.opacity = "";
+  });
+});
       });
 
       shareText.addEventListener("input", () => {
