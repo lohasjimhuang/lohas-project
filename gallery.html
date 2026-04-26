@@ -25,11 +25,11 @@
        <section class="plan1-banner">
   <div class="banner-text">
     <p class="hero-subtitle">每一副眼鏡，都有自己的故事</p>
-    <h1 class="hero-title">真實作品分享</h1>
+    <h1 class="hero-title">刻圖照片分享</h1>
 
     <div class="hero-btns">
-      <button type="button" class="btn btn-primary js-open-upload">我要分享作品</button>
-      <a href="#galleryGrid" class="btn btn-outline">探索作品</a>
+      <button type="button" class="btn btn-primary js-open-upload">我要分享照片</button>
+      <a href="#galleryGrid" class="btn btn-outline">探索刻圖靈感</a>
     </div>
   </div>
 
@@ -44,7 +44,7 @@
           <div class="mobile-search-row">
             <div class="search-box">
               <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="search" class="filter-search-input" id="mobileSearchInput" placeholder="搜尋作品關鍵字" />
+              <input type="search" class="filter-search-input" id="mobileSearchInput" placeholder="搜尋照片關鍵字" />
             </div>
           </div>
           <div class="mobile-row">
@@ -69,7 +69,7 @@
               <div class="filter-group">
                 <span class="filter-label">靈感主題</span>
                 <select class="filter-select" id="desktopTopicFilter" aria-label="靈感主題">
-                  <option>全部作品</option>
+                  <option>全部照片</option>
                   <option>愛情 / 情侶</option>
                   <option>紀念日 / 日期</option>
                   <option>名字 / 暱稱</option>
@@ -175,12 +175,12 @@
             <div class="icon-circle"><i class="fas fa-camera"></i></div>
             <div class="cta-text">
               <h3>你的刻圖，也值得被看見。</h3>
-              <p>加入大家的刻圖故事，讓更多人看見你的創意作品。</p>
+              <p>分享你的刻圖照片，給更多人靈感。</p>
             </div>
           </div>
 
           <div class="cta-right">
-            <button type="button" class="btn-upload js-open-upload">分享作品</button>
+            <button type="button" class="btn-upload js-open-upload">我要分享照片</button>
             <div class="deco-imgs">
               <img src="images/lens-01.jpg" alt="photo1" />
               <img src="images/frame-01.jpg" alt="photo2" />
@@ -194,14 +194,14 @@
     <div class="filter-drawer-overlay" id="filterDrawer" aria-hidden="true">
     <div class="filter-drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
       <div class="drawer-header">
-        <h3 id="drawerTitle">篩選作品</h3>
+        <h3 id="drawerTitle">篩選照片</h3>
         <button type="button" class="drawer-close" id="drawerClose" aria-label="關閉篩選">&times;</button>
       </div>
 
       <div class="drawer-section">
         <p class="drawer-section-title">靈感主題</p>
         <div class="drawer-chip-grid">
-          <button type="button" class="chip active">全部作品</button>
+          <button type="button" class="chip active">全部照片</button>
           <button type="button" class="chip">愛情 / 情侶</button>
           <button type="button" class="chip">紀念日 / 日期</button>
           <button type="button" class="chip">名字 / 暱稱</button>
@@ -221,7 +221,7 @@
           <button type="button" class="chip">眼鏡布</button>
           <button type="button" class="chip">眼鏡盒</button>
           <button type="button" class="chip">鼻墊</button>
-          <button type="button" class="chip">其他週邊配件</button>
+          <button type="button" class="chip">其他周邊配件</button>
         </div>
       </div>
 
@@ -235,8 +235,8 @@
   <div id="detailModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
       <div class="modal-header">
-        <h2 id="detailModalTitle">作品分享</h2>
-        <button id="closeDetail" class="close-btn" type="button" aria-label="關閉作品詳情">&times;</button>
+        <h2 id="detailModalTitle">刻圖照片分享</h2>
+        <button id="closeDetail" class="close-btn" type="button" aria-label="關閉照片詳情">&times;</button>
       </div>
       <div class="modal-body" id="detailBody"></div>
     </div>
@@ -245,7 +245,7 @@
   <div id="uploadModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-content upload-modal" role="dialog" aria-modal="true" aria-labelledby="uploadModalTitle">
       <div class="modal-header">
-        <h2 id="uploadModalTitle">分享你的作品 <span class="subtitle">可拖曳調整首圖順序</span></h2>
+        <h2 id="uploadModalTitle">分享你的照片 <span class="subtitle">可拖曳調整首圖順序</span></h2>
         <button id="closeUpload" class="close-btn" type="button" aria-label="關閉上傳視窗">&times;</button>
       </div>
 
@@ -283,8 +283,10 @@
 
         <div class="form-section">
           <div class="form-row">
-            <label for="workTitle">作品名稱</label>
-            <input id="workTitle" type="text" maxlength="24" placeholder="例如：把回憶刻在日常裡" />
+            <label for="workTitle">照片名稱</label>
+<input id="workTitle" type="text" maxlength="24" placeholder="例如：把回憶刻在日常裡">
+
+<p class="field-error" id="workTitleError"></p>
           </div>
 
           <div class="two-col">
@@ -324,7 +326,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn-preview" id="previewBtn">預覽作品</button>
+        <button type="button" class="btn-preview" id="previewBtn">預覽照片</button>
         <button type="button" class="btn-submit" id="submitBtn">送出分享</button>
       </div>
     </div>
