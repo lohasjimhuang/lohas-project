@@ -128,7 +128,7 @@ main {
   font-size: 2.5rem;
   font-weight: 700 !important;
   margin-top: -10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   letter-spacing: 1px;
   line-height: 1.2;
   color: #fff;
@@ -136,7 +136,7 @@ main {
 
 .plan1-banner .hero-subtitle {
   font-size: 1rem;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   line-height: 1.8;
   font-weight: 400 !important;
   letter-spacing: 2px;
