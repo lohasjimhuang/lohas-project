@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const shareText = document.getElementById("shareText");
       const currentChar = document.getElementById("currentChar");
       const workTitle = document.getElementById("workTitle");
+      const workTitleError = document.getElementById("workTitleError");
       const workCategory = document.getElementById("workCategory");
       const carrierCategory = document.getElementById("carrierCategory");
       const previewBtn = document.getElementById("previewBtn");
@@ -377,19 +378,25 @@ applyFilters();
       }
 
       function validateForm() {
-        if (!getMainImage()) {
-          showToast("請至少上傳一張首圖");
-          return false;
-        }
+  if (workTitleError) {
+    workTitleError.textContent = "";
+  }
 
-        if (!workTitle.value.trim()) {
-          showToast("請輸入作品名稱");
-          workTitle.focus();
-          return false;
-        }
+  if (!workTitle.value.trim()) {
+    if (workTitleError) {
+      workTitleError.textContent = "請輸入分享名稱";
+    }
+    workTitle.focus();
+    return false;
+  }
 
-        return true;
-      }
+  if (!getMainImage()) {
+    showToast("請至少上傳一張首圖");
+    return false;
+  }
+
+  return true;
+}
 
       function applyFilters() {
         const cards = Array.from(document.querySelectorAll(".plan1-card"));
@@ -607,6 +614,12 @@ applyFilters();
       shareText.addEventListener("input", () => {
         currentChar.textContent = shareText.value.length;
       });
+
+      workTitle.addEventListener("input", () => {
+  if (workTitleError) {
+    workTitleError.textContent = "";
+  }
+});
 
       function openFilterDrawer() {
         filterDrawer.classList.add("is-open");
