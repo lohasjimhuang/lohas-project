@@ -78,61 +78,107 @@ main {
       display: none;
     }
 
-    .plan1-banner {
-      position: relative;
-      width: 100vw !important;
-      max-width: none !important;
-      height: 380px;
-      margin-left: calc(50% - 50vw) !important;
-      margin-right: calc(50% - 50vw) !important;
-      background: var(--lohas-soft);
-      display: flex;
-      align-items: center;
-      padding-left: 0 !important;
-      overflow: hidden;
-      border-radius: 0 !important;
-    }
+    /* Gallery Hero Banner：同步首頁 Hero */
+.plan1-banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  color: #fff;
+  padding-left: 5%;
+  padding-bottom: 40px;
+  background: #000;
+}
 
-    .plan1-banner img.bg {
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 1;
-      width: 60%;
-      height: 100%;
-      object-fit: cover;
-      object-position: left center;
-      mask-image: linear-gradient(to right, transparent 0%, black 30%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
-    }
+.plan1-banner .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
 
-    .banner-text {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-left: 20px;
-      padding-right: 20px;
-      transform: translateY(34px);
-    }
+.plan1-banner .hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
-    .banner-text h2 {
-      margin: 0 0 10px;
-      color: #333;
-      font-size: 34px;
-      line-height: 1.5;
-      font-weight: 800 !important;
-      letter-spacing: 0.02em;
-    }
+.plan1-banner .hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
 
-    .banner-text p {
-      margin: 0;
-      color: #666;
-      font-size: 15px;
-      line-height: 1.8;
-      font-weight: 400 !important;
-    }
+.plan1-banner .banner-text {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  transform: none;
+}
+
+.plan1-banner .hero-title {
+  font-size: 2.5rem;
+  font-weight: 700 !important;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.plan1-banner .hero-subtitle {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  font-weight: 400 !important;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.plan1-banner .hero-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.plan1-banner .btn {
+  display: inline-block;
+  padding: 12px 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 400 !important;
+  transition: all 0.3s ease;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.plan1-banner .btn-primary {
+  background: #50422D;
+  color: #fff !important;
+}
+
+.plan1-banner .btn-primary:hover {
+  background: #765F4A;
+}
+
+.plan1-banner .btn-outline {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff !important;
+}
+
+.plan1-banner .btn-outline:hover {
+  background: #fff;
+  color: #333 !important;
+}
 
     /* =========================
        Filter
@@ -1010,39 +1056,35 @@ main {
     @media (max-width: 768px) {
 
       .plan1-banner {
-        height: 50vh !important;
-        min-height: 360px !important;
-        padding: 0 22px !important;
-        display: flex !important;
-        align-items: center !important;
-      }
+  height: 100svh !important;
+  min-height: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-bottom: 40px !important;
+  align-items: flex-end !important;
+}
 
-      .plan1-banner img.bg {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        object-position: center center !important;
-        opacity: 0.18;
-        mask-image: none;
-        -webkit-mask-image: none;
-      }
+.plan1-banner .banner-text {
+  max-width: 90%;
+}
 
-      .banner-text {
-        transform: translateY(0) !important;
-        width: 100%;
-        padding-left: 22px;
-        padding-right: 22px;
-      }
+.plan1-banner .hero-title {
+  font-size: 2rem;
+  margin-bottom: 3px;
+}
 
-      .banner-text h2 {
-        font-size: 24px;
-        line-height: 1.5;
-        margin-bottom: 10px;
-      }
+.plan1-banner .hero-subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+}
 
-      .banner-text p {
-        line-height: 1.8;
-      }
+.plan1-banner .btn {
+  padding: 8px 25px;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+     
 
       .jins-filter-area {
         display: none;
