@@ -100,11 +100,9 @@ function initCookieBanner() {
   }
 
   acceptBtn.addEventListener("click", () => {
-    cookieBanner.style.transform = "translateY(100%)";
-    localStorage.setItem("lohas_cookies_accepted", "true");
+  cookieBanner.classList.remove("show");
+  cookieBanner.classList.add("is-hide");
 
-    setTimeout(() => {
-      cookieBanner.classList.remove("show");
-    }, 600);
-  });
+  localStorage.setItem("lohas_cookies_accepted", "true");
+});
 }
