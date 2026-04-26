@@ -657,7 +657,7 @@ applyFilters();
 
           const sectionTitle = group.closest(".drawer-section")?.querySelector(".drawer-section-title")?.textContent || "";
           if (sectionTitle.includes("靈感")) filterState.topic = value;
-          if (sectionTitle.includes("刻印")) filterState.carrier = value;
+          if (sectionTitle.includes("刻圖")) filterState.carrier = value;
         });
       });
 
