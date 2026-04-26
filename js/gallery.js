@@ -369,10 +369,10 @@ document.getElementById("closeCrop").addEventListener("click", () => {
           return;
         }
 
-        galleryGrid.innerHTML = "";
-        data.forEach(post => renderGalleryCard(post));
-        updateCommunityStats(data);
-        applyFilters();
+        data.forEach(post => renderGalleryCard(post, true));
+
+updateCommunityStats(data);
+applyFilters();
       }
 
       function validateForm() {
