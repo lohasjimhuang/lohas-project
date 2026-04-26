@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const menu = document.getElementById("mobile-menu");
       const navList = document.getElementById("nav-list");
-      const openUploadBtn = document.getElementById("openUploadBtn");
+      const openUploadBtns = document.querySelectorAll(".js-open-upload");
       const uploadModal = document.getElementById("uploadModal");
       const detailModal = document.getElementById("detailModal");
       const closeDetail = document.getElementById("closeDetail");
@@ -500,17 +500,18 @@ document.getElementById("closeCrop").addEventListener("click", () => {
         });
       }
 
-      openUploadBtn.addEventListener("click", () => {
+     openUploadBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const member = JSON.parse(localStorage.getItem("lohasMember") || "null");
 
-  const member = JSON.parse(localStorage.getItem("lohasMember") || "null");
+    if (!member || !member.erpid) {
+      localStorage.setItem("redirectAfterLogin", "gallery.html?openUpload=1");
+      window.location.href = "login.html";
+      return;
+    }
 
-  if (!member || !member.erpid) {
-    localStorage.setItem("redirectAfterLogin", "gallery.html");
-    window.location.href = "login.html";
-    return;
-  }
-
-  openModal();
+    openModal();
+  });
 });
       closeUpload.addEventListener("click", closeModal);
       closeDetail.addEventListener("click", closeDetailModal);
