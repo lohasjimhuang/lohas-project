@@ -1280,3 +1280,60 @@ main {
   position: relative;
   z-index: 3;
 }
+
+/* 詳情彈窗內容可完整滑動 */
+#detailModal {
+  align-items: flex-start;
+  padding: 92px 24px 24px;
+}
+
+#detailModal .modal-content {
+  max-height: calc(100dvh - 116px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#detailModal .modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 36px;
+}
+
+@media (max-width: 768px) {
+  #detailModal {
+    padding: 84px 12px 12px;
+  }
+
+  #detailModal .modal-content {
+    max-height: calc(100dvh - 96px);
+  }
+
+  #detailModal .modal-body {
+    padding-bottom: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-drawer {
+    max-height: calc(100dvh - 90px);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+
+  .drawer-section {
+    flex-shrink: 0;
+  }
+
+  .drawer-actions {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    padding: 16px 0 22px;
+    margin-top: 8px;
+    box-shadow: 0 -10px 20px rgba(255, 255, 255, 0.95);
+  }
+}
