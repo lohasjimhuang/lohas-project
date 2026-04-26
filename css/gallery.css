@@ -1158,16 +1158,28 @@ main {
       }
 
       .modal-overlay {
-        padding: 84px 12px 12px !important;
-      }
+    padding: 84px 12px 24px;
+    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
       .modal-content {
-        max-height: calc(100vh - 96px) !important;
-      }
+    max-height: none;
+    height: auto;
+    overflow: visible;
+  }
 
-      .modal-footer {
-        flex-direction: column;
-      }
+      .modal-body {
+    overflow: visible;
+  }
+
+  .modal-footer {
+    position: relative;
+    bottom: auto;
+    flex-direction: column;
+    padding-bottom: 32px;
+  }
 
       .btn-preview,
       .btn-submit {
@@ -1190,21 +1202,22 @@ main {
 
 /* 修正 crop / upload modal 手機與桌機問題 */
 #cropModal .modal-content {
-  max-height: calc(100dvh - 96px);
+  max-height: none;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 }
 
 #cropModal .modal-body {
   flex: 1;
   min-height: 0;
-  overflow: hidden;
+  overflow: visible;
+  padding-bottom: 16px;
 }
 
 #cropModal .modal-body > div {
-  height: calc(100dvh - 260px);
-  max-height: none;
+  height: 58vh;
+  max-height: 420px;
 }
 
 #cropImage {
@@ -1218,29 +1231,7 @@ main {
 }
 
 @media (max-width: 768px) {
-  #uploadModal {
-    padding: 76px 12px 20px !important;
-    align-items: flex-start !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #uploadModal .modal-content {
-    max-height: none !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  #uploadModal .modal-body {
-    overflow: visible !important;
-    padding-bottom: 24px !important;
-  }
-
-  #uploadModal .modal-footer {
-    position: relative !important;
-    bottom: auto !important;
-    padding-bottom: 28px !important;
-  }
+  
 
   #uploadModalTitle {
     display: flex;
@@ -1257,15 +1248,7 @@ main {
     line-height: 1.4;
   }
 
-  #cropModal .modal-body > div {
-    height: calc(100dvh - 250px);
-  }
-
-  #cropModal .modal-footer {
-    position: relative;
-    bottom: auto;
-    background: #fff;
-  }
+  
 }
 
 /* 修正背景圖層擋住點擊 */
