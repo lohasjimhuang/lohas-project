@@ -108,12 +108,6 @@ body{
   transform:none;
 }
 
-.login-note{
-  margin-top:34px;
-  font-size:11px;
-  letter-spacing:.22em;
-  color:var(--lohas-text-light);
-}
 
 /* =========================
    Member Center
