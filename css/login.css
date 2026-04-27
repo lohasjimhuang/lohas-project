@@ -33,8 +33,9 @@ body {
   letter-spacing: .18em;
   color: var(--lohas-brand-color);
   line-height: 1;
-  margin-top: 86px;
-  margin-bottom: -26px;
+
+  position: relative;
+  top: 58px;
 }
 
 /* =========================
@@ -167,9 +168,10 @@ body {
   margin-bottom: 8px;
 }
 
-#login-section .text-center p{
-  font-size: 22px;
-  letter-spacing: .12em;
-  margin-top: 62px;
-  margin-bottom: -18px;
-}
+ #login-section .text-center p{
+    font-size: 22px;
+    letter-spacing: .12em;
+    position: relative;
+    top: 42px;
+  }
+  }
