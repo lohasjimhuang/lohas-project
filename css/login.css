@@ -17,6 +17,23 @@ body {
   font-family: "Noto Sans TC", sans-serif;
 }
 
+#login-section .text-center{
+  transform: translateY(-28px);
+}
+
+#login-section .text-center img{
+  height: 52px;
+  margin-bottom: 18px;
+}
+
+#login-section .text-center p{
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  color: var(--lohas-brand-color);
+  line-height: 1;
+}
+
 /* =========================
    Login Page（原始乾淨版）
 ========================= */
@@ -112,6 +129,8 @@ body {
   display: none !important;
 }
 
+
+
 /* =========================
    Mobile
 ========================= */
@@ -134,4 +153,18 @@ body {
   .profile-card {
     padding: 28px 22px;
   }
+
+  #login-section .text-center{
+  transform: translateY(-18px);
+}
+
+#login-section .text-center img{
+  height: 46px;
+  margin-bottom: 16px;
+}
+
+#login-section .text-center p{
+  font-size: 22px;
+  letter-spacing: .12em;
+}
 }
