@@ -15,54 +15,23 @@
 
   <!-- 登入頁 -->
   <div id="login-section" class="login-page">
-    <div class="login-card">
+  <div class="login-card">
+    <img src="images/lohas-logo.svg" alt="LOHAS 樂活眼鏡" class="login-logo">
 
-      <div class="login-brand">
-        <img src="images/lohas-logo.svg" alt="Lohas" class="login-logo">
+    <h1 class="login-title">會員登入</h1>
 
-        <p class="login-kicker">LOHAS MEMBER CENTER</p>
+    <div class="login-form">
+      <input type="text" id="account" class="input-lohas" placeholder="APP 帳號" autocomplete="username">
+      <input type="password" id="password" class="input-lohas" placeholder="密碼" autocomplete="current-password">
 
-        <h1 class="login-title">會員登入</h1>
+      <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
 
-        <p class="login-subtitle">
-          登入後可查看會員資料、雷刻紀錄與收藏內容
-        </p>
-      </div>
-
-      <div class="login-form">
-        <input
-          type="text"
-          id="account"
-          class="input-lohas"
-          placeholder="APP 帳號"
-          autocomplete="username"
-        >
-
-        <input
-          type="password"
-          id="password"
-          class="input-lohas"
-          placeholder="密碼"
-          autocomplete="current-password"
-        >
-
-        <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
-
-        <button
-          id="login-btn"
-          class="btn-lohas"
-          type="button"
-        >
-          登入會員
-        </button>
-      </div>
-
-      <p class="login-note">
-        LOHAS GLASSES OFFICIAL MEMBER SYSTEM
-      </p>
-
+      <button id="login-btn" class="btn-lohas" type="button">登入</button>
     </div>
+
+    <p class="login-note">LOHAS GLASSES</p>
   </div>
+</div>
 
   <!-- 會員中心 -->
   <div id="profile-section" class="hidden">
