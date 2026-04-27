@@ -19,7 +19,7 @@ body {
 
 #login-section .text-center{
   position: fixed;
-  top: 42px;
+  top: 62px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -165,7 +165,7 @@ body {
  @media (max-width:768px){
   #login-section .text-center{
     position: fixed;
-    top: 28px;
+    top: 42px;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
