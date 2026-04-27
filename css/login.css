@@ -133,3 +133,139 @@ body {
     letter-spacing: 3px;
   }
 }
+
+/* ===== LOHAS 登入頁升級版 ===== */
+
+.login-page{
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(205,190,162,.22), transparent 32%),
+    linear-gradient(180deg, #fbfaf8 0%, #ffffff 58%, #f7f3ed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.login-card{
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,.86);
+  border: 1px solid rgba(80,66,45,.08);
+  border-radius: 28px;
+  padding: 48px 34px 34px;
+  box-shadow: 0 24px 70px rgba(80,66,45,.10);
+  backdrop-filter: blur(12px);
+}
+
+.login-brand{
+  text-align: center;
+  margin-bottom: 34px;
+  transform: translateY(-10px);
+}
+
+.login-logo{
+  height: 54px;
+  margin: 0 auto 24px;
+  display: block;
+}
+
+.login-kicker{
+  font-size: 13px;
+  letter-spacing: .24em;
+  color: #CDBEA2;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.login-title{
+  font-size: 30px;
+  letter-spacing: .18em;
+  color: #50422D;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.login-subtitle{
+  color: #8f8374;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-lohas{
+  height: 52px;
+  border-radius: 999px;
+  background: #fbfaf8;
+  border: 1px solid rgba(80,66,45,.12);
+  color: #50422D;
+  padding: 0 22px;
+  font-size: 15px;
+}
+
+.input-lohas::placeholder{
+  color: #b8aa99;
+}
+
+.input-lohas:focus{
+  border-color: #50422D;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(80,66,45,.08);
+}
+
+.btn-lohas{
+  height: 54px;
+  border-radius: 999px;
+  background: #50422D;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+  box-shadow: 0 12px 28px rgba(80,66,45,.18);
+}
+
+.btn-lohas:hover{
+  background: #765F4A;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(80,66,45,.22);
+}
+
+.login-note{
+  text-align: center;
+  margin-top: 30px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  color: #CDBEA2;
+}
+
+@media (max-width: 768px){
+  .login-page{
+    align-items: flex-start;
+    padding-top: 72px;
+  }
+
+  .login-card{
+    max-width: 100%;
+    padding: 42px 24px 30px;
+    border-radius: 24px;
+  }
+
+  .login-logo{
+    height: 48px;
+  }
+
+  .login-title{
+    font-size: 26px;
+  }
+
+  .login-subtitle{
+    font-size: 13px;
+  }
+}
