@@ -18,13 +18,14 @@ body {
 }
 
 #login-section .text-center{
+  margin-top: -72px;
   margin-bottom: 34px;
 }
 
 #login-section .text-center img{
-  height: 42px;
+  height: 32px;
   display: block;
-  margin: 0 auto 18px;
+  margin: 0 auto 16px;
 }
 
 #login-section .text-center p{
@@ -158,12 +159,13 @@ body {
 
  @media (max-width:768px){
   #login-section .text-center{
+    margin-top: -54px;
   margin-bottom: 28px;
 }
 
 #login-section .text-center img{
-  height: 38px;
-  margin: 0 auto 16px;
+  height: 28px;
+  margin: 0 auto 14px;
 }
 
 #login-section .text-center p{
