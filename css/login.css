@@ -29,14 +29,13 @@ body {
 }
 
 #login-section .text-center p{
-  margin-top: 82px;
+  margin-top: 54px;
   margin-bottom: 18px;
   font-size: 26px;
   font-weight: 500;
   letter-spacing: .08em;
   color: var(--lohas-brand-color);
   line-height: 1.2;
-}
 
 /* =========================
    Login Page（原始乾淨版）
