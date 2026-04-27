@@ -269,3 +269,110 @@ body {
     font-size: 13px;
   }
 }
+
+.login-page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+  background:#FAF8F6;
+  font-family:"Noto Sans TC",sans-serif;
+}
+
+.login-card{
+  width:100%;
+  max-width:360px;
+  padding:54px 28px 36px;
+  background:#fff;
+  border-radius:28px;
+  box-shadow:0 24px 70px rgba(80,66,45,.08);
+  text-align:center;
+}
+
+.login-logo{
+  height:48px;
+  margin:0 auto 42px;
+  display:block;
+}
+
+.login-title{
+  margin:0 0 36px;
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:.24em;
+  color:#50422D;
+}
+
+.login-form{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.input-lohas{
+  height:52px;
+  border:1px solid rgba(80,66,45,.14);
+  border-radius:999px;
+  padding:0 22px;
+  background:#fff;
+  color:#50422D;
+  font-size:15px;
+  outline:none;
+}
+
+.input-lohas::placeholder{
+  color:#B7AA98;
+}
+
+.input-lohas:focus{
+  border-color:#50422D;
+  box-shadow:0 0 0 4px rgba(80,66,45,.06);
+}
+
+.btn-lohas{
+  height:52px;
+  margin-top:6px;
+  border-radius:999px;
+  background:#50422D;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.22em;
+  transition:.25s ease;
+}
+
+.btn-lohas:hover{
+  background:#765F4A;
+  transform:translateY(-1px);
+}
+
+.login-note{
+  margin-top:34px;
+  font-size:11px;
+  letter-spacing:.22em;
+  color:#CDBEA2;
+}
+
+@media (max-width:768px){
+  .login-page{
+    align-items:flex-start;
+    padding-top:76px;
+  }
+
+  .login-card{
+    max-width:100%;
+    padding:48px 24px 34px;
+    border-radius:24px;
+  }
+
+  .login-logo{
+    height:44px;
+    margin-bottom:38px;
+  }
+
+  .login-title{
+    font-size:22px;
+    margin-bottom:32px;
+  }
+}
