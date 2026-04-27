@@ -18,12 +18,17 @@ body {
 }
 
 #login-section .text-center{
-  transform: translateY(-118px);
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   margin-bottom: 0;
+  z-index: 20;
 }
 
 #login-section .text-center img{
-  height: 36px;
+  height: 30px;
   margin-bottom: 10px;
 }
 
@@ -159,14 +164,19 @@ body {
   }
 
  #login-section .text-center{
-  transform: translateY(-96px);
-  margin-bottom: 0;
-}
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    margin-bottom: 0;
+    z-index: 20;
+  }
 
-#login-section .text-center img{
-  height: 32px;
-  margin-bottom: 8px;
-}
+  #login-section .text-center img{
+    height: 26px;
+    margin-bottom: 8px;
+  }
 
  #login-section .text-center p{
     font-size: 22px;
