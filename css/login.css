@@ -93,3 +93,43 @@ body {
   .main-content-wrapper { padding: 30px 20px; }
   .profile-card { padding: 28px 22px; }
 }
+
+/* ===== 登入頁品牌區 ===== */
+
+.login-brand{
+  margin-bottom: 42px;
+  transform: translateY(-38px);
+}
+
+.login-logo{
+  height: 52px;
+  margin: 0 auto 18px;
+  display: block;
+}
+
+.login-title{
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #50422D;
+  line-height: 1;
+}
+
+/* 手機版 */
+@media (max-width: 768px){
+
+  .login-brand{
+    margin-bottom: 34px;
+    transform: translateY(-24px);
+  }
+
+  .login-logo{
+    height: 46px;
+    margin-bottom: 16px;
+  }
+
+  .login-title{
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+}
