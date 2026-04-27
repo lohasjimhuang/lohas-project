@@ -18,28 +18,22 @@ body {
 }
 
 #login-section .text-center{
-  position: fixed;
-  top: 62px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  margin-bottom: 0;
-  z-index: 20;
+  margin-bottom: 34px;
 }
 
 #login-section .text-center img{
-  height: 30px;
-  margin-bottom: 6px;
+  height: 42px;
+  display: block;
+  margin: 0 auto 18px;
 }
 
 #login-section .text-center p{
-  font-size: 30px;
+  margin: 0;
+  font-size: 26px;
   font-weight: 500;
-  letter-spacing: .06em;
+  letter-spacing: .08em;
   color: var(--lohas-brand-color);
-  line-height: 1;
-  margin-top: 170px;
-  margin-bottom: 12px;
+  line-height: 1.2;
 }
 
 /* =========================
@@ -164,24 +158,16 @@ body {
 
  @media (max-width:768px){
   #login-section .text-center{
-    position: fixed;
-    top: 36px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    margin-bottom: 0;
-    z-index: 20;
-  }
+  margin-bottom: 28px;
+}
 
-  #login-section .text-center img{
-    height: 26px;
-    margin-bottom: 6px;
-  }
+#login-section .text-center img{
+  height: 38px;
+  margin: 0 auto 16px;
+}
 
- #login-section .text-center p{
-  font-size: 26px;
-  letter-spacing: .05em;
-  margin-top: 126px;
-  margin-bottom: 10px;
+#login-section .text-center p{
+  font-size: 24px;
+  letter-spacing: .06em;
 }
 }
