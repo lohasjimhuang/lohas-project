@@ -10,7 +10,6 @@
     loginSection: Utils.$('#login-section'),
     profileSection: Utils.$('#profile-section'),
     account: Utils.$('#account'),
-    mobile: Utils.$('#mobile'),
     password: Utils.$('#password')
   };
 
@@ -36,21 +35,23 @@
     return loginResult.data?.erpname || loginResult.data?.erpName || loginResult.data?.name || '';
   }
 
-  async function fetchProfileByMobile(mobile) {
-    const result = await Auth.apiPost('/proxy/member/list', { mobile });
+  async function fetchProfileByClientId(erpid) {
+    const result = await Auth.apiPost('/proxy/member/list', {
+      client_id: Number(erpid)
+    });
 
     if (Utils.normalizeApiCode(result.code) !== '200' || !result.data) {
-      throw new Error('會員帳號與手機號碼不一致，請確認後再試');
+      throw new Error('登入成功，但查無完整會員資料');
     }
 
     return result.data;
   }
 
   function renderProfile(member) {
-    Utils.setText('#profile-name', member.name);
-    Utils.setText('#profile-mobile', member.mobile);
-    Utils.setText('#profile-email', member.email);
-    Utils.setText('#profile-birthday', member.birthday);
+    Utils.setText('#profile-name', member.name || '-');
+    Utils.setText('#profile-mobile', member.mobile || '-');
+    Utils.setText('#profile-email', member.email || '-');
+    Utils.setText('#profile-birthday', member.birthday || '-');
 
     Utils.hide(elements.loginSection);
     Utils.show(elements.profileSection);
@@ -58,11 +59,10 @@
 
   async function handleLogin() {
     const account = elements.account?.value.trim() || '';
-    const mobile = elements.mobile?.value.trim() || '';
     const password = elements.password?.value.trim() || '';
 
-    if (!account || !mobile || !password) {
-      showError('請輸入 APP帳號、手機號碼與密碼');
+    if (!account || !password) {
+      showError('請輸入 APP帳號與密碼');
       return;
     }
 
@@ -71,19 +71,34 @@
 
     try {
       const loginResult = await Auth.loginWithAccount(account, password);
-      const loginName = getLoginName(loginResult);
-      const member = await fetchProfileByMobile(mobile);
-      const memberName = member.name || '';
 
-      if (loginName && memberName && loginName !== memberName) {
-        console.warn('[姓名不一致]', { loginName, memberName });
-        throw new Error('會員帳號與手機號碼不一致，請確認後再試');
+      const erpid = loginResult.data?.erpid;
+      const loginName = getLoginName(loginResult);
+
+      if (!erpid) {
+        throw new Error('登入成功，但未取得會員編號');
+      }
+
+      let member;
+
+      try {
+        member = await fetchProfileByClientId(erpid);
+      } catch (profileError) {
+        console.warn('[會員資料讀取失敗，改用登入資料]', profileError);
+
+        member = {
+          client_id: erpid,
+          name: loginName,
+          mobile: '',
+          email: '',
+          birthday: ''
+        };
       }
 
       const storedMember = {
-        erpid: member.client_id || loginResult.data?.erpid || null,
+        erpid: member.client_id || erpid,
         name: member.name || loginName || '',
-        mobile: member.mobile || mobile || '',
+        mobile: member.mobile || '',
         email: member.email || '',
         birthday: member.birthday || ''
       };
@@ -125,7 +140,13 @@
     bindEvents();
 
     const storedMember = Auth.getStoredMember();
-    if (storedMember && elements.profileSection && elements.loginSection) {
+
+    if (
+      storedMember &&
+      storedMember.erpid &&
+      elements.profileSection &&
+      elements.loginSection
+    ) {
       renderProfile(storedMember);
     }
   }
@@ -133,7 +154,7 @@
   document.addEventListener('DOMContentLoaded', initMemberPage);
 
   window.LohasMember = {
-    fetchProfileByMobile,
+    fetchProfileByClientId,
     renderProfile,
     handleLogin
   };
