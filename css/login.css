@@ -157,17 +157,18 @@ body {
   }
 
  #login-section .text-center{
-  transform: translateY(-42px);
-  margin-bottom: 6px;
-}
+    transform: translateY(-68px);
+    margin-bottom: 0;
+  }
 
-#login-section .text-center img{
-  height: 46px;
-  margin-bottom: 12px;
-}
+  #login-section .text-center img{
+    height: 46px;
+    margin-bottom: 10px;
+  }
 
 #login-section .text-center p{
   font-size: 22px;
   letter-spacing: .12em;
+  margin-top: 14px;
 }
 }
