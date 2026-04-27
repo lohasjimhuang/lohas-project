@@ -33,6 +33,7 @@ body {
   letter-spacing: .18em;
   color: var(--lohas-brand-color);
   line-height: 1;
+  margin-top: 18px;
 }
 
 /* =========================
