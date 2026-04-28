@@ -772,4 +772,39 @@ state.isPreviewMode = true;
       loadPostsFromSupabase();
     });
 
+async function toggleFavorite(postId, btn) {
+  const member = JSON.parse(localStorage.getItem('lohasMember') || 'null');
 
+  if (!member || !member.erpid) {
+    localStorage.setItem('redirectAfterLogin', 'gallery.html');
+    location.href = 'login.html';
+    return;
+  }
+
+  const supabaseClient = window.LohasSupabase.getClient();
+
+  const { data: existed } = await supabaseClient
+    .from('gallery_favorites')
+    .select('id')
+    .eq('member_id', member.erpid)
+    .eq('post_id', postId)
+    .maybeSingle();
+
+  if (existed) {
+    await supabaseClient
+      .from('gallery_favorites')
+      .delete()
+      .eq('id', existed.id);
+
+    btn.classList.remove('is-active');
+  } else {
+    await supabaseClient
+      .from('gallery_favorites')
+      .insert({
+        member_id: member.erpid,
+        post_id: postId
+      });
+
+    btn.classList.add('is-active');
+  }
+}
