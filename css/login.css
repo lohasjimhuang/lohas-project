@@ -439,3 +439,71 @@ body {
     font-weight: 600;
   }
 }
+
+.my-photos-section{
+  margin-top:40px;
+}
+
+.my-photo-list{
+  display:grid;
+  gap:14px;
+}
+
+.my-photo-card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:14px;
+  border:1px solid #f0ebe4;
+  border-radius:16px;
+  background:#fff;
+}
+
+.my-photo-card img{
+  width:72px;
+  height:72px;
+  border-radius:12px;
+  object-fit:cover;
+  flex-shrink:0;
+}
+
+.my-photo-info{
+  flex:1;
+}
+
+.my-photo-info h3{
+  margin:0 0 6px;
+  color:#50422D;
+  font-size:16px;
+}
+
+.my-photo-info p{
+  margin:0;
+  color:#9A8671;
+  font-size:13px;
+}
+
+.delete-my-photo{
+  border:0;
+  background:#fff4f4;
+  color:#c65f5f;
+  border-radius:999px;
+  padding:8px 14px;
+  cursor:pointer;
+}
+
+.empty-text{
+  color:#9A8671;
+  font-size:14px;
+}
+
+@media(max-width:768px){
+  .my-photo-card{
+    align-items:flex-start;
+  }
+
+  .my-photo-card img{
+    width:64px;
+    height:64px;
+  }
+}
