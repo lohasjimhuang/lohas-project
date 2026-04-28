@@ -3,6 +3,7 @@
 
   const Utils = window.LohasUtils;
   const Auth = window.LohasAuth;
+  const Supabase = window.LohasSupabase;
 
   const elements = {
     loginBtn: Utils.$('#login-btn'),
@@ -32,7 +33,15 @@
   }
 
   function getLoginName(loginResult) {
-    return loginResult.data?.erpname || loginResult.data?.erpName || loginResult.data?.name || '';
+    return loginResult.data?.erpname ||
+      loginResult.data?.erpName ||
+      loginResult.data?.name ||
+      '';
+  }
+
+  function getSupabaseClient() {
+    if (!Supabase || !Supabase.getClient) return null;
+    return Supabase.getClient();
   }
 
   async function fetchProfileByClientId(erpid) {
@@ -53,12 +62,13 @@
     Utils.setText('#profile-email', member.email || '-');
     Utils.setText('#profile-birthday', member.birthday || '-');
 
-     Utils.setText('#mobile-profile-name', member.name || '-');
-  Utils.setText('#mobile-profile-mobile', member.mobile || '-');
-
+    Utils.setText('#mobile-profile-name', member.name || '-');
+    Utils.setText('#mobile-profile-mobile', member.mobile || '-');
 
     Utils.hide(elements.loginSection);
     Utils.show(elements.profileSection);
+
+    loadMyPhotos();
   }
 
   async function handleLogin() {
@@ -75,7 +85,6 @@
 
     try {
       const loginResult = await Auth.loginWithAccount(account, password);
-
       const erpid = loginResult.data?.erpid;
       const loginName = getLoginName(loginResult);
 
@@ -110,6 +119,7 @@
       Auth.saveMember(storedMember);
 
       const redirect = Auth.getRedirect('login.html');
+
       if (redirect !== 'login.html') {
         window.location.href = redirect;
         return;
@@ -124,6 +134,103 @@
     }
   }
 
+  async function loadMyPhotos() {
+    const member = Auth.getStoredMember();
+    const list = document.getElementById('myPhotoList');
+
+    if (!list) return;
+
+    if (!member || !member.erpid) {
+      list.innerHTML = '<p class="empty-text">請先登入會員</p>';
+      return;
+    }
+
+    const supabaseClient = getSupabaseClient();
+
+    if (!supabaseClient) {
+      list.innerHTML = '<p class="empty-text">尚未設定 Supabase</p>';
+      return;
+    }
+
+    const postsTable = Supabase.CONFIG.POSTS_TABLE || 'gallery_posts';
+
+    const { data, error } = await supabaseClient
+      .from(postsTable)
+      .select('id,title,topic,carrier,image_urls,main_image_url,created_at')
+      .eq('member_id', member.erpid)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('[讀取我的分享照片失敗]', error);
+      list.innerHTML = '<p class="empty-text">讀取分享照片失敗</p>';
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      list.innerHTML = '<p class="empty-text">尚未上傳分享照片</p>';
+      return;
+    }
+
+    list.innerHTML = data.map(function (post) {
+      const imageUrl =
+        post.main_image_url ||
+        (Array.isArray(post.image_urls) ? post.image_urls[0] : '') ||
+        'images/lens-01.jpg';
+
+      return `
+        <div class="my-photo-card" data-id="${post.id}">
+          <img src="${imageUrl}" alt="${post.title || '分享照片'}">
+
+          <div class="my-photo-info">
+            <h3>${post.title || '未命名照片'}</h3>
+            <p>${post.topic || ''}・${post.carrier || ''}</p>
+          </div>
+
+          <button class="delete-my-photo" data-id="${post.id}" type="button">
+            刪除
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async function deleteMyPhoto(postId) {
+    if (!postId) return;
+
+    const confirmed = window.confirm('確定要刪除這張分享照片嗎？');
+    if (!confirmed) return;
+
+    const member = Auth.getStoredMember();
+
+    if (!member || !member.erpid) {
+      window.alert('請先登入會員');
+      return;
+    }
+
+    const supabaseClient = getSupabaseClient();
+
+    if (!supabaseClient) {
+      window.alert('尚未設定 Supabase');
+      return;
+    }
+
+    const postsTable = Supabase.CONFIG.POSTS_TABLE || 'gallery_posts';
+
+    const { error } = await supabaseClient
+      .from(postsTable)
+      .delete()
+      .eq('id', postId)
+      .eq('member_id', member.erpid);
+
+    if (error) {
+      console.error('[刪除分享照片失敗]', error);
+      window.alert('刪除失敗，請確認 Supabase 權限設定');
+      return;
+    }
+
+    loadMyPhotos();
+  }
+
   function bindEvents() {
     if (elements.loginBtn) {
       elements.loginBtn.addEventListener('click', handleLogin);
@@ -135,11 +242,18 @@
       });
     }
 
-    document.querySelectorAll(
-    '#logout-btn, #logout-btn-sidebar, #mobile-logout-btn'
-  ).forEach(function (btn) {
-    btn.addEventListener('click', Auth.logout);
-  });
+    document
+      .querySelectorAll('#logout-btn, #logout-btn-sidebar, #mobile-logout-btn')
+      .forEach(function (btn) {
+        btn.addEventListener('click', Auth.logout);
+      });
+
+    document.addEventListener('click', function (event) {
+      const btn = event.target.closest('.delete-my-photo');
+      if (!btn) return;
+
+      deleteMyPhoto(btn.dataset.id);
+    });
   }
 
   function initMemberPage() {
@@ -162,18 +276,8 @@
   window.LohasMember = {
     fetchProfileByClientId,
     renderProfile,
-    handleLogin
+    handleLogin,
+    loadMyPhotos,
+    deleteMyPhoto
   };
 })(window);
-
-<section class="my-photos-section">
-    <div class="member-section-title">
-      <h1>我的分享照片</h1>
-    </div>
-
-    <div id="myPhotoList" class="my-photo-list">
-      <p class="empty-text">尚未上傳分享照片</p>
-    </div>
-  </section>
-
-</section>
