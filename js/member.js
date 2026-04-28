@@ -165,3 +165,15 @@
     handleLogin
   };
 })(window);
+
+<section class="my-photos-section">
+    <div class="member-section-title">
+      <h1>我的分享照片</h1>
+    </div>
+
+    <div id="myPhotoList" class="my-photo-list">
+      <p class="empty-text">尚未上傳分享照片</p>
+    </div>
+  </section>
+
+</section>
