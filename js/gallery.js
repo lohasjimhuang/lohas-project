@@ -402,26 +402,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function validateForm() {
-    if (workTitleError) {
-      workTitleError.textContent = "";
-    }
-
-    if (!getMainImage()) {
-      showToast("請至少上傳一張首圖");
-      return false;
-    }
-
-    if (!workTitle?.value.trim()) {
-      if (workTitleError) {
-        workTitleError.textContent = "請輸入刻圖照片名稱";
-      }
-
-      workTitle?.focus();
-      return false;
-    }
-
-    return true;
+  if (workTitleError) {
+    workTitleError.textContent = "";
+    workTitleError.classList.remove("show");
   }
+
+  if (!getMainImage()) {
+    showToast("請至少上傳一張首圖");
+    return false;
+  }
+
+  if (!workTitle?.value.trim()) {
+    if (workTitleError) {
+      workTitleError.textContent = "請輸入刻圖照片名稱";
+      workTitleError.classList.add("show");
+    }
+
+    workTitle?.focus();
+    return false;
+  }
+
+  return true;
+}
 
   function applyFilters() {
     const cards = Array.from(document.querySelectorAll(".plan1-card"));
@@ -760,6 +762,7 @@ document.addEventListener("DOMContentLoaded", () => {
   workTitle?.addEventListener("input", () => {
     if (workTitleError) {
       workTitleError.textContent = "";
+      workTitleError.classList.remove("show");
     }
   });
 
