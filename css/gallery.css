@@ -902,11 +902,18 @@ main {
     }
 
 .field-error {
-  margin: 6px 2px 0;
+  display: none;
+  margin: 4px 2px 0;
+  padding: 0;
+  min-height: 0;
+  height: auto;
   color: #d63b3b;
   font-size: 13px;
   line-height: 1.4;
-  min-height: 18px;
+}
+
+.field-error.show {
+  display: block;
 }
 
     .delete-btn {
