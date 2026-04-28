@@ -507,3 +507,22 @@ body {
     height:64px;
   }
 }
+
+.upload-modal .error-msg,
+.share-modal .error-msg,
+.form-error {
+  display: none;
+  margin: 4px 0 0;
+  padding: 0;
+  min-height: 0;
+  height: auto;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #c0392b;
+}
+
+.upload-modal .error-msg.show,
+.share-modal .error-msg.show,
+.form-error.show {
+  display: block;
+}
