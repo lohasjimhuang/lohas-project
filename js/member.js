@@ -53,6 +53,10 @@
     Utils.setText('#profile-email', member.email || '-');
     Utils.setText('#profile-birthday', member.birthday || '-');
 
+     Utils.setText('#mobile-profile-name', member.name || '-');
+  Utils.setText('#mobile-profile-mobile', member.mobile || '-');
+
+
     Utils.hide(elements.loginSection);
     Utils.show(elements.profileSection);
   }
@@ -131,9 +135,11 @@
       });
     }
 
-    document.querySelectorAll('#logout-btn, #logout-btn-sidebar').forEach(function (btn) {
-      btn.addEventListener('click', Auth.logout);
-    });
+    document.querySelectorAll(
+    '#logout-btn, #logout-btn-sidebar, #mobile-logout-btn'
+  ).forEach(function (btn) {
+    btn.addEventListener('click', Auth.logout);
+  });
   }
 
   function initMemberPage() {
