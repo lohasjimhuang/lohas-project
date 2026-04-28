@@ -1,164 +1,128 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LOHAS 樂活眼鏡 - 會員登入</title>
+<div id="profile-section" class="hidden member-page">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/login.css">
-</head>
-
-<body>
-
-  <div id="site-header"></div>
-
-  <!-- 登入頁 -->
-  <div id="login-section" class="min-h-screen flex items-center justify-center px-4">
-  <div class="w-full max-w-sm">
-
-    <div class="text-center mb-8">
-  <p class="text-[#50422D] text-2xl tracking-[0.12em] font-medium">
-    會員登入
-  </p>
-</div>
-
-    <div class="space-y-5">
-      <input type="text" id="account" class="input-lohas" placeholder="APP 帳號">
-
-      <input type="password" id="password" class="input-lohas" placeholder="密碼">
-
-      <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
-
-      <button id="login-btn" class="btn-lohas">
-        登入
-      </button>
+  <aside class="sidebar-wrapper">
+    <div class="member-sidebar-head">
+      <p>Member Center</p>
+      <h2>會員中心</h2>
     </div>
 
-  </div>
+    <nav class="member-nav">
+      <a href="#" class="member-nav-link nav-item-active">
+        <i class="fa-solid fa-house"></i>
+        <span>會員總覽</span>
+      </a>
+
+      <a href="gallery.html" class="member-nav-link">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <span>上傳照片</span>
+      </a>
+
+      <a href="#" class="member-nav-link">
+        <i class="fa-regular fa-heart"></i>
+        <span>我的收藏</span>
+      </a>
+
+      <a href="engraving.html" class="member-nav-link">
+        <i class="fa-regular fa-rectangle-list"></i>
+        <span>我的分享照片</span>
+      </a>
+
+      <button id="logout-btn-sidebar" class="member-logout" type="button">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span>登出帳號</span>
+      </button>
+    </nav>
+  </aside>
+
+  <main class="member-main">
+
+    <section class="member-mobile-hero">
+      <h1>會員中心</h1>
+
+      <div class="member-user-card">
+        <div class="member-avatar">
+          <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div>
+          <h2 id="mobile-profile-name">-</h2>
+          <p id="mobile-profile-mobile">-</p>
+        </div>
+      </div>
+
+      <div class="member-quick-grid">
+        <a href="#" class="quick-card">
+          <i class="fa-solid fa-house"></i>
+          <span>會員總覽</span>
+        </a>
+
+        <a href="gallery.html" class="quick-card">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>上傳照片</span>
+        </a>
+
+        <a href="#" class="quick-card">
+          <i class="fa-regular fa-heart"></i>
+          <span>我的收藏</span>
+        </a>
+
+        <a href="engraving.html" class="quick-card">
+          <i class="fa-regular fa-rectangle-list"></i>
+          <span>我的分享照片</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="member-content">
+      <div class="member-section-title">
+        <h1>會員基本資料</h1>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-grid">
+          <div class="profile-field">
+            <span>姓名</span>
+            <div id="profile-name">-</div>
+          </div>
+
+          <div class="profile-field">
+            <span>電話</span>
+            <div id="profile-mobile">-</div>
+          </div>
+
+          <div class="profile-field">
+            <span>信箱</span>
+            <div id="profile-email">-</div>
+          </div>
+
+          <div class="profile-field">
+            <span>生日</span>
+            <div id="profile-birthday">-</div>
+          </div>
+        </div>
+
+<section class="my-photos-section">
+    <div class="member-section-title">
+      <h1>我的分享照片</h1>
+    </div>
+
+    <div id="myPhotoList" class="my-photo-list">
+      <p class="empty-text">尚未上傳分享照片</p>
+    </div>
+  </section>
+
+</section>
+        
+        <button class="edit-profile-btn" type="button">
+          修改資料
+        </button>
+      </div>
+
+      <button id="mobile-logout-btn" class="mobile-logout-btn" type="button">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        登出帳號
+      </button>
+    </section>
+
+  </main>
 </div>
-
-  <!-- 會員中心 -->
-  <div id="profile-section" class="hidden">
-
-    <aside class="sidebar-wrapper">
-      <div class="p-8 border-b border-gray-100">
-        <p class="text-xs text-[#CDBEA2] tracking-widest uppercase mb-1">
-          Member Center
-        </p>
-        <h2 class="text-xl font-bold text-[#50422D]">
-          會員中心
-        </h2>
-      </div>
-
-      <nav class="p-4">
-        <ul class="space-y-2">
-
-          <li>
-            <a href="#"
-              class="flex items-center px-6 py-4 text-sm font-medium rounded-xl transition-all nav-item-active">
-              會員總覽
-            </a>
-          </li>
-
-          <li>
-            <a href="gallery.html"
-              class="sidebar-nav-link flex items-center px-6 py-4 text-sm font-medium text-[#50422D] rounded-xl transition-all">
-              上傳分享作品
-            </a>
-          </li>
-
-          <li>
-            <a href="#"
-              class="sidebar-nav-link flex items-center px-6 py-4 text-sm font-medium text-[#50422D] rounded-xl transition-all">
-              我的收藏
-            </a>
-          </li>
-
-          <li>
-            <a href="engraving.html"
-              class="sidebar-nav-link flex items-center px-6 py-4 text-sm font-medium text-[#50422D] rounded-xl transition-all">
-              雷刻紀錄
-            </a>
-          </li>
-
-          <li class="pt-8 mt-8 border-t border-gray-200/50">
-            <button
-              id="logout-btn-sidebar"
-              class="flex items-center px-6 py-4 text-sm font-medium text-red-400 hover:text-red-600 w-full text-left transition-colors"
-              type="button">
-              登出帳號
-            </button>
-          </li>
-
-        </ul>
-      </nav>
-    </aside>
-
-    <main class="main-content-wrapper">
-      <div class="max-w-4xl">
-
-        <div class="mb-10">
-          <h1 class="text-2xl font-bold tracking-[0.1em] text-[#50422D] mb-1 uppercase">
-            會員基本資料
-          </h1>
-        </div>
-
-        <div class="profile-card space-y-8">
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-
-            <div class="space-y-2 border-b border-gray-50 pb-4">
-              <span class="text-[#CDBEA2] text-xs uppercase tracking-widest font-bold">
-                姓名
-              </span>
-              <div id="profile-name" class="text-lg font-medium text-[#50422D]">-</div>
-            </div>
-
-            <div class="space-y-2 border-b border-gray-50 pb-4">
-              <span class="text-[#CDBEA2] text-xs uppercase tracking-widest font-bold">
-                電話
-              </span>
-              <div id="profile-mobile" class="text-lg font-medium text-[#50422D]">-</div>
-            </div>
-
-            <div class="space-y-2 border-b border-gray-50 pb-4">
-              <span class="text-[#CDBEA2] text-xs uppercase tracking-widest font-bold">
-                信箱
-              </span>
-              <div id="profile-email" class="text-lg font-medium text-[#50422D]">-</div>
-            </div>
-
-            <div class="space-y-2 border-b border-gray-50 pb-4">
-              <span class="text-[#CDBEA2] text-xs uppercase tracking-widest font-bold">
-                生日
-              </span>
-              <div id="profile-birthday" class="text-lg font-medium text-[#50422D]">-</div>
-            </div>
-
-          </div>
-
-          <div class="pt-6">
-            <button
-              class="px-8 py-3 border border-[#50422D] text-[#50422D] text-sm font-medium hover:bg-[#50422D] hover:text-white transition-all rounded-full"
-              type="button">
-              修改資料
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </main>
-
-  </div>
-
-  <script src="js/layout.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/member.js"></script>
-
-</body>
-</html>
