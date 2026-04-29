@@ -1192,10 +1192,9 @@ main {
     -webkit-overflow-scrolling: touch;
   }
 
-      .modal-content {
-    max-height: none;
-    height: auto;
-    overflow: visible;
+   #uploadModal .modal-content{
+    max-height:calc(100dvh - 96px);
+    overflow:hidden;
   }
 
       .modal-body {
@@ -1404,20 +1403,39 @@ main {
 }
 
 .favorite-btn.is-active{
-  background:#fff0f0;
-  color:#e53935;
+  background:#e53935;
+  color:#fff;
 }
 
-#uploadModal .modal-content,
-#cropModal .modal-content {
-  border-radius: 22px;
-  overflow: visible;
+.favorite-btn.is-active i{
+  color:inherit;
 }
 
-#uploadModal .modal-body,
-#cropModal .modal-body{
+
+
+#uploadModal .modal-content{
+  border-radius:22px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  max-height:calc(100dvh - 116px);
+}
+
+#uploadModal .modal-body{
+  flex:1;
+  min-height:0;
   overflow-y:auto;
-  max-height:calc(100vh - 220px);
+  -webkit-overflow-scrolling:touch;
+}
+
+#uploadModal .modal-footer{
+  position:relative;
+  bottom:auto;
+  flex-shrink:0;
+}
+
+#cropModal .modal-content{
+  border-radius:22px;
 }
 
 .upload-box {
