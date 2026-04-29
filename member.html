@@ -30,14 +30,14 @@
           <span>我的收藏</span>
         </a>
 
-        <a href="gallery.html?openUpload=1" class="member-nav-link">
+        <a href="gallery.html#upload-area" class="member-nav-link">
           <i class="fa-solid fa-camera"></i>
           <span>上傳照片</span>
         </a>
 
         <a href="#myPhotoList" class="member-nav-link">
           <i class="fa-regular fa-image"></i>
-          <span>我的分享照片</span>
+          <span>我的分享</span>
         </a>
 
         <a href="#memberProfileCard" class="member-nav-link">
@@ -60,7 +60,19 @@
 
       <section class="member-content">
         <section class="member-dashboard-hero">
-          <button class="avatar-upload-btn" type="button">
+          
+          <button class="avatar-upload-btn" type="button" id="avatarUploadBtn">
+  <div class="avatar-placeholder" id="avatarPreview">
+    <i class="fa-solid fa-user"></i>
+  </div>
+
+  <span class="avatar-camera">
+    <i class="fa-solid fa-camera"></i>
+  </span>
+</button>
+
+<input type="file" id="avatarInput" accept="image/*" hidden>
+          
             <div class="avatar-placeholder">
               <i class="fa-solid fa-user"></i>
             </div>
@@ -76,6 +88,10 @@
           </div>
         </section>
 
+<div class="member-section-title shortcut-title">
+  <h1>我的快捷功能</h1>
+</div>
+        
         <section class="dashboard-shortcuts">
           <a href="#myFavoriteList" class="dashboard-shortcut-card">
             <i class="fa-regular fa-heart"></i>
@@ -84,7 +100,7 @@
 
           <a href="#myPhotoList" class="dashboard-shortcut-card">
   <i class="fa-regular fa-image"></i>
-  <span>我的分享照片</span>
+  <span>我的分享</span>
 </a>
 
           <a href="#memberProfileCard" class="dashboard-shortcut-card">
@@ -136,7 +152,7 @@
 
         <section class="my-photos-section">
           <div class="member-section-title">
-            <h1>我的分享照片</h1>
+            <h1>我的分享</h1>
            <a href="gallery.html?tab=myphotos">查看全部</a>
           </div>
 
@@ -175,7 +191,7 @@
           <span>我的收藏</span>
         </a>
 
-        <a href="gallery.html?openUpload=1" class="mobile-upload-center">
+        <a href="gallery.html#upload-area" class="mobile-upload-center">
           <i class="fa-solid fa-camera"></i>
         </a>
 
