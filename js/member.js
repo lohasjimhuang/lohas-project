@@ -216,19 +216,25 @@
 
     const postsTable = Supabase.CONFIG.POSTS_TABLE || 'gallery_posts';
 
-    const { error } = await supabaseClient
-      .from(postsTable)
-      .delete()
-      .eq('id', postId)
-      .eq('member_id', member.erpid);
+    const { data, error } = await supabaseClient
+  .from(postsTable)
+  .delete()
+  .eq('id', postId)
+  .eq('member_id', member.erpid)
+  .select('id');
 
-    if (error) {
-      console.error('[刪除分享照片失敗]', error);
-      window.alert('刪除失敗，請確認 Supabase 權限設定');
-      return;
-    }
+if (error) {
+  console.error('[刪除分享照片失敗]', error);
+  window.alert('刪除失敗，請確認 Supabase 權限設定');
+  return;
+}
 
-    loadMyPhotos();
+if (!data || data.length === 0) {
+  window.alert('刪除失敗：找不到這筆照片，或目前會員沒有刪除權限');
+  return;
+}
+
+loadMyPhotos();
   }
 
   function bindEvents() {
