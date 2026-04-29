@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOHAS 樂活眼鏡 - 會員中心</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/member.css">
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <div id="profile-section" class="member-page">
+    <aside class="sidebar-wrapper">
+      <div class="member-sidebar-head">
+        <h2>LOHAS</h2>
+      </div>
+
+      <nav class="member-nav">
+        <a href="#" class="member-nav-link nav-item-active">
+          <i class="fa-solid fa-house"></i>
+          <span>首頁</span>
+        </a>
+
+        <a href="#myFavoriteList" class="member-nav-link">
+          <i class="fa-regular fa-heart"></i>
+          <span>我的收藏</span>
+        </a>
+
+        <a href="gallery.html?openUpload=1" class="member-nav-link">
+          <i class="fa-solid fa-camera"></i>
+          <span>上傳照片</span>
+        </a>
+
+        <a href="#myPhotoList" class="member-nav-link">
+          <i class="fa-regular fa-image"></i>
+          <span>我的分享照片</span>
+        </a>
+
+        <a href="#memberProfileCard" class="member-nav-link">
+          <i class="fa-regular fa-user"></i>
+          <span>會員資料</span>
+        </a>
+
+        <button id="logout-btn-sidebar" class="member-logout" type="button">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>登出</span>
+        </button>
+      </nav>
+    </aside>
+
+    <main class="member-main">
+      <section class="member-mobile-top">
+        <button class="member-mobile-menu" type="button">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h1>會員中心</h1>
+      </section>
+
+      <section class="member-content">
+        <section class="member-dashboard-hero">
+          <button class="avatar-upload-btn" type="button">
+            <div class="avatar-placeholder">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <span class="avatar-camera">
+              <i class="fa-solid fa-camera"></i>
+            </span>
+          </button>
+
+          <div class="dashboard-member-info">
+            <p>歡迎回來，</p>
+            <h1 id="dashboard-name">-</h1>
+            <span id="dashboard-id">樂活會員編號：-</span>
+          </div>
+        </section>
+
+        <section class="dashboard-shortcuts">
+          <a href="#myFavoriteList" class="dashboard-shortcut-card">
+            <i class="fa-regular fa-heart"></i>
+            <span>我的收藏</span>
+          </a>
+
+          <a href="gallery.html?openUpload=1" class="dashboard-shortcut-card">
+            <i class="fa-solid fa-camera"></i>
+            <span>上傳照片</span>
+          </a>
+
+          <a href="#memberProfileCard" class="dashboard-shortcut-card">
+            <i class="fa-regular fa-user"></i>
+            <span>會員資料</span>
+          </a>
+        </section>
+
+        <section id="memberProfileCard">
+          <div class="member-section-title">
+            <h1>會員基本資料</h1>
+          </div>
+
+          <div class="profile-card">
+            <div class="profile-grid">
+              <div class="profile-field">
+                <span>姓名</span>
+                <div id="profile-name">-</div>
+              </div>
+
+              <div class="profile-field">
+                <span>電話</span>
+                <div id="profile-mobile">-</div>
+              </div>
+
+              <div class="profile-field">
+                <span>信箱</span>
+                <div id="profile-email">-</div>
+              </div>
+
+              <div class="profile-field">
+                <span>生日</span>
+                <div id="profile-birthday">-</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="my-favorites-section">
+          <div class="member-section-title">
+            <h1>我的收藏</h1>
+            <a href="gallery.html">查看全部</a>
+          </div>
+
+          <div id="myFavoriteList" class="my-photo-list">
+            <p class="empty-text">尚未收藏照片</p>
+          </div>
+        </section>
+
+        <section class="my-photos-section">
+          <div class="member-section-title">
+            <h1>我的分享照片</h1>
+            <a href="gallery.html?openUpload=1">上傳照片</a>
+          </div>
+
+          <div id="myPhotoList" class="my-photo-list">
+            <p class="empty-text">尚未上傳分享照片</p>
+          </div>
+        </section>
+
+        <section class="member-benefit-banner">
+          <div class="benefit-icon">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+
+          <div class="benefit-text">
+            <h2>樂活會員專屬禮遇</h2>
+            <p>累積樂活活動數，享更多專屬優惠與精美好禮！</p>
+          </div>
+
+          <a href="#" class="benefit-btn">查看點數優惠</a>
+        </section>
+
+        <button id="mobile-logout-btn" class="mobile-logout-btn" type="button">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          登出帳號
+        </button>
+      </section>
+
+      <nav class="member-mobile-footer">
+        <a href="#" class="active">
+          <i class="fa-solid fa-house"></i>
+          <span>首頁</span>
+        </a>
+
+        <a href="#myFavoriteList">
+          <i class="fa-regular fa-heart"></i>
+          <span>我的收藏</span>
+        </a>
+
+        <a href="gallery.html?openUpload=1" class="mobile-upload-center">
+          <i class="fa-solid fa-camera"></i>
+        </a>
+
+        <a href="#myPhotoList">
+          <i class="fa-regular fa-image"></i>
+          <span>我的分享照片</span>
+        </a>
+
+        <a href="#memberProfileCard">
+          <i class="fa-regular fa-user"></i>
+          <span>會員資料</span>
+        </a>
+      </nav>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/member.js"></script>
+</body>
+</html>
