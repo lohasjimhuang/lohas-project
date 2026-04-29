@@ -567,3 +567,52 @@ body{
     display:none;
   }
 }
+
+/* 電腦版：移除左上 LOGO 區塊高度 */
+.member-sidebar-head{
+  display:none;
+}
+
+/* 手機版：刪除漢堡後讓標題置中 */
+.member-mobile-top{
+  justify-content:center;
+}
+
+/* 手機版：收藏與分享照片一次顯示 2 張小卡 */
+@media(max-width:768px){
+  .my-photo-list{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+    overflow:visible;
+  }
+
+  .my-photo-card{
+    min-width:0;
+    width:100%;
+    padding:10px;
+    border:1px solid var(--lohas-border);
+    border-radius:14px;
+  }
+
+  .my-photo-card img{
+    width:100%;
+    aspect-ratio:1 / 1;
+    border-radius:10px;
+  }
+
+  .member-benefit-banner{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+
+  .benefit-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    white-space:nowrap;
+    padding:10px 16px;
+    font-size:12px;
+  }
+}
