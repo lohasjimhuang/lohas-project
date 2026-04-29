@@ -1,5 +1,4 @@
-const params = new URLSearchParams(window.location.search);
-const pageTab = params.get("tab");
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -987,20 +986,7 @@ if (pageTab === "myphotos") {
   document.getElementById("cancelCrop")?.addEventListener("click", closeCropModal);
   document.getElementById("closeCrop")?.addEventListener("click", closeCropModal);
 
-  applyFilters();
 
-if (pageTab === "favorites") {
-  loadFavoritesOnly();
-} else if (pageTab === "myphotos") {
-  loadMyPhotosOnly();
-} else {
-  loadPostsFromSupabase();
-});
 
-async function loadFavoritesOnly() {
-  console.log("讀取收藏資料");
-}
-
-async function loadMyPhotosOnly() {
-  console.log("讀取會員分享資料");
-}
+applyFilters();
+loadPostsFromSupabase();
