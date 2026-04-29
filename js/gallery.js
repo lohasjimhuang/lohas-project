@@ -2,13 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-if (pageTab === "favorites") {
-  console.log("會員收藏模式");
-}
 
-if (pageTab === "myphotos") {
-  console.log("會員分享照片模式");
-}
   
   const Supabase = window.LohasSupabase;
   const supabaseClient = Supabase?.getClient?.() || null;
@@ -990,3 +984,5 @@ if (pageTab === "myphotos") {
 
 applyFilters();
 loadPostsFromSupabase();
+
+  });
