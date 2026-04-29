@@ -1410,8 +1410,8 @@ main {
 
 #uploadModal .modal-content,
 #cropModal .modal-content {
-  border-radius: 26px;
-  overflow: hidden;
+  border-radius: 22px;
+  overflow: visible;
 }
 
 .upload-box {
