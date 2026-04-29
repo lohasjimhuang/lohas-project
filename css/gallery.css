@@ -1407,3 +1407,17 @@ main {
   background:#50422D;
   color:#fff;
 }
+
+#uploadModal .modal-content,
+#cropModal .modal-content {
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.upload-box {
+  border-radius: 22px;
+}
+
+.upload-box img.preview-image {
+  border-radius: 22px;
+}
