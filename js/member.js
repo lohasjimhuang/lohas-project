@@ -69,6 +69,7 @@
     Utils.show(elements.profileSection);
 
     loadMyPhotos();
+loadMyFavorites();
   }
 
   async function handleLogin() {
@@ -194,6 +195,49 @@
     }).join('');
   }
 
+async function loadMyFavorites() {
+  const member = Auth.getStoredMember();
+  const list = document.getElementById('myFavoriteList');
+
+  if (!list) return;
+
+  const supabaseClient = getSupabaseClient();
+
+  const { data, error } = await supabaseClient
+    .from('gallery_favorites')
+    .select(`
+      post_id,
+      gallery_posts (
+        id,title,topic,carrier,image_urls,main_image_url
+      )
+    `)
+    .eq('member_id', member.erpid);
+
+  if (error || !data || data.length === 0) {
+    list.innerHTML = '<p class="empty-text">尚未收藏照片</p>';
+    return;
+  }
+
+  const posts = data.map(item => item.gallery_posts).filter(Boolean);
+
+  list.innerHTML = posts.map(post => {
+    const image =
+      post.main_image_url ||
+      (post.image_urls?.[0]) ||
+      'images/lens-01.jpg';
+
+    return `
+      <div class="my-photo-card">
+        <img src="${image}">
+        <div class="my-photo-info">
+          <h3>${post.title}</h3>
+          <p>${post.topic}・${post.carrier}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+  
   async function deleteMyPhoto(postId) {
     if (!postId) return;
 
@@ -235,6 +279,7 @@ if (!data || data.length === 0) {
 }
 
 loadMyPhotos();
+
   }
 
   function bindEvents() {
@@ -280,10 +325,11 @@ loadMyPhotos();
   document.addEventListener('DOMContentLoaded', initMemberPage);
 
   window.LohasMember = {
-    fetchProfileByClientId,
-    renderProfile,
-    handleLogin,
-    loadMyPhotos,
-    deleteMyPhoto
-  };
+  fetchProfileByClientId,
+  renderProfile,
+  handleLogin,
+  loadMyPhotos,
+  loadMyFavorites,
+  deleteMyPhoto
+};
 })(window);
