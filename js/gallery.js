@@ -1,4 +1,16 @@
+const params = new URLSearchParams(window.location.search);
+const pageTab = params.get("tab");
+
 document.addEventListener("DOMContentLoaded", () => {
+
+if (pageTab === "favorites") {
+  console.log("會員收藏模式");
+}
+
+if (pageTab === "myphotos") {
+  console.log("會員分享照片模式");
+}
+  
   const Supabase = window.LohasSupabase;
   const supabaseClient = Supabase?.getClient?.() || null;
 
@@ -976,5 +988,19 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("closeCrop")?.addEventListener("click", closeCropModal);
 
   applyFilters();
+
+if (pageTab === "favorites") {
+  loadFavoritesOnly();
+} else if (pageTab === "myphotos") {
+  loadMyPhotosOnly();
+} else {
   loadPostsFromSupabase();
 });
+
+async function loadFavoritesOnly() {
+  console.log("讀取收藏資料");
+}
+
+async function loadMyPhotosOnly() {
+  console.log("讀取會員分享資料");
+}
