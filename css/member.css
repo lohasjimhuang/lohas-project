@@ -360,6 +360,8 @@ body{
   margin:0 0 6px;
   color:var(--lohas-brand-color);
   font-size:20px;
+  font-weight:800;
+  letter-spacing:.02em;
 }
 
 .benefit-text p{
@@ -528,8 +530,9 @@ body{
   }
 
   .benefit-text h2{
-    font-size:15px;
-  }
+  font-size:15px;
+  font-weight:700;
+}
 
   .benefit-text p{
     font-size:12px;
