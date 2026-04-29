@@ -527,3 +527,9 @@ body {
 .form-error.show {
   display: block;
 }
+
+.profile-field div {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
