@@ -1404,8 +1404,8 @@ main {
 }
 
 .favorite-btn.is-active{
-  background:#50422D;
-  color:#fff;
+  background:#ffe8e8;
+  color:#e53935;
 }
 
 #uploadModal .modal-content,
