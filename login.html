@@ -7,19 +7,15 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
-
   <div id="site-header"></div>
 
-  <!-- 登入頁 -->
-  <div id="login-section" class="min-h-screen flex items-center justify-center px-4">
+  <main id="login-section" class="min-h-screen flex items-center justify-center px-4">
     <div class="w-full max-w-sm">
-
       <div class="text-center mb-8">
         <p class="text-[#50422D] text-2xl tracking-[0.12em] font-medium">
           會員登入
@@ -28,7 +24,6 @@
 
       <div class="space-y-5">
         <input type="text" id="account" class="input-lohas" placeholder="APP 帳號" autocomplete="username">
-
         <input type="password" id="password" class="input-lohas" placeholder="密碼" autocomplete="current-password">
 
         <div id="error-msg" class="text-red-500 text-sm hidden text-center"></div>
@@ -37,152 +32,12 @@
           登入
         </button>
       </div>
-
     </div>
-  </div>
+  </main>
 
-  <!-- 會員中心 -->
-  <div id="profile-section" class="hidden member-page">
-
-    <aside class="sidebar-wrapper">
-      <div class="member-sidebar-head">
-        <p>Member Center</p>
-        <h2>會員中心</h2>
-      </div>
-
-      <nav class="member-nav">
-        <a href="#" class="member-nav-link nav-item-active">
-          <i class="fa-solid fa-house"></i>
-          <span>會員總覽</span>
-        </a>
-
-        <a href="gallery.html" class="member-nav-link">
-          <i class="fa-solid fa-cloud-arrow-up"></i>
-          <span>上傳照片</span>
-        </a>
-
-        <a href="#" class="member-nav-link">
-          <i class="fa-regular fa-heart"></i>
-          <span>我的收藏</span>
-        </a>
-
-        <a href="#myPhotoList" class="member-nav-link">
-          <i class="fa-regular fa-rectangle-list"></i>
-          <span>我的分享照片</span>
-        </a>
-
-        <button id="logout-btn-sidebar" class="member-logout" type="button">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          <span>登出帳號</span>
-        </button>
-      </nav>
-    </aside>
-
-    <main class="member-main">
-
-      <section class="member-mobile-hero">
-        <h1>會員中心</h1>
-
-        <div class="member-user-card">
-          <div class="member-avatar">
-            <i class="fa-solid fa-user"></i>
-          </div>
-
-          <div>
-            <h2 id="mobile-profile-name">-</h2>
-            <p id="mobile-profile-mobile">-</p>
-          </div>
-        </div>
-
-        <div class="member-quick-grid">
-          <a href="#" class="quick-card">
-            <i class="fa-solid fa-house"></i>
-            <span>會員總覽</span>
-          </a>
-
-          <a href="gallery.html" class="quick-card">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
-            <span>上傳照片</span>
-          </a>
-
-          <a href="#" class="quick-card">
-            <i class="fa-regular fa-heart"></i>
-            <span>我的收藏</span>
-          </a>
-
-          <a href="#myPhotoList" class="quick-card">
-            <i class="fa-regular fa-rectangle-list"></i>
-            <span>我的分享照片</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="member-content">
-
-        <div class="member-section-title">
-          <h1>會員基本資料</h1>
-        </div>
-
-        <div class="profile-card">
-          <div class="profile-grid">
-            <div class="profile-field">
-              <span>姓名</span>
-              <div id="profile-name">-</div>
-            </div>
-
-            <div class="profile-field">
-              <span>電話</span>
-              <div id="profile-mobile">-</div>
-            </div>
-
-            <div class="profile-field">
-              <span>信箱</span>
-              <div id="profile-email">-</div>
-            </div>
-
-            <div class="profile-field">
-              <span>生日</span>
-              <div id="profile-birthday">-</div>
-            </div>
-          </div>
-       </div>
-
-        <section class="my-favorites-section">
-  <div class="member-section-title">
-    <h1>我的收藏</h1>
-  </div>
-
-  <div id="myFavoriteList" class="my-photo-list">
-    <p class="empty-text">尚未收藏照片</p>
-  </div>
-</section>
-
-        <section class="my-photos-section">
-          <div class="member-section-title">
-            <h1>我的分享照片</h1>
-          </div>
-
-          <div id="myPhotoList" class="my-photo-list">
-            <p class="empty-text">尚未上傳分享照片</p>
-          </div>
-        </section>
-
-        <button id="mobile-logout-btn" class="mobile-logout-btn" type="button">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          登出帳號
-        </button>
-
-      </section>
-
-    </main>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/layout.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/supabase.js"></script>
-  <script src="js/member.js"></script>
-
+  <script src="js/login.js"></script>
 </body>
 </html>
