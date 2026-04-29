@@ -220,7 +220,7 @@
   .from(postsTable)
   .delete()
   .eq('id', postId)
-  .eq('member_id', String(member.erpid))
+  
   .select('id');
 
 if (error) {
