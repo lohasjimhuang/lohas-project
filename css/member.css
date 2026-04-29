@@ -13,6 +13,10 @@ body{
   color:#222;
 }
 
+/* =========================
+   Layout
+========================= */
+
 .member-page{
   display:flex;
   min-height:100vh;
@@ -28,20 +32,11 @@ body{
 }
 
 .member-sidebar-head{
-  padding:34px 28px;
-  border-bottom:1px solid #eee;
-}
-
-.member-sidebar-head h2{
-  margin:0;
-  color:var(--lohas-brand-color);
-  font-size:30px;
-  letter-spacing:.12em;
-  font-weight:500;
+  display:none;
 }
 
 .member-nav{
-  padding:18px 16px;
+  padding:24px 16px;
   display:flex;
   flex-direction:column;
   gap:10px;
@@ -88,6 +83,10 @@ body{
   display:none;
 }
 
+/* =========================
+   Hero
+========================= */
+
 .member-dashboard-hero{
   display:flex;
   align-items:center;
@@ -119,6 +118,14 @@ body{
   align-items:center;
   justify-content:center;
   font-size:60px;
+  overflow:hidden;
+}
+
+.avatar-placeholder img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
 }
 
 .avatar-camera{
@@ -155,6 +162,14 @@ body{
   font-size:15px;
 }
 
+/* =========================
+   Shortcuts
+========================= */
+
+.shortcut-title{
+  margin:8px 0 14px;
+}
+
 .dashboard-shortcuts{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -187,6 +202,10 @@ body{
   box-shadow:0 12px 28px rgba(80,66,45,.08);
 }
 
+/* =========================
+   Section Title
+========================= */
+
 .member-section-title{
   display:flex;
   justify-content:space-between;
@@ -206,6 +225,10 @@ body{
   font-size:13px;
   text-decoration:none;
 }
+
+/* =========================
+   Profile
+========================= */
 
 .profile-card{
   background:#fff;
@@ -241,6 +264,10 @@ body{
   overflow-wrap:anywhere;
   line-height:1.6;
 }
+
+/* =========================
+   Photo Cards
+========================= */
 
 .my-favorites-section,
 .my-photos-section{
@@ -299,6 +326,10 @@ body{
   grid-column:1 / -1;
 }
 
+/* =========================
+   Benefit Banner
+========================= */
+
 .member-benefit-banner{
   display:flex;
   align-items:center;
@@ -344,18 +375,29 @@ body{
   color:#fff;
   text-decoration:none;
   font-size:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 }
+
+/* =========================
+   Footer
+========================= */
 
 .mobile-logout-btn,
 .member-mobile-footer{
   display:none;
 }
 
+/* =========================
+   Mobile
+========================= */
+
 @media(max-width:768px){
+
   .member-page{
     display:block;
     padding-top:70px;
-    background:#fff;
   }
 
   .sidebar-wrapper{
@@ -375,8 +417,11 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    position:relative;
     background:#fff;
+  }
+
+  .member-mobile-menu{
+    display:none;
   }
 
   .member-mobile-top h1{
@@ -384,16 +429,6 @@ body{
     color:#111;
     font-size:20px;
     font-weight:700;
-    letter-spacing:.08em;
-  }
-
-  .member-mobile-menu{
-    position:absolute;
-    left:0;
-    border:0;
-    background:transparent;
-    font-size:20px;
-    color:#222;
   }
 
   .member-dashboard-hero{
@@ -457,16 +492,15 @@ body{
   }
 
   .my-photo-list{
-    display:flex;
-    overflow-x:auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
-    padding-bottom:4px;
   }
 
   .my-photo-card{
-    min-width:118px;
-    padding:0;
-    border:0;
+    width:100%;
+    padding:10px;
+    border-radius:14px;
   }
 
   .my-photo-card img{
@@ -482,6 +516,7 @@ body{
   }
 
   .member-benefit-banner{
+    gap:14px;
     padding:18px;
     margin-bottom:16px;
   }
@@ -501,7 +536,19 @@ body{
   }
 
   .benefit-btn{
-    display:none;
+    width:38px;
+    height:38px;
+    min-width:38px;
+    padding:0;
+    border-radius:50%;
+    font-size:0;
+  }
+
+  .benefit-btn::after{
+    content:"\f105";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    font-size:16px;
   }
 
   .mobile-logout-btn{
@@ -565,87 +612,5 @@ body{
 
   .member-mobile-footer .mobile-upload-center span{
     display:none;
-  }
-}
-
-/* 電腦版：移除左上 LOGO 區塊高度 */
-.member-sidebar-head{
-  display:none;
-}
-
-/* 手機版：刪除漢堡後讓標題置中 */
-.member-mobile-top{
-  justify-content:center;
-}
-
-/* 手機版：收藏與分享照片一次顯示 2 張小卡 */
-@media(max-width:768px){
-  .my-photo-list{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:12px;
-    overflow:visible;
-  }
-
-  .my-photo-card{
-    min-width:0;
-    width:100%;
-    padding:10px;
-    border:1px solid var(--lohas-border);
-    border-radius:14px;
-  }
-
-  .my-photo-card img{
-    width:100%;
-    aspect-ratio:1 / 1;
-    border-radius:10px;
-  }
-
-  .member-benefit-banner{
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
-
-  .benefit-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    white-space:nowrap;
-    padding:10px 16px;
-    font-size:12px;
-  }
-}
-
-.avatar-placeholder img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50%;
-}
-
-
-.shortcut-title {
-  margin-top: 8px;
-  margin-bottom: 14px;
-}
-
-
-@media(max-width:768px){
-  .benefit-btn{
-    display:flex;
-    width:38px;
-    height:38px;
-    min-width:38px;
-    padding:0;
-    border-radius:50%;
-    font-size:0;
-  }
-
-  .benefit-btn::after{
-    content:"\f105";
-    font-family:"Font Awesome 6 Free";
-    font-weight:900;
-    font-size:16px;
   }
 }
