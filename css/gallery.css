@@ -1414,6 +1414,12 @@ main {
   overflow: visible;
 }
 
+#uploadModal .modal-body,
+#cropModal .modal-body{
+  overflow-y:auto;
+  max-height:calc(100vh - 220px);
+}
+
 .upload-box {
   border-radius: 22px;
 }
