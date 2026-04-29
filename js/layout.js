@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initMegaMenuScrollLock();
   initFooterAccordion();
   initCookieBanner();
+  initMemberLink();
 });
 
 async function loadLayout() {
@@ -21,6 +22,26 @@ async function loadLayout() {
     const footer = await fetch("components/footer.html").then(res => res.text());
     footerTarget.innerHTML = footer;
   }
+}
+
+/* 會員專區：已登入進 member.html，未登入進 login.html */
+function initMemberLink() {
+  document.addEventListener("click", event => {
+    const memberLink = event.target.closest("[data-member-link]");
+    if (!memberLink) return;
+
+    event.preventDefault();
+
+    const member = JSON.parse(localStorage.getItem("lohasMember") || "null");
+
+    if (member && member.erpid) {
+      window.location.href = "member.html";
+      return;
+    }
+
+    localStorage.setItem("redirectAfterLogin", "member.html");
+    window.location.href = "login.html";
+  });
 }
 
 /* 手機版選單 */
@@ -100,9 +121,9 @@ function initCookieBanner() {
   }
 
   acceptBtn.addEventListener("click", () => {
-  cookieBanner.classList.remove("show");
-  cookieBanner.classList.add("is-hide");
+    cookieBanner.classList.remove("show");
+    cookieBanner.classList.add("is-hide");
 
-  localStorage.setItem("lohas_cookies_accepted", "true");
-});
+    localStorage.setItem("lohas_cookies_accepted", "true");
+  });
 }
