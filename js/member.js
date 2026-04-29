@@ -21,6 +21,13 @@
 
     loadMyPhotos();
     loadMyFavorites();
+
+    const savedAvatar = localStorage.getItem('lohasMemberAvatar');
+const avatarPreview = document.getElementById('avatarPreview');
+
+if (savedAvatar && avatarPreview) {
+  avatarPreview.innerHTML = `<img src="${savedAvatar}" alt="會員頭像">`;
+}
   }
 
   async function loadMyPhotos() {
@@ -200,6 +207,32 @@
 
       deleteMyPhoto(btn.dataset.id);
     });
+    const avatarBtn = document.getElementById('avatarUploadBtn');
+const avatarInput = document.getElementById('avatarInput');
+const avatarPreview = document.getElementById('avatarPreview');
+
+avatarBtn?.addEventListener('click', function () {
+  avatarInput?.click();
+});
+
+avatarInput?.addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    window.alert('請選擇圖片檔案');
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    avatarPreview.innerHTML = `<img src="${e.target.result}" alt="會員頭像">`;
+    localStorage.setItem('lohasMemberAvatar', e.target.result);
+  };
+
+  reader.readAsDataURL(file);
+});
   }
 
   function initMemberPage() {
