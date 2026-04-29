@@ -1,0 +1,569 @@
+:root{
+  --lohas-brand-color:#50422D;
+  --lohas-hover-color:#765F4A;
+  --lohas-bg-warm:#F9F8F6;
+  --lohas-text-light:#CDBEA2;
+  --lohas-border:#eee8df;
+}
+
+body{
+  margin:0;
+  background:#fff;
+  font-family:"Noto Sans TC",sans-serif;
+  color:#222;
+}
+
+.member-page{
+  display:flex;
+  min-height:100vh;
+  padding-top:70px;
+  background:#fff;
+}
+
+.sidebar-wrapper{
+  width:280px;
+  flex-shrink:0;
+  background:linear-gradient(180deg,#fff,#F9F8F6);
+  border-right:1px solid #eee;
+}
+
+.member-sidebar-head{
+  padding:34px 28px;
+  border-bottom:1px solid #eee;
+}
+
+.member-sidebar-head h2{
+  margin:0;
+  color:var(--lohas-brand-color);
+  font-size:30px;
+  letter-spacing:.12em;
+  font-weight:500;
+}
+
+.member-nav{
+  padding:18px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.member-nav-link,
+.member-logout{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:15px 18px;
+  border-radius:12px;
+  color:var(--lohas-brand-color);
+  text-decoration:none;
+  font-size:15px;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+}
+
+.member-nav-link.nav-item-active{
+  background:linear-gradient(135deg,#765F4A,#50422D);
+  color:#fff;
+}
+
+.member-logout{
+  margin-top:12px;
+  color:#9e5b5b;
+}
+
+.member-main{
+  flex:1;
+  background:#fff;
+  padding:0 34px 120px;
+}
+
+.member-content{
+  max-width:1120px;
+  margin:0 auto;
+  padding-top:34px;
+}
+
+.member-mobile-top{
+  display:none;
+}
+
+.member-dashboard-hero{
+  display:flex;
+  align-items:center;
+  gap:34px;
+  padding:42px 46px;
+  margin-bottom:30px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#F9F8F6,#F1ECE5);
+}
+
+.avatar-upload-btn{
+  position:relative;
+  width:132px;
+  height:132px;
+  border:0;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  flex-shrink:0;
+}
+
+.avatar-placeholder{
+  width:132px;
+  height:132px;
+  border-radius:50%;
+  background:linear-gradient(180deg,#e8e8e8,#d9d9d9);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:60px;
+}
+
+.avatar-camera{
+  position:absolute;
+  right:2px;
+  bottom:10px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#765F4A;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:4px solid #fff;
+  box-shadow:0 8px 18px rgba(80,66,45,.2);
+}
+
+.dashboard-member-info p{
+  margin:0 0 8px;
+  color:var(--lohas-brand-color);
+  font-size:16px;
+}
+
+.dashboard-member-info h1{
+  margin:0 0 10px;
+  color:#111;
+  font-size:36px;
+  font-weight:700;
+}
+
+.dashboard-member-info span{
+  color:var(--lohas-brand-color);
+  font-size:15px;
+}
+
+.dashboard-shortcuts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-bottom:30px;
+}
+
+.dashboard-shortcut-card{
+  min-height:112px;
+  border:1px solid var(--lohas-border);
+  border-radius:16px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  color:var(--lohas-brand-color);
+  font-size:16px;
+  text-decoration:none;
+  transition:.25s ease;
+}
+
+.dashboard-shortcut-card i{
+  font-size:30px;
+  color:#765F4A;
+}
+
+.dashboard-shortcut-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(80,66,45,.08);
+}
+
+.member-section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:28px 0 14px;
+}
+
+.member-section-title h1{
+  margin:0;
+  color:#111;
+  font-size:20px;
+  font-weight:700;
+}
+
+.member-section-title a{
+  color:#8a735d;
+  font-size:13px;
+  text-decoration:none;
+}
+
+.profile-card{
+  background:#fff;
+  border:1px solid var(--lohas-border);
+  border-radius:18px;
+  padding:30px;
+  box-shadow:0 10px 28px rgba(80,66,45,.04);
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:26px 40px;
+}
+
+.profile-field{
+  padding-bottom:14px;
+  border-bottom:1px solid #f1eee8;
+}
+
+.profile-field span{
+  display:block;
+  margin-bottom:8px;
+  color:#B7A98D;
+  font-size:12px;
+  letter-spacing:.12em;
+}
+
+.profile-field div{
+  color:var(--lohas-brand-color);
+  font-size:17px;
+  word-break:break-all;
+  overflow-wrap:anywhere;
+  line-height:1.6;
+}
+
+.my-favorites-section,
+.my-photos-section{
+  margin-top:28px;
+}
+
+.my-photo-list{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.my-photo-card{
+  border:1px solid var(--lohas-border);
+  border-radius:16px;
+  background:#fff;
+  padding:12px;
+  overflow:hidden;
+}
+
+.my-photo-card img{
+  width:100%;
+  aspect-ratio:1 / 1;
+  object-fit:cover;
+  border-radius:12px;
+  background:#F9F8F6;
+}
+
+.my-photo-info h3{
+  margin:10px 0 4px;
+  color:#222;
+  font-size:14px;
+  line-height:1.4;
+}
+
+.my-photo-info p{
+  margin:0;
+  color:#8a735d;
+  font-size:12px;
+}
+
+.delete-my-photo{
+  margin-top:10px;
+  border:0;
+  background:#fff4f4;
+  color:#c65f5f;
+  border-radius:999px;
+  padding:8px 14px;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.empty-text{
+  color:#9A8671;
+  font-size:14px;
+  grid-column:1 / -1;
+}
+
+.member-benefit-banner{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-top:32px;
+  padding:24px 30px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#F9F8F6,#EEE5DA);
+}
+
+.benefit-icon{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  background:#765F4A;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+}
+
+.benefit-text{
+  flex:1;
+}
+
+.benefit-text h2{
+  margin:0 0 6px;
+  color:var(--lohas-brand-color);
+  font-size:20px;
+}
+
+.benefit-text p{
+  margin:0;
+  color:#6f6254;
+  font-size:14px;
+}
+
+.benefit-btn{
+  padding:12px 26px;
+  border-radius:999px;
+  background:#765F4A;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.mobile-logout-btn,
+.member-mobile-footer{
+  display:none;
+}
+
+@media(max-width:768px){
+  .member-page{
+    display:block;
+    padding-top:70px;
+    background:#fff;
+  }
+
+  .sidebar-wrapper{
+    display:none;
+  }
+
+  .member-main{
+    padding:0 14px 100px;
+  }
+
+  .member-content{
+    padding-top:16px;
+  }
+
+  .member-mobile-top{
+    height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    background:#fff;
+  }
+
+  .member-mobile-top h1{
+    margin:0;
+    color:#111;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:.08em;
+  }
+
+  .member-mobile-menu{
+    position:absolute;
+    left:0;
+    border:0;
+    background:transparent;
+    font-size:20px;
+    color:#222;
+  }
+
+  .member-dashboard-hero{
+    gap:16px;
+    padding:22px 18px;
+    border-radius:16px;
+    margin-bottom:20px;
+  }
+
+  .avatar-upload-btn,
+  .avatar-placeholder{
+    width:90px;
+    height:90px;
+  }
+
+  .avatar-placeholder{
+    font-size:40px;
+  }
+
+  .avatar-camera{
+    width:30px;
+    height:30px;
+    right:-2px;
+    bottom:4px;
+    border:3px solid #fff;
+    font-size:13px;
+  }
+
+  .dashboard-member-info h1{
+    font-size:24px;
+  }
+
+  .dashboard-member-info p,
+  .dashboard-member-info span{
+    font-size:13px;
+  }
+
+  .dashboard-shortcuts{
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+
+  .dashboard-shortcut-card{
+    min-height:84px;
+    flex-direction:column;
+    gap:8px;
+    font-size:13px;
+  }
+
+  .dashboard-shortcut-card i{
+    font-size:24px;
+  }
+
+  .profile-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .profile-card{
+    padding:24px 20px;
+  }
+
+  .my-photo-list{
+    display:flex;
+    overflow-x:auto;
+    gap:12px;
+    padding-bottom:4px;
+  }
+
+  .my-photo-card{
+    min-width:118px;
+    padding:0;
+    border:0;
+  }
+
+  .my-photo-card img{
+    border-radius:10px;
+  }
+
+  .my-photo-info h3{
+    font-size:12px;
+  }
+
+  .my-photo-info p{
+    font-size:11px;
+  }
+
+  .member-benefit-banner{
+    padding:18px;
+    margin-bottom:16px;
+  }
+
+  .benefit-icon{
+    width:46px;
+    height:46px;
+    font-size:22px;
+  }
+
+  .benefit-text h2{
+    font-size:15px;
+  }
+
+  .benefit-text p{
+    font-size:12px;
+  }
+
+  .benefit-btn{
+    display:none;
+  }
+
+  .mobile-logout-btn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+    padding:15px;
+    border:1px solid #ead6d6;
+    border-radius:14px;
+    background:#fff4f4;
+    color:#c65f5f;
+    font-size:15px;
+  }
+
+  .member-mobile-footer{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:1000;
+    height:72px;
+    background:#fff;
+    border-top:1px solid #eee;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    align-items:center;
+    box-shadow:0 -8px 24px rgba(0,0,0,.05);
+  }
+
+  .member-mobile-footer a{
+    color:#50422D;
+    text-decoration:none;
+    font-size:11px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+  }
+
+  .member-mobile-footer i{
+    font-size:19px;
+  }
+
+  .member-mobile-footer .mobile-upload-center{
+    width:62px;
+    height:62px;
+    margin:-24px auto 0;
+    border-radius:50%;
+    background:#765F4A;
+    color:#fff;
+    justify-content:center;
+    box-shadow:0 8px 18px rgba(80,66,45,.22);
+  }
+
+  .member-mobile-footer .mobile-upload-center i{
+    font-size:28px;
+  }
+
+  .member-mobile-footer .mobile-upload-center span{
+    display:none;
+  }
+}
