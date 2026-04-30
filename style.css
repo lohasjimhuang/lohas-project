@@ -2654,3 +2654,12 @@ body.no-scroll {
 .upload-box.has-image .upload-placeholder {
     display: none;
 }
+
+.nav-links a.active {
+  color: var(--lohas-brand-color);
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
