@@ -127,3 +127,16 @@ function initCookieBanner() {
     localStorage.setItem("lohas_cookies_accepted", "true");
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const currentPage = location.pathname.split("/").pop() || "index.html";
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  navLinks.forEach((link) => {
+    const linkHref = link.getAttribute("href");
+
+    if (linkHref === currentPage) {
+      link.classList.add("active");
+    }
+  });
+});
