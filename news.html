@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>最新消息｜樂活眼鏡 LOHAS EYEWEAR</title>
+  <meta name="description" content="樂活眼鏡最新消息，包含品牌消息、活動優惠、雷刻服務、會員專區與門市公告。" />
+
+  <!-- 字型 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- 如果你的全站有 style.css，可以保留 -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- 最新消息頁專用 CSS -->
+  <link rel="stylesheet" href="news.css" />
+
+  <!-- Font Awesome，如果你原本已有載入可刪掉 -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+
+<body class="news-page">
+
+  <!-- 如果你有共用 header，就保留這個 -->
+  <div id="site-header"></div>
+
+  <!-- 如果你還沒接 components/header.html，可先用這段 header -->
+  <header class="news-header-fallback">
+    <a href="index.html" class="news-logo" aria-label="回到首頁">
+      <span class="news-logo-main">樂活眼鏡</span>
+      <span class="news-logo-sub">LOHAS EYEWEAR</span>
+    </a>
+
+    <nav class="news-nav">
+      <a href="index.html">首頁</a>
+      <a href="engraving.html">雷刻服務</a>
+      <a href="market.html">線上商城</a>
+      <a href="login.html">會員專區</a>
+      <a href="news.html" class="active">最新消息</a>
+      <a href="about.html">關於樂活</a>
+      <a href="gallery.html">門市據點</a>
+    </nav>
+
+    <div class="news-header-icons">
+      <a href="login.html" aria-label="會員登入"><i class="fa-regular fa-user"></i></a>
+      <a href="market.html" aria-label="購物袋"><i class="fa-solid fa-bag-shopping"></i></a>
+    </div>
+  </header>
+
+  <main class="news-main">
+
+    <!-- Page Title -->
+    <section class="news-hero">
+      <div class="news-container">
+        <p class="news-kicker">NEWS</p>
+        <h1>最新消息</h1>
+        <p class="news-hero-text">
+          探索樂活眼鏡的最新活動、品牌企劃與雷刻靈感。
+        </p>
+      </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-news">
+      <div class="news-container">
+        <article class="featured-card">
+          <a href="#" class="featured-image">
+            <!-- 換成你的圖片 -->
+            <img src="images/news/featured-mothers-day.jpg" alt="母親節雷刻企劃">
+          </a>
+
+          <div class="featured-content">
+            <div class="news-meta">
+              <span class="news-category">活動優惠</span>
+              <span class="news-date">2026.05.01</span>
+            </div>
+
+            <h2>
+              <a href="#">
+                母親節限定｜把想說的話刻在鏡片上
+              </a>
+            </h2>
+
+            <p>
+              在這個特別的日子裡，讓雷刻成為最真摯的心意。
+              即日起至 5/31，於門市或官網使用雷刻服務，享母親節限定優惠。
+            </p>
+
+            <a href="#" class="read-more">
+              READ MORE
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="news-filter-section">
+      <div class="news-container">
+        <div class="news-filter" aria-label="最新消息分類">
+          <button class="filter-btn active" data-filter="all">所有文章</button>
+          <button class="filter-btn" data-filter="brand">品牌消息</button>
+          <button class="filter-btn" data-filter="event">活動優惠</button>
+          <button class="filter-btn" data-filter="engraving">雷刻服務</button>
+          <button class="filter-btn" data-filter="member">會員專區</button>
+          <button class="filter-btn" data-filter="store">門市公告</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- News List -->
+    <section class="news-list-section">
+      <div class="news-container">
+
+        <div class="news-grid" id="newsGrid">
+
+          <article class="news-card" data-category="engraving">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-engraving-signature.jpg" alt="專屬簽名雷刻服務正式開放">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">雷刻服務</span>
+                <span class="news-date">2026.04.28</span>
+              </div>
+
+              <h3>
+                <a href="#">專屬簽名雷刻服務正式開放</a>
+              </h3>
+
+              <p>
+                你的簽名、你的風格，現在可以刻在鏡片上，獨一無二。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="store">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-store-renewal.jpg" alt="台中公益店全新改裝完成">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">門市公告</span>
+                <span class="news-date">2026.04.20</span>
+              </div>
+
+              <h3>
+                <a href="#">台中公益店全新改裝完成</a>
+              </h3>
+
+              <p>
+                以更舒適的空間體驗，邀請您蒞臨體驗全新的樂活。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="event">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-spring-collection.jpg" alt="春季新品上市限時優惠中">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">活動優惠</span>
+                <span class="news-date">2026.04.15</span>
+              </div>
+
+              <h3>
+                <a href="#">春季新品上市 限時優惠中</a>
+              </h3>
+
+              <p>
+                精選春季新品全面上市，搭配限時優惠活動，用新視野迎接美好季節。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="member">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-member-birthday.jpg" alt="會員專屬生日禮遇全新升級">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">會員專區</span>
+                <span class="news-date">2026.04.10</span>
+              </div>
+
+              <h3>
+                <a href="#">會員專屬生日禮遇全新升級</a>
+              </h3>
+
+              <p>
+                生日當月享專屬優惠與點數加倍，感謝會員一路以來的支持與陪伴。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="engraving">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-gallery-launch.jpg" alt="雷刻靈感分享牆正式上線">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">雷刻服務</span>
+                <span class="news-date">2026.04.05</span>
+              </div>
+
+              <h3>
+                <a href="#">雷刻靈感分享牆正式上線</a>
+              </h3>
+
+              <p>
+                蒐集來自顧客的雷刻創作與故事，感受更多專屬於你的刻字靈感。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="brand">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-care-tips.jpg" alt="配鏡保養小提醒">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">品牌消息</span>
+                <span class="news-date">2026.03.28</span>
+              </div>
+
+              <h3>
+                <a href="#">配鏡保養小提醒</a>
+              </h3>
+
+              <p>
+                簡單日常保養，延長鏡框與鏡片壽命，一起讓眼鏡陪伴你更久。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card is-hidden-card" data-category="brand">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-brand-story.jpg" alt="樂活眼鏡品牌故事更新">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">品牌消息</span>
+                <span class="news-date">2026.03.18</span>
+              </div>
+
+              <h3>
+                <a href="#">樂活眼鏡品牌故事更新</a>
+              </h3>
+
+              <p>
+                從配鏡服務到生活風格，樂活眼鏡希望讓眼鏡成為日常裡更有溫度的存在。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card is-hidden-card" data-category="store">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-store-time.jpg" alt="清明連假門市營業時間公告">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">門市公告</span>
+                <span class="news-date">2026.03.12</span>
+              </div>
+
+              <h3>
+                <a href="#">清明連假門市營業時間公告</a>
+              </h3>
+
+              <p>
+                連假期間門市營業時間調整，出發前歡迎先確認各門市服務時段。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card is-hidden-card" data-category="member">
+            <a href="#" class="news-card-image">
+              <img src="images/news/news-member-system.jpg" alt="會員中心功能全新升級">
+            </a>
+
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-category">會員專區</span>
+                <span class="news-date">2026.03.01</span>
+              </div>
+
+              <h3>
+                <a href="#">會員中心功能全新升級</a>
+              </h3>
+
+              <p>
+                新增我的收藏、雷刻紀錄與會員禮遇查詢，讓服務紀錄更清楚。
+              </p>
+
+              <a href="#" class="card-link">
+                READ MORE
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="news-load-more-wrap">
+          <button class="load-more-btn" id="loadMoreBtn">
+            更多文章
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 如果你有共用 footer，就保留 -->
+  <div id="site-footer"></div>
+
+  <!-- 如果你原本有 layout.js，保留；沒有也沒關係 -->
+  <script src="layout.js"></script>
+
+  <!-- 最新消息頁 JS -->
+  <script src="news.js"></script>
+</body>
+</html>
