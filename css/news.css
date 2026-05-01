@@ -396,29 +396,7 @@
     width: min(100% - 32px, 640px);
   }
 
-  .news-page-title {
-    padding: 34px 0 22px;
-  }
 
-  .news-title-row {
-    display: block;
-  }
-
-  .news-title-label {
-    margin-bottom: 8px;
-    font-size: 11px;
-  }
-
-  .news-title-row h1 {
-    font-size: 34px;
-  }
-
-  .news-title-row p {
-    margin-top: 12px;
-    max-width: none;
-    text-align: left;
-    font-size: 14px;
-  }
 
   .news-section-head {
     align-items: flex-start;
