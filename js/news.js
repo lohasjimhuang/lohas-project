@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================
-   最新消息分類篩選
+   分類篩選
 ========================= */
 
 function initNewsFilter() {
@@ -25,17 +25,24 @@ function initNewsFilter() {
         const category = card.dataset.category;
         const isMatch = filter === "all" || category === filter;
 
-        card.classList.remove("is-hidden-card");
+        card.classList.remove("is-filter-hidden");
 
-        if (isMatch) {
-          card.classList.remove("is-filter-hidden");
-        } else {
+        if (!isMatch) {
           card.classList.add("is-filter-hidden");
+        }
+
+        if (filter !== "all") {
+          card.classList.remove("is-hidden-card");
         }
       });
 
       if (loadMoreBtn) {
-        loadMoreBtn.classList.add("is-hidden");
+        if (filter === "all") {
+          const hiddenCards = document.querySelectorAll(".news-card.is-hidden-card");
+          loadMoreBtn.classList.toggle("is-hidden", hiddenCards.length === 0);
+        } else {
+          loadMoreBtn.classList.add("is-hidden");
+        }
       }
     });
   });
@@ -47,14 +54,12 @@ function initNewsFilter() {
 
 function initLoadMore() {
   const loadMoreBtn = document.getElementById("loadMoreBtn");
-  const hiddenCards = document.querySelectorAll(".news-card.is-hidden-card");
 
-  if (!loadMoreBtn || !hiddenCards.length) {
-    if (loadMoreBtn) loadMoreBtn.classList.add("is-hidden");
-    return;
-  }
+  if (!loadMoreBtn) return;
 
   loadMoreBtn.addEventListener("click", () => {
+    const hiddenCards = document.querySelectorAll(".news-card.is-hidden-card");
+
     hiddenCards.forEach((card) => {
       card.classList.remove("is-hidden-card");
     });
