@@ -1390,3 +1390,17 @@ main{
 .plan1-card{
   transition:.25s ease;
 }
+
+@media(max-width:768px){
+  .plan1-card .img-box::after{
+    content:"點擊查看";
+    inset:auto 10px 10px auto;
+    width:auto;
+    height:auto;
+    padding:5px 9px;
+    border-radius:999px;
+    background:rgba(80,66,45,.82);
+    font-size:11px;
+    opacity:1;
+  }
+}
