@@ -625,3 +625,13 @@
     font-size: 14px;
   }
 }
+
+.news-main {
+  padding-top: 88px;
+}
+
+@media (max-width: 768px) {
+  .news-main {
+    padding-top: 72px;
+  }
+}
