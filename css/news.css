@@ -43,50 +43,6 @@
   margin: 0 auto;
 }
 
-/* =========================
-   Page title：沒有 Hero Banner
-========================= */
-
-.news-page-title {
-  padding: 56px 0 28px;
-  background: #fff;
-  border-bottom: 1px solid rgba(80, 66, 45, 0.08);
-}
-
-.news-title-row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.news-title-label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .24em;
-  color: var(--news-brand-hover);
-}
-
-.news-title-row h1 {
-  margin: 0;
-  font-size: clamp(32px, 4vw, 44px);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: .08em;
-  color: var(--news-brand);
-}
-
-.news-title-row p {
-  margin: 0 0 4px;
-  max-width: 360px;
-  font-size: 14px;
-  line-height: 1.8;
-  letter-spacing: .04em;
-  color: var(--news-text-soft);
-  text-align: right;
-}
 
 /* =========================
    Section head
