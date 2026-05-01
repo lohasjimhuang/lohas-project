@@ -1363,3 +1363,30 @@ main{
     margin-bottom:16px;
   }
 }
+
+.plan1-card .img-box::after{
+  content:"查看詳情";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(80,66,45,.38);
+  color:#fff;
+  font-size:14px;
+  letter-spacing:.08em;
+  opacity:0;
+  transition:.25s ease;
+}
+
+.plan1-card:hover .img-box::after{
+  opacity:1;
+}
+
+.plan1-card:hover{
+  transform:translateY(-3px);
+}
+
+.plan1-card{
+  transition:.25s ease;
+}
