@@ -739,3 +739,112 @@
     font-size: 16px;
   }
 }
+
+/* =========================
+   News page：回到樂活原本字型與風格
+========================= */
+
+.news-page {
+  font-family: inherit;
+  line-height: inherit;
+  color: var(--lohas-text-main);
+}
+
+/* 不使用額外 serif 字體，全部吃全站字型 */
+.news-page h1,
+.news-page h2,
+.news-page h3,
+.news-page p,
+.news-page a,
+.news-page button,
+.news-page span {
+  font-family: inherit;
+}
+
+/* Hero 標題：改回樂活乾淨品牌感 */
+.news-hero h1 {
+  font-family: inherit;
+  font-size: clamp(40px, 5vw, 58px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: .08em;
+  color: var(--lohas-brand-color);
+}
+
+/* Hero 小字 */
+.news-hero-text {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: #6f665d;
+}
+
+/* NEWS 英文字 */
+.news-kicker {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .24em;
+  color: var(--lohas-hover-color);
+}
+
+/* 精選文章標題 */
+.featured-content h2 {
+  font-family: inherit;
+  font-size: clamp(25px, 3vw, 36px);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: .06em;
+  color: var(--lohas-brand-color);
+}
+
+/* 精選文章內文 */
+.featured-content p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.9;
+  letter-spacing: .03em;
+  color: #6f665d;
+}
+
+/* 小卡標題 */
+.news-card h3 {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: .05em;
+  color: var(--lohas-brand-color);
+}
+
+/* 小卡內文 */
+.news-card p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: #6f665d;
+}
+
+/* 分類標籤 */
+.news-category {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .06em;
+}
+
+/* 日期 */
+.news-date {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  color: #9b9186;
+}
+
+/* 按鈕字體回到樂活感 */
+.filter-btn,
+.load-more-btn,
+.read-more,
+.card-link {
+  font-family: inherit;
+  font-weight: 500;
+}
