@@ -108,12 +108,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeDetailModal() {
-    if (!detailModal) return;
+  if (!detailModal) return;
 
-    detailModal.classList.remove("is-open");
-    detailModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+  detailModal.classList.remove("is-open");
+  detailModal.setAttribute("aria-hidden", "true");
+
+  if (window.LohasGalleryUpload?.isPreviewMode?.()) {
+    window.LohasGalleryUpload.backToUploadModal();
+    return;
   }
+
+  document.body.style.overflow = "";
+}
 
   function renderGalleryCard(post, prepend = false) {
     if (!galleryGrid) return;
