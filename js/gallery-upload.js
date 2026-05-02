@@ -542,8 +542,18 @@ document.addEventListener("DOMContentLoaded", () => {
   bindUploadEvents();
 
   window.LohasGalleryUpload = {
-    openModal,
-    closeModal,
-    clearForm
-  };
-});
+  openModal,
+  closeModal,
+  clearForm,
+  isPreviewMode() {
+    return state.isPreviewMode;
+  },
+  backToUploadModal() {
+    state.isPreviewMode = false;
+
+    uploadModal?.classList.add("is-open");
+    uploadModal?.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+  }
+};
