@@ -1,564 +1,234 @@
-:root {
-  --lohas-brand-color: #50422D;
-  --lohas-hover-color: #765F4A;
-  --lohas-bg-warm: #F9F8F6;
-  --lohas-bg-soft: #F4F1EC;
-  --lohas-text-main: #2F2A24;
-  --lohas-text-sub: #6F665D;
-  --lohas-text-muted: #9B9186;
-  --lohas-text-light: #CDBEA2;
-  --lohas-border: #E8DED1;
-  --lohas-white: #FFFFFF;
-
-  --lohas-radius-sm: 8px;
-  --lohas-radius-md: 14px;
-  --lohas-radius-lg: 18px;
-  --lohas-radius-xl: 24px;
-  --lohas-radius-pill: 999px;
-
-  --lohas-shadow-soft: 0 12px 28px rgba(80, 66, 45, 0.05);
-  --lohas-shadow-card: 0 18px 38px rgba(80, 66, 45, 0.09);
-
-  --lohas-danger: #C85F5F;
-  --lohas-danger-bg: #FFF4F4;
-  --lohas-danger-border: #EAD6D6;
-}
-
-body {
-  margin: 0;
-  background: #fff;
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  color: var(--lohas-text-main);
-}
-
 /* =========================
-   Layout
+   LOHAS UI 強化版覆蓋
+   貼在 CSS 最下面
 ========================= */
 
+/* 全頁背景改成暖白，不要純白後台感 */
 .member-page {
-  display: flex;
-  min-height: 100vh;
-  padding-top: 70px;
-  background: #fff;
+  background: var(--lohas-bg-warm);
 }
 
+/* 內容區變乾淨 */
+.member-main {
+  background: var(--lohas-bg-warm);
+}
+
+/* 桌機左側選單更像品牌側欄 */
 .sidebar-wrapper {
-  width: 280px;
-  flex-shrink: 0;
-  background: linear-gradient(180deg, #fff 0%, var(--lohas-bg-warm) 100%);
+  background: #fff;
   border-right: 1px solid var(--lohas-border);
-}
-
-.member-sidebar-head {
-  display: none;
-}
-
-.member-nav {
-  padding: 24px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .member-nav-link,
 .member-logout {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 15px 18px;
-  border-radius: var(--lohas-radius-md);
-  color: var(--lohas-brand-color);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease;
+  border-radius: 999px;
 }
 
-.member-nav-link:hover {
-  background: var(--lohas-bg-soft);
-  color: var(--lohas-hover-color);
-  transform: translateX(2px);
-}
-
-.member-nav-link.nav-item-active {
-  background: var(--lohas-brand-color);
-  color: #fff;
-  box-shadow: 0 10px 24px rgba(80, 66, 45, 0.16);
-}
-
-.member-logout {
-  margin-top: 12px;
-  color: var(--lohas-danger);
-}
-
-.member-logout:hover {
-  background: var(--lohas-danger-bg);
-}
-
-.member-main {
-  flex: 1;
-  background: #fff;
-  padding: 0 34px 120px;
-}
-
-.member-content {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding-top: 34px;
-}
-
-.member-mobile-top {
-  display: none;
-}
-
-/* =========================
-   Hero
-========================= */
-
+/* 會員主視覺卡片：更像 LOHAS 品牌會員首頁 */
 .member-dashboard-hero {
-  display: flex;
-  align-items: center;
-  gap: 34px;
-  padding: 42px 46px;
-  margin-bottom: 30px;
-  border: 1px solid var(--lohas-border);
-  border-radius: var(--lohas-radius-xl);
-  background:
-    radial-gradient(circle at 90% 0%, rgba(205, 190, 162, 0.22), transparent 34%),
-    linear-gradient(135deg, #fff 0%, var(--lohas-bg-warm) 100%);
-  box-shadow: var(--lohas-shadow-soft);
-}
-
-.avatar-upload-btn {
   position: relative;
-  width: 132px;
-  height: 132px;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.avatar-placeholder {
-  width: 132px;
-  height: 132px;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #F4F1EC 0%, #E8DED1 100%);
-  color: var(--lohas-text-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 58px;
   overflow: hidden;
-  border: 1px solid rgba(80, 66, 45, 0.08);
+  border: 1px solid var(--lohas-border);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 92% 18%, rgba(205, 190, 162, 0.35), transparent 34%),
+    linear-gradient(135deg, #fff 0%, #F9F8F6 58%, #F1E8DC 100%);
+  box-shadow: 0 18px 44px rgba(80, 66, 45, 0.08);
 }
 
-.avatar-placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-}
-
-.avatar-camera {
+.member-dashboard-hero::after {
+  content: "LOHAS MEMBER";
   position: absolute;
-  right: 2px;
-  bottom: 10px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  right: 34px;
+  bottom: 24px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: rgba(80, 66, 45, 0.18);
+}
+
+/* 大頭貼改成更溫暖的品牌感 */
+.avatar-placeholder {
+  background: #fff;
+  color: var(--lohas-text-light);
+  border: 1px solid var(--lohas-border);
+  box-shadow: 0 12px 30px rgba(80, 66, 45, 0.08);
+}
+
+/* 相機按鈕改主色 */
+.avatar-camera {
   background: var(--lohas-brand-color);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 4px solid #fff;
-  box-shadow: 0 8px 18px rgba(80, 66, 45, 0.20);
 }
 
-.avatar-camera:hover {
-  background: var(--lohas-hover-color);
-}
-
+/* 會員文字不要黑色 */
 .dashboard-member-info p {
-  margin: 0 0 8px;
-  color: var(--lohas-text-sub);
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  color: var(--lohas-text-muted);
+  font-size: 14px;
+  letter-spacing: 0.08em;
 }
 
 .dashboard-member-info h1 {
-  margin: 0 0 10px;
   color: var(--lohas-brand-color);
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .dashboard-member-info span {
-  color: var(--lohas-text-muted);
-  font-size: 14px;
-  letter-spacing: 0.03em;
+  color: var(--lohas-text-sub);
 }
 
-/* =========================
-   Shortcuts
-========================= */
-
-.shortcut-title {
-  margin: 8px 0 14px;
-  color: var(--lohas-brand-color);
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-}
-
-.dashboard-shortcuts {
-  order: 2;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 0 0 20px;
-}
-
+/* 快捷卡片變成品牌入口 */
 .dashboard-shortcut-card {
-  min-height: 112px;
+  border-radius: 22px;
   border: 1px solid var(--lohas-border);
-  border-radius: var(--lohas-radius-lg);
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  color: var(--lohas-brand-color);
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  box-shadow: 0 10px 24px rgba(80, 66, 45, 0.035);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 28px rgba(80, 66, 45, 0.05);
 }
 
 .dashboard-shortcut-card i {
-  font-size: 28px;
-  color: var(--lohas-hover-color);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--lohas-bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lohas-brand-color);
+  font-size: 22px;
 }
 
 .dashboard-shortcut-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(80, 66, 45, 0.24);
-  box-shadow: var(--lohas-shadow-card);
-  color: var(--lohas-hover-color);
+  background: #fff;
+  border-color: rgba(80, 66, 45, 0.22);
 }
 
-/* =========================
-   Section Title
-========================= */
-
-.member-section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 28px 0 14px;
-}
-
-.member-section-title h1 {
-  margin: 0;
+/* 區塊標題統一 LOHAS */
+.member-section-title h1,
+.shortcut-title {
   color: var(--lohas-brand-color);
   font-size: 22px;
   font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: 0.05em;
-}
-
-.member-section-title a {
-  color: var(--lohas-hover-color);
-  font-size: 13px;
-  font-weight: 500;
   letter-spacing: 0.06em;
-  text-decoration: none;
 }
 
-.member-section-title a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* =========================
-   Profile
-========================= */
-
-.profile-card {
-  background: #fff;
+/* 會員資料卡更柔和 */
+.profile-card,
+.my-photo-card,
+.member-benefit-banner {
   border: 1px solid var(--lohas-border);
-  border-radius: var(--lohas-radius-lg);
-  padding: 30px;
-  box-shadow: var(--lohas-shadow-soft);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 14px 32px rgba(80, 66, 45, 0.05);
 }
 
-.profile-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 26px 40px;
-}
-
+/* 會員資料欄位更乾淨 */
 .profile-field {
-  padding-bottom: 14px;
   border-bottom: 1px solid rgba(80, 66, 45, 0.08);
 }
 
 .profile-field span {
-  display: block;
-  margin-bottom: 8px;
   color: var(--lohas-text-muted);
-  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.12em;
 }
 
 .profile-field div {
   color: var(--lohas-brand-color);
-  font-size: 16px;
   font-weight: 400;
-  word-break: break-all;
-  overflow-wrap: anywhere;
-  line-height: 1.7;
 }
 
-/* =========================
-   Photo Cards
-========================= */
-
-.my-favorites-section,
-.my-photos-section {
-  margin-top: 28px;
-}
-
-.my-photo-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
+/* 照片卡片 */
 .my-photo-card {
-  border: 1px solid var(--lohas-border);
-  border-radius: var(--lohas-radius-lg);
-  background: #fff;
-  padding: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 24px rgba(80, 66, 45, 0.035);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .my-photo-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(80, 66, 45, 0.22);
-  box-shadow: var(--lohas-shadow-card);
-}
-
-.my-photo-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: var(--lohas-radius-md);
-  background: var(--lohas-bg-warm);
-  display: block;
+  box-shadow: 0 18px 38px rgba(80, 66, 45, 0.09);
 }
 
 .my-photo-info h3 {
-  margin: 10px 0 4px;
   color: var(--lohas-brand-color);
-  font-size: 14px;
   font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.03em;
 }
 
-.my-photo-info p {
-  margin: 0;
-  color: var(--lohas-text-muted);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.delete-my-photo {
-  margin-top: 10px;
-  border: 1px solid var(--lohas-danger-border);
-  background: var(--lohas-danger-bg);
-  color: var(--lohas-danger);
-  border-radius: var(--lohas-radius-pill);
-  padding: 8px 14px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.delete-my-photo:hover {
-  background: var(--lohas-danger);
-  color: #fff;
-  border-color: var(--lohas-danger);
-}
-
-.empty-text {
-  color: var(--lohas-text-muted);
-  font-size: 14px;
-  grid-column: 1 / -1;
-}
-
-/* =========================
-   Benefit Banner
-========================= */
-
+/* 權益 banner 改成品牌 CTA */
 .member-benefit-banner {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-top: 32px;
-  padding: 24px 30px;
-  border: 1px solid var(--lohas-border);
-  border-radius: var(--lohas-radius-lg);
   background:
-    radial-gradient(circle at 88% 12%, rgba(205, 190, 162, 0.2), transparent 34%),
+    radial-gradient(circle at 90% 10%, rgba(205, 190, 162, 0.28), transparent 34%),
     linear-gradient(135deg, #fff 0%, var(--lohas-bg-warm) 100%);
-  box-shadow: var(--lohas-shadow-soft);
 }
 
 .benefit-icon {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
   background: var(--lohas-brand-color);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  flex-shrink: 0;
-}
-
-.benefit-text {
-  flex: 1;
 }
 
 .benefit-text h2 {
-  margin: 0 0 6px;
   color: var(--lohas-brand-color);
-  font-size: 20px;
   font-weight: 500;
-  letter-spacing: 0.04em;
-}
-
-.benefit-text p {
-  margin: 0;
-  color: var(--lohas-text-sub);
-  font-size: 14px;
-  line-height: 1.7;
 }
 
 .benefit-btn {
-  min-height: 44px;
-  padding: 0 26px;
-  border-radius: var(--lohas-radius-pill);
   background: var(--lohas-brand-color);
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
 }
 
 .benefit-btn:hover {
   background: var(--lohas-hover-color);
-  transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(80, 66, 45, 0.16);
 }
 
 /* =========================
-   Footer
-========================= */
-
-.mobile-logout-btn,
-.member-mobile-footer {
-  display: none;
-}
-
-/* =========================
-   Mobile
+   Mobile：重新排序與明顯改版
 ========================= */
 
 @media (max-width: 768px) {
   .member-page {
-    display: block;
-    padding-top: 70px;
-  }
-
-  .sidebar-wrapper {
-    display: none;
+    background: var(--lohas-bg-warm);
+    padding-top: 64px;
   }
 
   .member-main {
     padding: 0 14px 100px;
+    background: var(--lohas-bg-warm);
   }
 
   .member-content {
-    padding-top: 16px;
-  }
-
-  .member-mobile-top {
-    height: 54px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    border-bottom: 1px solid rgba(80, 66, 45, 0.08);
+    flex-direction: column;
+    padding-top: 14px;
   }
 
-  .member-mobile-menu {
-    display: none;
+  /* 手機上方標題列可保留，但變低調 */
+  .member-mobile-top {
+    order: 0;
+    height: 44px;
+    background: transparent;
+    border: 0;
   }
 
   .member-mobile-top h1 {
-    margin: 0;
     color: var(--lohas-brand-color);
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
   }
 
-   .member-dashboard-hero {
+  /* 大頭貼區放最上面 */
+  .member-dashboard-hero {
     order: 1;
-    gap: 16px;
+    margin: 0 0 14px;
     padding: 20px 18px;
-    border-radius: var(--lohas-radius-lg);
-    margin: 0 0 16px;
+    gap: 16px;
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at 90% 10%, rgba(205, 190, 162, 0.35), transparent 36%),
+      linear-gradient(135deg, #fff 0%, #F9F8F6 100%);
+  }
+
+  .member-dashboard-hero::after {
+    right: 18px;
+    bottom: 16px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
   }
 
   .avatar-upload-btn,
@@ -568,7 +238,7 @@ body {
   }
 
   .avatar-placeholder {
-    font-size: 36px;
+    font-size: 34px;
   }
 
   .avatar-camera {
@@ -576,209 +246,90 @@ body {
     height: 30px;
     right: -2px;
     bottom: 4px;
-    border: 3px solid #fff;
-    font-size: 13px;
+  }
+
+  .dashboard-member-info p {
+    font-size: 12px;
+    margin-bottom: 4px;
   }
 
   .dashboard-member-info h1 {
     font-size: 23px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
-  .dashboard-member-info p,
   .dashboard-member-info span {
-    font-size: 13px;
-  }
-
-  .dashboard-shortcuts {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-
- .dashboard-shortcut-card {
-  min-height: 86px;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 13px;
-  border-radius: var(--lohas-radius-md);
-  background: #fff;
-  border: 1px solid var(--lohas-border);
-  box-shadow: 0 8px 18px rgba(80, 66, 45, 0.04);
-}
-
-  .dashboard-shortcut-card i {
-  font-size: 23px;
-  color: var(--lohas-hover-color);
-}
-
-  .profile-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .profile-card {
-    padding: 24px 20px;
-  }
-
-  .my-photo-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .my-photo-card {
-    width: 100%;
-    padding: 10px;
-    border-radius: var(--lohas-radius-md);
-  }
-
-  .my-photo-card img {
-    border-radius: var(--lohas-radius-sm);
-  }
-
-  .my-photo-info h3 {
     font-size: 12px;
   }
 
-  .my-photo-info p {
-    font-size: 11px;
-  }
-
-  .member-benefit-banner {
-    gap: 14px;
-    padding: 18px;
-    margin-bottom: 16px;
-  }
-
-  .benefit-icon {
-    width: 46px;
-    height: 46px;
-    font-size: 22px;
-  }
-
-  .benefit-text h2 {
-    font-size: 15px;
-    font-weight: 500;
-  }
-
-  .benefit-text p {
-    font-size: 12px;
-  }
-
-  .benefit-btn {
-    width: 38px;
-    height: 38px;
-    min-width: 38px;
-    min-height: 38px;
-    padding: 0;
-    border-radius: 50%;
-    font-size: 0;
-  }
-
-  .benefit-btn::after {
-    content: "\f105";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
+  /* 快捷區緊接大頭貼下方 */
+  .shortcut-title {
+    order: 2;
+    margin: 4px 0 10px;
     font-size: 16px;
   }
 
-  .mobile-logout-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .dashboard-shortcuts {
+    order: 3;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid var(--lohas-danger-border);
-    border-radius: var(--lohas-radius-md);
-    background: var(--lohas-danger-bg);
-    color: var(--lohas-danger);
-    font-size: 15px;
-    font-weight: 500;
+    margin: 0 0 18px;
   }
 
+  .dashboard-shortcut-card {
+    min-height: 88px;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 18px;
+    font-size: 12px;
+    background: #fff;
+  }
+
+  .dashboard-shortcut-card i {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  /* 會員資料往下 */
+  .profile-card {
+    order: 4;
+    border-radius: 22px;
+    padding: 22px 18px;
+  }
+
+  .my-favorites-section {
+    order: 5;
+  }
+
+  .my-photos-section {
+    order: 6;
+  }
+
+  .member-benefit-banner {
+    order: 7;
+    border-radius: 22px;
+  }
+
+  .mobile-logout-btn {
+    order: 8;
+  }
+
+  /* 手機底部導覽更像 LOHAS App */
   .member-mobile-footer {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    height: 72px;
     background: rgba(255, 255, 255, 0.96);
     border-top: 1px solid var(--lohas-border);
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    align-items: center;
-    box-shadow: 0 -8px 24px rgba(80, 66, 45, 0.06);
-    backdrop-filter: blur(12px);
+    box-shadow: 0 -10px 28px rgba(80, 66, 45, 0.08);
+    backdrop-filter: blur(14px);
   }
 
   .member-mobile-footer a {
     color: var(--lohas-brand-color);
-    text-decoration: none;
-    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.02em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .member-mobile-footer i {
-    font-size: 19px;
   }
 
   .member-mobile-footer .mobile-upload-center {
-    width: 62px;
-    height: 62px;
-    margin: -24px auto 0;
-    border-radius: 50%;
     background: var(--lohas-brand-color);
-    color: #fff;
-    justify-content: center;
-    box-shadow: 0 8px 18px rgba(80, 66, 45, 0.22);
-  }
-
-  .member-mobile-footer .mobile-upload-center i {
-    font-size: 28px;
-  }
-
-  .member-mobile-footer .mobile-upload-center span {
-    display: none;
-  }
-
-  .member-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .member-dashboard-hero {
-    order: 1;
-  }
-
-  .dashboard-shortcuts {
-    order: 2;
-  }
-
-  .profile-card {
-    order: 3;
-  }
-
-  .my-favorites-section {
-    order: 4;
-  }
-
-  .my-photos-section {
-    order: 5;
-  }
-
-  .member-benefit-banner {
-    order: 6;
-  }
-
-  .mobile-logout-btn {
-    order: 7;
+    box-shadow: 0 10px 24px rgba(80, 66, 45, 0.25);
   }
 }
