@@ -225,10 +225,10 @@ body {
 }
 
 .dashboard-shortcuts {
-  display: grid;
+  order: 2;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-bottom: 30px;
+  gap: 10px;
+  margin: 0 0 20px;
 }
 
 .dashboard-shortcut-card {
@@ -553,21 +553,22 @@ body {
     letter-spacing: 0.05em;
   }
 
-  .member-dashboard-hero {
+   .member-dashboard-hero {
+    order: 1;
     gap: 16px;
-    padding: 22px 18px;
+    padding: 20px 18px;
     border-radius: var(--lohas-radius-lg);
-    margin-bottom: 20px;
+    margin: 0 0 16px;
   }
 
   .avatar-upload-btn,
   .avatar-placeholder {
-    width: 90px;
-    height: 90px;
+    width: 82px;
+    height: 82px;
   }
 
   .avatar-placeholder {
-    font-size: 40px;
+    font-size: 36px;
   }
 
   .avatar-camera {
@@ -580,7 +581,8 @@ body {
   }
 
   .dashboard-member-info h1 {
-    font-size: 24px;
+    font-size: 23px;
+    margin-bottom: 6px;
   }
 
   .dashboard-member-info p,
@@ -593,17 +595,21 @@ body {
     gap: 10px;
   }
 
-  .dashboard-shortcut-card {
-    min-height: 84px;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 13px;
-    border-radius: var(--lohas-radius-md);
-  }
+ .dashboard-shortcut-card {
+  min-height: 86px;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  border-radius: var(--lohas-radius-md);
+  background: #fff;
+  border: 1px solid var(--lohas-border);
+  box-shadow: 0 8px 18px rgba(80, 66, 45, 0.04);
+}
 
   .dashboard-shortcut-card i {
-    font-size: 24px;
-  }
+  font-size: 23px;
+  color: var(--lohas-hover-color);
+}
 
   .profile-grid {
     grid-template-columns: 1fr;
@@ -741,5 +747,38 @@ body {
 
   .member-mobile-footer .mobile-upload-center span {
     display: none;
+  }
+
+  .member-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .member-dashboard-hero {
+    order: 1;
+  }
+
+  .dashboard-shortcuts {
+    order: 2;
+  }
+
+  .profile-card {
+    order: 3;
+  }
+
+  .my-favorites-section {
+    order: 4;
+  }
+
+  .my-photos-section {
+    order: 5;
+  }
+
+  .member-benefit-banner {
+    order: 6;
+  }
+
+  .mobile-logout-btn {
+    order: 7;
   }
 }
