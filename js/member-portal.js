@@ -26,7 +26,8 @@
   const State = {
     member: null,       // 當前會員 (從 Auth.getStoredMember())
     isCreator: false,   // 是否創作者
-    creatorInfo: null   // 創作者主檔資料 (creators table)
+    creatorInfo: null,  // 創作者主檔資料 (creators table)
+    isAdmin: false      // 是否後台管理員 (admins table)
   };
 
 
@@ -95,23 +96,33 @@
 
     State.member = member;
 
-    // 查 Supabase 看是不是 Creator
     const sb = getSupabase();
     if (sb) {
+      // 平行查 Creator + Admin 身份
       try {
-        const { data, error } = await sb
-          .from('creators')
-          .select('member_id, display_name, bio, avatar_url, status, bank_name, bank_code, bank_branch, bank_account, account_holder')
-          .eq('member_id', member.erpid)
-          .eq('status', 'active')
-          .maybeSingle();
+        const [creatorRes, adminRes] = await Promise.all([
+          sb.from('creators')
+            .select('member_id, display_name, bio, avatar_url, status, bank_name, bank_code, bank_branch, bank_account, account_holder')
+            .eq('member_id', member.erpid)
+            .eq('status', 'active')
+            .maybeSingle(),
+          sb.from('admins')
+            .select('member_id, status')
+            .eq('member_id', member.erpid)
+            .eq('status', 'active')
+            .maybeSingle()
+        ]);
 
-        if (!error && data) {
+        if (!creatorRes.error && creatorRes.data) {
           State.isCreator = true;
-          State.creatorInfo = data;
+          State.creatorInfo = creatorRes.data;
+        }
+
+        if (!adminRes.error && adminRes.data) {
+          State.isAdmin = true;
         }
       } catch (err) {
-        console.warn('[creator 身份查詢失敗]', err);
+        console.warn('[身份查詢失敗]', err);
       }
     }
 
@@ -130,10 +141,22 @@
     const heroBadge = document.getElementById('heroBadge');
     if (heroBadge) heroBadge.style.display = State.isCreator ? 'inline-flex' : 'none';
 
+    // Admin badge + 進入後台按鈕
+    const heroAdminBadge = document.getElementById('heroAdminBadge');
+    if (heroAdminBadge) heroAdminBadge.style.display = State.isAdmin ? 'inline-flex' : 'none';
+
+    const enterAdminBtn = document.getElementById('enterAdminBtn');
+    if (enterAdminBtn) enterAdminBtn.style.display = State.isAdmin ? 'inline-flex' : 'none';
+
     const roleTag = document.getElementById('roleTag');
     if (roleTag) {
-      roleTag.textContent = '會員中心 · ' + (State.isCreator ? 'Creator' : 'Member');
-      roleTag.classList.toggle('creator', State.isCreator);
+      // 顯示優先級: Admin > Creator > Member
+      let roleText;
+      if (State.isAdmin) roleText = 'Admin';
+      else if (State.isCreator) roleText = 'Creator';
+      else roleText = 'Member';
+      roleTag.textContent = '會員中心 · ' + roleText;
+      roleTag.classList.toggle('creator', State.isCreator && !State.isAdmin);
     }
 
     // 頭像
