@@ -35,11 +35,11 @@ function initMemberLink() {
     const member = JSON.parse(localStorage.getItem("lohasMember") || "null");
 
     if (member && member.erpid) {
-      window.location.href = "member.html";
+      window.location.href = "member-portal.html";
       return;
     }
 
-    localStorage.setItem("redirectAfterLogin", "member.html");
+    localStorage.setItem("redirectAfterLogin", "member-portal.html");
     window.location.href = "login.html";
   });
 }
