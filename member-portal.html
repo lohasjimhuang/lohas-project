@@ -115,9 +115,13 @@
         <h1>
           <span id="dashboard-name">載入中...</span>
           <span class="creator-badge" id="heroBadge" style="display:none"><i class="fa-solid fa-star"></i>Creator</span>
+          <span class="admin-badge" id="heroAdminBadge" style="display:none"><i class="fa-solid fa-shield-halved"></i>Admin</span>
         </h1>
         <div class="id" id="dashboard-id">樂活會員編號:--</div>
       </div>
+      <a class="enter-admin-btn" id="enterAdminBtn" href="admin-portal.html" style="display:none">
+        <i class="fa-solid fa-shield-halved"></i><span>進入後台</span>
+      </a>
     </div>
 
     <div class="content">
@@ -347,9 +351,12 @@
 
 </div>
 
+<!-- ====== 依賴 (按順序載入) ====== -->
 <script src="js/utils.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/supabase.js"></script>
+
+<!-- 會員平台主邏輯 -->
 <script src="js/member-portal.js"></script>
 
 </body>
