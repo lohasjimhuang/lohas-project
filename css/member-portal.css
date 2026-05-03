@@ -1387,3 +1387,64 @@
   .mp .content{ padding:20px 16px }
   .mp .hero{ padding:24px 20px }
 }
+
+@media (max-width: 900px) {
+  .mp {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 手機版先不要顯示左側 sidebar，避免擋在會員資訊上方 */
+  .mp .sidebar {
+    display: none;
+  }
+
+  .mp .main {
+    order: 1;
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* 大頭照區固定放最上方 */
+  .mp .hero {
+    order: 1;
+  }
+
+  .mp .content {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mp .content-page.on {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 快捷卡固定接在大頭照下面 */
+  .mp .content-page.on .shortcuts {
+    order: 1;
+  }
+
+  /* 其他內容往後排 */
+  .mp .content-page.on .creator-stats {
+    order: 2;
+  }
+
+  .mp .content-page.on .section-title {
+    order: 3;
+  }
+
+  .mp .content-page.on .profile-card {
+    order: 4;
+  }
+
+  .mp .content-page.on .inspo-list,
+  .mp .content-page.on .wish-list,
+  .mp .content-page.on .photo-grid,
+  .mp .content-page.on .story-card,
+  .mp .content-page.on .story-add,
+  .mp .content-page.on .design-list {
+    order: 5;
+  }
+}
