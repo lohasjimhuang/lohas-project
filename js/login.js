@@ -91,8 +91,8 @@
         birthday: member.birthday || ''
       });
 
-      const redirect = Auth.getRedirect('member.html');
-      window.location.href = redirect && redirect !== 'login.html' ? redirect : 'member.html';
+      const redirect = Auth.getRedirect('member-portal.html');
+      window.location.href = redirect && redirect !== 'login.html' ? redirect : 'member-portal.html';
     } catch (error) {
       console.error('[登入錯誤]', error);
       showError(error.message || '連線失敗，請稍後再試');
