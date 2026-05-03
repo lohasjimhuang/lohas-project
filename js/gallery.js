@@ -108,18 +108,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeDetailModal() {
-  if (!detailModal) return;
+    if (!detailModal) return;
 
-  detailModal.classList.remove("is-open");
-  detailModal.setAttribute("aria-hidden", "true");
+    detailModal.classList.remove("is-open");
+    detailModal.setAttribute("aria-hidden", "true");
 
-  if (window.LohasGalleryUpload?.isPreviewMode?.()) {
-    window.LohasGalleryUpload.backToUploadModal();
-    return;
+    if (window.LohasUpload?.isPreviewMode?.()) {
+      window.LohasUpload.backToUploadModal();
+      return;
+    }
+
+    document.body.style.overflow = "";
   }
-
-  document.body.style.overflow = "";
-}
 
   function renderGalleryCard(post, prepend = false) {
     if (!galleryGrid) return;
@@ -162,21 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
     else galleryGrid.appendChild(card);
   }
 
-  function updateCommunityStats(posts = []) {
-    const totalPosts = posts.length;
-    const uniqueNames = new Set(
-      posts.map(post => post.customer_name || post.customer_mask || "顧客")
-    ).size;
-
-    document.querySelectorAll(".stat-item").forEach((item, index) => {
-      const strong = item.querySelector("strong");
-      if (!strong) return;
-
-      if (index % 2 === 0) strong.textContent = uniqueNames || totalPosts;
-      if (index % 2 === 1) strong.textContent = totalPosts;
-    });
-  }
-
   async function loadPostsFromSupabase() {
     if (!supabaseClient) {
       applyFilters();
@@ -197,8 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     data.forEach(post => renderGalleryCard(post, true));
-
-    updateCommunityStats(data);
     applyFilters();
     loadMyFavoriteStates();
   }
@@ -240,7 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const shouldShow = matchTopic && matchCarrier && matchKeyword;
 
       card.style.display = shouldShow ? "block" : "none";
-
       if (shouldShow) visibleCount += 1;
     });
 
@@ -350,7 +332,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openFilterDrawer() {
     if (!filterDrawer) return;
-
     filterDrawer.classList.add("is-open");
     filterDrawer.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -358,7 +339,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeFilterDrawer() {
     if (!filterDrawer) return;
-
     filterDrawer.classList.remove("is-open");
     filterDrawer.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
@@ -372,7 +352,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", event => {
     if (event.key !== "Escape") return;
-
     if (detailModal?.classList.contains("is-open")) closeDetailModal();
     if (filterDrawer?.classList.contains("is-open")) closeFilterDrawer();
   });
@@ -401,7 +380,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.querySelectorAll(".drawer-chip-grid").forEach(group => {
         group.querySelectorAll(".chip").forEach(item => item.classList.remove("active"));
-
         const firstChip = group.querySelector(".chip");
         if (firstChip) firstChip.classList.add("active");
       });
@@ -471,13 +449,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (favoriteBtn) {
       event.preventDefault();
       event.stopPropagation();
-
       toggleFavorite(favoriteBtn.dataset.postId, favoriteBtn);
       return;
     }
 
     const card = event.target.closest(".plan1-card");
-
     if (!card) return;
 
     event.preventDefault();
