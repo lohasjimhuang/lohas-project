@@ -144,6 +144,7 @@
   flex-wrap:wrap;
   padding:10px 12px;
   margin:0 14px 14px;
+  width:calc(100% - 28px);
 }
 .mp .nav-link.become-creator:hover{
   background:var(--c-solid); color:#fff;
