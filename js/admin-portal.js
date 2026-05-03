@@ -64,6 +64,10 @@
       return false;
     }
 
+    // 強制把 erpid 轉成字串
+    // (ERP API 可能回 number, 但 Supabase 的 member_id 欄位是 TEXT 型別)
+    member.erpid = String(member.erpid);
+
     State.member = member;
 
     // 查 Supabase admins table
@@ -414,7 +418,8 @@
 
       // 3. 整合 ERP + Supabase 資料
       const merged = erpUsers.map(u => {
-        const erpid = u.client_id || u.erpid;
+        // 強制轉字串(ERP 可能回 number, Supabase 是 text)
+        const erpid = String(u.client_id || u.erpid || '');
         const isAdmin = State.adminIds.has(erpid);
         const isCreator = State.creatorIds.has(erpid);
         const isSuspended = State.suspendedIds.has(erpid);

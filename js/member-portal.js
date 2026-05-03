@@ -94,6 +94,11 @@
       return false;
     }
 
+    // 強制把 erpid 轉成字串
+    // (ERP API 可能回 number, 但 Supabase 的 member_id 欄位是 TEXT 型別,
+    //  型別不一致會查不到資料)
+    member.erpid = String(member.erpid);
+
     State.member = member;
 
     const sb = getSupabase();
