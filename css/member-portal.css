@@ -1,12 +1,31 @@
 /* =============================================================
    樂活會員中心 · member-portal.css
+   --------------------------------------------
+   依賴: lohas-tokens.css + lohas-components.css
+   命名空間: .mp
+   ============================================================= */
+
+
+/* =============================================================
+   0. body 全域
+   ============================================================= */
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: #F9F8F6;
+  min-height: 100vh;
+}
+
+
+/* =============================================================
+   1. 容器 .mp + tokens
    ============================================================= */
 
 .mp{
-  --lohas-brown:#50422D;
-  --lohas-hover:#765F4A;
-  --lohas-light-brown:#CDBEA2;
-  --lohas-soft:#F9F8F6;
+  --lohas-brown:var(--lohas-brand);
+  --lohas-light-brown:var(--lohas-light);
+  --lohas-soft:var(--bg-warm);
   --lohas-line:#E8DFD0;
   --lohas-text:#3D3026;
   --lohas-sub:#7A6B5C;
@@ -37,14 +56,30 @@
   position:relative;
   display:grid;
   grid-template-columns:240px 1fr;
+  grid-template-rows:auto 1fr;
   min-height:780px;
 }
 .mp *{ box-sizing:border-box }
 .mp button{ font-family:inherit; cursor:pointer }
 
+/* Grid 區塊定位 (sidebar 跨 2 列, hero+main 各佔右側 1 列) */
+.mp > .sidebar{ grid-column:1; grid-row:1 / 3; }
+.mp > .hero{    grid-column:2; grid-row:1; }
+.mp > .main{    grid-column:2; grid-row:2; }
+
+/* 手機版獨立 logo header (桌面隱藏) */
+.mp .mp-mobile-header{ display:none; }
+.mp .mp-mobile-logo{
+  display:block;
+  height:24px;
+  width:auto;
+}
+/* 桌面版隱藏手機 header 內的 admin 按鈕 (避免兩顆同時顯示) */
+.mp .mp-mobile-admin-btn{ display:none !important; }
+
 
 /* =============================================================
-   通用工具 (loading / empty / hidden input / 圖片頭像)
+   2. 通用工具
    ============================================================= */
 
 .mp .empty-text{
@@ -67,32 +102,41 @@
 
 
 /* =============================================================
-   Sidebar
+   3. Sidebar
    ============================================================= */
 
 .mp .sidebar{
   background:#fff;
   border-right:1px solid var(--lohas-line);
-  padding:24px 0;
+  padding:16px 0 24px;
   display:flex; flex-direction:column;
 }
 .mp .sidebar-head{
-  padding:0 24px 22px;
+  padding:24px 24px 18px;
+  margin-bottom:0;
   border-bottom:1px solid var(--lohas-line);
-  margin-bottom:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:24px;
 }
 .mp .logo{
-  font-size:14px; font-weight:700;
-  color:var(--lohas-brown);
-  letter-spacing:3px; margin-bottom:4px;
+  display:block;
+  height:30px;
+  width:auto;
 }
 .mp .role-tag{
-  font-size:10px; color:var(--lohas-mute);
-  letter-spacing:1.5px; font-weight:500;
+  font-size:16px;
+  color:var(--lohas-text);
+  letter-spacing:2.5px;
+  font-weight:600;
+  margin-top:0;
+  display:block;
 }
 .mp .role-tag.creator{ color:var(--c-text); font-weight:600 }
 
-.mp .nav-section{ padding:0 14px; margin-bottom:14px }
+.mp .nav-section{ padding:0 14px; margin-bottom:14px; border:0 }
+.mp .nav-section:first-of-type{ padding-top:40px }
 .mp .nav-section-label{
   font-size:10px; letter-spacing:2px;
   color:var(--lohas-mute); font-weight:600;
@@ -176,20 +220,23 @@
 
 
 /* =============================================================
-   Main · Hero
+   4. Main · Hero
    ============================================================= */
 
 .mp .main{
   background:var(--lohas-soft);
   overflow-y:auto;
-  max-height:780px;
+  min-height:0;
 }
 
 .mp .hero{
-  padding:36px 36px 30px;
+  position:relative;
+  padding:36px 36px 54px;
   background:#fff;
   border-bottom:1px solid var(--lohas-line);
-  display:flex; align-items:center; gap:24px;
+  display:flex;
+  align-items:center;
+  gap:24px;
 }
 .mp .hero-avatar-wrap{ position:relative }
 .mp .hero-avatar{
@@ -231,6 +278,12 @@
   margin:0 0 6px; letter-spacing:1px;
   display:flex; align-items:center; gap:10px;
 }
+.mp .hero-info .id{
+  font-size:12px; color:var(--lohas-sub);
+  letter-spacing:0.5px;
+}
+
+/* Badge */
 .mp .creator-badge{
   display:inline-flex; align-items:center; gap:5px;
   font-size:11px; letter-spacing:1px;
@@ -239,12 +292,7 @@
   background:var(--c-solid); color:#fff;
 }
 .mp .creator-badge i{ font-size:10px; color:#FFD86B }
-.mp .hero-info .id{
-  font-size:12px; color:var(--lohas-sub);
-  letter-spacing:0.5px;
-}
 
-/* === Admin badge + 進入後台按鈕 === */
 .mp .admin-badge{
   display:inline-flex; align-items:center; gap:5px;
   font-size:11px; letter-spacing:1px;
@@ -252,9 +300,9 @@
   font-weight:600;
   background:#2D2520; color:#fff;
 }
-.mp .admin-badge i{ font-size:10px; color:#CDBEA2 }
+.mp .admin-badge i{ font-size:10px; color:var(--lohas-light) }
 
-.mp .hero{ position:relative }
+/* 進入管理後台按鈕 */
 .mp .enter-admin-btn{
   position:absolute; top:24px; right:36px;
   display:inline-flex; align-items:center; gap:7px;
@@ -270,26 +318,72 @@
 .mp .enter-admin-btn:hover{
   background:#3A2F26;
   transform:translateY(-1px);
-  box-shadow:0 4px 12px rgba(45,37,32,.25);
 }
-.mp .enter-admin-btn i{ color:#CDBEA2; font-size:11px }
+.mp .enter-admin-btn i{
+  color:var(--lohas-light);
+  font-size:11px;
+  width:11px;
+  height:11px;
+  line-height:11px;
+  text-align:center;
+  display:inline-block;
+}
+
+/* Action button (儲存創作者 / 建立匯款 / 寫一篇新故事 等)
+   深色框 + 白底 + 深色字, hover 淺色 */
+.mp .action-btn{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:9px 16px;
+  background:#fff;
+  color:var(--lohas-brand);
+  border:1.5px solid var(--lohas-brand);
+  border-radius:999px;
+  font-family:inherit; font-size:12px;
+  letter-spacing:1px; font-weight:600;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all .2s;
+  vertical-align:middle;
+}
+.mp .action-btn:hover{
+  background:var(--lohas-hover);
+  border-color:var(--lohas-hover);
+  color:#fff;
+  transform:translateY(-1px);
+}
+.mp .action-btn i{
+  font-size:11px;
+  width:11px;
+  height:11px;
+  line-height:11px;
+  text-align:center;
+  display:inline-block;
+  flex-shrink:0;
+}
+.mp .action-btn:hover i{ color:#fff }
 
 
 /* =============================================================
-   Content
+   5. Content + Section title
    ============================================================= */
 
-.mp .content{ padding:32px 36px }
+.mp .content{ padding:16px 36px 32px }
 .mp .content-page{ display:none }
 .mp .content-page.on{ display:block }
 
-
-/* Section title */
 .mp .section-title{
   display:flex; justify-content:space-between; align-items:baseline;
   margin:0 0 16px;
   border-bottom:1px solid var(--lohas-line);
   padding-bottom:10px;
+}
+
+/* 內容區第一個 section-title (緊貼 hero, 上方無留白) */
+.mp .content-page.on > .section-title:first-child,
+.mp .content-page.on > *:first-child .section-title,
+.mp .content-page.on > .creator-only-section:first-child .section-title{
+  padding-top:0;
+  margin-top:0;
 }
 .mp .section-title h2{
   font-size:18px; font-weight:600;
@@ -319,7 +413,7 @@
 
 
 /* =============================================================
-   首頁 · 快捷功能 + KPI
+   6. 首頁 · 快捷功能 + KPI
    ============================================================= */
 
 .mp .shortcuts{
@@ -365,7 +459,7 @@
 
 
 /* =============================================================
-   會員資料
+   7. 會員資料
    ============================================================= */
 
 .mp .profile-card{
@@ -388,7 +482,7 @@
 
 
 /* =============================================================
-   我的靈感
+   8. 我的靈感
    ============================================================= */
 
 .mp .inspo-list{
@@ -403,12 +497,12 @@
 .mp .inspo-card:hover{ transform:translateY(-3px); border-color:var(--lohas-brown) }
 .mp .inspo-img{
   aspect-ratio:1/1;
-  background:linear-gradient(135deg,#E5DDC8,#CDBEA2);
+  background:linear-gradient(135deg,#E5DDC8,var(--lohas-light));
   position:relative;
 }
-.mp .inspo-img.g2{ background:linear-gradient(135deg,#CDBEA2,#A8927A) }
+.mp .inspo-img.g2{ background:linear-gradient(135deg,var(--lohas-light),#A8927A) }
 .mp .inspo-img.g3{ background:linear-gradient(135deg,#D4C5AC,#9D8868) }
-.mp .inspo-img.g4{ background:linear-gradient(135deg,#A8927A,#765F4A) }
+.mp .inspo-img.g4{ background:linear-gradient(135deg,#A8927A,var(--lohas-hover)) }
 .mp .inspo-img.g5{ background:linear-gradient(135deg,#9D8868,#3D2F2C) }
 .mp .inspo-img.g6{ background:linear-gradient(135deg,#E8DCC2,#A8927A) }
 .mp .inspo-bookmark{
@@ -434,7 +528,7 @@
 
 
 /* =============================================================
-   想刻清單
+   9. 想刻清單
    ============================================================= */
 
 .mp .wish-list{
@@ -455,7 +549,7 @@
   position:relative;
   background:linear-gradient(135deg,#E8DFD0,#A8927A);
 }
-.mp .wish-img.g2{ background:linear-gradient(135deg,#CDBEA2,#765F4A); color:rgba(255,255,255,.6) }
+.mp .wish-img.g2{ background:linear-gradient(135deg,var(--lohas-light),var(--lohas-hover)); color:rgba(255,255,255,.6) }
 .mp .wish-img.g3{ background:linear-gradient(135deg,#A8927A,#5A4A35); color:rgba(255,255,255,.55) }
 .mp .wish-img.g4{ background:linear-gradient(135deg,#D4C5AC,#9D8868) }
 
@@ -512,7 +606,7 @@
 
 
 /* =============================================================
-   照片分享 (跟靈感同款小卡)
+   10. 照片分享
    ============================================================= */
 
 .mp .photo-grid{
@@ -530,14 +624,14 @@
 .mp .photo-cover{
   aspect-ratio:1/1; position:relative;
   cursor:pointer;
-  background:linear-gradient(135deg,#E5DDC8,#CDBEA2);
+  background:linear-gradient(135deg,#E5DDC8,var(--lohas-light));
   overflow:hidden;
   background-size:cover;
   background-position:center;
 }
-.mp .photo-cover.g2{ background:linear-gradient(135deg,#CDBEA2,#A8927A) }
+.mp .photo-cover.g2{ background:linear-gradient(135deg,var(--lohas-light),#A8927A) }
 .mp .photo-cover.g3{ background:linear-gradient(135deg,#D4C5AC,#9D8868) }
-.mp .photo-cover.g4{ background:linear-gradient(135deg,#A8927A,#765F4A) }
+.mp .photo-cover.g4{ background:linear-gradient(135deg,#A8927A,var(--lohas-hover)) }
 .mp .photo-cover.g5{ background:linear-gradient(135deg,#9D8868,#3D2F2C) }
 .mp .photo-cover.g6{ background:linear-gradient(135deg,#E8DCC2,#A8927A) }
 
@@ -671,18 +765,19 @@
   letter-spacing:0.5px; font-weight:500;
   cursor:pointer;
   border:1px solid var(--status-rejected);
-  background:#fff;
-  color:var(--status-rejected);
-  flex-shrink:0;
-}
-.mp .rejected-banner button:hover{
   background:var(--status-rejected);
   color:#fff;
+  flex-shrink:0;
+  transition:.2s;
+}
+.mp .rejected-banner button:hover{
+  background:#fff;
+  color:var(--status-rejected);
 }
 
 
 /* =============================================================
-   我的故事
+   11. 我的故事
    ============================================================= */
 
 .mp .story-add{
@@ -783,7 +878,8 @@
 .mp .story-menu button.danger i{ color:var(--status-rejected) }
 .mp .story-menu button.danger:hover{ background:var(--status-rejected-bg) }
 
-/* Empty 狀態(故事/照片沒資料) */
+
+/* Empty 狀態 */
 .mp .empty{
   text-align:center;
   padding:60px 20px;
@@ -805,19 +901,26 @@
   font-weight:500; margin-bottom:6px;
 }
 .mp .empty .empty-cta{
-  margin-top:20px;
-  display:inline-flex; align-items:center; gap:8px;
-  padding:10px 20px;
-  background:var(--lohas-brown); color:#fff;
+  margin-top:24px;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height:48px;
+  padding:0 28px;
+  background:var(--lohas-brand); color:#fff;
   border:0; border-radius:999px;
-  font-family:inherit; font-size:12px;
-  letter-spacing:1px; cursor:pointer;
-  font-weight:500;
+  font-family:inherit; font-size:14px;
+  letter-spacing:1px; font-weight:600;
+  cursor:pointer;
+  transition:background .2s, transform .2s;
 }
+.mp .empty .empty-cta:hover{
+  background:var(--lohas-hover);
+  transform:translateY(-1px);
+}
+.mp .empty .empty-cta i{ font-size:13px }
 
 
 /* =============================================================
-   我的刻圖設計
+   12. 我的刻圖設計 (Creator)
    ============================================================= */
 
 .mp .design-list{
@@ -840,9 +943,9 @@
   background-size:cover;
   background-position:center;
 }
-.mp .design-img.dg1{ background:linear-gradient(135deg,#A8927A,#765F4A) }
+.mp .design-img.dg1{ background:linear-gradient(135deg,#A8927A,var(--lohas-hover)) }
 .mp .design-img.dg2{ background:linear-gradient(135deg,#9D8868,#5A4A35) }
-.mp .design-img.dg3{ background:linear-gradient(135deg,#CDBEA2,#7A6230) }
+.mp .design-img.dg3{ background:linear-gradient(135deg,var(--lohas-light),#7A6230) }
 .mp .design-status{
   position:absolute; top:9px; right:9px;
   font-size:10px; padding:3px 8px;
@@ -888,7 +991,7 @@
 .mp .design-list .add-tile span{ font-size:11px; letter-spacing:1px; font-weight:600 }
 
 
-/* 成為創作者 onboard 區塊 */
+/* 成為創作者 onboard */
 .mp .creator-onboard{
   background:linear-gradient(135deg,var(--c-bg),#fff);
   border:1px solid #D5C7E5;
@@ -936,7 +1039,7 @@
 
 
 /* =============================================================
-   創作者個人頁編輯器
+   13. 創作者個人頁編輯器
    ============================================================= */
 
 .mp .editor-panel{
@@ -997,10 +1100,117 @@
   border-radius:50%;
   display:block;
 }
+.mp .creator-avatar-wrap{
+  position:relative;
+  display:inline-block;
+}
+.mp .ed-avatar-camera{
+  position:absolute; bottom:0; right:0;
+  width:26px; height:26px;
+  background:var(--lohas-brown); color:#fff;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px;
+  border:2px solid #fff;
+  cursor:pointer;
+  transition:background .15s;
+  padding:0;
+}
+.mp .ed-avatar-camera:hover{ background:var(--lohas-hover) }
+
+/* 配鏡照片上傳 (緣分區) */
+.mp .creator-photo-wrap{
+  display:inline-block;
+  position:relative;
+}
+.mp .creator-photo-preview{
+  width:160px;
+  aspect-ratio:3/4;
+  border:2px dashed var(--lohas-light-brown);
+  border-radius:10px;
+  background:var(--lohas-tip);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  color:var(--lohas-mute);
+  font-size:11px;
+  letter-spacing:1.5px;
+  background-size:cover;
+  background-position:center;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .15s;
+}
+.mp .creator-photo-preview:hover{
+  border-color:var(--lohas-brown);
+}
+.mp .creator-photo-preview i{ font-size:22px; opacity:0.6 }
+.mp .creator-photo-preview.has-image{
+  border-style:solid;
+  border-color:var(--lohas-line);
+}
+.mp .creator-photo-preview.has-image i,
+.mp .creator-photo-preview.has-image span{ display:none }
+.mp .creator-photo-upload-btn{
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:8px;
+  padding:7px 14px;
+  background:#fff;
+  color:var(--lohas-text);
+  border:1px solid var(--lohas-line);
+  border-radius:8px;
+  font-family:inherit; font-size:12px;
+  letter-spacing:0.3px;
+  cursor:pointer;
+  transition:all .15s;
+}
+.mp .creator-photo-upload-btn:hover{
+  border-color:var(--lohas-brown);
+  color:var(--lohas-brown);
+}
+
+/* 自訂內容區塊 */
+.mp .custom-block{
+  background:var(--lohas-soft);
+  border:1px solid var(--lohas-line);
+  border-radius:10px;
+  padding:18px;
+  margin-bottom:14px;
+}
+.mp .custom-block:last-child{ margin-bottom:0 }
+.mp .custom-block-h{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-bottom:14px;
+  border-bottom:1px dashed var(--lohas-line);
+  margin-bottom:14px;
+}
+.mp .custom-block-num{
+  font-size:11px; color:var(--lohas-brown);
+  letter-spacing:1.5px; font-weight:600;
+}
+.mp .custom-block-remove{
+  width:32px; height:32px;
+  border-radius:8px;
+  background:#fff;
+  color:var(--status-rejected);
+  border:1px solid #E5C5C5;
+  font-size:13px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition:all .15s;
+}
+.mp .custom-block-remove:hover{
+  background:var(--status-rejected);
+  border-color:var(--status-rejected);
+  color:#fff;
+  transform:scale(1.05);
+}
 
 
 /* =============================================================
-   Panel + 數據 (創作數據)
+   14. 創作數據 · Panel + Chart
    ============================================================= */
 
 .mp .panel{
@@ -1045,10 +1255,10 @@
 .mp .perf-thumb{
   width:48px; height:48px;
   border-radius:8px; flex-shrink:0;
-  background:linear-gradient(135deg,#A8927A,#765F4A);
+  background:linear-gradient(135deg,#A8927A,var(--lohas-hover));
 }
 .mp .perf-thumb.t2{ background:linear-gradient(135deg,#9D8868,#5A4A35) }
-.mp .perf-thumb.t3{ background:linear-gradient(135deg,#CDBEA2,#7A6230) }
+.mp .perf-thumb.t3{ background:linear-gradient(135deg,var(--lohas-light),#7A6230) }
 .mp .perf-info{ flex:1; min-width:0 }
 .mp .perf-name{
   font-size:13px; font-weight:600;
@@ -1075,11 +1285,11 @@
 
 
 /* =============================================================
-   分潤紀錄
+   15. 分潤紀錄
    ============================================================= */
 
 .mp .royalty-summary{
-  background:linear-gradient(135deg,#FFF7E5,#fff);
+  background:#FFFAF0;
   border:1px solid #E8D8A8;
   border-radius:14px;
   padding:24px;
@@ -1101,7 +1311,7 @@
 }
 
 .mp .bank-banner{
-  background:linear-gradient(135deg,#FFF7E5,#fff);
+  background:#FFFAF0;
   border:1px solid #E8D8A8;
   border-radius:14px;
   padding:18px 22px;
@@ -1188,7 +1398,7 @@
 
 
 /* =============================================================
-   Photo Modal
+   16. Photo Modal
    ============================================================= */
 
 .mp .modal-bg{
@@ -1211,7 +1421,7 @@
 }
 .mp .modal-img{
   aspect-ratio:1/1;
-  background:linear-gradient(135deg,#CDBEA2,#765F4A);
+  background:linear-gradient(135deg,var(--lohas-light),var(--lohas-hover));
   background-size:cover;
   background-position:center;
   position:relative; flex-shrink:0;
@@ -1285,7 +1495,7 @@
 
 
 /* =============================================================
-   Buttons
+   17. Buttons
    ============================================================= */
 
 .mp .btn{
@@ -1331,7 +1541,7 @@
 
 
 /* =============================================================
-   角色 / 狀態切換可見性
+   18. 角色 / 狀態切換可見性
    ============================================================= */
 
 .mp:not(.is-creator) .creator-only-section{ display:none }
@@ -1341,25 +1551,295 @@
 
 
 /* =============================================================
-   響應式 (基本)
+   19. RWD · 平板 (max-width: 900px)
    ============================================================= */
+
+/* 桌面版預設隱藏 mobile-profile-card 跟 mobile tab bar */
+.mp .mobile-profile-card{ display:none }
+.mp-mobile-tabbar{ display:none }
+.mp-drawer{ display:none }
+.mp-drawer-overlay{ display:none }
+
 
 @media (max-width: 900px) {
   .mp{
     grid-template-columns:1fr;
+    grid-template-rows:none;
     border-radius:0;
     border:0;
+    display:flex;
+    flex-direction:column;
   }
-  .mp .sidebar{
-    border-right:0;
+
+  /* 手機版砍 grid 區塊定位, 改 flex order */
+  .mp > .sidebar,
+  .mp > .hero,
+  .mp > .main{
+    grid-column:auto;
+    grid-row:auto;
+  }
+
+  /* 手機板 sidebar 隱藏 (簡潔做法) */
+  .mp .sidebar{ display:none }
+
+  /* 手機板獨立 header: logo 靠左 · 鈴鐺 + 漢堡靠右 */
+  .mp .mp-mobile-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:14px 12px;
+    background:transparent;
+    border-bottom:0;
+    order:0;
+    min-height:60px;
+    position:relative;
+  }
+  .mp .mp-mobile-logo{
+    height:44px;
+    width:auto;
+    margin-right:auto;
+  }
+  .mp .mp-mobile-bell,
+  .mp .mp-mobile-burger{
+    width:50px; height:50px;
+    background:transparent;
+    border:0;
+    color:var(--lohas-text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:26px;
+    border-radius:50%;
+    transition:background .15s;
+  }
+  .mp .mp-mobile-bell:hover,
+  .mp .mp-mobile-burger:hover{
+    background:rgba(80,66,45,0.08);
+  }
+  .mp .mp-mobile-bell{
+    position:relative;
+  }
+  /* 鈴鐺紅點 (有通知時) */
+  .mp .mp-mobile-bell::after{
+    content:"";
+    position:absolute;
+    top:9px; right:10px;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:#C97B5C;
+  }
+
+  /* 砍掉舊的 mobile-role 跟 mobile-admin-btn */
+  .mp .mp-mobile-role,
+  .mp .mp-mobile-admin-btn{ display:none !important }
+
+  /* 抽屜 overlay */
+  .mp-drawer-overlay{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.4);
+    z-index:998;
+    backdrop-filter:blur(2px);
+  }
+  .mp-drawer-overlay.is-open{ display:block }
+
+  /* 抽屜本體 (從底部往上滑) */
+  .mp-drawer{
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:#fff;
+    border-radius:20px 20px 0 0;
+    z-index:999;
+    transform:translateY(100%);
+    transition:transform .3s ease;
+    max-height:88vh;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 -10px 40px rgba(0,0,0,0.15);
+  }
+  .mp-drawer.is-open{
+    transform:translateY(0);
+  }
+  /* 上方拖把 (drag handle) 視覺 */
+  .mp-drawer::before{
+    content:"";
+    position:absolute;
+    top:8px; left:50%;
+    transform:translateX(-50%);
+    width:40px; height:4px;
+    background:#D5CBB9;
+    border-radius:999px;
+  }
+  .mp-drawer-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:36px 22px 12px;
     border-bottom:1px solid var(--lohas-line);
   }
-  .mp .main{ max-height:none }
+  .mp-drawer-header h3{
+    font-size:18px;
+    font-weight:600;
+    color:var(--lohas-text);
+    letter-spacing:1px;
+    margin:0;
+  }
+  .mp-drawer-close{
+    width:32px; height:32px;
+    background:transparent;
+    border:0;
+    color:var(--lohas-mute);
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    border-radius:50%;
+    transition:background .15s;
+  }
+  .mp-drawer-close:hover{
+    background:rgba(80,66,45,0.08);
+  }
+  .mp-drawer-body{
+    overflow-y:auto;
+    padding:14px 16px 24px;
+    flex:1;
+  }
+  .drawer-group{
+    margin-bottom:18px;
+  }
+  .drawer-group:last-child{ margin-bottom:0 }
+  .drawer-group-label{
+    font-size:11px;
+    color:var(--lohas-mute);
+    letter-spacing:2px;
+    font-weight:600;
+    margin:0 0 6px;
+    padding:0 8px;
+  }
+  .drawer-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 12px;
+    background:transparent;
+    border:0;
+    border-radius:12px;
+    width:100%;
+    text-align:left;
+    color:var(--lohas-text);
+    font-size:15px;
+    letter-spacing:0.3px;
+    cursor:pointer;
+    text-decoration:none;
+    transition:background .15s;
+    font-family:inherit;
+  }
+  .drawer-item:hover{
+    background:var(--lohas-tip);
+  }
+  .drawer-item > i:first-child{
+    width:22px;
+    color:var(--lohas-brown);
+    font-size:16px;
+    text-align:center;
+  }
+  .drawer-item > span{
+    flex:1;
+  }
+  .drawer-arrow{
+    color:var(--lohas-mute);
+    font-size:11px !important;
+  }
+  .drawer-item.drawer-logout{
+    color:#A85A4A;
+  }
+  .drawer-item.drawer-logout i:first-child{
+    color:#A85A4A;
+  }
+
+  /* 非 Creator 隱藏創作者區 */
+  .mp:not(.is-creator) .drawer-group.creator-only{ display:none }
+  .mp .mp-mobile-logo{
+    height:24px;
+    flex-shrink:0;
+  }
+  .mp .mp-mobile-role{
+    position:absolute;
+    right:60px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:16px;
+    color:var(--lohas-text);
+    letter-spacing:2.5px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+
+  /* 手機板「進入管理後台」按鈕: 圓形 icon (只顯示盾牌, 不顯示文字) */
+  .mp .mp-mobile-admin-btn{
+    position:static;
+    top:auto; left:auto; right:auto;
+    transform:none;
+    flex-shrink:0;
+    margin-left:auto;
+    width:32px;
+    height:32px;
+    padding:0;
+    border-radius:50%;
+    z-index:auto;
+    justify-content:center;
+  }
+  .mp .mp-mobile-admin-btn span{ display:none }
+  .mp .mp-mobile-admin-btn i{ font-size:13px; margin:0 }
+
+  /* 手機版: 隱藏 hero 內的 admin 按鈕, 只顯示 mobile-header 的 */
+  .mp .hero > .enter-admin-btn{ display:none !important; }
+  .mp .mp-mobile-admin-btn{ display:inline-flex !important; }
+  /* JS 控制 display:none 時不顯示 (Admin 才會顯示) */
+  .mp .mp-mobile-admin-btn[style*="display: none"],
+  .mp .mp-mobile-admin-btn[style*="display:none"]{ display:none !important; }
+
+  /* hero 排第一 */
+  .mp .hero{ order:1 }
+
+  /* main 排第二 */
+  .mp .main{
+    order:2;
+    overflow:visible;
+  }
+
+  .mp .content{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .mp .content-page.on{
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* 內容區順序 (手機板: 快捷標+卡 → 累計數據卡) */
+  .mp .content-page.on .shortcuts{ order:1 }
+  .mp .content-page.on .creator-only-section{ order:2; margin-top:20px }
+  .mp .content-page.on .creator-stats{ order:2; margin-top:20px }
+  .mp .content-page.on .section-title{ order:3 }
+  /* shortcuts-title 必須在 section-title 之後才能覆蓋 (specificity 相同, 後者贏) */
+  .mp .content-page.on .section-title.shortcuts-title{ order:0 }
+  .mp .content-page.on .profile-card{ order:4 }
+  .mp .content-page.on .inspo-list,
+  .mp .content-page.on .wish-list,
+  .mp .content-page.on .photo-grid,
+  .mp .content-page.on .story-card,
+  .mp .content-page.on .story-add,
+  .mp .content-page.on .design-list{ order:5 }
+
+  /* grid 收成兩欄 */
   .mp .photo-grid,
   .mp .inspo-list,
-  .mp .design-list{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .mp .design-list,
   .mp .wish-list{
     grid-template-columns:repeat(2,1fr);
   }
@@ -1369,9 +1849,197 @@
   }
   .mp .creator-stats,
   .mp .royalty-summary{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr;
+  }
+
+  /* 手機板 stat-card 橫長條布局 (label 在左, 數值在右) */
+  .mp .stat-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 16px;
+  }
+  .mp .stat-card .stat-label{
+    margin-bottom:0;
+    font-size:11px;
+    letter-spacing:1.5px;
+  }
+  .mp .stat-card .stat-value{
+    font-size:22px;
+  }
+
+
+  /* =============================================================
+     手機版改造: hero 卡片化 + shortcuts 變成主要導航
+     ============================================================= */
+
+  /* 隱藏原本桌面版的 hero (手機改用 .mobile-profile-card) */
+  .mp > .hero{ display:none !important }
+
+  /* 個人資料卡 (替代 hero) - 視覺重點, 比較大 */
+  .mp .mobile-profile-card{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    background:#fff;
+    border:1px solid var(--lohas-line);
+    border-radius:18px;
+    padding:24px 22px;
+    margin-bottom:20px;
+    box-shadow:0 4px 20px rgba(80,66,45,0.06);
+  }
+
+  .mp .mobile-profile-card .hero-avatar-wrap{ position:relative; flex-shrink:0 }
+  .mp .mobile-profile-card .hero-avatar{
+    width:90px; height:90px;
+    border-radius:50%;
+    background:var(--lohas-light-brown);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:30px; font-weight:600;
+    overflow:hidden;
+  }
+  .mp .mobile-profile-card .hero-avatar.is-creator{ background:var(--c-grad) }
+  .mp .mobile-profile-card .hero-avatar img{
+    width:100%; height:100%; object-fit:cover;
+    border-radius:50%; display:block;
+  }
+  .mp .mobile-profile-card .mobile-avatar-camera{
+    position:absolute; bottom:-2px; right:-2px;
+    width:30px; height:30px;
+    background:var(--lohas-brown); color:#fff;
+    border-radius:50%; border:3px solid #fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; cursor:pointer;
+  }
+  .mp .mobile-profile-info{ flex:1; min-width:0 }
+  .mp .mobile-profile-name{
+    margin:0 0 8px;
+    font-size:22px; font-weight:700;
+    color:var(--lohas-text);
+    letter-spacing:0.3px;
+    display:flex; align-items:center; gap:6px;
+    flex-wrap:wrap;
+  }
+  .mp .mobile-profile-badges{
+    display:flex; gap:6px; flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .mp .mobile-profile-badges .creator-badge,
+  .mp .mobile-profile-badges .admin-badge{
+    font-size:10px;
+    padding:3px 10px;
+  }
+  .mp .mobile-profile-id{
+    font-size:12px; color:var(--lohas-mute);
+    letter-spacing:0.5px;
+  }
+
+  /* 內容區順序: 個人卡 → 快捷標+卡 → 累計數據 → 其他 */
+  .mp .content-page.on .mobile-profile-card{ order:0 }
+  .mp .content-page.on .section-title.shortcuts-title{ order:1 }
+  .mp .content-page.on .shortcuts{ order:2 }
+  .mp .content-page.on .creator-only-section{ order:3; margin-top:20px }
+  .mp .content-page.on .creator-stats{ order:3; margin-top:20px }
+  .mp .content-page.on .section-title{ order:4 }
+  .mp .content-page.on .section-title.shortcuts-title{ order:1 }
+  .mp .content-page.on .profile-card{ order:5 }
+
+  /* 內容頁切換時 (data-page != home): 隱藏個人卡跟快捷區 */
+  .mp .content-page.on:not([data-page="home"]) .mobile-profile-card,
+  .mp .content-page.on:not([data-page="home"]) .shortcuts,
+  .mp .content-page.on:not([data-page="home"]) .shortcuts-title{
+    display:none;
+  }
+
+  /* =============================================================
+     手機板底部 Tab Bar
+     ============================================================= */
+
+  .mp-mobile-tabbar{
+    display:flex;
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:#fff;
+    border-top:1px solid var(--lohas-line);
+    padding:8px 4px;
+    padding-bottom:max(8px, env(safe-area-inset-bottom));
+    z-index:100;
+    justify-content:space-around;
+    align-items:flex-end;
+    box-shadow:0 -2px 12px rgba(0,0,0,0.04);
+  }
+  .mp-mobile-tabbar .tab-item{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    padding:6px 2px;
+    text-decoration:none;
+    color:var(--lohas-mute);
+    cursor:pointer;
+    transition:color .15s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mp-mobile-tabbar .tab-item i{
+    font-size:18px;
+  }
+  .mp-mobile-tabbar .tab-item span{
+    font-size:10px;
+    letter-spacing:0.5px;
+    font-weight:500;
+  }
+  .mp-mobile-tabbar .tab-item.active{
+    color:var(--lohas-brand);
+  }
+  .mp-mobile-tabbar .tab-item.active span{
+    font-weight:600;
+  }
+
+  /* 中央上傳凸起圓 */
+  .mp-mobile-tabbar .tab-upload{
+    position:relative;
+    flex:1;
+    padding-top:32px;  /* 留空間給凸起圓 */
+  }
+  .mp-mobile-tabbar .tab-upload span{
+    color:var(--lohas-mute);
+    font-size:10px;
+    font-weight:500;
+    letter-spacing:0.5px;
+  }
+  .mp-mobile-tabbar .tab-upload-circle{
+    position:absolute;
+    top:-32px;
+    left:50%;
+    transform:translateX(-50%);
+    width:62px; height:62px;
+    border-radius:50%;
+    background:var(--lohas-brand);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 24px rgba(80,66,45,0.45), 0 0 0 5px #fff;
+    transition:transform .15s, background .15s;
+  }
+  .mp-mobile-tabbar .tab-upload-circle i{
+    font-size:22px !important;
+    color:#fff !important;
+  }
+  .mp-mobile-tabbar .tab-upload:hover .tab-upload-circle,
+  .mp-mobile-tabbar .tab-upload:active .tab-upload-circle{
+    background:var(--lohas-hover);
+    transform:translateX(-50%) scale(1.05);
+  }
+
+  /* main 內容區底部留空間給 tab bar */
+  .mp .main{
+    padding-bottom:80px;
   }
 }
+
 
 @media (max-width: 500px) {
   .mp .photo-grid,
@@ -1384,67 +2052,45 @@
   .mp.is-creator .shortcuts{
     grid-template-columns:repeat(2,1fr);
   }
-  .mp .content{ padding:20px 16px }
+  .mp .content{ padding:20px 8px }
+
+  /* 手機板 profile-card padding 縮小 + 改 1 欄 */
+  .mp .profile-card{
+    padding:18px 16px;
+  }
+  .mp .profile-grid{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  /* 長文字自動換行 (避免 email 太長被切) */
+  .mp .profile-field>div{
+    word-break:break-all;
+    overflow-wrap:anywhere;
+  }
   .mp .hero{ padding:24px 20px }
 }
 
-@media (max-width: 900px) {
-  .mp {
-    display: flex;
-    flex-direction: column;
+
+/* =============================================================
+   Desktop Sidebar：首頁單獨置中在上下分隔線之間
+   ============================================================= */
+
+@media (min-width: 901px) {
+  .mp .sidebar-head {
+    padding: 0 24px 18px;
+    margin-bottom: 12px;
   }
 
-  /* 手機版先不要顯示左側 sidebar，避免擋在會員資訊上方 */
-  .mp .sidebar {
-    display: none;
+  .mp .nav-section:first-of-type {
+    padding: 0 14px;
+    margin: 0;
   }
 
-  .mp .main {
-    order: 1;
-    max-height: none;
-    overflow: visible;
+  .mp .nav-section:first-of-type .nav-link {
+    margin: 0;
   }
 
-  /* 大頭照區固定放最上方 */
-  .mp .hero {
-    order: 1;
-  }
-
-  .mp .content {
-    order: 2;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .mp .content-page.on {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* 快捷卡固定接在大頭照下面 */
-  .mp .content-page.on .shortcuts {
-    order: 1;
-  }
-
-  /* 其他內容往後排 */
-  .mp .content-page.on .creator-stats {
-    order: 2;
-  }
-
-  .mp .content-page.on .section-title {
-    order: 3;
-  }
-
-  .mp .content-page.on .profile-card {
-    order: 4;
-  }
-
-  .mp .content-page.on .inspo-list,
-  .mp .content-page.on .wish-list,
-  .mp .content-page.on .photo-grid,
-  .mp .content-page.on .story-card,
-  .mp .content-page.on .story-add,
-  .mp .content-page.on .design-list {
-    order: 5;
+  .mp .nav-divider:first-of-type {
+    margin: 12px 14px;
   }
 }
